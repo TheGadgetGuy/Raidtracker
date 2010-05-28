@@ -1,0 +1,107 @@
+<!-- INCLUDE overall_header.html -->
+<!--
+ RaidTracker ACP html
+ @package bbDkp.acp
+ @copyright (c) 2009 bbDkp <http://code.google.com/p/bbdkp/>
+ @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ @version $Id$
+//-->
+<h1>{L_RTSETTINGS}</h1>
+<p>{L_RTSETTINGS_EXPLAIN}</p>
+<style type="text/css" >
+	fieldset 
+	{
+		background :transparent url(../images/bg_tabs_alt2.gif) no-repeat scroll 100% -35px; 
+		/*border-color:#D7D7D7 #CCCCCC #CCCCCC #D7D7D7;*/
+		border-style:solid;
+		border-width:0	px;
+		margin:15px 0;
+		padding:10px;
+		position:relative;
+	}
+
+</style>
+<fieldset>
+<div id="advanced00">
+	<div class="permissions-category">
+	<ul>
+		<li class="permissions-preset-yes">
+		<a href="{U_MANAGE_SETTINGS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_SETTINGS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_EVENT_TRIGGER}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_EVENT_TRIGGERS}</span></a></li>	
+		<li class="permissions-preset-never activetab">
+		<a href="{U_ADDOWNRAIDS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_OWN_RAIDS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_RAIDNOTETRIGGERS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_RAID_NOTE_TRIGGERS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_ALIASES}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ALIASES}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_ADDITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_IGNOREITEM}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_IGNORE_ITEMS}</span></a></li>	
+	</ul>
+	</div>
+	<div class="permissions-panel" id="options001">
+		<div class="tablewrap">
+		<fieldset class="quick">
+			<div id="advanced00">
+				<div class="permissions-category">
+						<ul>
+							<li class="permissions-preset-never activetab">
+							<a href="{U_ADDOWNRAID}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_OWN_RAIDS_ADD}</span></a></li>	
+							<li class="permissions-preset-no">
+							<a href="{U_LISOWNRAID}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_OWN_RAIDS_LIST}</span></a></li>		
+							<li class="permissions-preset-no">
+							<a href="{U_EXPOWNRAID}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_OWN_RAIDS_EXPORT}</span></a></li>	
+							<li class="permissions-preset-no">
+							<a href="{U_IMPOWNRAID}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_OWN_RAIDS_IMPORT}</span></a></li>	
+						</ul>	
+				</div>
+				<div class="permissions-panel2" id="options001">
+					<div class="tablewrap">
+					<br />
+					<br />
+					<form align="left" method="post" action="{F_CONFIG}" name="post">
+					<input type="hidden" name="id" value="{ID}" />
+					    <table width="100%" border="0" cellpadding="2" cellspacing="1" class="borderless">
+					    <tr class="row2">
+					      <td colspan="3">
+					        <div style="padding:.1em">{L_RT_HELP_OWN_RAID}</div>
+					      </td>
+					    </tr>
+					    <tr>
+					      <td width="80"  class="row1">
+					        <div align="right">
+					          <label for="own_raid_name">{L_RT_OWN_RAID}:</label>
+					        </div>
+					      </td>
+					      <td  class="row2">
+					        <input type="text" name="own_raid_name" id="own_raid_name" size="20" maxlength="30" value="{NAME}" class="input" />
+					        {FV_NAME} </td>
+					      <td class="row2">{L_RT_HELP_OWN_RAID_NAME}</td>
+					    </tr>
+					  <tr>
+					    <td colspan="3">
+					      <div align="center" style="padding:.25em;">
+					        <!-- IF S_ADD -->
+					        <input type="submit" name="add" value="{L_ADD}" class="button1" />
+					        <!-- ELSE -->
+					        <input type="submit" name="update" value="{L_UPDATE}" class="button1" />
+					        <!-- ENDIF -->
+					        <input type="submit"  name="cancel" value="{L_CANCEL}" class="button2" onclick="history.back()" />
+					        </div>
+					    </td>
+					  </tr>
+					</table>
+					</form>
+					<br/>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	</div>
+	</div>
+	</div>
+</fieldset>
+
+<!-- INCLUDE dkp/overall_footer.html -->

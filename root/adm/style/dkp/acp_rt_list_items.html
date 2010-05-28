@@ -1,0 +1,123 @@
+<!-- INCLUDE overall_header.html -->
+<!--
+ RaidTracker ACP html
+ @package bbDkp.acp
+ @copyright (c) 2009 bbDkp <http://code.google.com/p/bbdkp/>
+ @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ @version $Id$
+//-->
+<h1>{L_RTSETTINGS}</h1>
+<p>{L_RTSETTINGS_EXPLAIN}</p>
+<style type="text/css" >
+	fieldset 
+	{
+		background :transparent url(../images/bg_tabs_alt2.gif) no-repeat scroll 100% -35px; 
+		/*border-color:#D7D7D7 #CCCCCC #CCCCCC #D7D7D7;*/
+		border-style:solid;
+		border-width:0	px;
+		margin:15px 0;
+		padding:10px;
+		position:relative;
+	}
+
+</style>
+
+<fieldset>
+
+<div id="advanced00">
+	<div class="permissions-category">
+	<ul>
+		<li class="permissions-preset-yes">
+		<a href="{U_MANAGE_SETTINGS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_SETTINGS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_EVENT_TRIGGER}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_EVENT_TRIGGERS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_ADDOWNRAIDS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_OWN_RAIDS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_RAIDNOTETRIGGERS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_RAID_NOTE_TRIGGERS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_ALIASES}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ALIASES}</span></a></li>	
+		<li class="permissions-preset-never activetab">
+		<a href="{U_ADDITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_IGNOREITEM}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_IGNORE_ITEMS}</span></a></li>	
+	</ul>
+</div>
+
+
+<div class="permissions-panel" id="options001">
+	<div class="tablewrap">
+
+	<fieldset class="quick">
+			<div id="advanced00">
+				<div class="permissions-category">
+					<ul>
+							<li class="permissions-preset-no">
+							<a href="{U_ADDITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS_ADD}</span></a></li>	
+					
+							<li class="permissions-preset-never activetab">
+							<a href="{U_LISITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS_LIST}</span></a></li>		
+							
+							<li class="permissions-preset-no">
+							<a href="{U_EXPITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS_EXPORT}</span></a></li>	
+							
+							<li class="permissions-preset-no">
+							<a href="{U_IMPITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS_IMPORT}</span></a></li>	
+					</ul>
+				</div>
+		</div>						
+	</fieldset>
+	<br />
+	<br />
+	
+<div>
+	<form method="post" action="{F_CONFIG}" name="post">
+
+	<table class="type1" width="50%" border="0" cellspacing="1" cellpadding="2">
+
+	<thead>
+	  <tr>
+	    <th align="left" width="10" nowrap="nowrap">&nbsp;</th>
+	    <th align="left" width="50" nowrap="nowrap">{L_RT_ITEM_WOW_ID}</th>
+	  </tr>
+	  </thead>
+	  <tbody>
+	  <!-- BEGIN row -->
+	  <tr class="row1">
+	    <td width="10" align="center"><input type="checkbox" name="compare_ids[]" value="{row.ID}" /></td>
+	    <td width="50" align="right"><a href="{row.U_ADD}">{row.COL1}</a><br /></td>
+	  </tr>
+	  
+	  <!-- END row -->
+	  </tbody>
+	  <tfoot>
+	 <tr>
+	    <th align="left" width="10" nowrap="nowrap"></th>
+	    <th align="left" width="50" nowrap="nowrap"></th>
+	  </tr>
+	  </tfoot>
+	</table>
+	<p class="quick"><input type="submit"  name="delete" value="{L_DELETE}" class="button1" /></p>
+	</form>
+</div>
+
+</div>
+
+</div>
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- INCLUDE dkp/overall_footer.html -->

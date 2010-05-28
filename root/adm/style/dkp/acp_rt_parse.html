@@ -1,0 +1,132 @@
+<!-- INCLUDE overall_header.html -->
+<!--
+ RaidTracker ACP html
+ @package bbDkp.acp
+ @copyright (c) 2009 bbDkp <http://code.google.com/p/bbdkp/>
+ @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ @version $Id$
+//-->
+<h1>{L_RT_PARSE}</h1>
+<p>{L_RT_PARSE_EXPLAIN}</p>
+<style type="text/css" >
+	fieldset 
+	{
+		background :transparent url(../images/bg_tabs_alt2.gif) no-repeat scroll 100% -35px; 
+		/*border-color:#D7D7D7 #CCCCCC #CCCCCC #D7D7D7;*/
+		border-style:solid;
+		border-width:0	px;
+		margin:15px 0;
+		padding:10px;
+		position:relative;
+	}
+	
+	
+	fieldset dt 
+	{
+		width: 55%;
+		text-align: left;
+		border: none;
+		border-right: 1px solid #CCCCCC;
+		padding-top: 3px;
+	}
+	
+	fieldset dd 
+	{
+		margin: 0 0 0 55%;
+		padding: 0 0 0 5px;
+		border: none;
+		border-left: 1px solid #CCCCCC;
+		vertical-align: top;
+		font-size: 1.00em;
+	}
+	
+	th
+	{
+		text-align:center;
+	}
+	
+</style>
+<fieldset>
+	<div id="advanced00">
+		<div class="permissions-category">
+		<ul>
+			<li class="permissions-preset-never activetab">
+			<a href="{U_PARSE}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_STEP1_PAGETITLE}</span></a></li>	
+
+
+		</ul>
+	</div>
+	<div class="permissions-panel" id="options001">
+		<span class="corners-top"><span></span></span>
+
+		<form method="post" action="{F_PARSE}" name="post">
+			<div>
+
+				<dl>
+				   <span>{L_RT_STEP1_DESCRIPTION}</span>
+				</dl>
+				
+				 <dl>
+				 	<span>
+					   <textarea name="raidlog" rows="15" cols="60" style=" font-size: 100%; width: 99%" class="input"></textarea>
+					</span>
+				</dl>
+			</div>
+			<div class="tablewrap">
+				<fieldset class="quick">
+				    <input type="submit" name="parse" value="{L_RT_STEP1_BUTTON_PARSELOG}" class="button1" />
+				    <input type="reset" name="reset" value="{L_RESET}" class="button2" />
+				</fieldset>
+			</div>
+		</form>
+		
+
+	
+		<div>
+
+		<table width="100%" cellspacing="1">
+		<thead>
+		  <tr>
+		    <th width="5">{L_RT_STEP1_EDIT}</th>
+		    <th width="5">{L_RT_STEP1_DELETE}</th>
+		    <th width="60">{L_RT_STEP1_ZONE}</th>
+		    <th width="60">{L_RT_STEP1_START}</th>
+		    <th width="60">{L_RT_STEP1_END}</th>
+		  </tr>
+		</thead>
+
+		<tbody>
+		  <!-- BEGIN import_row -->
+		  <!-- IF import_row.S_ROW_COUNT is even -->
+		  	<tr class="row1">
+		  <!-- ELSE -->
+		  	<tr class="row2">
+		  <!-- ENDIF -->
+		    <td width="5" align="center">
+		    <a href="{import_row.U_VIEW_IMPORT}"><img src="images/icon_edit.gif" width="16" height="16" alt="Edit" /></a></td>
+		    <td width="5" align="center">
+		    <a href="{import_row.U_DELETE}"><img src="images/icon_delete.gif" width="16" height="16" alt="Edit" /></a></td>
+		    <td width="60"><a href="{import_row.U_VIEW_IMPORT}">{import_row.DESCRIPTION}</a></td>
+		    <td width="60">{import_row.START}</td>
+		    <td width="60">{import_row.END}</td>
+		  </tr>
+		  <!-- END import_row -->
+		  <tr>
+		    <th colspan="5" class="footer">{LISTIMPORT_FOOTCOUNT}</th>
+		  </tr>
+		  </tbody>
+		</table>
+
+		
+		</div>
+	
+
+		<span class="corners-bottom"><span></span></span>
+	</div>
+	
+	
+	
+	
+</fieldset>
+
+<!-- INCLUDE dkp/overall_footer.html -->

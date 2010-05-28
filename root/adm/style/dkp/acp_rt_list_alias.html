@@ -1,0 +1,113 @@
+<!-- INCLUDE overall_header.html -->
+<!--
+ RaidTracker ACP html
+ @package bbDkp.acp
+ @copyright (c) 2009 bbDkp <http://code.google.com/p/bbdkp/>
+ @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ @version $Id$
+//-->
+<h1>{L_RTSETTINGS}</h1>
+<p>{L_RTSETTINGS_EXPLAIN}</p>
+<style type="text/css" >
+	fieldset 
+	{
+		background :transparent url(../images/bg_tabs_alt2.gif) no-repeat scroll 100% -35px; 
+		/*border-color:#D7D7D7 #CCCCCC #CCCCCC #D7D7D7;*/
+		border-style:solid;
+		border-width:0	px;
+		margin:15px 0;
+		padding:10px;
+		position:relative;
+	}
+
+</style>
+
+	<fieldset>
+
+	<div id="advanced00">
+		<div class="permissions-category">
+		<ul>
+		<li class="permissions-preset-yes">
+		<a href="{U_MANAGE_SETTINGS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_SETTINGS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_EVENT_TRIGGER}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_EVENT_TRIGGERS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_ADDOWNRAIDS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_OWN_RAIDS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_RAIDNOTETRIGGERS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_RAID_NOTE_TRIGGERS}</span></a></li>	
+		<li class="permissions-preset-never activetab">
+		<a href="{U_ALIASES}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ALIASES}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_ADDITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_IGNOREITEM}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_IGNORE_ITEMS}</span></a></li>	
+		</ul>
+	</div>
+	
+			
+
+			<div class="permissions-panel" id="options001">
+				
+				<div class="tablewrap">
+
+<fieldset class="quick">
+		<div id="advanced00">
+			<div class="permissions-category">
+				<ul>
+					<li class="permissions-preset-no">
+					<a href="{U_ADDALIAS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ALIASES_ADD}</span></a></li>	
+					
+					<li class="permissions-preset-never activetab">
+					<a href="{U_LISALIAS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ALIASES_LIST}</span></a></li>		
+					
+					<li class="permissions-preset-no">
+					<a href="{U_EXPALIAS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ALIASES_EXPORT}</span></a></li>	
+					
+					<li class="permissions-preset-no">
+					<a href="{U_IMPALIAS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ALIASES_IMPORT}</span></a></li>
+				</ul>
+			</div>
+		<div class="permissions-panel2" id="options001">
+		<div class="tablewrap">
+						
+</fieldset>
+
+<br />
+<br />
+<form align="left" method="post" action="{F_CONFIG}" name="post">
+        <table width="100%" border="0" cellpadding="2" cellspacing="1" class="borderless">
+            <tr class="row2">
+                <td colspan="3">
+                  <div align="left">{L_RT_HELP_ALIAS}</div>
+                </td>
+            </tr>
+                <tr>
+                  <th width="5" nowrap="nowrap"></th>
+                  <th width="50%" nowrap="nowrap">{L_RT_ALIAS}</th>
+                  <th width="50%" nowrap="nowrap">{L_RT_MEMBER}</th>
+                </tr>
+                <!-- BEGIN aliases_row -->
+                <tr class="{aliases_row.ROW_CLASS}">
+                    <td width="5" nowrap="nowrap" align="center">
+                        <input type="checkbox" name="compare_ids[]" value="{aliases_row.ID}" />
+                    </td>
+                    <td width="50%" nowrap="nowrap"><a href="{aliases_row.U_ADD_ALIAS}">{aliases_row.ALIAS}</a></td>
+                    <td width="50%" nowrap="nowrap"><a href="{aliases_row.U_ADD_ALIAS}">{aliases_row.NAME}</a></td>
+                </tr>
+                <!-- END aliases_row -->
+
+                <tr>
+                    <td colspan="3">
+				      <div align="center" style="padding:.25em;">
+                        <input type="submit"  name="delete" value="{L_DELETE}" class="button1" />
+                      </div>
+                    </td>
+                </tr>
+        </table>
+</form>
+<br/>
+
+
+</div></div></div>
+
+	<!-- INCLUDE dkp/overall_footer.html -->

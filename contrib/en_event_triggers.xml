@@ -1,0 +1,440 @@
+<EventTriggers>
+	<EventTrigger>
+		<trigger>Ysondre</trigger>
+		<resultevent>World Bosses</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Lethon</trigger>
+		<resultevent>World Bosses</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Taerar</trigger>
+		<resultevent>World Bosses</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Emeriss</trigger>
+		<resultevent>World Bosses</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Azuregos</trigger>
+		<resultevent>World Bosses</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Ahn'qiraj Ruins</trigger>
+		<resultevent>Ahn'qiraj Ruins</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Aq20</trigger>
+		<resultevent>Ahn'qiraj Ruins</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Aq40</trigger>
+		<resultevent>Ahn'qiraj Temple</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Ahn'qiraj Temple</trigger>
+		<resultevent>Ahn'qiraj Temple</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Bwl</trigger>
+		<resultevent>Blackwing Lair</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Blackwing Lair</trigger>
+		<resultevent>Blackwing Lair</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Mc</trigger>
+		<resultevent>Molten Core</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Molten Core</trigger>
+		<resultevent>Molten Core</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+
+	<EventTrigger>
+		<trigger>Zul'gurub</trigger>
+		<resultevent>Zul'gurub</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Ony</trigger>
+		<resultevent>Onyxia's Lair</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+		
+	<EventTrigger>
+		<trigger>Naxxramas</trigger>
+		<resultevent>Naxxramas Classic</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+
+	<EventTrigger>
+		<trigger>Naxxramas (40)</trigger>
+		<resultevent>Naxxramas Classic</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+
+	<EventTrigger>
+		<trigger>Onyxia</trigger>
+		<resultevent>Onyxia's Lair</resultevent>
+		<resultpool>Classic</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Caverns Of Time</trigger>
+		<resultevent>Caverns Of Time</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Gruul's Lair</trigger>
+		<resultevent>Gruul's Lair</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Karazhan</trigger>
+		<resultevent>Karazhan</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Magtheridon's Lair</trigger>
+		<resultevent>Magtheridon's Lair</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Serpentshrine Cavern</trigger>
+		<resultevent>Serpentshrine Cavern</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>SSC</trigger>
+		<resultevent>Serpentshrine Cavern</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Black Temple</trigger>
+		<resultevent>Black Temple</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+		
+	<EventTrigger>
+		<trigger>Tempest Keep</trigger>
+		<resultevent>Tempest Keep</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>TK</trigger>
+		<resultevent>Tempest Keep</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Doom Lord Kazzak</trigger>
+		<resultevent>World Bosses</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Doomwalker</trigger>
+		<resultevent>World Bosses</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>ZA</trigger>
+		<resultevent>Zul'aman</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Zul'Aman</trigger>
+		<resultevent>Zul'Aman</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>BT</trigger>
+		<resultevent>Black Temple</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Black Temple</trigger>
+		<resultevent>Black Temple</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Mount Hyjal</trigger>
+		<resultevent>Mount Hyjal</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Hyjal Summit</trigger>
+		<resultevent>Mount Hyjal</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Sunwell Plateau</trigger>
+		<resultevent>Sunwell</resultevent>
+		<resultpool>TBC</resultpool>
+	</EventTrigger>
+
+	<EventTrigger>
+		<trigger>Naxx10</trigger>
+		<resultevent>Naxxramas (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>Naxxramas (10)</trigger>
+		<resultevent>Naxxramas (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Naxxramas (25)</trigger>
+		<resultevent>Naxxramas (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>Naxx (25)</trigger>
+		<resultevent>Naxxramas (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+
+
+	<EventTrigger>
+		<trigger>Obsidian Sanctum (10)</trigger>
+		<resultevent>Obsidian Sanctum (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>OS10</trigger>
+		<resultevent>Obsidian Sanctum (10)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Obsidian Sanctum (25)</trigger>
+		<resultevent>Obsidian Sanctum (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>OS25</trigger>
+		<resultevent>Obsidian Sanctum (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+
+	<EventTrigger>
+		<trigger>Vault of Archavon (10)</trigger>
+		<resultevent>Vault of Archavon (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>Voa10</trigger>
+		<resultevent>Vault of Archavon (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Voa25</trigger>
+		<resultevent>Vault of Archavon (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>Vault of Archavon (25)</trigger>
+		<resultevent>Vault of Archavon (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Eye of Eternity (10)</trigger>
+		<resultevent>Eye of Eternity (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>EoE (10)</trigger>
+		<resultevent>Eye of Eternity (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>Eye of Eternity (25)</trigger>
+		<resultevent>Eye of Eternity (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>EoE (25)</trigger>
+		<resultevent>Eye of Eternity (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+
+	<EventTrigger>
+		<trigger>Ulduar10</trigger>
+		<resultevent>Ulduar (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>Ulduar (10)</trigger>
+		<resultevent>Ulduar (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+
+	<EventTrigger>
+		<trigger>Ulduar (25)</trigger>
+		<resultevent>Ulduar (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>Ulduar25</trigger>
+		<resultevent>Ulduar (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Trial of the Crusader (10)</trigger>
+		<resultevent>Trial of the Crusader (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>TOC10</trigger>
+		<resultevent>Trial of the Crusader (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Trial of the Crusader (25)</trigger>
+		<resultevent>Trial of the Crusader (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>TOC25</trigger>
+		<resultevent>Trial of the Crusader (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	
+	
+	<EventTrigger>
+		<trigger>Trial of the Grand Crusader (10HM)</trigger>
+		<resultevent>Trial of the Grand Crusader (10HM)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>TOC10HM</trigger>
+		<resultevent>Trial of the Grand Crusader (10HM)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Trial of the Grand Crusader (25HM)</trigger>
+		<resultevent>Trial of the Grand Crusader (25HM)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>TOC25HM</trigger>
+		<resultevent>Trial of the Grand Crusader (25HM)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+
+	<EventTrigger>
+		<trigger>Onyxia's Lair (10)</trigger>
+		<resultevent>Onyxia's Lair (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>ONY10</trigger>
+		<resultevent>Onyxia's Lair (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>ONY25</trigger>
+		<resultevent>Onyxia's Lair (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>Onyxia's Lair (25)</trigger>
+		<resultevent>Onyxia's Lair (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Ruby Sanctum (10)</trigger>
+		<resultevent>Ruby Sanctum (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>RS10</trigger>
+		<resultevent>Ruby Sanctum (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Ruby Sanctum (25)</trigger>
+		<resultevent>Ruby Sanctum (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	<EventTrigger>
+		<trigger>RS25</trigger>
+		<resultevent>Ruby Sanctum (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+
+	<EventTrigger>
+		<trigger>ICC10</trigger>
+		<resultevent>Icecrown Citadel (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+		<EventTrigger>
+		<trigger>Icecrown Citadel (10)</trigger>
+		<resultevent>Icecrown Citadel (10)</resultevent>
+		<resultpool>WLK10</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>ICC25</trigger>
+		<resultevent>Icecrown Citadel (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Icecrown Citadel (25)</trigger>
+		<resultevent>Icecrown Citadel (25)</resultevent>
+		<resultpool>WLK25</resultpool>
+	</EventTrigger>
+	
+</EventTriggers>

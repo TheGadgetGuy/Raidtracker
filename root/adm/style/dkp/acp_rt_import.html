@@ -1,0 +1,340 @@
+<!-- INCLUDE overall_header.html -->
+<!--
+		$Id: acp_rt_import.html $
+//-->
+
+
+<style type="text/css" >
+	fieldset 
+	{
+		background :transparent url(../images/bg_tabs_alt2.gif) no-repeat scroll 100% -35px; 
+		/*border-color:#D7D7D7 #CCCCCC #CCCCCC #D7D7D7;*/
+		border-style:solid;
+		border-width:0	px;
+		margin:15px 0;
+		padding:10px;
+		position:relative;
+	}
+
+	fieldset dt 
+	{
+		width: 25%;
+		text-align: left;
+		border: none;
+		border-right: 1px solid #CCCCCC;
+		padding-top: 3px;
+	}
+	
+	fieldset dd 
+	{
+		margin: 0 0 0 25%;
+		padding: 0 0 0 5px;
+		border: none;
+		border-left: 1px solid #CCCCCC;
+		vertical-align: top;
+		font-size: 1.00em;
+	}
+</style>
+   
+<script type="text/javascript">
+ //<![CDATA[ 
+
+
+/*  make a XMLHTTP Request object */
+function GetXmlHttpObject() 
+{ 
+	var xmlhttp=false;	
+	
+	try
+	{ 
+		//  IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	catch(e)	
+	{	// activex code for IE6, IE5
+		try
+		{			
+			xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		catch(e)
+		{
+			try
+			{
+				xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+			}
+			catch(e1)
+			{
+				xmlhttp=false;
+			}
+		}
+	}
+	return xmlhttp;
+}
+
+
+/* ajax function to find event */ 
+ 
+var xmlhttp; 
+function GetEvent(dkpid)
+{
+   xmlhttp = GetXmlHttpObject();
+   if (xmlhttp == null)
+   {
+	   alert("{LA_ALERT_OLDBROWSER}");
+	   return;  
+   }
+    var strURL="{UA_FINDEVENT}&dkpid="+dkpid;
+    xmlhttp.onreadystatechange=stateChanged;
+    xmlhttp.open("GET", strURL, true);
+    // send to server
+    xmlhttp.send(null);
+}
+
+/* called from GetEvent js when state changed */
+function stateChanged()
+{
+	if (xmlhttp.readyState==4) //request complete
+	{
+		if (xmlhttp.status == 200)
+		{
+			//remove select options
+			var rsel = document.getElementById('eventselect'); 
+			rsel.options.length = 0; 
+			
+			//receive xml from php
+			var xmlDoc=xmlhttp.responseXML;
+			var root = xmlDoc.getElementsByTagName('eventlist')[0];
+			var events = root.getElementsByTagName("event")
+			
+			var dkpvalue = document.getElementById('dkpvalue'); 
+			
+			
+			for (var i = 0; i < events.length; i++)
+			{
+				var event = events[i]; 
+				var eventid = event.getElementsByTagName("event_id")[0].firstChild.nodeValue;
+				var eventname = event.getElementsByTagName("event_name")[0].firstChild.nodeValue;
+
+				if (event.getElementsByTagName("event_value")[0].firstChild.nodeValue)
+				{
+					document.getElementById('dkpvalue').value = event.getElementsByTagName("event_value")[0].firstChild.nodeValue;	
+				}
+
+				// add the options to html
+			    rsel.options[i] = new Option(eventname,eventid, true, false); 
+			}
+			
+		}
+		else 
+		{
+   	   		alert("{LA_ALERT_AJAX}:\n" + xmlhttp.statusText);
+	 	}
+	}
+}
+
+/* ajax function to get event value from php, triggered from change in event in html */
+function GetEventValue(eventid)
+{
+   xmlhttp = GetXmlHttpObject();
+   if (xmlhttp == null)
+   {
+	   alert("{LA_ALERT_OLDBROWSER}");
+	   return;  
+   }
+    var strURL="{UA_FINDEVENT}&eventid="+eventid;
+    xmlhttp.onreadystatechange=stateChanged2;
+    xmlhttp.open("GET", strURL, true);
+    // send to server
+    xmlhttp.send(null);
+}
+
+
+/* called from GetEventValue js when state changed */
+function stateChanged2()
+{
+	if (xmlhttp.readyState==4) //request complete
+	{
+		if (xmlhttp.status == 200)
+		{
+			document.getElementById("dkpvalue").value=xmlhttp.responseText;
+		}
+		else 
+		{
+   	   		alert("{LA_ALERT_AJAX}:\n" + xmlhttp.statusText);
+	 	}
+	}
+}
+
+ //]]>  
+
+</script>
+
+<h1>{L_RT_STEP2_PAGETITLE}</h1>
+<p>{L_RT_IMPORT_EXPLAIN}</p>
+<fieldset>
+	<div id="advanced00">
+		<div class="permissions-category">
+		<ul>
+			<li class="permissions-preset-no">
+			<a href="{U_PARSE}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_STEP1_PAGETITLE}</span></a></li>	
+			
+			<li class="permissions-preset-never activetab">
+			<a href="{U_IMPORT}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_STEP2_PAGETITLE}</span></a></li>	
+		</ul>
+	</div>
+	</div>
+	
+	<div class="permissions-panel" id="options001">
+		<span class="corners-top"><span></span></span>
+		<form method="post" action="{F_IMPORT}" id="post">
+
+			<fieldset>
+			  <legend>{L_RT_STEP2_RAIDINFO}</legend>
+				  <dl>
+				  <dt><label>{L_RT_STEP2_DKPPOOL}:</label></dt>
+				  <dd><select name="dkpsys" class="input" onchange="return GetEvent(this.value)">	
+				    <!-- BEGIN dkpsys_row -->
+				    	<option value="{dkpsys_row.DKPLISTVALUE}"{dkpsys_row.DKPLISTSELECTED}>{dkpsys_row.DKPLISTOPTION}</option>
+				    <!-- END dkpsys_row -->
+				  	</select>
+				  </dd>
+			   </dl>
+				<dl>
+					<dt><label>{L_RT_STEP2_EVENT}:</label></dt>
+					<dd><select id="eventselect" name="event" class="input" onchange="return GetEventValue(this.value)">		
+					    <!-- BEGIN eventlist_row -->
+					    	<option value="{eventlist_row.EVENTLISTVALUE}"{eventlist_row.EVENTLISTSELECTED}>{eventlist_row.EVENTLISTOPTION}</option>
+					    <!-- END eventlist_row -->
+					  	</select>
+					</dd>
+			    </dl>
+			    
+			<!-- BEGIN allplayers_row -->
+		        <input type="hidden" name="allplayers[{allplayers_row.ID}][name]" value="{allplayers_row.NAME}"/>
+		        <input type="hidden" name="allplayers[{allplayers_row.ID}][guild]" value="{allplayers_row.GUILD}"/>
+		        <input type="hidden" name="allplayers[{allplayers_row.ID}][race]" value="{allplayers_row.RACE}"/>
+		        <input type="hidden" name="allplayers[{allplayers_row.ID}][sex]" value="{allplayers_row.SEX}"/>
+		        <input type="hidden" name="allplayers[{allplayers_row.ID}][class]" value="{allplayers_row.CLASS}"/>
+		        <input type="hidden" name="allplayers[{allplayers_row.ID}][level]" value="{allplayers_row.LEVEL}"/>
+    		<!-- END allplayers_row -->
+    
+			<!-- BEGIN raid_row -->
+				<dl>
+				<dd><input type="hidden" name="batchid" value="{raid_row.BATCHID}" class="input" /></dd>
+			  	<dd><input type="hidden" name="dkpsys_id[{raid_row.BATCHID}]" value="{raid_row.DKPSYS}" class="input" /></dd>
+				<dd><input type="hidden" name="event_id[{raid_row.BATCHID}]" value="{raid_row.EVENT}" class="input" /></dd>
+				<dd><input type="hidden" name="event_name[{raid_row.BATCHID}]" value="{raid_row.ZONE}" class="input" /></dd>
+				</dl>
+				
+				<dl>
+			    	<dt><label>{L_RT_STEP2_COMMENT}</label></dt>
+	                <dd>
+		                <textarea name="globalcomments[{raid_row.BATCHID}]" style="float: left" rows="3" cols="15" class="input">{raid_row.NOTE}</textarea>
+	                </dd>
+		        </dl>
+		        <dl>
+			    	<dt><label>{L_RT_STEP2_DKPVALUE}</label></dt>
+	                <dd>
+	                <input type="text" id="dkpvalue" name="dkpvalue[{raid_row.BATCHID}]" size="10" value="{raid_row.EVENT_VALUE}" class="input" />
+	                
+	                </dd>
+		        </dl>
+		        
+		        <dl>
+					<dt><label>{L_RT_STEP2_REALM}</label></dt>
+					<dd><p>{raid_row.REALM}</p></dd>		
+					<dt><label>{L_RT_STEP2_ZONE}</label></dt>
+					<dd><label><strong>{raid_row.ZONE}</strong></label>
+					<input type="radio" name="difficulty[{raid_row.BATCHID}]"  value="0"{raid_row.NORM_CHECKED} /> {L_RT_DIFFICULTYNORMAL}&nbsp;&nbsp;
+					<input type="radio" name="difficulty[{raid_row.BATCHID}]"  value="1"{raid_row.HEROIC_CHECKED} /> {L_RT_DIFFICULTYHEROIC}
+					</dd>
+				</dl>
+						         
+				<dl>
+					<dt><label>{L_RT_STEP2_RAIDSTART}</label></dt>
+					<dd>
+					      <input type="text" name="raidstart_d[{raid_row.BATCHID}]" size="3" maxlength="2" value="{raid_row.HRAIDSTART_D}" class="input" />
+					     /<input type="text" name="raidstart_mo[{raid_row.BATCHID}]" size="3" maxlength="2" value="{raid_row.HRAIDSTART_MO}" class="input" />
+					     /<input type="text" name="raidstart_y[{raid_row.BATCHID}]" size="5" maxlength="4" value="{raid_row.HRAIDSTART_Y}" class="input" />
+					     &nbsp;<input type="text" name="raidstart_h[{raid_row.BATCHID}]" size="3" maxlength="2" value="{raid_row.HRAIDSTART_H}" class="input" />
+					     :<input type="text" name="raidstart_mi[{raid_row.BATCHID}]" size="3" maxlength="2" value="{raid_row.HRAIDSTART_MI}" class="input" />
+					     :<input type="text" name="raidstart_s[{raid_row.BATCHID}]" size="3" maxlength="2" value="{raid_row.HRAIDSTART_S}" class="input" />
+					</dd>
+					<dt><label>{L_RT_STEP2_RAIDEND}</label></dt>
+
+					<dd>
+					      <input type="text" name="raidend_d[{raid_row.BATCHID}]" size="3" maxlength="2" value="{raid_row.HRAIDEND_D}" class="input" />
+					     /<input type="text" name="raidend_mo[{raid_row.BATCHID}]" size="3" maxlength="2" value="{raid_row.HRAIDEND_MO}" class="input" />
+					     /<input type="text" name="raidend_y[{raid_row.BATCHID}]" size="5" maxlength="4" value="{raid_row.HRAIDEND_Y}" class="input" />
+					     &nbsp;<input type="text" name="raidend_h[{raid_row.BATCHID}]" size="3" maxlength="2" value="{raid_row.HRAIDEND_H}" class="input" />
+					     :<input type="text" name="raidend_mi[{raid_row.BATCHID}]" size="3" maxlength="2" value="{raid_row.HRAIDEND_MI}" class="input" />
+					     :<input type="text" name="raidend_s[{raid_row.BATCHID}]" size="3" maxlength="2" value="{raid_row.HRAIDEND_S}" class="input" />
+					</dd>				
+				</dl>
+				<dl>
+					<dt><label>{L_RT_STEP2_ATTENDEES} ({raid_row.TOTALATTENDEESCOUNT}):</label></dt>
+					<dd><textarea name="allattendees[{raid_row.BATCHID}]" style="float: left" rows="3" cols="15" class="input">{raid_row.ALLATTENDEES}</textarea></dd>
+				</dl>
+				
+				<!-- BEGIN boss_row -->
+				<fieldset>
+						<legend>{L_RT_STEP2_RAIDSDROPSDETAILS}</legend>
+							<dl>
+								<dt><label>{L_RT_STEP2_BOSS}</label></dt>
+								
+								<dd>
+									<label><strong>{boss_row.BOSSNAME}</strong></label>
+									<input type="hidden" name="bossname[{raid_row.BATCHID}][{boss_row.BOSSNAME}]" value="{raid_row.boss_row.BOSSNAME}" class="input" />
+									<input type="radio" name="bossdifficulty[{raid_row.BATCHID}][{boss_row.BOSSNAME}]"  value="0"{raid_row.boss_row.BOSSNORM_CHECKED} /> {L_RT_DIFFICULTYNORMAL}&nbsp;&nbsp;
+									<input type="radio" name="bossdifficulty[{raid_row.BATCHID}][{boss_row.BOSSNAME}]"  value="1"{raid_row.boss_row.BOSSHEROIC_CHECKED} /> {L_RT_DIFFICULTYHEROIC}
+								</dd>
+							</dl>
+							<dl>
+								<dt><label>{L_RT_STEP2_KILLTIME}</label></dt>
+								<dd>
+								      <input type="text" name="bosskill_d[{raid_row.BATCHID}][{boss_row.BOSSNAME}]" size="3" maxlength="2" value="{raid_row.boss_row.BOSSKILL_D}" class="input" />
+								     /<input type="text" name="bosskill_mo[{raid_row.BATCHID}][{boss_row.BOSSNAME}]" size="3" maxlength="2" value="{raid_row.boss_row.BOSSKILL_MO}" class="input" />
+								     /<input type="text" name="bosskill_y[{raid_row.BATCHID}][{boss_row.BOSSNAME}]" size="5" maxlength="4" value="{raid_row.boss_row.BOSSKILL_Y}" class="input" />
+								     &nbsp;<input type="text" name="bosskill_h[{raid_row.BATCHID}][{boss_row.BOSSNAME}]" size="3" maxlength="2" value="{raid_row.boss_row.BOSSKILL_H}" class="input" />
+								     :<input type="text" name="bosskill_mi[{raid_row.BATCHID}][{boss_row.BOSSNAME}]" size="3" maxlength="2" value="{raid_row.boss_row.BOSSKILL_MI}" class="input" />
+								     :<input type="text" name="bosskill_s[{raid_row.BATCHID}][{boss_row.BOSSNAME}]" size="3" maxlength="2" value="{raid_row.boss_row.BOSSKILL_S}" class="input" />
+								</dd>
+								<dt><label>{L_RT_STEP2_ATTENDEES} ({boss_row.COUNTOFBOSSATTENDEES}):</label></dt>
+								<dd>
+									<textarea name="attendees[{raid_row.BATCHID}][{raid_row.boss_row.BOSSNAME}]" style="float: left" rows="3" cols="15" class="input">{raid_row.boss_row.BOSSATTENDEES}</textarea>
+								</dd>
+							</dl>
+							<!-- BEGIN loot_row -->
+							<dl>	      
+					         	<dt>{L_RT_STEP2_ITEMNAME}</dt>
+				                <dd>
+				                <input type="text" name="loots[{raid_row.BATCHID}][{boss_row.BOSSNAME}][itemname][{boss_row.loot_row.LOOTNR}]" size="30" value="{raid_row.boss_row.loot_row.ITEMNAME}" class="input" />{L_RT_STEP2_ITEMID}
+				                <input type="text" name="loots[{raid_row.BATCHID}][{boss_row.BOSSNAME}][itemid][{boss_row.loot_row.LOOTNR}]" size="6" value="{raid_row.boss_row.loot_row.ITEMID}" class="input" />
+				                </dd>
+					         	<dt>{L_RT_STEP2_LOOTER}</dt>
+				                <dd>
+				                <input type="text" name="loots[{raid_row.BATCHID}][{boss_row.BOSSNAME}][playername][{boss_row.loot_row.LOOTNR}]"  size="30" value="{raid_row.boss_row.loot_row.PLAYERNAME}" class="input" /> 
+				                </dd>
+					         	<dt>{L_RT_STEP2_DKPCOST}</dt>
+				                <dd>
+				                <input type="text" name="loots[{raid_row.BATCHID}][{boss_row.BOSSNAME}][cost][{boss_row.loot_row.LOOTNR}]" size="10" value="{raid_row.boss_row.loot_row.COST}" class="input" />
+				                </dd>
+							</dl>
+							<!-- END loot_row -->
+		 			</fieldset>	
+					<!-- END boss_row -->
+		        
+		
+			<!-- END raid_row -->
+			</fieldset>
+			<div class="tablewrap">
+				<fieldset class="quick">
+				    <input type="submit" name="doimport" value="{L_RT_IMPORT}" class="button1" />
+				    <input type="reset" name="reset" value="{L_RESET}" class="button2" />
+				</fieldset>
+			</div>
+		</form>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</fieldset>
+<!-- INCLUDE dkp/overall_footer.html -->

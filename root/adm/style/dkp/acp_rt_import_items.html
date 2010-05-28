@@ -1,0 +1,108 @@
+<!-- INCLUDE overall_header.html -->
+<!--
+ RaidTracker ACP html
+ @package bbDkp.acp
+ @copyright (c) 2009 bbDkp <http://code.google.com/p/bbdkp/>
+ @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ @version $Id$
+//-->
+<h1>{L_RTSETTINGS}</h1>
+<p>{L_RTSETTINGS_EXPLAIN}</p>
+<style type="text/css" >
+	fieldset 
+	{
+		background :transparent url(../images/bg_tabs_alt2.gif) no-repeat scroll 100% -35px; 
+		/*border-color:#D7D7D7 #CCCCCC #CCCCCC #D7D7D7;*/
+		border-style:solid;
+		border-width:0	px;
+		margin:15px 0;
+		padding:10px;
+		position:relative;
+	}
+
+</style>
+
+	<fieldset>
+
+<div id="advanced00">
+	<div class="permissions-category">
+	<ul>
+		<li class="permissions-preset-yes">
+		<a href="{U_MANAGE_SETTINGS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_SETTINGS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_EVENT_TRIGGER}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_EVENT_TRIGGERS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_ADDOWNRAIDS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_OWN_RAIDS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_RAIDNOTETRIGGERS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_RAID_NOTE_TRIGGERS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_ALIASES}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ALIASES}</span></a></li>	
+		<li class="permissions-preset-never activetab">
+		<a href="{U_ADDITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS}</span></a></li>	
+		<li class="permissions-preset-yes">
+		<a href="{U_IGNOREITEM}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_IGNORE_ITEMS}</span></a></li>	
+	</ul>
+</div>
+
+			<div class="permissions-panel" id="options001">
+				
+				<div class="tablewrap">
+
+<fieldset class="quick">
+		<div id="advanced00">
+			<div class="permissions-category">
+				<ul>
+						<li class="permissions-preset-no">
+						<a href="{U_ADDITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS_ADD}</span></a></li>	
+				
+						<li class="permissions-preset-no">
+						<a href="{U_LISITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS_LIST}</span></a></li>		
+						
+						<li class="permissions-preset-no">
+						<a href="{U_EXPITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS_EXPORT}</span></a></li>	
+						
+						<li class="permissions-preset-never activetab">
+						<a href="{U_IMPITEMS}" onclick=""><span class="tabbg"><span class="colour"></span>{L_RT_ADMINMENU_ADD_ITEMS_IMPORT}</span></a></li>	
+				</ul>
+			</div>
+	
+
+			<div class="permissions-panel" id="options001">
+				
+				<div class="tablewrap">
+						
+</fieldset>
+
+<br />
+<form method="post" action="{F_CONFIG}" name="post">
+       <table width="100%" border="0" cellpadding="2" cellspacing="1" class="borderless">
+    <tr class="row2">
+      <td>
+        <div style="padding:.1em">{L_RT_HELP_IMPORT_ITEM}</div>
+      </td>
+      <td>{L_RT_HELP_IMPORT_FORMAT}:</td>
+    </tr>
+    <tr>
+      <td >
+        {FV_INVALID_XML}
+          <textarea name="xml" rows="20" cols="60" id="xml" style="width: 100%" class="input">{XML}</textarea>
+      </td>
+      <td valign="top" >
+        <code>{L_RT_ADDITEM_SAMPLE_XML}</code>
+        </td>
+    </tr>
+    <tr>
+      <td>
+      <div align="center" style="padding:.25em;">
+        <input type="submit" name="import" value="{L_RT_IMPORT}" class="button1" />
+      </div>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+</table>
+<br/>
+</form>
+
+</div></div></div>
+
+	<!-- INCLUDE dkp/overall_footer.html -->

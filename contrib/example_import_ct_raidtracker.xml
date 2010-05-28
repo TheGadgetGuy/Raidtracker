@@ -1,0 +1,1892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RaidInfo>
+	<key>12/04/08 21:01:41</key>
+	<realm>Arak-arahm</realm>
+	<start>12/04/08 21:01:41</start>
+	<end>12/04/08 23:43:09</end>
+	<zone></zone>
+	<PlayerInfos>
+		<key1>
+			<name>Altazia</name>
+			<race>Scourge</race>
+			<guild>Noobs Spotted</guild>
+			<sex>3</sex>
+			<class>ROGUE</class>
+			<level>80</level>
+		</key1>
+		<key2>
+			<name>Méphysto</name>
+			<race>Tauren</race>
+			<guild>Noobs Spotted</guild>
+			<sex>2</sex>
+			<class>DRUID</class>
+			<level>80</level>
+		</key2>
+		<key3>
+			<name>Zeal</name>
+			<race>Tauren</race>
+			<guild>Noobs Spotted</guild>
+			<sex>2</sex>
+			<class>DRUID</class>
+			<level>80</level>
+		</key3>
+		<key4>
+			<name>Arckaon</name>
+			<race>Scourge</race>
+			<guild>Noobs Spotted</guild>
+			<sex>2</sex>
+			<class>WARLOCK</class>
+			<level>80</level>
+		</key4>
+		<key5>
+			<name>Dakilla</name>
+			<race>Troll</race>
+			<guild>Noobs Spotted</guild>
+			<sex>2</sex>
+			<class>MAGE</class>
+			<level>80</level>
+		</key5>
+		<key6>
+			<name>Lycaris</name>
+			<race>Tauren</race>
+			<guild>Noobs Spotted</guild>
+			<sex>3</sex>
+			<class>DRUID</class>
+			<level>80</level>
+		</key6>
+		<key7>
+			<name>Fifine</name>
+			<race>BloodElf</race>
+			<guild>Noobs Spotted</guild>
+			<sex>3</sex>
+			<class>PALADIN</class>
+			<level>80</level>
+		</key7>
+		<key8>
+			<name>Xdày</name>
+			<race>Scourge</race>
+			<guild>Noobs Spotted</guild>
+			<sex>3</sex>
+			<class>WARRIOR</class>
+			<level>80</level>
+		</key8>
+		<key9>
+			<name>Khaya</name>
+			<race>Tauren</race>
+			<guild>Noobs Spotted</guild>
+			<sex>3</sex>
+			<class>SHAMAN</class>
+			<level>80</level>
+		</key9>
+		<key10>
+			<name>Rocambet</name>
+			<race>Orc</race>
+			<guild>Noobs Spotted</guild>
+			<sex>2</sex>
+			<class>SHAMAN</class>
+			<level>80</level>
+		</key10>
+	</PlayerInfos>
+	<BossKills>
+		<key1>
+			<name>Gothik the Harvester</name>
+			<time>12/04/08 21:11:49</time>
+			<attendees></attendees>
+		</key1>
+		<key2>
+			<name>Thane Korth'azz</name>
+			<time>12/04/08 21:48:54</time>
+			<attendees></attendees>
+		</key2>
+		<key3>
+			<name>Lady Blaumeux</name>
+			<time>12/04/08 21:51:08</time>
+			<attendees></attendees>
+		</key3>
+		<key4>
+			<name>Sir Zeliek</name>
+			<time>12/04/08 21:51:37</time>
+			<attendees></attendees>
+		</key4>
+		<key5>
+			<name>Noth The Plaguebringer</name>
+			<time>12/04/08 22:18:05</time>
+			<attendees></attendees>
+		</key5>
+		<key6>
+			<name>Heigan the Unclean</name>
+			<time>12/04/08 22:41:39</time>
+			<attendees></attendees>
+		</key6>
+		<key7>
+			<name>Loatheb</name>
+			<time>12/04/08 22:53:23</time>
+			<attendees></attendees>
+		</key7>
+	</BossKills>
+	<Wipes>
+		<Wipe>1228421905</Wipe>
+		<Wipe>1228423104</Wipe>
+		<Wipe>1228426313</Wipe>
+	</Wipes>
+	<note><![CDATA[ - Zone: ]]></note>
+	<Join>
+		<key1>
+			<player>Zeal</player>
+			<race>Tauren</race>
+			<class>DRUID</class>
+			<sex>2</sex>
+			<level>80</level>
+			<time>12/04/08 21:01:41</time>
+		</key1>
+		<key2>
+			<player>Lycaris</player>
+			<race>Tauren</race>
+			<class>DRUID</class>
+			<sex>3</sex>
+			<level>80</level>
+			<time>12/04/08 21:01:41</time>
+		</key2>
+		<key3>
+			<player>Altazia</player>
+			<race>Scourge</race>
+			<class>ROGUE</class>
+			<sex>3</sex>
+			<level>80</level>
+			<time>12/04/08 21:01:41</time>
+		</key3>
+		<key4>
+			<player>Méphysto</player>
+			<race>Tauren</race>
+			<class>DRUID</class>
+			<sex>2</sex>
+			<level>80</level>
+			<time>12/04/08 21:01:41</time>
+		</key4>
+		<key5>
+			<player>Rocambet</player>
+			<race>Orc</race>
+			<class>SHAMAN</class>
+			<sex>2</sex>
+			<level>80</level>
+			<time>12/04/08 21:01:41</time>
+		</key5>
+		<key6>
+			<player>Fifine</player>
+			<race>BloodElf</race>
+			<class>PALADIN</class>
+			<sex>3</sex>
+			<level>80</level>
+			<time>12/04/08 21:01:41</time>
+		</key6>
+		<key7>
+			<player>Xdày</player>
+			<race>Scourge</race>
+			<class>WARRIOR</class>
+			<sex>3</sex>
+			<level>80</level>
+			<time>12/04/08 21:01:41</time>
+		</key7>
+		<key8>
+			<player>Khaya</player>
+			<race>Tauren</race>
+			<class>SHAMAN</class>
+			<sex>3</sex>
+			<level>80</level>
+			<time>12/04/08 21:01:41</time>
+		</key8>
+		<key9>
+			<player>Arckaon</player>
+			<race>Scourge</race>
+			<class>WARLOCK</class>
+			<sex>2</sex>
+			<level>80</level>
+			<time>12/04/08 21:01:41</time>
+		</key9>
+		<key10>
+			<player>Dakilla</player>
+			<race>Troll</race>
+			<class>MAGE</class>
+			<sex>2</sex>
+			<level>80</level>
+			<time>12/04/08 21:01:41</time>
+		</key10>
+		<key11>
+			<player>Arckaon</player>
+			<race>Scourge</race>
+			<class>WARLOCK</class>
+			<sex>2</sex>
+			<level>80</level>
+			<time>12/04/08 21:22:39</time>
+		</key11>
+		<key12>
+			<player>Arckaon</player>
+			<race>Scourge</race>
+			<class>WARLOCK</class>
+			<sex>2</sex>
+			<level>80</level>
+			<time>12/04/08 21:39:58</time>
+		</key12>
+		<key13>
+			<player>Altazia</player>
+			<race>Scourge</race>
+			<class>ROGUE</class>
+			<sex>3</sex>
+			<level>80</level>
+			<time>12/04/08 22:01:21</time>
+		</key13>
+		<key14>
+			<player>Zeal</player>
+			<race>Tauren</race>
+			<class>DRUID</class>
+			<sex>2</sex>
+			<level>80</level>
+			<time>12/04/08 22:32:56</time>
+		</key14>
+		<key15>
+			<player>Méphysto</player>
+			<race>Tauren</race>
+			<class>DRUID</class>
+			<sex>2</sex>
+			<level>80</level>
+			<time>12/04/08 22:35:00</time>
+		</key15>
+		<key16>
+			<player>Xdày</player>
+			<race>Scourge</race>
+			<class>WARRIOR</class>
+			<sex>3</sex>
+			<level>80</level>
+			<time>12/04/08 22:57:49</time>
+		</key16>
+	</Join>
+	<Leave>
+		<key1>
+			<player>Arckaon</player>
+			<time>12/04/08 21:20:16</time>
+		</key1>
+		<key2>
+			<player>Arckaon</player>
+			<time>12/04/08 21:38:40</time>
+		</key2>
+		<key3>
+			<player>Altazia</player>
+			<time>12/04/08 21:57:50</time>
+		</key3>
+		<key4>
+			<player>Zeal</player>
+			<time>12/04/08 22:32:16</time>
+		</key4>
+		<key5>
+			<player>Méphysto</player>
+			<time>12/04/08 22:33:41</time>
+		</key5>
+		<key6>
+			<player>Xdày</player>
+			<time>12/04/08 22:56:42</time>
+		</key6>
+		<key7>
+			<player>Altazia</player>
+			<time>12/04/08 23:43:09</time>
+		</key7>
+		<key8>
+			<player>Méphysto</player>
+			<time>12/04/08 23:43:09</time>
+		</key8>
+		<key9>
+			<player>Xdày</player>
+			<time>12/04/08 23:43:09</time>
+		</key9>
+		<key10>
+			<player>Arckaon</player>
+			<time>12/04/08 23:43:09</time>
+		</key10>
+		<key11>
+			<player>Khaya</player>
+			<time>12/04/08 23:43:09</time>
+		</key11>
+		<key12>
+			<player>Dakilla</player>
+			<time>12/04/08 23:43:09</time>
+		</key12>
+		<key13>
+			<player>Lycaris</player>
+			<time>12/04/08 23:43:09</time>
+		</key13>
+		<key14>
+			<player>Fifine</player>
+			<time>12/04/08 23:43:09</time>
+		</key14>
+		<key15>
+			<player>Rocambet</player>
+			<time>12/04/08 23:43:09</time>
+		</key15>
+		<key16>
+			<player>Zeal</player>
+			<time>12/04/08 23:43:09</time>
+		</key16>
+	</Leave>
+	<Loot>
+		<key1>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Xdày</Player>
+			<Time>12/04/08 21:11:51</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key1>
+		<key2>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1682244468:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Méphysto</Player>
+			<Time>12/04/08 21:11:53</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key2>
+		<key3>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1911164088:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 21:11:54</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key3>
+		<key4>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 21:11:56</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key4>
+		<key5>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1495746174:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 21:11:57</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key5>
+		<key6>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:2050275878:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 21:11:58</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key6>
+		<key7>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1566998716:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Fifine</Player>
+			<Time>12/04/08 21:12:00</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key7>
+		<key8>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:821510078:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Rocambet</Player>
+			<Time>12/04/08 21:12:02</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key8>
+		<key9>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1545321623:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Lycaris</Player>
+			<Time>12/04/08 21:12:03</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key9>
+		<key10>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:285933314:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 21:12:24</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key10>
+		<key11>
+			<ItemName>Ceinturon du cavalier spectral</ItemName>
+			<ItemID>39379:0:0:0:0:0:0:1765816274:80
+			</ItemID>
+			<Icon>INV_Belt_19</Icon>
+			<Class>Armure</Class>
+			<SubClass>Mailles</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 21:12:32</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key11>
+		<key12>
+			<ItemName>Amulette de vie voilée</ItemName>
+			<ItemID>39392:0:0:0:0:0:0:2034251730:80
+			</ItemID>
+			<Icon>INV_Jewelry_Necklace_30Naxxramas
+			</Icon>
+			<Class>Armure</Class>
+			<SubClass>Divers</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 21:13:06</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Gothik the Harvester</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Gothik the Harvester]]></Note>
+		</key12>
+		<key13>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1911164088:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 21:51:51</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key13>
+		<key14>
+			<ItemName>Cierge charmé</ItemName>
+			<ItemID>39394:0:0:0:0:0:0:1515274994:80
+			</ItemID>
+			<Icon>INV_Staff_31</Icon>
+			<Class>Arme</Class>
+			<SubClass>Bâtons</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 21:52:38</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key14>
+		<key15>
+			<ItemName>Corselet du vainqueur perdu</ItemName>
+			<ItemID>40612:0:0:0:0:0:0:1783710450:80
+			</ItemID>
+			<Icon>INV_Chest_Chain_03</Icon>
+			<Class>Divers</Class>
+			<SubClass>Camelote</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 21:53:24</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key15>
+		<key16>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1682244468:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Méphysto</Player>
+			<Time>12/04/08 21:53:31</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key16>
+		<key17>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1495746174:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 21:53:35</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key17>
+		<key18>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:821510078:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Rocambet</Player>
+			<Time>12/04/08 21:53:41</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key18>
+		<key19>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:2050275878:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 21:53:48</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key19>
+		<key20>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1566998716:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Fifine</Player>
+			<Time>12/04/08 21:53:56</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key20>
+		<key21>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1545321623:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Lycaris</Player>
+			<Time>12/04/08 21:54:04</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key21>
+		<key22>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:285933314:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 21:54:14</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key22>
+		<key23>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 21:54:24</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Sir Zeliek</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Sir Zeliek]]></Note>
+		</key23>
+		<key24>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1682244468:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Méphysto</Player>
+			<Time>12/04/08 22:18:09</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key24>
+		<key25>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Xdày</Player>
+			<Time>12/04/08 22:18:11</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key25>
+		<key26>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:2050275878:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 22:18:11</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key26>
+		<key27>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 22:18:12</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key27>
+		<key28>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1911164088:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 22:18:13</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key28>
+		<key29>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:285933314:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 22:18:13</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key29>
+		<key30>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1495746174:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 22:18:14</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key30>
+		<key31>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1545321623:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Lycaris</Player>
+			<Time>12/04/08 22:18:15</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key31>
+		<key32>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:821510078:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Rocambet</Player>
+			<Time>12/04/08 22:18:16</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key32>
+		<key33>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1566998716:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Fifine</Player>
+			<Time>12/04/08 22:18:17</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key33>
+		<key34>
+			<ItemName>Malédiction de Noth</ItemName>
+			<ItemID>39240:0:0:0:0:0:0:779534196:80
+			</ItemID>
+			<Icon>INV_Helmet_108</Icon>
+			<Class>Armure</Class>
+			<SubClass>Cuir</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 22:19:01</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key34>
+		<key35>
+			<ItemName>Pansière du soldat ressuscité</ItemName>
+			<ItemID>39239:0:0:0:0:0:0:511098740:80
+			</ItemID>
+			<Icon>INV_Chest_Plate10</Icon>
+			<Class>Armure</Class>
+			<SubClass>Plaques</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 22:19:19</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key35>
+		<key36>
+			<ItemName>Cristal abyssal</ItemName>
+			<ItemID>34057:0:0:0:0:0:0:478395257:80
+			</ItemID>
+			<Icon>INV_Enchant_AbyssCrystal</Icon>
+			<Class>Artisanat</Class>
+			<SubClass>Enchantement</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 22:20:42</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Noth The Plaguebringer</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Noth The Plaguebringer]]></Note>
+		</key36>
+		<key37>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Xdày</Player>
+			<Time>12/04/08 22:41:47</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key37>
+		<key38>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:2050275878:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 22:41:47</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key38>
+		<key39>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1682244468:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Méphysto</Player>
+			<Time>12/04/08 22:41:49</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key39>
+		<key40>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1911164088:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 22:41:50</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key40>
+		<key41>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1495746174:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 22:41:54</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key41>
+		<key42>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 22:41:55</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key42>
+		<key43>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1545321623:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Lycaris</Player>
+			<Time>12/04/08 22:41:56</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key43>
+		<key44>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:821510078:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Rocambet</Player>
+			<Time>12/04/08 22:41:58</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key44>
+		<key45>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1566998716:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Fifine</Player>
+			<Time>12/04/08 22:42:03</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key45>
+		<key46>
+			<ItemName>Chaussures saltarelles</ItemName>
+			<ItemID>39254:0:0:0:0:0:0:-1772585396:80
+			</ItemID>
+			<Icon>INV_Boots_Cloth_16</Icon>
+			<Class>Armure</Class>
+			<SubClass>Tissu</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 22:42:26</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key46>
+		<key47>
+			<ItemName>Tunique du paquet perdu</ItemName>
+			<ItemID>39248:0:0:0:0:0:0:-2041020852:80
+			</ItemID>
+			<Icon>INV_Chest_Leather_02</Icon>
+			<Class>Armure</Class>
+			<SubClass>Mailles</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 22:42:31</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key47>
+		<key48>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:285933314:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 22:42:37</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Heigan the Unclean</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Heigan the Unclean]]></Note>
+		</key48>
+		<key49>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:2050275878:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 22:53:27</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key49>
+		<key50>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1566998716:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Fifine</Player>
+			<Time>12/04/08 22:53:31</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key50>
+		<key51>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 22:53:31</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key51>
+		<key52>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1495746174:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 22:53:32</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key52>
+		<key53>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1545321623:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Lycaris</Player>
+			<Time>12/04/08 22:53:40</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key53>
+		<key54>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1911164088:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 22:53:42</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key54>
+		<key55>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:285933314:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 22:53:56</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key55>
+		<key56>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1682244468:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Méphysto</Player>
+			<Time>12/04/08 22:53:57</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key56>
+		<key57>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Xdày</Player>
+			<Time>12/04/08 22:54:00</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key57>
+		<key58>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:821510078:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Rocambet</Player>
+			<Time>12/04/08 22:54:06</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key58>
+		<key59>
+			<ItemName>Bâton de soufre</ItemName>
+			<ItemID>39256:0:0:0:0:0:0:-2101180048:80
+			</ItemID>
+			<Icon>INV_Staff_34</Icon>
+			<Class>Arme</Class>
+			<SubClass>Bâtons</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 22:54:09</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key59>
+		<key60>
+			<ItemName>Spallières du vainqueur perdu</ItemName>
+			<ItemID>40624:0:0:0:0:0:0:-1832744592:80
+			</ItemID>
+			<Icon>INV_Shoulder_22</Icon>
+			<Class>Divers</Class>
+			<SubClass>Camelote</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Méphysto</Player>
+			<Time>12/04/08 22:56:10</Time>
+			<Zone>Naxxramas</Zone>
+			<Boss>Loatheb</Boss>
+			<Note><![CDATA[ - Zone: Naxxramas - Boss: Loatheb]]></Note>
+		</key60>
+		<key61>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 23:17:33</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key61>
+		<key62>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1911164088:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 23:17:33</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key62>
+		<key63>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:2050275878:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 23:17:35</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key63>
+		<key64>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1682244468:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Méphysto</Player>
+			<Time>12/04/08 23:17:37</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key64>
+		<key65>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1495746174:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 23:17:38</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key65>
+		<key66>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:285933314:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 23:17:39</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key66>
+		<key67>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1545321623:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Lycaris</Player>
+			<Time>12/04/08 23:17:40</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key67>
+		<key68>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:821510078:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Rocambet</Player>
+			<Time>12/04/08 23:17:44</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key68>
+		<key69>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1566998716:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Fifine</Player>
+			<Time>12/04/08 23:20:32</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key69>
+		<key70>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1911164088:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 23:22:42</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key70>
+		<key71>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Xdày</Player>
+			<Time>12/04/08 23:22:42</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key71>
+		<key72>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:821510078:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Rocambet</Player>
+			<Time>12/04/08 23:22:45</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key72>
+		<key73>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:2050275878:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 23:22:45</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key73>
+		<key74>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1682244468:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Méphysto</Player>
+			<Time>12/04/08 23:22:46</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key74>
+		<key75>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1545321623:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Lycaris</Player>
+			<Time>12/04/08 23:22:46</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key75>
+		<key76>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1495746174:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 23:22:47</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key76>
+		<key77>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 23:22:47</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key77>
+		<key78>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:285933314:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 23:22:47</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key78>
+		<key79>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1566998716:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Fifine</Player>
+			<Time>12/04/08 23:22:48</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key79>
+		<key80>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Xdày</Player>
+			<Time>12/04/08 23:28:36</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key80>
+		<key81>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 23:28:36</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key81>
+		<key82>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1682244468:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Méphysto</Player>
+			<Time>12/04/08 23:28:37</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key82>
+		<key83>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1911164088:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 23:28:38</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key83>
+		<key84>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:821510078:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Rocambet</Player>
+			<Time>12/04/08 23:28:40</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key84>
+		<key85>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1495746174:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 23:28:40</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key85>
+		<key86>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:2050275878:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 23:28:43</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key86>
+		<key87>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1566998716:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Fifine</Player>
+			<Time>12/04/08 23:28:44</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key87>
+		<key88>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:285933314:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 23:28:46</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key88>
+		<key89>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1545321623:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Lycaris</Player>
+			<Time>12/04/08 23:31:40</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key89>
+		<key90>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Xdày</Player>
+			<Time>12/04/08 23:36:38</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key90>
+		<key91>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1566998716:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Fifine</Player>
+			<Time>12/04/08 23:36:39</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key91>
+		<key92>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1173525292:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 23:36:44</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key92>
+		<key93>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1911164088:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 23:36:44</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key93>
+		<key94>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:-1682244468:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Méphysto</Player>
+			<Time>12/04/08 23:36:45</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key94>
+		<key95>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1495746174:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Arckaon</Player>
+			<Time>12/04/08 23:36:46</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key95>
+		<key96>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:821510078:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Rocambet</Player>
+			<Time>12/04/08 23:36:49</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key96>
+		<key97>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:285933314:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 23:36:53</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key97>
+		<key98>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:1545321623:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Lycaris</Player>
+			<Time>12/04/08 23:37:03</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key98>
+		<key99>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:2050275878:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Khaya</Player>
+			<Time>12/04/08 23:37:28</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key99>
+		<key100>
+			<ItemName>Gants du vainqueur perdu</ItemName>
+			<ItemID>40615:0:0:0:0:0:0:1139619270:80
+			</ItemID>
+			<Icon>INV_Gauntlets_27</Icon>
+			<Class>Divers</Class>
+			<SubClass>Camelote</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Altazia</Player>
+			<Time>12/04/08 23:38:28</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key100>
+		<key101>
+			<ItemName>Sac en peau de dragon</ItemName>
+			<ItemID>43345:0:0:0:0:0:0:1408054726:80
+			</ItemID>
+			<Icon>INV_Misc_Bag_26_Spellfire</Icon>
+			<Class>Conteneur</Class>
+			<SubClass>Sac</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Rocambet</Player>
+			<Time>12/04/08 23:39:01</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key101>
+		<key102>
+			<ItemName>Sacoche de butin</ItemName>
+			<ItemID>43347:0:0:0:0:0:0:1676490182:80
+			</ItemID>
+			<Icon>INV_Misc_Bag_17</Icon>
+			<Class>Divers</Class>
+			<SubClass>Camelote</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 23:39:59</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key102>
+		<key103>
+			<ItemName>Emblème d'héroïsme</ItemName>
+			<ItemID>40752:0:0:0:0:0:0:285933314:80
+			</ItemID>
+			<Icon>Spell_Holy_ProclaimChampion</Icon>
+			<Class>Argent</Class>
+			<SubClass>Argent(OBSOLETE)</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>0</Count>
+			<Player>Dakilla</Player>
+			<Time>12/04/08 23:40:16</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key103>
+		<key104>
+			<ItemName>Acier cramoisi</ItemName>
+			<ItemID>40429:0:0:0:0:0:0:871183814:80
+			</ItemID>
+			<Icon>INV_Weapon_Hand_18</Icon>
+			<Class>Arme</Class>
+			<SubClass>Armes de pugilat</SubClass>
+			<Color>ffa335ee</Color>
+			<Count>1</Count>
+			<Player>Zeal</Player>
+			<Time>12/04/08 23:40:41</Time>
+			<Zone>Le sanctum Obsidien</Zone>
+			<Boss>Trash mob</Boss>
+			<Note><![CDATA[ - Zone: Le sanctum Obsidien - Boss: Trash mob]]></Note>
+		</key104>
+	</Loot>
+</RaidInfo>
