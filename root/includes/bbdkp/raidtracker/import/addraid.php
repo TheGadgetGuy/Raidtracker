@@ -131,7 +131,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         
     }
     
-    	function handle_new_members($batchid) 
+    function handle_new_members($batchid) 
     {
     	global $db, $user, $config, $phpbb_root_path, $phpEx;
         if ( !class_exists('acp_dkp_mm')) 
@@ -148,43 +148,55 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$allplayerinfo[] = array(
-				'playername' => $row['playername'], 
-				'race' 		 => $row['race'],
-				'guild' 	 => $row['guild'],
-				'sex' 		 => $row['sex'],
-				'class' 	 => $row['class'],
-				'level' 	 => $row['level'],
-				'value' 	 => $row['value'],
+				'playername' => (string) $row['playername'], 
+				'race' 		 => (int) $row['race'],
+				'guild' 	 => (string)  $row['guild'],
+				'sex' 		 => (int) $row['sex'],
+				'class' 	 => (int) $row['class'],
+				'level' 	 => (int) $row['level'],
+				'value' 	 => (float) $row['value'],
 				);
 		}
 		$db->sql_freeresult ( $result);
 		
 		foreach($allplayerinfo as $player)
 		{
-	        // check guild
-			$sql = "SELECT id 
-	        	FROM " . GUILD_TABLE . " 
-	        	where name ='" . $db->sql_escape($player['guild']) . "'";
-			$result = $db->sql_query($sql);
-            $guild_id = $db->sql_fetchfield('id');  
-            $db->sql_freeresult($result);
-            
-            //guild not found -> make it
-            if (! $guild_id)
-            {
-            	// insertnewguild($guild_name,$realm_name,$region, $showroster, $aionlegionid = 0, $aionserverid = 0) 
-	            $guild_id = $acp_dkp_mm->insertnewguild(
-	            	$player['guild'],
-	            	$config['bbdkp_default_realm'],
-	            	$config['bbdkp_default_region'], 
-	            	1);
+			
+			// is there a guild ?
+			if( strlen($player['guild']) > 2 )
+			{
+		        // check guild
+				$sql = "SELECT id 
+		        	FROM " . GUILD_TABLE . " 
+		        	where name ='" . $db->sql_escape($player['guild']) . "'";
+				$result = $db->sql_query($sql);
+	            $guild_id = $db->sql_fetchfield('id');  
+	            $db->sql_freeresult($result);
 	            
-	            // ranks are just defaults, you will have to run armoryupdater to update correct ranks
-				//insertnewrank($nrankid,$nrank_name, $nrank_hide, $nprefix, $nsuffix ,  $guild_id)
-
-	            $acp_dkp_mm->insertnewrank(0, 'Guildleader', 0, '', '',  $guild_id);
-	            $acp_dkp_mm->insertnewrank(1, 'Member', 0, '', '',  $guild_id);
-            }
+	            //guild not found -> make it
+	            if (! $guild_id)
+	            {
+	            	// insertnewguild($guild_name,$realm_name,$region, $showroster, $aionlegionid = 0, $aionserverid = 0) 
+		            $guild_id = $acp_dkp_mm->insertnewguild(
+		            	$player['guild'],
+		            	$config['bbdkp_default_realm'],
+		            	$config['bbdkp_default_region'], 
+		            	1);
+		            
+		            // ranks are just defaults, you will have to run armoryupdater to update correct ranks
+					//insertnewrank($nrankid,$nrank_name, $nrank_hide, $nprefix, $nsuffix ,  $guild_id)
+	
+		            $acp_dkp_mm->insertnewrank(0, 'Guildleader', 0, '', '',  $guild_id);
+		            $acp_dkp_mm->insertnewrank(1, 'Member', 0, '', '',  $guild_id);
+	            }
+				
+			}
+			else 
+			{
+				//guildless
+				$guild_id = 0;
+				
+			}
             
             //check membername
             $sql = "SELECT count(*) as mcount 
@@ -211,13 +223,22 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
                 //insertnewmember($member_name, $member_status, $member_lvl, $race_id ,  $class_id, 
                 //$rank_id, $member_comment, $joindate, $leavedate, $guild_id, $gender, $achievpoints, $url )
     
+            	if ($guild_id == 0 )
+            	{
+            		$rank = 99;
+            	}
+            	else 
+            	{
+            		$rank = 1;
+            	}
+            	
                 if ($acp_dkp_mm->insertnewmember(
                 	$player['playername'], 
                 	1, 
                 	$player['level'], 
                 	$player['race'], 
                 	$player['class'], 
-                	1,
+                	$rank,
                 	"Member inserted " . $user->format_date($this->time) . ' by RaidTracker',
                 	$this->time, // joindate
                 	mktime(0, 0, 0, 12, 31, 2030),  // should be null
@@ -254,8 +275,6 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 				);
 				$sql = 'INSERT INTO ' . MEMBER_DKP_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary);
 				$db->sql_query($sql);
-				
-				
             }
               	        
 		}
