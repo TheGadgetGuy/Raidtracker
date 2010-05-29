@@ -534,10 +534,11 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		
 		// fill temp table
 		$db->sql_multi_insert(RT_TEMP_JOININFO, $rt_joinleave);
-	
-			
+		
+
 		/*
-		 * Bosskills and wipes
+		 *
+		 *  Bosskills and wipes
 		 *
 		 */
 		foreach ($Bosskills as $key => $Bosskill)
