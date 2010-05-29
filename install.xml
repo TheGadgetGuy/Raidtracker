@@ -1,183 +1,161 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
-<!-- $id$ -->
-<!--For security purposes, please check: http
-://www.phpbb.com/mods/ for the latest version of this MOD. 
-Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems 
-within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
-  <header>
-    <license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
-    <title lang="en">bbDKP Raidtracker Plugin 0.2.1</title>
-    <description lang="en">
-    bbDkp Raidtracker Plugin installer
-    Dependency : bbDkp 1.1 must be installed before
-</description>
-    <author-notes lang="en">we hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com</author-notes>
-    <author-group>
-      <author>
-        <realname>Sajaki</realname>
-        <email>sajaki9@gmail.com</email>
-        <username>Sajaki</username>
-        <homepage>http://www.bbdkp.com</homepage>
-        <contributions-group>
-      	<contributions status="current" from="2009-01-01" position="Project leader" />
-      	<contributions status="past" from="2008-04-04" to="2009-01-01"  position="Developer" />
-      	</contributions-group>	
-      </author>
-      <author>
-        <realname>Malfate</realname>
-        <email>cs.krushin@gmail.com</email>
-        <username>Medraut</username>
-        <homepage>http://www.bbdkp.com</homepage>
-        <contributions-group>
-       <contributions status="past" from="2007-12-27" to="2009-01-01" position="Former Leader, bbDKP Supporter" />
-      	</contributions-group>	
-      </author>
-    </author-group>
-
-	<mod-version>0.2.1</mod-version>
-    <installation>
-      <level>easy</level>
-      <time>600</time>
-	<target-version>3.0.7-PL1</target-version>
-    </installation>
-<history>
-
-<entry>
-<date>2010-05-29</date>
-<rev-version>0.2.1</rev-version>
-<changelog lang="en">
-	<change>[NEW] added an option to the ACP to log one global raid instead of one raid per boss. This is independent of the setting in CT_Raidtracker to log bosses.</change>	
-	<change>[FIX] issue #36 unguilded raiders are incorrectly created with an unnamed guild</change>
-	<change>[FIX] issue #35 parser crashed while trying to insert a join without a leave. </change>	
-</changelog>
-</entry>
-
-
-<entry>
-<date>2010-05-25</date>
-<rev-version>0.2.0</rev-version>
-<changelog lang="en">
-	<change>[CHANGE] ready for bbdkp 1.1.0</change>
-	<change>[CHANGE] recognises heroic raids from normal raids, finds event</change>
-	<change>[CHANGE] new preference to allow replacing alt names</change>
-	<change>[CHANGE] event triggers up to ICC joined. will also create dkp pool, event if not exists</change>
-	<change>[CHANGE] events are now mandatory, no more "unknown event".</change>
-	<change>[CHANGE] Language file updated to uppercase, template uses L_ adressing</change>
-	<change>[CHANGE] removed dao class from CTRT, uses phpbb dbal</change>
-	<change>[CHANGE] refactored all sub acp modules</change>
-	<change>[CHANGE] new dkp parser, using SimpleXML class, adds CDATA integration, new import screen</change>
-	<change>[CHANGE] new temporary tables to store imported dkp data before processing</change>
-	<change>[CHANGE] Umil db installer</change>
-	<change>[CHANGE] Automod install script</change>
-</changelog>
-</entry>
-
-
-<entry>
-<date>2009-05-17</date>
-<rev-version>0.1.3</rev-version>
-	<changelog lang="en">
-	<change>[RELEASED] released with bbdkp 1.0.9 RC1</change>
-	<change>[FIX] changed Stripslashes, addslashes, xml validations</change>
-	<change>[FIX] ctrt importer fixed</change>
-	<change>[NEW] ctrt new event Wotlk triggers</change>
-</changelog>
-</entry>
-
-<entry>
-<date>2008-12-28</date>
-<rev-version>0.1.2</rev-version>
-	<changelog lang="en">
-	<change>[RELEASED] released with bbdkp 1.0.9 Beta 3</change>
-	<change>[ADDED] MODX installation instructions</change>
-	</changelog>
-</entry>
-
-
-<entry>
-<date>2008-12-28</date>
-<rev-version>0.1.1</rev-version>
-	<changelog lang="en">
-	<change>[RELEASED] released with bbdkp 1.0.9 Beta 1</change>
-	<change>[FIXED] - Ctrt : import defaults to UTF-8, "dkp invalid string" when too long, Ctrt prefs options changed - details see svn r229,r237,r238</change>
-	<change>[FIXED] - Ctrt : Death Knights were created as 'unknown' with class id 0 (svn 231,238)</change>
-	</changelog>
-</entry>
-
-<entry>
-<date>2008-12-14</date>
-<rev-version>0.1.0</rev-version>
-<changelog lang="en">
-	<change>[RELEASED] released with bbdkp 1.0.9 Beta 1</change>
-	<change>[CHANGED] - CTRT : updated for multiple dkp</change> 
-	</changelog>
-</entry>
-
-<entry>
-<date>2008-09-15</date>
-<rev-version>0.0.3</rev-version>
-	<changelog lang="en">
-	<change>[RELEASED] released with bbdkp 1.0.8 Beta 5 revision 60>70 - </change>
-	<change>[FIXED] - ctrt importing raids with ' sign in eventname</change>
-	</changelog>
-</entry>
-
-
-<entry>
-<date>2008-04-25</date>
-<rev-version>0.0.2</rev-version>
-	<changelog lang="en">
-	<change>[RELEASED] released with bbdkp 1.0.8 Beta 4 by Medraut, Teksonic</change>
-	<change>[ADDED] - Event  &amp; Raid Triggers for CTRA.</change>
-	<change>[UPDATED] - CTRT plugin updated to eqdkp ctrt 1.16.8.</change>
-	<change>[FIXED] - Raid Note Parsing error for CTRT when using an apostrophe.</change>
-	<change>[FIXED] - Fixed CTRT import error. (returning 0 no matter what).</change>
-	<change>[FIXED] - CTRT now works with special characters so that name like "Aniër", and works as intended.</change>
-	</changelog>
-</entry>
-
-<entry>
-<date>2007-07-16</date>
-<rev-version>0.0.1</rev-version>
-	<changelog lang="en">
-	<change>[RELEASED] released with 1.0.7 Ippeh, conversion plugin ctrt-1.16.3 (first test version)</change>
-	</changelog>
-</entry>
-</history>
-
-<link-group>
-	<link type="dependency" lang="en-gb" href="http://www.bbdkp.com/viewtopic.php?f=2&amp;t=1320">bbDkp 1.1.0</link>
-</link-group>	
-
-</header>
-  <action-group>
-    <copy>
-     <file from="root/adm/findevent.php" to="adm/findevent.php" />     
-     <file from="root/adm/style/dkp/*.*" to="adm/style/dkp/*.*" />
-	 <file from="root/includes/acp/*.*" to="includes/acp/*.*" />
-     <file from="root/includes/acp/info/*.*" to="includes/acp/info/*.*" />
-     <file from="root/includes/bbdkp/bbdkp.php" to="includes/bbdkp/bbdkp.php" />
-     <file from="root/includes/bbdkp/raidtracker/*.*" to="includes/bbdkp/raidtracker/*.*" />
-     <file from="root/includes/bbdkp/raidtracker/additems/*.*" to="includes/bbdkp/raidtracker/additems/*.*" />
-     <file from="root/includes/bbdkp/raidtracker/aliases/*.*" to="includes/bbdkp/raidtracker/aliases/*.*" />
-     <file from="root/includes/bbdkp/raidtracker/eventtriggers/*.*" to="includes/bbdkp/raidtracker/eventtriggers/*.*" />
-     <file from="root/includes/bbdkp/raidtracker/ignoreitems/*.*" to="includes/bbdkp/raidtracker/ignoreitems/*.*" />
-     <file from="root/includes/bbdkp/raidtracker/import/*.*" to="includes/bbdkp/raidtracker/import/*.*" />
-     <file from="root/includes/bbdkp/raidtracker/ownraids/*.*" to="includes/bbdkp/raidtracker/ownraids/*.*" />
-     <file from="root/includes/bbdkp/raidtracker/raidnotetriggers/*.*" to="includes/bbdkp/raidtracker/raidnotetriggers/*.*" />
- 	 <file from="root/install/*.*" to="install/*.*" />  
-     <file from="root/language/en/mods/*.*" to="language/en/mods/*.*" />
-	 <file from="root/umil/*.*" to="umil/*.*" />
-    </copy>
-    
-    <open src="includes/bbdkp/constants_bbdkp.php">
-      <edit>
-       <comment lang="en">adding required constants to bbdkp constants</comment>
-       
-        <find><![CDATA[// RAIDTRACKER]]></find>
-        <action type="after-add"><![CDATA[ 
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.1]]></title>
+		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer
+Dependency : bbDkp 1.1 must be installed before]]></description>
+		<author-notes lang="en"><![CDATA[we hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Sajaki]]></realname>
+				<username><![CDATA[Sajaki]]></username>
+				<homepage><![CDATA[http://www.bbdkp.com]]></homepage>
+				<email><![CDATA[sajaki9@gmail.com]]></email>
+				<contributions-group>
+					<contributions status="current" from="2009-01-01" position="Project leader"/>
+					<contributions status="past" from="2008-04-04" to="2009-01-01" position="Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname><![CDATA[Malfate]]></realname>
+				<username><![CDATA[Medraut]]></username>
+				<homepage><![CDATA[http://www.bbdkp.com]]></homepage>
+				<email><![CDATA[cs.krushin@gmail.com]]></email>
+				<contributions-group>
+					<contributions status="past" from="2007-12-27" to="2009-01-01" position="Former Leader, bbDKP Supporter"/>
+				</contributions-group>
+			</author>
+		</author-group>
+		<mod-version>0.2.1</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.7-PL1</target-version>
+		</installation>
+		<history>
+			<entry>
+				<date>2007-07-16</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[RELEASED] released with 1.0.7 Ippeh, conversion plugin ctrt-1.16.3 (first test version)]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-04-25</date>
+				<rev-version>0.0.2</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[RELEASED] released with bbdkp 1.0.8 Beta 4 by Medraut, Teksonic]]></change>
+					<change><![CDATA[[ADDED] - Event  & Raid Triggers for CTRA.]]></change>
+					<change><![CDATA[[UPDATED] - CTRT plugin updated to eqdkp ctrt 1.16.8.]]></change>
+					<change><![CDATA[[FIXED] - Raid Note Parsing error for CTRT when using an apostrophe.]]></change>
+					<change><![CDATA[[FIXED] - Fixed CTRT import error. (returning 0 no matter what).]]></change>
+					<change><![CDATA[[FIXED] - CTRT now works with special characters so that name like "Aniër", and works as intended.]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-09-15</date>
+				<rev-version>0.0.3</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[RELEASED] released with bbdkp 1.0.8 Beta 5 revision 60>70 -]]></change>
+					<change><![CDATA[[FIXED] - ctrt importing raids with ' sign in eventname]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-12-14</date>
+				<rev-version>0.1.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[RELEASED] released with bbdkp 1.0.9 Beta 1]]></change>
+					<change><![CDATA[[CHANGED] - CTRT : updated for multiple dkp]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-12-28</date>
+				<rev-version>0.1.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[RELEASED] released with bbdkp 1.0.9 Beta 1]]></change>
+					<change><![CDATA[[FIXED] - Ctrt : import defaults to UTF-8, "dkp invalid string" when too long, Ctrt prefs options changed - details see svn r229,r237,r238]]></change>
+					<change><![CDATA[[FIXED] - Ctrt : Death Knights were created as 'unknown' with class id 0 (svn 231,238)]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-12-28</date>
+				<rev-version>0.1.2</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[RELEASED] released with bbdkp 1.0.9 Beta 3]]></change>
+					<change><![CDATA[[ADDED] MODX installation instructions]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-05-17</date>
+				<rev-version>0.1.3</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[RELEASED] released with bbdkp 1.0.9 RC1]]></change>
+					<change><![CDATA[[FIX] changed Stripslashes, addslashes, xml validations]]></change>
+					<change><![CDATA[[FIX] ctrt importer fixed]]></change>
+					<change><![CDATA[[NEW] ctrt new event Wotlk triggers]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-05-25</date>
+				<rev-version>0.2.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[CHANGE] ready for bbdkp 1.1.0]]></change>
+					<change><![CDATA[[CHANGE] recognises heroic raids from normal raids, finds event]]></change>
+					<change><![CDATA[[CHANGE] new preference to allow replacing alt names]]></change>
+					<change><![CDATA[[CHANGE] event triggers up to ICC joined. will also create dkp pool, event if not exists]]></change>
+					<change><![CDATA[[CHANGE] events are now mandatory, no more "unknown event".]]></change>
+					<change><![CDATA[[CHANGE] Language file updated to uppercase, template uses L_ adressing]]></change>
+					<change><![CDATA[[CHANGE] removed dao class from CTRT, uses phpbb dbal]]></change>
+					<change><![CDATA[[CHANGE] refactored all sub acp modules]]></change>
+					<change><![CDATA[[CHANGE] new dkp parser, using SimpleXML class, adds CDATA integration, new import screen]]></change>
+					<change><![CDATA[[CHANGE] new temporary tables to store imported dkp data before processing]]></change>
+					<change><![CDATA[[CHANGE] Umil db installer]]></change>
+					<change><![CDATA[[CHANGE] Automod install script]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-05-29</date>
+				<rev-version>0.2.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[NEW] added an option to the ACP to log one global raid instead of one raid per boss. This is independent of the setting in CT_Raidtracker to log bosses.]]></change>
+					<change><![CDATA[[FIX] issue #36 unguilded raiders are incorrectly created with an unnamed guild]]></change>
+					<change><![CDATA[[FIX] issue #35 parser crashed while trying to insert a join without a leave.]]></change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="dependency" href="http://www.bbdkp.com/viewtopic.php?f=2&amp;t=1320" lang="en">bbDkp 1.1.0</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/adm/findevent.php" to="adm/findevent.php"/>
+			<file from="root/adm/style/dkp/*.*" to="adm/style/dkp/*.*"/>
+			<file from="root/includes/acp/*.*" to="includes/acp/*.*"/>
+			<file from="root/includes/acp/info/*.*" to="includes/acp/info/*.*"/>
+			<file from="root/includes/bbdkp/bbdkp.php" to="includes/bbdkp/bbdkp.php"/>
+			<file from="root/includes/bbdkp/raidtracker/*.*" to="includes/bbdkp/raidtracker/*.*"/>
+			<file from="root/includes/bbdkp/raidtracker/additems/*.*" to="includes/bbdkp/raidtracker/additems/*.*"/>
+			<file from="root/includes/bbdkp/raidtracker/aliases/*.*" to="includes/bbdkp/raidtracker/aliases/*.*"/>
+			<file from="root/includes/bbdkp/raidtracker/eventtriggers/*.*" to="includes/bbdkp/raidtracker/eventtriggers/*.*"/>
+			<file from="root/includes/bbdkp/raidtracker/ignoreitems/*.*" to="includes/bbdkp/raidtracker/ignoreitems/*.*"/>
+			<file from="root/includes/bbdkp/raidtracker/import/*.*" to="includes/bbdkp/raidtracker/import/*.*"/>
+			<file from="root/includes/bbdkp/raidtracker/ownraids/*.*" to="includes/bbdkp/raidtracker/ownraids/*.*"/>
+			<file from="root/includes/bbdkp/raidtracker/raidnotetriggers/*.*" to="includes/bbdkp/raidtracker/raidnotetriggers/*.*"/>
+			<file from="root/install/*.*" to="install/*.*"/>
+			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
+			<file from="root/umil/*.*" to="umil/*.*"/>
+		</copy>
+		<open src="includes/bbdkp/constants_bbdkp.php">
+			<edit>
+				<comment lang="en"><![CDATA[adding required constants to bbdkp constants]]></comment>
+				<find><![CDATA[// RAIDTRACKER]]></find>
+				<action type="after-add"><![CDATA[ 
 define('RT_TEMP_RAIDINFO', $bbdkp_table_prefixx . 'rt_temp_raidinfo');
 define('RT_TEMP_PLAYERINFO', $bbdkp_table_prefixx . 'rt_temp_playerinfo');
 define('RT_TEMP_JOININFO', $bbdkp_table_prefixx . 'rt_temp_joininfo');
@@ -201,12 +179,10 @@ define('RT_AF_LOOT_TIME', 1);         // 1 = Loot Time
 define('RT_AF_BOSS_KILL', 2);         // 2 = Boss Kill Time 	 
 
 ]]></action>
-      </edit>
-</open>
-
-    <diy-instructions lang="en">Running database installer
+			</edit>
+		</open>
+		<diy-instructions lang="en"><![CDATA[Running database installer
 ------------------------------ 
-Browse to install/installrt.php and run and the Raidtracker plugin installer
-    </diy-instructions>
-  </action-group>
+Browse to install/installrt.php and run and the Raidtracker plugin installer/updater]]></diy-instructions>
+	</action-group>
 </mod>
