@@ -235,7 +235,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
             	// new member arrived
                 //insertnewmember($member_name, $member_status, $member_lvl, $race_id ,  $class_id, 
                 //$rank_id, $member_comment, $joindate, $leavedate, $guild_id, $gender, $achievpoints, $url )
-    
+    			$rank = 1;
             	if ($guild_id == 0 )
             	{
             		$rank = 99;
