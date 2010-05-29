@@ -489,7 +489,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	        		'item_added_by' => (string) $user->data ['username'],
 	        		'item_updated_by' => (string) $user->data ['username'],
 	        		'item_group_key' => (string) $groupid[trim($item_name)],
-	        		'item_gameid' 	=> (int)  $this->bossloots[$this->batchid][$boss]['cost'][$key],
+	        		'item_gameid' 	=> (int)  $this->bossloots[$this->batchid][$boss]['itemid'][$key],
         		);
         		
 				$log_actions[$key]['header'] = 'L_ACTION_ITEM_ADDED';
