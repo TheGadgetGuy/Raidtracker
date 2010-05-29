@@ -142,7 +142,7 @@ $lang = array_merge($lang, array(
 'RT_SETTINGS_UPDATE_SUCCESS' => 'Raidtracker Settings updated by %s.',
 
 'RT_MIN_QUALITY_EXPLAIN' => 'Minimum Item Quality of Items to be parsed.',
-'RT_ADD_LOOT_DKP_EXPLAIN' => 'Check to set the default status of the "Add Item value/attendees" Checkbox.',
+'RT_ADD_LOOT_DKP_EXPLAIN' => 'The Item cost will be distributed as Earned points to all attendees at the bosskill',
 'RT_IGNORED_LOOTER_EXPLAIN' => 'The name of the Looter to be ignored.',
 'RT_EVENT_TRIGGER_EXPLAIN' => "Check for Event Triggers in the Loot Notes (e.g. if your events are organised per boss " . "'KZ (Wizard of Oz), KZ (The Curator), ...'" . " but only want to log one raid.)",
 
@@ -157,7 +157,7 @@ $lang = array_merge($lang, array(
 'RT_ALTREPLACE_EXPLAIN' => 'Will use the Alt listing to replace alts with Main character', 
 
 'RT_MIN_QUALITY' => 'Minimum Quality',
-'RT_ADD_LOOT_DKP' => 'Set Zero sum DKP as default',
+'RT_ADD_LOOT_DKP' => 'Calculate Zero sum DKP',
 'RT_IGNORED_LOOTER' => 'Ignored Looter',
 'RT_EVENT_TRIGGER' => 'Check for Event Triggers',
 'RT_DEFAULT_RANK' => 'Default Rank',
@@ -172,6 +172,10 @@ $lang = array_merge($lang, array(
 'RT_ALTREPLACE' => 'Replace Alt names',
 'RT_ALTREPLACE_WARNING' => 'Replace player names with Main character names',
 
+'RT_BOSSRAID' => 'Raid logging level',
+'RT_BOSSRAID_EXPLAIN' => 'One raid for each Bosskill or 1 Global raid', 
+'RT_BOSSRAID_YES' => 'Per Bosskill',
+'RT_BOSSRAID_NO' => 'One global raid',
 
 'VLOG_RT_CONFIG_UPDATED' => '%s updated RaidTracker config.',
 'RT_ADMINMENU_CONFIG' => 'Configure',

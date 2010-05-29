@@ -99,10 +99,10 @@ $versions = array(
 		array('bbdkp_rt_lootnoteeventtrigger', 0),
 		array('bbdkp_rt_attendancefilter', 'RT_AF_BOSS_KILL', true),
 		array('bbdkp_rt_skipempty', 1, true),
-		array('bbdkp_rt_defaultcost', 5.0, true),
-		array('bbdkp_rt_startdkp', 10.0, true),
+		array('bbdkp_rt_defaultcost', 0.0, true),
+		array('bbdkp_rt_startdkp', 0.0, true),
 		array('bbdkp_rt_createstartraid', 0, true),
-		array('bbdkp_rt_startraiddkp', 10.0, true),
+		array('bbdkp_rt_startraiddkp', 0.0, true),
 		array('bbdkp_rt_replacealtnames', 1, true),
 		),
             		
@@ -327,6 +327,18 @@ $versions = array(
 		'custom' => array('raidtrackerupdater'),   
 		
 	),
+	
+	'0.2.1' => array(
+
+	 // add a parameter to set logging one global raid - set default to false
+	'config_add' => array(
+		array('bbdkp_rt_bossraid', 0, true),
+		),
+	'custom' => array('raidtrackerupdater021'),
+		
+	
+	),
+	
 );
 
 // We include the UMIF Auto file and everything else will be handled automatically.
@@ -412,6 +424,64 @@ function raidtrackerupdater($action, $version)
 			break;
 	
 	}
+}
+	
+
+function raidtrackerupdater021($action, $version)
+{
+	global $db, $table_prefix, $umil, $bbdkp_table_prefix, $phpbb_root_path, $phpEx;
+	switch ($action)
+	{
+		case 'install' :
+		case 'update' :
+
+            // correcting memberlist , guild, ranks table
+            $sql = 'select id from ' . $bbdkp_table_prefix . "memberguild where name = '' or name is null "; 
+            $result =  $result = $db->sql_query($sql);
+            if($result)
+            {
+            	while ( $row = $db->sql_fetchrow($result) )
+            	{
+	            	$id = (int) $row['id']; 
+					$sql = ' update ' . $bbdkp_table_prefix . 'memberlist set member_guildid = 0, member_rank_id=99 where member_guild_id = ' . $id; 
+					$db->sql_query($sql);
+					$sql = ' delete from ' . $bbdkp_table_prefix . 'member_ranks where guild_id = ' . $id; 
+					$db->sql_query($sql);
+					$sql = ' delete from ' . $bbdkp_table_prefix . 'memberguild where id = ' . $id; 
+					$db->sql_query($sql);
+            		
+            	}
+				
+            }
+			$db->sql_freeresult ( $result);
+			
+            $umil->table_row_remove($bbdkp_table_prefix . 'plugins',
+                array('name'  => 'RaidTracker')
+            );
+                        
+            $umil->table_row_insert($bbdkp_table_prefix . 'plugins', 	
+		    array(
+                array(
+        				'name'  => 'RaidTracker', 
+        				'value'  => '1', 
+        				'version'  => '0.2.1', 								
+        				'orginal_copyright'  => 'sz3', 				
+        				'bbdkp_copyright'  => 'bbDKP Team', 
+                    ),
+            ));            
+		    
+       		return array('command' => 'RAIDTRACKER_INSTALL_MOD', 'result' => 'SUCCESS');
+			break; 
+			
+		case 'uninstall' :
+			// Run this when uninstalling
+
+			return array('command' => 'RAIDTRACKER_UNINSTALL_MOD', 'result' => 'SUCCESS');
+			break;
+	
+	}
+
+	
 }
 
 ?>

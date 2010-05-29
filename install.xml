@@ -36,7 +36,7 @@ within the MOD. No support will be given for MODs not found within the MODs Data
       </author>
     </author-group>
 
-	<mod-version>0.2.0</mod-version>
+	<mod-version>0.2.1</mod-version>
     <installation>
       <level>easy</level>
       <time>600</time>
@@ -45,7 +45,18 @@ within the MOD. No support will be given for MODs not found within the MODs Data
 <history>
 
 <entry>
-<date>2010-04-30</date>
+<date>2010-05-29</date>
+<rev-version>0.2.1</rev-version>
+<changelog lang="en">
+	<change>[NEW] added an option to the ACP to log one global raid instead of one raid per boss. This is independent of the setting in CT_Raidtracker to log bosses.</change>	
+	<change>[FIX] issue #36 unguilded raiders are incorrectly created with an unnamed guild</change>
+	<change>[FIX] issue #35 parser crashed while trying to insert a join without a leave. </change>	
+</changelog>
+</entry>
+
+
+<entry>
+<date>2010-05-25</date>
 <rev-version>0.2.0</rev-version>
 <changelog lang="en">
 	<change>[CHANGE] ready for bbdkp 1.1.0</change>

@@ -4,7 +4,7 @@
  @package bbDkp.acp
  @copyright (c) 2009 bbDkp <http://code.google.com/p/bbdkp/>
  @license http://opensource.org/licenses/gpl-license.php GNU Public License
- @version $Id$
+ @version $Id: acp_rt_manage_settings.html 1283 2010-05-25 12:04:16Z Sajaki9 $
 //-->
 <h1>{L_RTSETTINGS}</h1>
 <p>{L_RTSETTINGS_EXPLAIN}</p>
@@ -181,6 +181,17 @@ fieldset dd {
   </dd>
   <dd></dd>
 </dl> 
+
+
+<dl>
+    <dt><label>{L_RT_BOSSRAID}</label><br />{L_RT_BOSSRAID_EXPLAIN}</dt>
+    <dd>
+    	<input type="radio" name="bossraid" value="1"{BOSSRAID_YES_CHECKED} >&nbsp;{L_RT_BOSSRAID_YES}&nbsp;
+    	<input type="radio" name="bossraid" value="0"{BOSSRAID_NO_CHECKED}>&nbsp;{L_RT_BOSSRAID_NO}
+     </dd>
+</dl>
+  
+
 
 </fieldset>  
 

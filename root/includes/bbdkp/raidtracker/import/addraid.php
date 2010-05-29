@@ -35,7 +35,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	
     function Raidtracker_Addraid($action)
     {
-    	global $user, $phpEx, $phpbb_root_path;
+    	global $config, $user, $phpEx, $phpbb_root_path;
  		$user->add_lang ( array ('mods/dkp_admin' ) );
     	
     	$this->Raidtrackerlink = '<br /><a href="'. 
@@ -120,7 +120,16 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         $this->handle_new_members($this->batchid);
         
 		/* add raid, attendees and loot*/
-        $this->raid_add();
+        switch($config['bbdkp_rt_bossraid'])
+        {
+        	case 0:
+        		$this->raid_add_one();
+        		break;
+        	case 1:
+		        $this->raid_add();
+        		break;
+        }
+        
         
         /* add dkp points */
         $this->dkppoints_add();
