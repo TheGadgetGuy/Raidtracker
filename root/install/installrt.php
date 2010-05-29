@@ -436,14 +436,14 @@ function raidtrackerupdater021($action, $version)
 		case 'update' :
 
             // correcting memberlist , guild, ranks table
-            $sql = 'select id from ' . $bbdkp_table_prefix . "memberguild where name = '' or name is null "; 
+            $sql = 'select id from ' . $bbdkp_table_prefix . "memberguild where id > 1 and (name = '' or name is null)  "; 
             $result =  $result = $db->sql_query($sql);
             if($result)
             {
             	while ( $row = $db->sql_fetchrow($result) )
             	{
 	            	$id = (int) $row['id']; 
-					$sql = ' update ' . $bbdkp_table_prefix . 'memberlist set member_guildid = 0, member_rank_id=99 where member_guild_id = ' . $id; 
+					$sql = ' update ' . $bbdkp_table_prefix . 'memberlist set member_guild_id = 0, member_rank_id=99 where member_guild_id = ' . $id; 
 					$db->sql_query($sql);
 					$sql = ' delete from ' . $bbdkp_table_prefix . 'member_ranks where guild_id = ' . $id; 
 					$db->sql_query($sql);

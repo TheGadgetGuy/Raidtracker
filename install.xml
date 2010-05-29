@@ -8,7 +8,7 @@ within the MOD. No support will be given for MODs not found within the MODs Data
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
   <header>
     <license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
-    <title lang="en">bbDKP Raidtracker Plugin 0.2.0</title>
+    <title lang="en">bbDKP Raidtracker Plugin 0.2.1</title>
     <description lang="en">
     bbDkp Raidtracker Plugin installer
     Dependency : bbDkp 1.1 must be installed before
