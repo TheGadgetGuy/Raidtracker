@@ -448,8 +448,6 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		}	
 	
 		$db->sql_multi_insert(RT_TEMP_PLAYERINFO, $rt_player);
-		
-		
 		/*
 		 * Calculate Raid join and leave times
 		 *
@@ -574,8 +572,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				foreach ($attendees as $key => $Player )
 				{
 					$Player = (array) $Player; 
-					
-					
+										
 					// substitute altname with playername if pref is set
 					if ($config['bbdkp_rt_replacealtnames'] == 1)
 					{
