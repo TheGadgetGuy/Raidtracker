@@ -132,6 +132,12 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         		break;
         }
         
+        /* add dkp earned per hour */ 
+        if ( (float) $config['bbdkp_rt_hourdkp'] > 0 )
+        {
+        	$this->add_time_dkp(); 
+        }
+        
         /* add bosskills */
         $this->raidkill_add	();
 		
@@ -566,6 +572,8 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	           	$member_lastraid = (int) $db->sql_fetchfield('member_lastraid', false, $result);  
 	           	$db->sql_freeresult($result);
 	            
+	           	// add raid bonus
+	           	
 		        $sql  = 'UPDATE ' . MEMBER_DKP_TABLE . ' m
 	               SET m.member_earned = m.member_earned + ' .  $this->raid_value[$this->batchid] . ', ';	        
 	               if ( $member_lastraid < $this->raidbegin )
@@ -577,12 +585,10 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	               WHERE m.member_dkpid = ' . (int) $this->dkp . '
 	               AND m.member_id = ' . (int) $this_memberid;
 	               $db->sql_query($sql);
+	               
 			}
 		}
 		unset  ($attendees);
-			
-			
-		
     }
 
     
@@ -647,6 +653,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	                WHERE m.member_dkpid = ' . (int) $this->dkp . '
 	                AND m.member_id = ' . (int) $this_memberid;
 	                $db->sql_query($sql);
+	            
 				}
 				 
 			}
@@ -697,6 +704,108 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
     {
 					    	
     }
+    
+    
+    
+    /**
+     * function to add raid points
+     * 
+     */
+    function add_time_dkp()
+    {
+		global $db, $user, $config, $phpEx, $phpbb_root_path ;
+   				
+		if ( !class_exists('acp_dkp_mm')) 
+        {
+            // we need this class for accessing member functions
+            include ($phpbb_root_path . 'includes/acp/acp_dkp_mm.' . $phpEx); 
+        }
+        $acp_dkp_mm = new acp_dkp_mm;
+        
+		// add time bonus to all attendees
+		// if you want standbys then add them to the global attendees list in Raid review screen
+		$sql = ' select playername, jointime, leavetime from ' . RT_TEMP_JOININFO . ' where  batchid =  ' . $this->batchid;
+		$result = $db->sql_query($sql);
+        while ( $row = $db->sql_fetchrow($result) )
+        {
+        	$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($row['playername']));	
+        	if ($this_memberid != 0)
+        	{
+				$attendeejoins[] = array(
+					'playerid' 		=> $this_memberid, 
+	 			    'playername'    => $row['playername'],
+				    'jointime' 		=> $row['jointime'],
+				    'leavetime'     => $row['leavetime']			
+					);
+        	}
+        }
+        $db->sql_freeresult ( $result);
+        
+				
+        foreach($attendeejoins as  $playerjoin)
+        {
+			if( $diff = @get_time_difference($playerjoin['jointime'], $playerjoin['leavetime']) )
+			{
+				
+				$decimaltime = $diff['hours'] ; 
+				
+				$timebonus = (float) $decimaltime *  $config['bbdkp_rt_hourdkp']; 
+				
+				$sql  = 'UPDATE ' . MEMBER_DKP_TABLE . ' m
+	               SET m.member_earned = m.member_earned + ' . $timebonus . ' ';	        
+				$sql .= ' WHERE m.member_dkpid = ' . (int) $this->dkp . ' AND m.member_id = ' . (int) $playerjoin['playerid'];
+				$db->sql_query($sql);
+			}
+        }
+    	
+    	
+    }
+    
+    
+    /**
+	 * Function to calculate date or time difference.
+	 * used for dkp earned per hour calculation
+	 * 
+	 * @param        timestamp   $start
+	 * @param        timestamp   $end
+	 * @return       array or false
+	 */
+	function get_time_difference( $start, $end )
+	{
+	    if( $start!==-1 && $end!==-1 )
+	    {
+	        if( $end >= $start )
+	        {
+	            $diff  =  $end - $start;
+	            if( $days=intval((floor($diff/86400))) )
+	                $diff = $diff % 86400;
+	            if( $hours=intval((floor($diff/3600))) )
+	                $diff = $diff % 3600;
+	            if( $minutes=intval((floor($diff/60))) )
+	                $diff = $diff % 60;
+	            $diff    =    intval( $diff );            
+	            return( array(
+	            	'days'    =>$days, 
+	            	'hours'	  =>$hours, 
+	            	'minutes' =>$minutes, 
+	            	'seconds' =>$diff) 
+	            );
+	        }
+	        else
+	        {
+	        	// ending time earlier than join time
+	           return(false);
+	        }
+	    }
+	    else
+	    {
+	    	// invalid time cant be negative
+	        return(false);
+	    }
+	    return( false );
+	}
+
+
     
     
     
