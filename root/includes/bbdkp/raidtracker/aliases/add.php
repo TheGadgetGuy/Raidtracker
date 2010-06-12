@@ -211,10 +211,20 @@ class Raidtracker_AddAlias extends acp_dkp_rt_settings
     		'alias_member_id'   => utf8_normalize_nfc(request_var('alias_member_id', ' ', true)), 
     		'alias_name'     	=> utf8_normalize_nfc(request_var('alias_name', ' ', true)), 
 			);
-		
-      	$sql = 'DELETE from ' . RT_ALIASES_TABLE . ' where alias_member_id = ' . $data['alias_member_id']; 
-		$db->sql_query($sql);
-		
+
+    	// check if twink name already assigned to other member		
+        $sql =   "SELECT count(alias_name) as checkval from " . RT_ALIASES_TABLE . " where alias_name = '" . $db->sql_escape($data['alias_name']) . "'"; 
+	  	$result = $db->sql_query($sql);
+		if($db->sql_fetchfield('checkval') != 0) 
+		{
+			$sql =   "SELECT alias_member_id from " . RT_ALIASES_TABLE . " where alias_name = '" . $db->sql_escape($data['alias_name']) . "'"; 
+	  		$result = $db->sql_query($sql);
+	  		$existingid = $db->sql_fetchfield('alias_member_id'); 
+	  		$failure_message = sprintf($user->lang["RT_ALIAS_DUPLICATE"], $alias_name, $existingid);
+            trigger_error($failure_message . $this->Raidtrackerlink, E_USER_WARNING);
+		}
+		$db->sql_freeresult($result); 			
+      	
 		$sql = 'INSERT into ' . RT_ALIASES_TABLE . ' ' . $db->sql_build_array('INSERT', $data);
 		$db->sql_query($sql);
 		

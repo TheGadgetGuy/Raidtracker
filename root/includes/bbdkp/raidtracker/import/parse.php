@@ -33,7 +33,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
     var $alwaysignoreitem;  
     var $eventtrigger; 
 	var $raidnotetrigger; 
-	var $playeralias; 
+	var $mainchar; 
     
     function Raidtracker_parse($action)
     {
@@ -95,7 +95,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
         $result = $db->sql_query($sql);
         while ( $row = $db->sql_fetchrow($result) )
         {
-        	$this->playeralias[$row['alias_name']] = $row['member_name']; 
+        	$this->mainchar[$row['alias_name']] = $row['member_name']; 
         }
         $db->sql_freeresult ( $result);
         
@@ -448,6 +448,8 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		}	
 	
 		$db->sql_multi_insert(RT_TEMP_PLAYERINFO, $rt_player);
+		
+		
 		/*
 		 * Calculate Raid join and leave times
 		 *
@@ -572,7 +574,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				foreach ($attendees as $key => $Player )
 				{
 					$Player = (array) $Player; 
-										
+					
 					// substitute altname with playername if pref is set
 					if ($config['bbdkp_rt_replacealtnames'] == 1)
 					{
@@ -909,9 +911,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	 */
 	function _GetMainCharName($playername)
 	{
-		if (! empty ( $this->playeralias[$playername] )) 
+		if (! empty ( $this->mainchar[$playername] )) 
 		{
-			return (string) $this->playeralias[$playername];
+			return (string) $this->mainchar[$playername];
 		}
 		else 
 		{
