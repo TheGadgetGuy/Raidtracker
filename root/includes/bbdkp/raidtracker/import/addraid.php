@@ -724,7 +724,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         
 		// add time bonus to all attendees
 		// if you want standbys then add them to the global attendees list in Raid review screen
-		$sql = ' select playername, jointime, leavetime from ' . RT_TEMP_JOININFO . ' where  batchid =  ' . $this->batchid;
+		$sql = ' select playername, jointime, leavetime from ' . RT_TEMP_JOININFO . " where  batchid =  '" . $this->batchid . "'";
 		$result = $db->sql_query($sql);
         while ( $row = $db->sql_fetchrow($result) )
         {
@@ -744,7 +744,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 				
         foreach($attendeejoins as  $playerjoin)
         {
-			if( $diff = @get_time_difference($playerjoin['jointime'], $playerjoin['leavetime']) )
+			if( $diff = $this->get_time_difference($playerjoin['jointime'], $playerjoin['leavetime']) )
 			{
 				
 				$decimaltime = $diff['hours'] ; 
