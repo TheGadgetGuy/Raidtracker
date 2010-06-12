@@ -31,12 +31,13 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.2.1</mod-version>
+		<mod-version>0.2.2</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
 			<target-version>3.0.7-PL1</target-version>
 		</installation>
+
 		<history>
 			<entry>
 				<date>2007-07-16</date>
@@ -127,6 +128,17 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 					<change><![CDATA[[FIX] issue #35 parser crashed while trying to insert a join without a leave.]]></change>
 				</changelog>
 			</entry>
+			<entry>
+				<date>2010-06-13</date>
+				<rev-version>0.2.2</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[FIX] issue #41 when global raid is selected, raid bonus is only assigned to global raid attendees array and not boss attendees array]]></change>
+					<change><![CDATA[[FIX] issue #42 ACP preferences did not save to session unless cache was purged]]></change>
+					<change><![CDATA[[NEW] issue #43 Now accepts multiple alts]]></change>
+				</changelog>
+			</entry>
+
+			
 		</history>
 		<link-group>
 			<link type="dependency" href="http://www.bbdkp.com/viewtopic.php?f=2&amp;t=1320" lang="en">bbDkp 1.1.0</link>
@@ -175,8 +187,7 @@ define('RT_IQ_RARE',          3);
 define('RT_IQ_EPIC',          4); 	 
 define('RT_IQ_LEGENDARY',     5); 	 
 define('RT_AF_NONE',      0);         // 0 = None 	 
-define('RT_AF_LOOT_TIME', 1);         // 1 = Loot Time 	 
-define('RT_AF_BOSS_KILL', 2);         // 2 = Boss Kill Time 	 
+define('RT_AF_BOSS_KILL', 1);         // 1 = Boss Kill Time 	 
 
 ]]></action>
 			</edit>

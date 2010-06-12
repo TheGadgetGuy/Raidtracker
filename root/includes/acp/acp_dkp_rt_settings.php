@@ -134,7 +134,6 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				 */
 				$attendance = array (
 				RT_AF_NONE         => $user->lang ['RT_AF_NONE'], 
-				RT_AF_LOOT_TIME    => $user->lang ['RT_AF_LOOT_TIME'], 
 				RT_AF_BOSS_KILL    => $user->lang ['RT_AF_BOSS_KILL'] );
 				
 				foreach ( $attendance as $key => $value ) 
@@ -157,10 +156,10 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 					set_config  ( 'bbdkp_rt_skipempty',  (isset ( $_POST ['skip_empty_note_raids'] )) ? 1 : 0 , 0);  
 					set_config  ( 'bbdkp_rt_defaultcost',  request_var('default_dkp', 0.00), 0);  
 					set_config  ( 'bbdkp_rt_startdkp',  request_var('starting_dkp' , 0.00 ), 0);  
-					
-					//new				
 					set_config  ( 'bbdkp_rt_replacealtnames', (isset ( $_POST ['replacealtnames'] )) ? 1 : 0 , 0);  
 					set_config  ( 'bbdkp_rt_bossraid',  request_var('bossraid', 0));
+					// purge cache
+					$cache->destroy('config');
 					
 					$log_action = array (
 					'header' 		 => 'L_ACTION_CTRT_CONFIG_UPDATED', 

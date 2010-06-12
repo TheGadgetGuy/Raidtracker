@@ -101,7 +101,6 @@ class Raidtracker_Review extends acp_dkp_rt_import
      	$attendingplayers='';
 	  	 switch ($config['bbdkp_rt_attendancefilter']) 
 	  	 {
-	  	 	case RT_AF_LOOT_TIME :
 	  	 	case RT_AF_BOSS_KILL :
 	 	 		// attendance set for boss-loot kill : all players present at bosskill
 	  	 		$sql = 'SELECT distinct playername FROM ' . RT_TEMP_ATTENDEES . " where batchid = '" . $batchid . "' order by playername"; 

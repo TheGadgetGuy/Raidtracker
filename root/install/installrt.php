@@ -95,12 +95,12 @@ $versions = array(
 	'config_add' => array(
 		array('bbdkp_rt_minitemquality', 'RT_IQ_RARE', true),
 		array('bbdkp_rt_ignoredlooter', '', true),
-		array('bbdkp_rt_aldkpchkbox', 0),
+		array('bbdkp_rt_aldkpchkbox', 1),
 		array('bbdkp_rt_lootnoteeventtrigger', 0),
-		array('bbdkp_rt_attendancefilter', 'RT_AF_BOSS_KILL', true),
+		array('bbdkp_rt_attendancefilter', 1, true),
 		array('bbdkp_rt_skipempty', 1, true),
-		array('bbdkp_rt_defaultcost', 0.0, true),
-		array('bbdkp_rt_startdkp', 0.0, true),
+		array('bbdkp_rt_defaultcost', 5.0, true),
+		array('bbdkp_rt_startdkp', 10.0, true),
 		array('bbdkp_rt_createstartraid', 0, true),
 		array('bbdkp_rt_startraiddkp', 0.0, true),
 		array('bbdkp_rt_replacealtnames', 1, true),
@@ -332,12 +332,20 @@ $versions = array(
 
 	 // add a parameter to set logging one global raid - set default to false
 	'config_add' => array(
-		array('bbdkp_rt_bossraid', 0, true),
-		),
-	'custom' => array('raidtrackerupdater021'),
+		array('bbdkp_rt_bossraid', 0, true),)
+		,
+		'custom' => array('raidtrackerupdater021'),
 		
 	
 	),
+
+	'0.2.2' => array(
+
+		// no db change		
+	
+	),
+
+	
 	
 );
 
