@@ -176,12 +176,20 @@ fieldset dd {
 	<label for="starting_dkp">{L_RT_STARTING_DKP}:</label>
     <br />{L_RT_STARTING_DKP_EXPLAIN}
 	</dt><dd>
-  <input type="text" name="starting_dkp" id="starting_dkp" size="10" maxlength="3" value="{STARTING_DKP}" class="input" />
+  <input type="text" name="starting_dkp" id="starting_dkp" size="10" maxlength="10" value="{STARTING_DKP}" class="input" />
   {FV_STARTING_DKP}
   </dd>
   <dd></dd>
 </dl> 
 
+<dl><dt>   
+	<label for="starting_dkp">{L_RT_DKPHOUR}:</label>
+    <br />{L_RT_DKPHOUR_EXPLAIN}
+	</dt><dd>
+  <input type="text" name="dkphour" id="dkphour" size="10" maxlength="10" value="{DKPHOUR}" class="input" />
+  </dd>
+  <dd></dd>
+</dl> 
 
 <dl>
     <dt><label>{L_RT_BOSSRAID}</label><br />{L_RT_BOSSRAID_EXPLAIN}</dt>
@@ -190,7 +198,7 @@ fieldset dd {
     	<input type="radio" name="bossraid" value="0"{BOSSRAID_NO_CHECKED}>&nbsp;{L_RT_BOSSRAID_NO}
      </dd>
 </dl>
-  
+
 
 
 </fieldset>  

@@ -340,8 +340,10 @@ $versions = array(
 	),
 
 	'0.2.2' => array(
-
-		// no db change		
+	
+	// add a parameter to set hourly dkp to be assigned
+	'config_add' => array(
+		array('bbdkp_rt_hourdkp', 0.00, true),)	
 	
 	),
 

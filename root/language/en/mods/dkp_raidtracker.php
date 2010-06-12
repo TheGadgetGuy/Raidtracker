@@ -171,6 +171,8 @@ $lang = array_merge($lang, array(
 'RT_SIMULATE_WARNING' => 'Simulation ON - This is what would be done:<br/><br/>',
 'RT_ALTREPLACE' => 'Replace Alt names',
 'RT_ALTREPLACE_WARNING' => 'Replace player names with Main character names',
+'RT_DKPHOUR' => 'DKP per hour passed', 
+'RT_DKPHOUR_EXPLAIN' => 'will assign x DKP as earned for each hour passed that member present in raid (we look at global attendance)',
 
 'RT_BOSSRAID' => 'Raid logging level',
 'RT_BOSSRAID_EXPLAIN' => 'One raid for each Bosskill or 1 Global raid', 
@@ -192,7 +194,6 @@ $lang = array_merge($lang, array(
  * Attendance Filter
  */
 'RT_AF_NONE' => 'Members present in Raid',
-'RT_AF_LOOT_TIME' => 'Members present at Loot Time',
 'RT_AF_BOSS_KILL' => 'Members present at Boss Kill',
 
 /**
