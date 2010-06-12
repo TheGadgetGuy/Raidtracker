@@ -6,7 +6,7 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.1]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.2]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer
 Dependency : bbDkp 1.1 must be installed before]]></description>
 		<author-notes lang="en"><![CDATA[we hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
@@ -105,18 +105,25 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 				<date>2010-05-25</date>
 				<rev-version>0.2.0</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[[CHANGE] ready for bbdkp 1.1.0]]></change>
-					<change><![CDATA[[CHANGE] recognises heroic raids from normal raids, finds event]]></change>
-					<change><![CDATA[[CHANGE] new preference to allow replacing alt names]]></change>
-					<change><![CDATA[[CHANGE] event triggers up to ICC joined. will also create dkp pool, event if not exists]]></change>
-					<change><![CDATA[[CHANGE] events are now mandatory, no more "unknown event".]]></change>
-					<change><![CDATA[[CHANGE] Language file updated to uppercase, template uses L_ adressing]]></change>
-					<change><![CDATA[[CHANGE] removed dao class from CTRT, uses phpbb dbal]]></change>
-					<change><![CDATA[[CHANGE] refactored all sub acp modules]]></change>
+					<change><![CDATA[ [NEW] compatible with Headcount and CT/ML_Raidtracker. ]]></change>
+					<change><![CDATA[[NEW] wowhead item id recorded in temp item table. In a future Core bbdkp release this will be integrated in the items table. ]]></change>
+					<change><![CDATA[[NEW] Now records Wipes and attendees]]></change>
+					<change><![CDATA[[CHANGE] recognises heroic raids from normal raids, finds event]]></change>		
+					<change><![CDATA[[NEW] Contains all event triggers up to ICC. Events have to match the Event triggers or the XML will be rejected. Boss triggers are now no longer needed.]]></change>								
+					<change><![CDATA[[CHANGE] removed dao class from CTRT, uses phpbb dbal]]></change>				
 					<change><![CDATA[[CHANGE] new dkp parser, using SimpleXML class, adds CDATA integration, new import screen]]></change>
-					<change><![CDATA[[CHANGE] new temporary tables to store imported dkp data before processing]]></change>
-					<change><![CDATA[[CHANGE] Umil db installer]]></change>
-					<change><![CDATA[[CHANGE] Automod install script]]></change>
+					<change><![CDATA[[CHANGE] new preference to allow replacing alt names]]></change>
+					<change><![CDATA[[CHANGE] refactored all sub acp modules]]></change>
+					<change><![CDATA[[NEW] Uses the new Request_var class from phpbb 3.1, backported to phpbb 3.0, which enables multi dimension arrays. ]]></change>
+					<change><![CDATA[[NEW] revised import screen, new temporary tables to store imported dkp data before processing. As opposed to the old CTRT, the import process is split into 3 files : parse.php, review.php and addraid.php. this enables us to really fine-tune the process. ]]></change>
+					<change><![CDATA[[NEW] multiple XML files from CT_Raid Tracker can be imported in one go in a temp table, and be treated in batch]]></change>
+					<change><![CDATA[[CHANGE] Language file updated to uppercase, template uses L_ adressing]]></change>
+					<change><![CDATA[[[NEW] The new XML parser now reads the CDATA sections and so retrieve the user notes, and points per loot item.]]></change>
+					<change><![CDATA[[NEW] New advanced XML validation, extensive error reporting. ]]></change>
+					<change><![CDATA[[CHANGE] now uses phpbb Umil db installer]]></change>
+					<change><![CDATA[[CHANGE] Automod ready]]></change>
+					<change><![CDATA[[CHANGE] ready for bbdkp 1.1]]></change>
+					<change><![CDATA[[CHANGE] Name changes to RaidTracker]]></change>
 				</changelog>
 			</entry>
 			<entry>
@@ -126,6 +133,7 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 					<change><![CDATA[[NEW] added an option to the ACP to log one global raid instead of one raid per boss. This is independent of the setting in CT_Raidtracker to log bosses.]]></change>
 					<change><![CDATA[[FIX] issue #36 unguilded raiders are incorrectly created with an unnamed guild]]></change>
 					<change><![CDATA[[FIX] issue #35 parser crashed while trying to insert a join without a leave.]]></change>
+					<change><![CDATA[[NEW] headcount Wow add-in joined in the contrib folder ]]></change>
 				</changelog>
 			</entry>
 			<entry>
@@ -135,6 +143,7 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 					<change><![CDATA[[FIX] issue #41 when global raid is selected, raid bonus is only assigned to global raid attendees array and not boss attendees array]]></change>
 					<change><![CDATA[[FIX] issue #42 ACP preferences did not save to session unless cache was purged]]></change>
 					<change><![CDATA[[NEW] issue #43 Now accepts multiple alts]]></change>
+					<change><![CDATA[[NEW] setting to assign hourly dkp]]></change>
 				</changelog>
 			</entry>
 
