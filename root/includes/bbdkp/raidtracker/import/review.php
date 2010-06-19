@@ -54,7 +54,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
  		$batchid = ''; 
         // get raidinfo 
 		$sql = 'SELECT event_id, dkpsys_id, batchid, realm, starttime, endtime , zone, note, difficulty
-			FROM ' . RT_TEMP_RAIDINFO . ' where raidid = ' . (int) $raidid ; 
+			FROM ' . RT_TEMP_RAIDINFO . ' where raidid = ' . (int) $raidid; 
         $result = $db->sql_query($sql);
         while ( $row = $db->sql_fetchrow($result) )
         {
@@ -101,8 +101,16 @@ class Raidtracker_Review extends acp_dkp_rt_import
      	$attendingplayers='';
 	  	 switch ($config['bbdkp_rt_attendancefilter']) 
 	  	 {
-	  	 	case RT_AF_BOSS_KILL :
-	 	 		// attendance set for boss-loot kill : all players present at bosskill
+	  	 	case RT_AF_NONE :
+	  	 		// attendance set to all : all players in the raid
+	  	 		foreach ($allplayerinfo as $player)
+	  	 		{
+	  	 			$attendingplayers[] = $player['name'];
+	  	 			$totalplayernr++; 
+	  	 		}
+	  	 		break;
+	  	 	default:
+	 	 		// attendance set for boss or loot kill : all players present at bosskill
 	  	 		$sql = 'SELECT distinct playername FROM ' . RT_TEMP_ATTENDEES . " where batchid = '" . $batchid . "' order by playername"; 
 		        $result = $db->sql_query($sql);
 		        while ( $row = $db->sql_fetchrow($result) )
@@ -113,14 +121,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		        $db->sql_freeresult ( $result);
 		        
 	  	 		break; 
-	  	 	case RT_AF_NONE :
-	  	 		// attendance set to all : all players in the raid
-	  	 		foreach ($allplayerinfo as $player)
-	  	 		{
-	  	 			$attendingplayers[] = $player['name'];
-	  	 			$totalplayernr++; 
-	  	 		}
-	  	 		break; 
+	  	 		 
 	  	 }
 	  	 
 	  	 $this->Raid['playersattending'] = $attendingplayers; 
