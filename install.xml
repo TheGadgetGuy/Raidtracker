@@ -6,7 +6,7 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.2]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.3]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer
 Dependency : bbDkp 1.1 must be installed before]]></description>
 		<author-notes lang="en"><![CDATA[we hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
@@ -31,7 +31,7 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.2.2</mod-version>
+		<mod-version>0.2.3</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -146,11 +146,17 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 					<change><![CDATA[[NEW] setting to assign hourly dkp]]></change>
 				</changelog>
 			</entry>
-
+			<entry>
+				<date>2010-07-10</date>
+				<rev-version>0.2.3</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[FIX] issue #49 RT parsing now accepts dkp strings without end time nor leave array. in that case, end time will be taken from the last bosskill. also, if the global attendees list is bigger than the playerinfo tag, importing the raid will no longer crash when random raiders in global attendance aren't present in the DKP table. it will ignore them then.]]></change>
+				</changelog>
+			</entry>
 			
 		</history>
 		<link-group>
-			<link type="dependency" href="http://www.bbdkp.com/viewtopic.php?f=2&amp;t=1320" lang="en">bbDkp 1.1.0</link>
+			<link type="dependency" href="http://www.bbdkp.com/viewtopic.php?f=2&amp;t=1320" lang="en">bbDkp 1.1.1</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -201,7 +207,8 @@ define('RT_AF_BOSS_KILL', 1);         // 1 = Boss Kill Time
 ]]></action>
 			</edit>
 		</open>
-		<diy-instructions lang="en"><![CDATA[Running database installer
+		<diy-instructions lang="en"><![CDATA[
+Running database installer
 ------------------------------ 
 Browse to install/installrt.php and run and the Raidtracker plugin installer/updater]]></diy-instructions>
 	</action-group>

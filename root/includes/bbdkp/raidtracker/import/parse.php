@@ -265,7 +265,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
          */ 
         $start = (int) strtotime((string) $doc->start[0]); 
         $end = (int) strtotime((string) $doc->end[0]); 
-        
+
         /* check for duplicate raid import */
         /* logs can't start 30 minutes before or after */
         $sql = ' select count(*) as checktime from ' . RT_TEMP_RAIDINFO . ' ';
@@ -279,20 +279,40 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			trigger_error($user->lang['RT_ERR_DUPLICATE'] . $this->Raidtrackerlink , E_USER_WARNING); 
 		}
         
-        $players =  (array) $doc->PlayerInfos;
-		$Joins =  (array) $doc->Join[0];
-		$Leaves =  (array) $doc->Leave[0];
-		
 		// no import when no bosskills
         $Bosskills =  (array) $doc->BossKills[0]; 
         if (sizeof($Bosskills) == 0)
        	{
        		trigger_error( $user->lang['RT_ERR_NOBOSSKILL'] . $this->Raidtrackerlink, E_USER_WARNING);	
        	}
+       	else
+       	{
+       		foreach ($Bosskills as $key => $Bosskill)
+       		{
+       			$Bosskill = (array) $Bosskill;
+       			$bosskilltime[] =  strtotime((string) $Bosskill['time']);
+       		}
+      	    
+       		if ($end == 0)
+        	{
+	        	// assume end at last bosskill time
+        		$end = max($bosskilltime) + 10;
+        	}
+       			
+        	
+       	}
+
+       	$players =  (array) $doc->PlayerInfos;
+		$Joins =  (array) $doc->Join[0];
+		$Leaves =  (array) $doc->Leave[0];
+		// check if there are leavetimes, if not then set leave equal to joins
+		if (sizeof($Leaves) == 0)
+		{
+			$Leaves = $Joins; 
+		}
 		
        	$Wipes =  (array) $doc->Wipes[0]; 
 		$Loots =  (array) $doc->Loot[0]; 
-        
 
         if(isset($doc->realm))
         {

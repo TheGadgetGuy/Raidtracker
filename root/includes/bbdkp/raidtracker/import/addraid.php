@@ -339,12 +339,18 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			$attendees = explode(',' , $this->bossattendees[$this->batchid][$boss]);
 			foreach($attendees as $attendee)
 			{
-				$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($attendee));				
-				$sql_attendee[] = array(
-				'raid_id'     	 => (int) $raid_id, 
-				'member_id'      => (int) $this_memberid, 
-				'member_name'    => trim($attendee)
-					);
+				$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($attendee));	
+				
+				//only add the attendee if he is present !
+				// if the bossattendee array is bigger than playerinfo then we ignore the rest
+				if ($this_memberid != 0)
+				{
+					$sql_attendee[] = array(
+					'raid_id'     	 => (int) $raid_id, 
+					'member_id'      => (int) $this_memberid, 
+					'member_name'    => trim($attendee)
+						);
+				}
 			}
 			$db->sql_multi_insert(RAID_ATTENDEES_TABLE, $sql_attendee);
 			unset  ($sql_attendee);
@@ -405,11 +411,15 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		foreach($attendees as $attendee)
 		{
 			$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($attendee));				
-			$sql_attendee[] = array(
-			'raid_id'     	 => (int) $raid_id, 
-			'member_id'      => (int) $this_memberid, 
-			'member_name'    => trim($attendee)
-				);
+			//only add the attendee if he is present !
+			// if the bossattendee array is bigger than playerinfo then we ignore the rest
+			if ($this_memberid != 0)
+			{
+				$sql_attendee[] = array(
+				'raid_id'     	 => (int) $raid_id, 
+				'member_id'      => (int) $this_memberid, 
+				'member_name'    => trim($attendee));
+			}
 		}
 		$db->sql_multi_insert(RAID_ATTENDEES_TABLE, $sql_attendee);
 		unset  ($sql_attendee);
@@ -557,7 +567,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         }
         $acp_dkp_mm = new acp_dkp_mm;
         
-		// add raid bonus to all attendees
+		// add raid bonus to all attendees that are also present in playerinfo tag 
 		$attendees = explode(',' , $this->allattendees[$this->batchid]);
 		foreach($attendees as $attendee)
 		{
