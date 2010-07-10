@@ -576,7 +576,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			$rt_bosskill = array_unique($rt_bosskill);
 			
 			//find first loot time for each boss, use it as bosskilltime
-			foreach ($rt_bosskill as $key1 => $bosskill)
+			foreach ($rt_bosskill as $key1 => $Bosskill)
 			{
 				//walk the loot
 				foreach ($Loots as $key2 => $Loot)
@@ -585,7 +585,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 					$Loot = (array) $Loot; 
 					
 					//if the loot dropped from this boss 
-					if( $Loot['Boss'] == $bosskill['bossname'])
+					if( $Loot['Boss'] == $Bosskill['bossname'])
 					{
 						//get droptime, add to bosskill array
 						$rt_bosskill[$key1]['time'] = (int) strtotime((string) $Loot['Time']); 
@@ -596,6 +596,23 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				}
 				
 			}
+			
+			// loop our bosskills from loot, add as attendee
+			foreach ($rt_bosskill as $key1 => $Bosskill)
+			{
+				// loop playerjointable to check 
+				foreach($rt_joinleave as $key => $player)
+				{
+						$rt_attendees[] = array(
+							'batchid'     => $batchid ,
+							'bossname'    => (string) $Bosskill['bossname'] ,
+						  	'playername'  => $player['playername'] ,
+						); 
+				}
+					
+			}
+			
+			
 			
 		
 		}
