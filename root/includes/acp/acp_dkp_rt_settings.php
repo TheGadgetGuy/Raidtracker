@@ -153,7 +153,6 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 					set_config  ( 'bbdkp_rt_aldkpchkbox',  (isset ( $_POST ['add_loot_dkp'] )) ? 1 : 0 , 0);  
 					set_config  ( 'bbdkp_rt_lootnoteeventtrigger',  (isset ( $_POST ['event_trigger'] )) ? 1 : 0 , 0);  
 					set_config  ( 'bbdkp_rt_attendancefilter',  request_var('attendance_filter', ''), 0);  
-					set_config  ( 'bbdkp_rt_skipempty',  (isset ( $_POST ['skip_empty_note_raids'] )) ? 1 : 0 , 0);  
 					set_config  ( 'bbdkp_rt_defaultcost',  request_var('default_dkp', 0.00), 0);  
 					set_config  ( 'bbdkp_rt_startdkp',  request_var('starting_dkp' , 0.00 ), 0);  
 					set_config  ( 'bbdkp_rt_hourdkp',  request_var('dkphour' , 0.00 ), 0);  
@@ -179,7 +178,6 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				'IGNORED_LOOTER'         => $config  ['bbdkp_rt_ignoredlooter'], 
 				'ADD_LOOT_DKP'           => ((int) $config ['bbdkp_rt_aldkpchkbox'] == 1) ? 'checked="checked"' : "", 
 				'EVENT_TRIGGER'          => ((int) $config ['bbdkp_rt_lootnoteeventtrigger'] == 1) ? 'checked="checked"' : "", 
-				'SKIP_EMPTY_NOTE_RAIDS'  => ((int) $config ['bbdkp_rt_skipempty'] == 1) ? 'checked="checked"' : "", 
 				'DEFAULT_DKP'            => $config  ['bbdkp_rt_defaultcost'], 
 				'STARTING_DKP'           => $config  ['bbdkp_rt_startdkp'], 
 				'REPLACEALTS'            => ((int) $config ['bbdkp_rt_replacealtnames'] == 1) ? 'checked="checked"' : "", 

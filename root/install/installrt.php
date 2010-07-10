@@ -348,7 +348,12 @@ $versions = array(
 	),
 
 	'0.2.3' => array(
-	// no db change	
+
+	// remove the skip empty raidnote setting
+	'config_remove' => array(
+		array('bbdkp_rt_skipempty'),
+		),	
+	
 	),
 
 );

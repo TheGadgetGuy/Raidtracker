@@ -148,7 +148,6 @@ $lang = array_merge($lang, array(
 
 'RT_DEFAULT_RANK_EXPLAIN' => 'Default Rank for new Members that are added when importing a raid.',
 'RT_ATTENDANCE_FILTER_EXPLAIN' => 'Sets the type of attendance filtering.',
-'RT_SKIP_RAIDS_EXPLAIN' => 'Check to ignore raids with an empty Raid Note.',
 'RT_DEFAULT_DKP_EXPLAIN' => 'The cost of items with no dkp value.',
 'RT_STARTING_DKP_EXPLAIN' => 'When creating a new member, if this is &gt; 0, it will add an adjustment to the member as starting dkp.',
 'RT_CREATE_START_RAID_EXPLAIN' => 'Check to create a Starting Raid when the Attendance Filter is set to Boss Kill.',
@@ -162,7 +161,6 @@ $lang = array_merge($lang, array(
 'RT_EVENT_TRIGGER' => 'Check for Event Triggers',
 'RT_DEFAULT_RANK' => 'Default Rank',
 'RT_ATTENDANCE_FILTER' => 'Attendance Filter',
-'RT_SKIP_RAIDS' => 'Skip Raids With Empty Note',
 'RT_DEFAULT_DKP' => 'Default DKP Cost',
 'RT_STARTING_DKP' => 'Starting DKP',
 'RT_CREATE_START_RAID' => 'Create Start Raid',

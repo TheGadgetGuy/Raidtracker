@@ -338,11 +338,6 @@ class Raidtracker_parse extends acp_dkp_rt_import
         $Note = (string) $doc->note[0];
         $Note = trim($Note, '- Zone:'); 
         $Note = trim($Note);
-       	if (strlen(trim($Note)) == 0 && $config['bbdkp_rt_skipempty'] == 1)
-    	{        		
-			//so ignore this raid
-			//trigger_error( $user->lang['RT_ERR_NORAIDNOTE'] . $this->Raidtrackerlink, E_USER_WARNING);	
-    	}
 
        	if (strlen(trim($Note)) == 0)
     	{        		

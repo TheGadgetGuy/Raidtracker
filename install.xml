@@ -151,7 +151,10 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 				<rev-version>0.2.3</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[FIX] issue #49 RT parsing now accepts dkp strings without end time nor leave array. in that case, end time will be taken from the last bosskill. also, if the global attendees list is bigger than the playerinfo tag, importing the raid will no longer crash when random raiders in global attendance aren't present in the DKP table. it will ignore them then.]]></change>
-					<change><![CDATA[[FIX] issue #50 RT parsing now accepts dkp strings without bosskill tag. this allows to track raids with trash kills only ]]></change>
+					<change><![CDATA[[NEW] issue #50 RT parsing now accepts dkp strings without bosskill tag. this allows to track raids with trash kills only ]]></change>
+					<change><![CDATA[[CHG] removed the "skip raids with empty notes" setting as parser will now look in loot notes first ]]></change>					
+					
+					SKIP_EMPTY_NOTE_RAIDS
 				</changelog>
 			</entry>
 			
