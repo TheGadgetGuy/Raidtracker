@@ -151,6 +151,7 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 				<rev-version>0.2.3</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[FIX] issue #49 RT parsing now accepts dkp strings without end time nor leave array. in that case, end time will be taken from the last bosskill. also, if the global attendees list is bigger than the playerinfo tag, importing the raid will no longer crash when random raiders in global attendance aren't present in the DKP table. it will ignore them then.]]></change>
+					<change><![CDATA[[FIX] issue #50 RT parsing now accepts dkp strings without bosskill tag. this allows to track raids with trash kills only ]]></change>
 				</changelog>
 			</entry>
 			
@@ -165,7 +166,6 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 			<file from="root/adm/style/dkp/*.*" to="adm/style/dkp/*.*"/>
 			<file from="root/includes/acp/*.*" to="includes/acp/*.*"/>
 			<file from="root/includes/acp/info/*.*" to="includes/acp/info/*.*"/>
-			<file from="root/includes/bbdkp/bbdkp.php" to="includes/bbdkp/bbdkp.php"/>
 			<file from="root/includes/bbdkp/raidtracker/*.*" to="includes/bbdkp/raidtracker/*.*"/>
 			<file from="root/includes/bbdkp/raidtracker/additems/*.*" to="includes/bbdkp/raidtracker/additems/*.*"/>
 			<file from="root/includes/bbdkp/raidtracker/aliases/*.*" to="includes/bbdkp/raidtracker/aliases/*.*"/>
