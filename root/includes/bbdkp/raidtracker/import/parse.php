@@ -540,11 +540,13 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		 *  Bosskills and wipes
 		 *
 		 */
+		$rt_bosskill = array();
 		if (sizeof($Bosskills) == 0)
 		{
 			// no bosskills
-			// look if there is loot	
+			// look if there is loot from trash or if the tracker is defective and theres no bosstag and well find bosstags in loot	
 		 	// walk the loot to find bosses 
+		 	
 			foreach ($Loots as $key => $Loot)
 			{
 				// explicitly cast Simplexml object to array
@@ -762,7 +764,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		
 		// sort by time, interpolate the wipes with the bosskills
 		// only if there was a bosskill 
-		if(isset($rt_bosskill ))
+		if(sizeof($rt_Bosskill) > 0)
 		{
 			
 			//sort bosskills by time

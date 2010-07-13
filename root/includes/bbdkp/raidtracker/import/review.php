@@ -120,6 +120,16 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		        }
 		        $db->sql_freeresult ( $result);
 		        
+		        if ($totalplayernr == 0)
+		        {
+		        	// there was no bosskill
+		        	foreach ($allplayerinfo as $player)
+		  	 		{
+		  	 			$attendingplayers[] = $player['name'];
+		  	 			$totalplayernr++; 
+		  	 		}
+		        }
+		        
 	  	 		break; 
 	  	 		 
 	  	 }
@@ -301,7 +311,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
         
         $db->sql_freeresult ($result);
 		$bossattendees = array_unique($bossattendees); 
-        
+        $Bosskills = array();
 		if(count($loot) > 0 && count($bossattendees) > 0)
 		{
 			// add trash mob loot to $boskills
