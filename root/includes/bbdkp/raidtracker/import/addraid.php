@@ -45,7 +45,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
     	$this->time = $boardtime[0]; 
 
     	//parameters
-    	$this->batchid = $batchid = request_var('batchid', '' );    
+    	$this->batchid = request_var('batchid', '' );    
     	$this->dkp 	   = request_var('dkpsys' , 0 );
     	$this->event   = request_var('event' , 0 );
     	$this->eventname   = request_var('event_name' , array(''=>'') );
@@ -96,18 +96,22 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
     	$bosskilltime_mo = request_var('bosskill_mo', array( '' => array( '' => 0))); 
     	$bosskilltime_d  = request_var('bosskill_d', array( '' => array( '' => 0))); 
     	$bosskilltime_y  = request_var('bosskill_y', array( '' => array( '' => 0))); 
-    	foreach($this->bosses[$this->batchid] as $boss )
+    	
+    	if (sizeof( $this->bosses) > 0 )
     	{
-    		$bkt[$boss] = mktime(
-    				$bosskilltime_h[$this->batchid][$boss], 
-    				$bosskilltime_mi[$this->batchid][$boss], 
-    				$bosskilltime_s[$this->batchid][$boss], 
-    				$bosskilltime_mo[$this->batchid][$boss], 
-    				$bosskilltime_d[$this->batchid][$boss],
-    				$bosskilltime_y[$this->batchid][$boss]); 
+	    	foreach($this->bosses[$this->batchid] as $boss )
+	    	{
+	    		$bkt[$boss] = mktime(
+	    				$bosskilltime_h[$this->batchid][$boss], 
+	    				$bosskilltime_mi[$this->batchid][$boss], 
+	    				$bosskilltime_s[$this->batchid][$boss], 
+	    				$bosskilltime_mo[$this->batchid][$boss], 
+	    				$bosskilltime_d[$this->batchid][$boss],
+	    				$bosskilltime_y[$this->batchid][$boss]); 
+	    	}
+	    	$this->bosskilltime = $bkt; 
     	}
-
-    	$this->bosskilltime = $bkt; 
+    	
     	$this->bossattendees = utf8_normalize_nfc(request_var('attendees', array( '' => array( '' => '' )) , true)); 
         
         include ($phpbb_root_path . "includes/bbdkp/raidtracker/import/krequest.$phpEx");
@@ -319,58 +323,62 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         // 1 raid per boss
 		// put bossname in raid note with the comments
 		// add raid bonus
-		foreach($this->bosses[$this->batchid] as $boss)
+		if (sizeof ($this->bosses ) > 0)
 		{
-			// add raid
-			$sql_raid = array(
-			'raid_dkpid'     => $this->dkp, 
-			'raid_name'      => $this->eventname[$this->batchid], 
-			'raid_date'      => $this->bosskilltime[$boss],     
-			'raid_note'      => $boss . ' : ' . $this->raid_value[$this->batchid]. ' ' . $this->globalcomments[$this->batchid]  ,
-			'raid_value'     => $this->raid_value[$this->batchid],
-			'raid_added_by'  => 'RaidTracker (by ' . $user->data ['username'] . ')' , );
-			
-			$sql = 'INSERT INTO ' . RAIDS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_raid);
-			$db->sql_query($sql);	
-			$raid_id = $db->sql_nextid();
-			unset ($sql_raid);
-
-			// add attendees
-			$attendees = explode(',' , $this->bossattendees[$this->batchid][$boss]);
-			foreach($attendees as $attendee)
+			foreach($this->bosses[$this->batchid] as $boss)
 			{
-				$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($attendee));	
+				// add raid
+				$sql_raid = array(
+				'raid_dkpid'     => $this->dkp, 
+				'raid_name'      => $this->eventname[$this->batchid], 
+				'raid_date'      => $this->bosskilltime[$boss],     
+				'raid_note'      => $boss . ' : ' . $this->raid_value[$this->batchid]. ' ' . $this->globalcomments[$this->batchid]  ,
+				'raid_value'     => $this->raid_value[$this->batchid],
+				'raid_added_by'  => 'RaidTracker (by ' . $user->data ['username'] . ')' , );
 				
-				//only add the attendee if he is present !
-				// if the bossattendee array is bigger than playerinfo then we ignore the rest
-				if ($this_memberid != 0)
+				$sql = 'INSERT INTO ' . RAIDS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_raid);
+				$db->sql_query($sql);	
+				$raid_id = $db->sql_nextid();
+				unset ($sql_raid);
+	
+				// add attendees
+				$attendees = explode(',' , $this->bossattendees[$this->batchid][$boss]);
+				foreach($attendees as $attendee)
 				{
-					$sql_attendee[] = array(
-					'raid_id'     	 => (int) $raid_id, 
-					'member_id'      => (int) $this_memberid, 
-					'member_name'    => trim($attendee)
-						);
+					$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($attendee));	
+					
+					//only add the attendee if he is present !
+					// if the bossattendee array is bigger than playerinfo then we ignore the rest
+					if ($this_memberid != 0)
+					{
+						$sql_attendee[] = array(
+						'raid_id'     	 => (int) $raid_id, 
+						'member_id'      => (int) $this_memberid, 
+						'member_name'    => trim($attendee)
+							);
+					}
 				}
+				$db->sql_multi_insert(RAID_ATTENDEES_TABLE, $sql_attendee);
+				unset  ($sql_attendee);
+				
+				$log_action = array (
+				'header' 		=> 'L_ACTION_RAID_ADDED', 
+				'id' 			=> $raid_id, 
+				'L_EVENT' 		=> $this->eventname[$this->batchid], 
+				'L_ATTENDEES' 	=> $this->bossattendees[$this->batchid][$boss], 
+				'L_NOTE' 		=> $boss . ' : ' . $this->raid_value[$this->batchid]. ' ' . $this->globalcomments[$this->batchid] , 
+				'L_VALUE' 		=> $this->raid_value[$this->batchid], 
+				'L_ADDED_BY' 	=> $user->data ['username'] );
+			
+				$this->log_insert ( array (
+					'log_type' 		=> $log_action ['header'], 
+					'log_action' 	=> $log_action ) );
+				
+				
+				// add loot 
+				$this->_loot_add($raid_id, $boss);
+				
 			}
-			$db->sql_multi_insert(RAID_ATTENDEES_TABLE, $sql_attendee);
-			unset  ($sql_attendee);
-			
-			$log_action = array (
-			'header' 		=> 'L_ACTION_RAID_ADDED', 
-			'id' 			=> $raid_id, 
-			'L_EVENT' 		=> $this->eventname[$this->batchid], 
-			'L_ATTENDEES' 	=> $this->bossattendees[$this->batchid][$boss], 
-			'L_NOTE' 		=> $boss . ' : ' . $this->raid_value[$this->batchid]. ' ' . $this->globalcomments[$this->batchid] , 
-			'L_VALUE' 		=> $this->raid_value[$this->batchid], 
-			'L_ADDED_BY' 	=> $user->data ['username'] );
-		
-			$this->log_insert ( array (
-				'log_type' 		=> $log_action ['header'], 
-				'log_action' 	=> $log_action ) );
-			
-			
-			// add loot 
-			$this->_loot_add($raid_id, $boss);
 			
 		}
 	}
@@ -425,9 +433,13 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		unset  ($sql_attendee);
 		
 		// add loot and assign it to the global raid
-		foreach($this->bosses[$this->batchid] as $boss)
+		
+		if(sizeof ($this->bosses) > 0)
 		{
-			$this->_loot_add($raid_id, $boss);
+			foreach($this->bosses[$this->batchid] as $boss)
+			{
+				$this->_loot_add($raid_id, $boss);
+			}
 		}
 		
 		$log_action = array (
