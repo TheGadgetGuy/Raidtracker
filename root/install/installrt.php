@@ -360,6 +360,11 @@ $versions = array(
 	// no db change, only a bugfix
 		'custom' => array('raidtrackerupdater'),
 	),
+
+	'0.2.5' => array(
+	// no db change, only a bugfix
+		'custom' => array('raidtrackerupdater'),
+	),
 	
 );
 
