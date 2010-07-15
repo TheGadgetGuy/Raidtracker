@@ -764,7 +764,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		
 		// sort by time, interpolate the wipes with the bosskills
 		// only if there was a bosskill 
-		if(sizeof($rt_Bosskill) > 0)
+		if(sizeof($rt_bosskill) > 0)
 		{
 			
 			//sort bosskills by time

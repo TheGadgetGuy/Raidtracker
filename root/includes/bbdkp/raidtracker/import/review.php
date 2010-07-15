@@ -154,38 +154,6 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		$result = $db->sql_query($sql);
 		while ( $row = $db->sql_fetchrow($result) )
         {
-        	
-	     /*
-	      * array structure of $Bosskills array to be filled
-                 
-		   "$Bosskills" = Array [6]	
-			0 = Array [6]	
-				bossname = (string:14) Lord Marrowgar	
-				time = (string:10) 1267813467	
-				difficulty = (string:1) 1	
-				bossattendees = Array [10]	
-					0 = (string:6) Aidail	
-					1 = (string:4) Alfr	
-					2 = (string:6) Anunia	
-					3 = (string:8) Cikaflex	
-					4 = (string:12) Hunterbunter	
-					5 = (string:9) Puhaasham	
-					6 = (string:11) Rockythewar	
-					7 = (string:6) Shintu	
-					8 = (string:6) Willów	
-					9 = (string:6) Xzound	
-				countattendees = (int) 10	
-				loot = Array [1]	
-					0 = Array [7]	
-						lootnr = (int) 0	
-						itemid = (string:5) 50760	
-						itemname = (string:19) Bonebreaker Scepter	
-						playername = (string:6) Aidail	
-						loottime = (string:4) 3600	
-						lootnote = (string:61)  - Zone: Icecrown Citadel (10) - Boss: Lord Marrowgar - 0 DKP	
-					cost = (string:5) 15.00	
-         */
-        	
         	/* adding attendees */
         	$sql_array2 = array(
 	    	'SELECT'    => 'n.playername ',
@@ -258,7 +226,6 @@ class Raidtracker_Review extends acp_dkp_rt_import
 			unset($bossattendees);
 			unset($nr_boss_attendees);
 			unset($loot);
-			
         }
         $db->sql_freeresult ($result);
         
@@ -311,7 +278,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
         
         $db->sql_freeresult ($result);
 		$bossattendees = array_unique($bossattendees); 
-        $Bosskills = array();
+        
 		if(count($loot) > 0 && count($bossattendees) > 0)
 		{
 			// add trash mob loot to $boskills

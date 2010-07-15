@@ -28,7 +28,8 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	var $time;
 	
     var $id, $Raidtrackerlink; 
-	var $dkp, $batchid, $event, $eventname, $globalcomments, $allattendees, $raid_value, $raidbegin, $difficulty, $raidend; 
+	var $dkp, $batchid, $event, $eventname, $globalcomments, 
+	    $allattendees, $raid_value, $raidbegin, $difficulty, $raidend; 
 	var $bosses, $bossesdifficulty, $bosskilltime, $bossattendees, $bossloots; 
 	/* holds status message */
 	var $message; 
@@ -71,20 +72,20 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
     	$raidend_y = request_var('raidend_y', array( '' => 0)); 
 
     	$this->raidbegin = mktime(
-        	$raidstart_h[$batchid]  , 
-        	$raidstart_mi[$batchid]  , 
-        	$raidstart_s[$batchid]  , 
-        	$raidstart_mo[$batchid]  , 
-        	$raidstart_d[$batchid], 
-        	$raidstart_y[$batchid] );
+        	$raidstart_h[$this->batchid]  , 
+        	$raidstart_mi[$this->batchid]  , 
+        	$raidstart_s[$this->batchid]  , 
+        	$raidstart_mo[$this->batchid]  , 
+        	$raidstart_d[$this->batchid], 
+        	$raidstart_y[$this->batchid] );
         	
         $this->raidend = mktime(
-        	$raidsend_h[$batchid] , 
-        	$raidend_mi[$batchid] , 
-        	$raidend_s[$batchid] , 
-        	$raidend_mo[$batchid], 
-        	$raidend_d[$batchid], 
-        	$raidend_y[$batchid] );
+        	$raidsend_h[$this->batchid] , 
+        	$raidend_mi[$this->batchid] , 
+        	$raidend_s[$this->batchid] , 
+        	$raidend_mo[$this->batchid], 
+        	$raidend_d[$this->batchid], 
+        	$raidend_y[$this->batchid] );
         	
         // boss array
         $this->bosses = utf8_normalize_nfc(request_var('bossname', array( '' => array( '' => '' )) , true)); 
@@ -152,7 +153,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         
     }
     
-    function handle_new_members($batchid) 
+    function handle_new_members() 
     {
     	global $db, $user, $config, $phpbb_root_path, $phpEx;
         if ( !class_exists('acp_dkp_mm')) 
@@ -164,7 +165,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         
         $allplayerinfo = array();
         
-		$sql = 'select * from ' . RT_TEMP_PLAYERINFO . " where batchid = '" . $db->sql_escape($batchid) . "'" ;
+		$sql = 'select * from ' . RT_TEMP_PLAYERINFO . " where batchid = '" . $db->sql_escape($this->batchid) . "'" ;
 	    $result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
 		{
