@@ -731,7 +731,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
     
     
     /**
-     * function to add raid points
+     * function to add time raid points
      * 
      */
     function add_time_dkp()
