@@ -6,9 +6,13 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.5]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.6]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer
-Dependency : bbDkp 1.1 must be installed before]]></description>
+Dependency : bbDkp 1.1.2 must be installed before]]></description>
+<description lang="fr"><![CDATA[Installateur pour bbDKP Raidtracker
+Attention : bbDKP 1.1.2 doit être installé auparavant]]></description>
+<description lang="de"><![CDATA[bbDkp Raidtracker Plugin installer
+Achtung : bbDKP 1.1.2 muss schon vorher installiert sein]]></description>
 		<author-notes lang="en"><![CDATA[we hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
 		<author-group>
 			<author>
@@ -31,7 +35,7 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.2.5</mod-version>
+		<mod-version>0.2.6</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -171,10 +175,20 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 					<change><![CDATA[[FIX] issue #52 review.php wrongly reinitialised bosskills , parse.php rt_Bosskill i.o rt_bosskill, adapted admin permission file]]></change>
 				</changelog>
 			</entry>			
+			<entry>
+				<date>2010-09-25</date>
+				<rev-version>0.2.6</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[NEW] Version Française]]></change>
+					<change><![CDATA[[NEW] Deutsche Version]]></change>
+				</changelog>
+			</entry>	
 			
 		</history>
 		<link-group>
-			<link type="dependency" href="http://www.bbdkp.com/viewtopic.php?f=2&amp;t=1320" lang="en">bbDkp 1.1.1</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.1.2</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.1.2</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.1.2</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -198,6 +212,8 @@ Dependency : bbDkp 1.1 must be installed before]]></description>
 		<open src="includes/bbdkp/constants_bbdkp.php">
 			<edit>
 				<comment lang="en"><![CDATA[adding required constants to bbdkp constants]]></comment>
+				<comment lang="fr"><![CDATA[adding required constants to bbdkp constants]]></comment>
+				<comment lang="de"><![CDATA[adding required constants to bbdkp constants]]></comment>
 				<find><![CDATA[// RAIDTRACKER]]></find>
 				<action type="after-add"><![CDATA[ 
 define('RT_TEMP_RAIDINFO', $bbdkp_table_prefixx . 'rt_temp_raidinfo');
@@ -224,9 +240,12 @@ define('RT_AF_BOSS_KILL', 1);         // 1 = Boss Kill Time
 ]]></action>
 			</edit>
 		</open>
-		<diy-instructions lang="en"><![CDATA[
-Running database installer
------------------------------- 
-Browse to install/installrt.php and run and the Raidtracker plugin installer/updater]]></diy-instructions>
-	</action-group>
+		<php-installer><![CDATA[install/installrt.php]]></php-installer>
+<diy-instructions lang="en"><![CDATA[
+Database : Browse to install/installrt.php and run and the Raidtracker plugin installer/updater]]></diy-instructions>
+<diy-instructions lang="fr"><![CDATA[
+Base de données : pointe le browser vers install/installrt.php pour lancer l'installation des tables DB]]></diy-instructions>
+<diy-instructions lang="de"><![CDATA[
+Datenbank : rufe sie Seite install/installrt.php auf und starte den Datenbankinstaller ]]></diy-instructions>
+</action-group>
 </mod>
