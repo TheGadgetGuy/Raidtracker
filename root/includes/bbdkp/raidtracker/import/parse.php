@@ -149,7 +149,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			
 			$template->assign_block_vars('import_row', array(
 				'ID'          	=> $row['raidid'],
-				'DESCRIPTION'  	=> $row['zone'] . ' ' . $row['note'],
+				'DESCRIPTION'  	=> $row['zone'],
 				'START'       	=> date("r", $row['starttime']),
 				'END'  		  	=> date("r", $row['endtime']),
 				'U_VIEW_IMPORT' => append_sid("index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import&amp;r={$row['raidid']}")  ,
@@ -305,8 +305,11 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		 */
        	
        	// look in loot notes and zones if there is loot
-       	$Loots =  (array) $doc->Loot[0]; 
+    	
+       	// ct_raidtracker only. checking in raidnote
         $Raidzone = array(); 
+
+    	$Loots =  (array) $doc->Loot[0]; 
        	if (sizeof($Loots) > 0)
        	{
        	   	foreach ($Loots as $key => $Loot)
@@ -334,22 +337,11 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			}
        	}
 
-        // ct_raidtracker only. checking in raidnote
-        $Note = (string) $doc->note[0];
-        $Note = trim($Note, '- Zone:'); 
-        $Note = trim($Note);
-
-       	if (strlen(trim($Note)) == 0)
-    	{        		
-	    	//empty raidnote so look in zone tag
-	    	//--> Headcount
-	    	$Note = (string) $doc->zone[0];  
-    	}
-    	
-    	if (strlen(trim($Note)) != 0)
-    	{
-    		$Raidzone[] = $Note;
-    	}
+        if (count($Raidzone) == 0)
+        {
+	        $Note = (string) $doc->zone[0]; 
+	   		$Raidzone[] = $Note;
+        }
     	
 		// make the array unique
 		$Raidzone = array_unique($Raidzone); 
@@ -370,6 +362,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
         }
         else 
         {
+        	//normal
         	$Raidlevel = 1; 
         }
         
@@ -445,7 +438,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		    'class'      => (int) $class[1],  
 			'level'      => (int) $player['level'],  
 			); 
-		}	
+		}
 	
 		$db->sql_multi_insert(RT_TEMP_PLAYERINFO, $rt_player);
 		
@@ -971,8 +964,8 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		
 		 // if no matching event is found then return an error.
 		 trigger_error( sprintf($user->lang['RT_ERR_NOEVENT'] , 
-		 		implode(",", $raidzonearray), 
-		 		implode(", ", $raidzonearray)) . $this->Raidtrackerlink, 
+		 		implode(", <br />", $raidzonearray), 
+		 		implode(",<br /> ", $raidzonearray)) . $this->Raidtrackerlink, 
 		 		E_USER_WARNING);
 	}
 	
@@ -1069,7 +1062,8 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	}
 	
 	/*
-	 * gets raceid given racename in DKP string
+	 * headcount and Ct_raidtracker pass racename, we need to find out raceid from DKP string
+	 * racename is always passed in english so we hardcode language to 'en' in sql
 	 */
 	function _GetRaceIdByRaceName($racename) 
 	{
@@ -1088,9 +1082,11 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			$racename = "Blood Elf";
 		}
 		
-		$result = $db->sql_query ( 'SELECT race_id FROM ' . RACE_TABLE . ' WHERE race_name ' .	
-		$db->sql_like_expression($db->any_char . $db->sql_escape($racename) . $db->any_char) );
+		$sql = 'SELECT race_id FROM ' . BB_LANGUAGE . ' l, ' . RACE_TABLE . ' r 
+			WHERE l.name ' . $db->sql_like_expression($db->any_char . $db->sql_escape($racename) . $db->any_char) . "  
+			AND l.attribute_id = r.race_id AND l.language= 'en' AND l.attribute = 'race'"; 
 		
+		$result = $db->sql_query($sql);
 		$max_value = 0;
 		// normally 1 loop will suffice
 		while ( $row = $db->sql_fetchrow ( $result ) ) 
@@ -1107,6 +1103,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		} 
 		else 
 		{
+			//unknown
 			return 0;
 		}
 	
@@ -1114,6 +1111,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 
 	/*
 	 * gets correct bbDKP Class name and id given classname from DKP string
+	 * (we only need the class id)
 	 * 
 	 */
 	function _Getclass($CT_RaidTrackerclassName) 
@@ -1184,7 +1182,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
     /*
      * function to get dkp value from item from items table based on itemid and/or item name
      * if the item is new then we return the default cost
-     * @todo add itemid search for 1.1.1
+     * @todo add itemid search for 1.1.2
      * 
      * 
      */

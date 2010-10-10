@@ -59,7 +59,7 @@ $lang = array_merge($lang, array(
 'RT_ERR_NOATTENDEES' => 'Fehler. keine Teilnehmner. ', 
 'RT_ERR_NORAIDNOTE' => 'Fehler. Kein Raidnote. ',
 'RT_ERR_NOBOSSKILL' => 'Fehler. kein Bosskill Element gefunden. Einfügung nicht gelungen',
-'RT_ERR_NOEVENT' => 'Fehler. keine Ereignisbeziehung gefunden für "%s". <br />Erst muss eine Beziehung zwischen "%s" und einen bestehenden Ereignis eingestellt werden bevor der Raid importiert werden kann. ',
+'RT_ERR_NOEVENT' => 'Fehler. keine Beziehung gefunden zur Ergebnisse für diese Raidzones <br /> "%s". <br />Erst muss eine Beziehung zwischen <br /> "%s" <br /> und einen bestehenden Ereignis eingestellt werden bevor der Raid importiert werden kann. ',
 'RT_ERR_NOEVENTSETUP' => 'Fehler. keine Ereignisse aufgefunden in bbDKP. Raidtracker kann nicht funktionieren. ',
 'RT_ERR_NODKPSYSSETUP' => 'Fehler. kein DKP Pool ist aufgefunden in bbDKP. Raidtracker kann nicht funktionieren.',
 
