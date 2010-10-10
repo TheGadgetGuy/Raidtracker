@@ -25,12 +25,12 @@ if (empty($lang) || !is_array($lang))
 
 // Merge the following language entries into the lang array
 $lang = array_merge($lang, array(
-	'RT_PARSE' 			=> 'Raidtracker Processing',
-	'RT_PARSE_EXPLAIN'  => 'Parses XML files from game and imports the data into temporary tables for later processing.', 	
-	'RT_IMPORT' 		=> 'RaidTracker Import',
-	'RT_IMPORT_EXPLAIN' => 'Imports Raids, Items and Members into the DKP system',  
-	'RT_IMPORTLOG' 		=> 'Manage Imports',
-	'RT_DELETE' 		=> 'Delete Parsed raid',  
+	'RT_PARSE' 			=> 'Raidtracker XML Parse',
+	'RT_PARSE_EXPLAIN'  => 'Hier werden die XML Dateiten vom Game verarbeitet unf in Zwischentabelle gelagert.', 	
+	'RT_IMPORT' 		=> 'RaidTracker Importierung',
+	'RT_IMPORT_EXPLAIN' => 'Importiert Raids, Items und Mitglieder im DKP System',  
+	'RT_IMPORTLOG' 		=> 'Importieren',
+	'RT_DELETE' 		=> 'Raid löschen',  
 ));
 
 ?>
