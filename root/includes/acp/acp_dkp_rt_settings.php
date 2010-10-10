@@ -193,7 +193,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 
 				 );
 				
-
+				$this->page_title = $user->lang ['RTSETTINGS'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
+				
 				break;
 			
 			case 'rt_add_items' :
@@ -216,6 +218,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				{
 					$extension->item_delete();
 				}
+				
+				$this->page_title = $user->lang ['RT_ADDITEMS'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
 
 				break;
 			
@@ -223,7 +228,10 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 
 				include ($phpbb_root_path . "includes/bbdkp/raidtracker/additems/list.$phpEx");		
 				$extension = new Raidtracker_ListAddItems ( );	
-
+				
+				$this->page_title = $user->lang ['RT_LISITEMS'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
+				
 				break;
 			
 			case 'rt_import_items' :
@@ -242,6 +250,10 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				{
 					$extension->process_import();
 				}
+				
+				$this->page_title = $user->lang ['RT_IMPITEMS'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
+				
 				break;
 			
 			case 'rt_export_items' :
@@ -253,7 +265,10 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				include ($phpbb_root_path . "includes/bbdkp/raidtracker/additems/export.$phpEx");
 				
 				$extension = new Raidtracker_ExportAddItem ( );		
-
+				
+				$this->page_title = $user->lang ['RT_EXPITEMS'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
+				
 				break;
 			
 			case 'rt_add_alias' :
@@ -278,6 +293,8 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				{
 					$extension->alias_delete();
 				}
+				$this->page_title = $user->lang ['RT_ADDALIAS'];
+				$this->tpl_name = 'dkp/acp_' . $mode;				
 
 				break;
 				
@@ -285,7 +302,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				
 				include ($phpbb_root_path . "includes/bbdkp/raidtracker/aliases/list.$phpEx");
 				$extension = new Raidtracker_ListAliases ( );
-				
+				$this->page_title = $user->lang ['RT_LISALIAS'];
+				$this->tpl_name = 'dkp/acp_' . $mode;	
+								
 				break;
 
 			case 'rt_import_alias' :
@@ -304,7 +323,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				{
 					$extension->process_import();
 				}
-			
+				
+				$this->page_title = $user->lang ['RT_IMPALIAS'];
+				$this->tpl_name = 'dkp/acp_' . $mode;	
 				break;
 
 			case 'rt_export_alias' :
@@ -316,6 +337,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				include ($phpbb_root_path . "includes/bbdkp/raidtracker/aliases/export.$phpEx");
 				
 				$extension = new Raidtracker_ExportAliases ( );
+				
+				$this->page_title = $user->lang ['RT_EXPALIAS'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
 				
 				break;
 			
@@ -341,7 +365,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				{
 					$extension->event_delete ();
 				}
-
+				$this->page_title = $user->lang ['RT_ADDEVTRIG'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
+				
 				break;
 			
 			case 'rt_list_event_triggers' :
@@ -349,6 +375,8 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 		       include ($phpbb_root_path . 'includes/bbdkp/raidtracker/eventtriggers/list.' . $phpEx);
 				$extension = new Raidtracker_ListEventTriggers ( );
 
+				$this->page_title = $user->lang ['RT_LISEVTRIG'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
 				break;
 			
 			case 'rt_import_event_triggers' :
@@ -367,6 +395,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 					$extension->process_import ();
 				}
 				
+				$this->page_title = $user->lang ['RT_IMPEVTRIG'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
+				
 				break;
 			
 			case 'rt_export_event_triggers' :
@@ -377,7 +408,10 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				include ($phpbb_root_path . 'includes/bbdkp/raidtracker/eventtriggers/export.' . $phpEx);
 				
 				$extension = new Raidtracker_ExportEventTriggers ( );	
-
+				
+				$this->page_title = $user->lang ['RT_EXPEVTRIG'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
+				
 				break;
 			
 			case 'rt_add_ignore_items' :
@@ -401,7 +435,7 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 					$extension->item_delete();
 				}
 				
-				$this->page_title = $user->lang ['RTSETTINGS'];
+				$this->page_title = $user->lang ['RT_ADDIGNORE'];
 				$this->tpl_name = 'dkp/acp_' . $mode;
 				
 				break;
@@ -411,7 +445,8 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				
 				$extension = new Raidtracker_ListIgnoreItems ( );
 				
-				
+				$this->page_title = $user->lang ['RT_LISIGNORE'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
 
 				break;
 			
@@ -430,7 +465,7 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 					$extension->item_import ();
 				}
 				
-				$this->page_title = $user->lang ['RTSETTINGS'];
+				$this->page_title = $user->lang ['RT_IMPIGNORE'];
 				$this->tpl_name = 'dkp/acp_' . $mode;			
 				break;
 			
@@ -442,7 +477,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				include ($phpbb_root_path . 'includes/bbdkp/raidtracker/ignoreitems/export.' . $phpEx);
 
 				$extension = new Raidtracker_ExportIgnoreItem ( ); 
-				
+				$this->page_title = $user->lang ['RT_EXPIGNORE'];
+				$this->tpl_name = 'dkp/acp_' . $mode;
+								
 				break;
 			
 			case 'rt_add_own_raids' :
@@ -467,14 +504,15 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 					$extension->process_delete ();
 				}
 				
-				$this->page_title = $user->lang ['RTSETTINGS'];
+				$this->page_title = $user->lang ['RT_ADDOWNRAID'];
 				$this->tpl_name = 'dkp/acp_' . $mode;		
 				break;
 			
 			case 'rt_list_own_raids' :
 				include ($phpbb_root_path . 'includes/bbdkp/raidtracker/ownraids/list.' . $phpEx);
 				$extension = new Raidtracker_ListOwnRaids ( );
-					
+				$this->page_title = $user->lang ['RT_LISOWNRAID'];
+				$this->tpl_name = 'dkp/acp_' . $mode;					
 				break;
 			
 			case 'rt_import_own_raids' :
@@ -491,6 +529,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				{
 					$extension->process_import ();
 				}
+				$this->page_title = $user->lang ['RT_IMPOWNRAID'];
+				$this->tpl_name = 'dkp/acp_' . $mode;	
+
 				break;
 			
 			case 'rt_export_own_raids' :
@@ -500,7 +541,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
         		}
 				include ($phpbb_root_path . 'includes/bbdkp/raidtracker/ownraids/export.' . $phpEx);
 				$extension = new Raidtracker_ExportOwnRaids ( );
-				
+				$this->page_title = $user->lang ['RT_EXPOWNRAID'];
+				$this->tpl_name = 'dkp/acp_' . $mode;	
+								
 				break;
 			
 			case 'rt_add_raid_note_triggers' :
@@ -524,14 +567,17 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				{
 					$extension->process_delete ();
 				}
-
+				$this->page_title = $user->lang ['RT_ADDRAIDTRIG'];
+				$this->tpl_name = 'dkp/acp_' . $mode;	
+				
 				break;
 			
 			case 'rt_list_raid_note_triggers' :
 				
 				include ($phpbb_root_path . 'includes/bbdkp/raidtracker/raidnotetriggers/list.' . $phpEx);			
 				$extension = new Raidtracker_ListRaidNoteTriggers ( );
-				
+				$this->page_title = $user->lang ['RT_LISRAIDTRIG'];
+				$this->tpl_name = 'dkp/acp_' . $mode;				
 				break;
 			
 			case 'rt_import_raid_note_triggers' :
@@ -549,7 +595,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				{
 					$extension->process_import ();
 				}
-				
+				$this->page_title = $user->lang ['RT_IMPRAIDTRIG'];
+				$this->tpl_name = 'dkp/acp_' . $mode;	
+								
 				break;
 			
 			case 'rt_export_raid_note_triggers' :
@@ -560,7 +608,9 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				include ($phpbb_root_path . 'includes/bbdkp/raidtracker/raidnotetriggers/export.' . $phpEx);
 				
 				$extension = new Raidtracker_ExportRaidNoteTriggers ( );
-								
+				
+				$this->page_title = $user->lang ['RT_EXPRAIDTRIG'];
+				$this->tpl_name = 'dkp/acp_' . $mode;				
 				break;
 		}
 		

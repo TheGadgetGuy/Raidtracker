@@ -58,6 +58,8 @@ class acp_dkp_rt_import extends bbDkp_Admin
 					}
 
     				$this->tpl_name = 'dkp/acp_' . $mode;
+					$this->page_title = $user->lang ['RT_PARSE'];
+						
 				
 				break;
 				
@@ -73,7 +75,7 @@ class acp_dkp_rt_import extends bbDkp_Admin
 						// display the raid for review
 						include ($phpbb_root_path . "includes/bbdkp/raidtracker/import/review.$phpEx");
 						$extension = new Raidtracker_Review ( );
-						$this->tpl_name = 'dkp/acp_' . $mode;
+						
 					}
 					
 					if($submit)
@@ -81,9 +83,10 @@ class acp_dkp_rt_import extends bbDkp_Admin
 						// add the raid to bbdkp
 						include ($phpbb_root_path . "includes/bbdkp/raidtracker/import/addraid.$phpEx");
 						$extension = new Raidtracker_addraid($this->u_action);
-						$this->tpl_name = 'dkp/acp_' . $mode;
 					}
 					
+					$this->tpl_name = 'dkp/acp_' . $mode;
+					$this->page_title = $user->lang ['RT_IMPORT'];
 				
 				break;
 				
@@ -131,8 +134,8 @@ class acp_dkp_rt_import extends bbDkp_Admin
 						confirm_box(false, sprintf($user->lang['RT_STEP1_DELETCONFIRM'], $raidid), $s_hidden_fields);
 					}
 					$this->tpl_name = 'dkp/acp_rt_parse';
+					$this->page_title = $user->lang ['RT_DELETE'];
 					meta_refresh(0, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=dkp_rt_import'));
-
 				
 				break;
 								
