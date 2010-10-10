@@ -29,7 +29,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	
     var $id, $Raidtrackerlink; 
 	var $dkp, $batchid, $event, $eventname, $globalcomments, 
-	    $allattendees, $raid_value, $raidbegin, $difficulty, $raidend; 
+	    $allattendees, $raid_value, $raidbegin, $difficulty, $raidend, $timebonuses; 
 	var $bosses, $bossesdifficulty, $bosskilltime, $bossattendees, $bossloots; 
 	/* holds status message */
 	var $message; 
@@ -52,7 +52,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
     	$this->eventname   = request_var('event_name' , array(''=>'') );
 		
 		$this->allattendees = utf8_normalize_nfc(request_var('allattendees', array( '' => '') , true)); 
-		
+
 		$this->raid_value = request_var( 'dkpvalue',array( '' => 0.00));
 		$this->difficulty = request_var('difficulty', array( '' => 0));
 		$this->globalcomments = utf8_normalize_nfc(request_var('globalcomments', array( '' => '') , true)); 
@@ -118,6 +118,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         include ($phpbb_root_path . "includes/bbdkp/raidtracker/import/krequest.$phpEx");
         $req = new phpbb_request; 
         $this->bossloots = $req->variable('loots', array( ''=> array( ''=> array( ''=>  array( ''=> '')))), true, phpbb_request::POST ); 
+        $this->timebonuses = $req->variable('timebonus', array( ''=> array( ''=> 0.00)), true, phpbb_request::POST );         
         $req->enable_super_globals();
         unset($req);
       
@@ -742,45 +743,34 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         {
             // we need this class for accessing member functions
             include ($phpbb_root_path . 'includes/acp/acp_dkp_mm.' . $phpEx); 
+            
         }
-        $acp_dkp_mm = new acp_dkp_mm;
-        
-		// add time bonus to all attendees
-		// if you want standbys then add them to the global attendees list in Raid review screen
-		$sql = ' select playername, jointime, leavetime from ' . RT_TEMP_JOININFO . " where  batchid =  '" . $this->batchid . "'";
-		$result = $db->sql_query($sql);
-        while ( $row = $db->sql_fetchrow($result) )
+		
+        if ( !class_exists('acp_dkp_adj')) 
         {
-        	$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($row['playername']));	
+	        include ($phpbb_root_path . 'includes/acp/acp_dkp_adj.' . $phpEx);
+        }
+        
+        $acp_dkp_mm = new acp_dkp_mm;
+        $acp_dkp_adj = new acp_dkp_adj;
+        
+		// add time bonus to all attendees as an adjustment
+		$bonuslist = array();
+        foreach ($this->timebonuses[$this->batchid] as $player => $bonus)
+        {
+        	$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($player));	
         	if ($this_memberid != 0)
         	{
-				$attendeejoins[] = array(
-					'playerid' 		=> $this_memberid, 
-	 			    'playername'    => $row['playername'],
-				    'jointime' 		=> $row['jointime'],
-				    'leavetime'     => $row['leavetime']			
-					);
+				$bonuslist[$this_memberid] = (float) $bonus;
         	}
         }
-        $db->sql_freeresult ( $result);
-        
-				
-        foreach($attendeejoins as  $playerjoin)
+					    
+        foreach($bonuslist as $member_id => $bonusadj)
         {
-			if( $diff = $this->get_time_difference($playerjoin['jointime'], $playerjoin['leavetime']) )
-			{
-				
-				$decimaltime = $diff['hours'] ; 
-				
-				$timebonus = (float) $decimaltime *  $config['bbdkp_rt_hourdkp']; 
-				
-				$sql  = 'UPDATE ' . MEMBER_DKP_TABLE . ' m
-	               SET m.member_earned = m.member_earned + ' . $timebonus . ' ';	        
-				$sql .= ' WHERE m.member_dkpid = ' . (int) $this->dkp . ' AND m.member_id = ' . (int) $playerjoin['playerid'];
-				$db->sql_query($sql);
-			}
+        	$comment = $this->eventname[$this->batchid] . date ("dmY", $this->raidend);
+	        $group_key = $acp_dkp_adj->gen_group_key($this->time, $comment,  $bonusadj );
+        	$acp_dkp_adj->add_new_adjustment( (int) $this->dkp, $member_id, $group_key, $bonusadj, $comment  );
         }
-    	
     	
     }
     

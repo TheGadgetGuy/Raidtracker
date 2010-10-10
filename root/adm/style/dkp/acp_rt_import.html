@@ -219,7 +219,6 @@ function stateChanged2()
 		        <input type="hidden" name="allplayers[{allplayers_row.ID}][join]" value="{allplayers_row.JOIN}"/>
 		        <input type="hidden" name="allplayers[{allplayers_row.ID}][leave]" value="{allplayers_row.LEAVE}"/>
     		<!-- END allplayers_row -->
-
  
 			<!-- BEGIN raid_row -->
 				<dl>
@@ -305,16 +304,12 @@ function stateChanged2()
 						    <td width="10%" nowrap="nowrap">{raid_row.allplayers_row.LEAVE}</td>
 						    <td width="10%" nowrap="nowrap">{raid_row.allplayers_row.DURATION}</td>
 						    <td width="10%" nowrap="nowrap">{raid_row.allplayers_row.TIMEBASIS}</td>
-						    <td width="10%" nowrap="nowrap"><input type = "text" id="timebonus[{raid_row.BATCHID}][{raid_row.allplayers_row.ID}]" value = "{raid_row.allplayers_row.TIMEBONUS}" /></td>
+						    <td width="10%" nowrap="nowrap"><input type = "text" name="timebonus[{raid_row.BATCHID}][{raid_row.allplayers_row.NAME}]" value = "{raid_row.allplayers_row.TIMEBONUS}" /></td>
 						  </tr>
 						  <!-- END allplayers_row -->
 						</table>
     				</dd>
     		   </dl>
-    						
-
-				
-				
 				
 				<!-- BEGIN boss_row -->
 				<fieldset>
