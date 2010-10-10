@@ -95,6 +95,7 @@ $lang = array_merge($lang, array(
 'RT_DIFFICULTYHEROIC' => 'Heroic', 
 'DIFFICULTY' => 'Difficulty', 
 'RT_STEP2_DKPVALUE' => 'DKP Value:',
+'RT_STEP2_DKPVALUE_EXPLAIN' => 'This value is booked as Earned for each player.',
 'RT_STEP2_ERR_RAIDID'	=> 'Error. Invalid Raidid. cannot load', 
 
 //js alerts
@@ -113,7 +114,15 @@ $lang = array_merge($lang, array(
 'RT_STEP2_ITEMDKPVALUE' => 'DKP Value:',
 'RT_STEP2_DKPVALUETIP' => 'Add Item value/attendees (Zero DKP)',
 'RT_STEP2_INSERTRAIDS' => 'Insert Raid(s)',
-
+'RT_STEP2_TIMEBONUSCALCULATION' => 'Time Bonus calculation',
+'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'These bonuses are booked as adjustments.', 
+'RT_STEP2_ID' => 'ID',
+'RT_STEP2_NAME' => 'Player',
+'RT_STEP2_JOINTIME' => 'Start',
+'RT_STEP2_LEAVETIME' => 'End',
+'RT_STEP2_DURATION' => 'Duration',
+'RT_STEP2_BASIS' => 'Base',
+'RT_STEP2_TIMEBONUS' => 'Timebonus',
 
 // TRIGGER-ERROR RESULTS
 'RT_STEP3_PAGETITLE' => 'RaidTracker Import',
