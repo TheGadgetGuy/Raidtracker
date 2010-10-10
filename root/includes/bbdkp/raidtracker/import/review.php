@@ -48,12 +48,15 @@ class Raidtracker_Review extends acp_dkp_rt_import
     		trigger_error($user->lang['RT_STEP2_ERR_RAIDID'], E_USER_WARNING); 
     	}
     	
+    	
     	$this->Raidtrackerlink = '<br /><a href="'. 
     		append_sid ( "index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import" ) . '"><h3>Return to Index</h3></a>';
 
  		$batchid = ''; 
         // get raidinfo 
-		$sql = 'SELECT event_id, dkpsys_id, batchid, realm, starttime, endtime , zone, note, difficulty
+        
+		$sql = 'SELECT event_id, dkpsys_id, batchid, realm, 
+				starttime, endtime , zone, note, difficulty
 			FROM ' . RT_TEMP_RAIDINFO . ' where raidid = ' . (int) $raidid; 
         $result = $db->sql_query($sql);
         while ( $row = $db->sql_fetchrow($result) )
@@ -73,15 +76,55 @@ class Raidtracker_Review extends acp_dkp_rt_import
 			);
         }
         $db->sql_freeresult ( $result);
+    			
+ 		// playerinfo and calculation of Time bonus
+		if ( !class_exists('acp_dkp_mm')) 
+        {
+            // we need this class for accessing member functions
+            include ($phpbb_root_path . 'includes/acp/acp_dkp_mm.' . $phpEx); 
+        }
+        $acp_dkp_mm = new acp_dkp_mm;
         
-        // get playerinfo from temptable 
-		$sql = 'SELECT playerid, playername, guild, race, sex, class, level
-			 FROM ' . RT_TEMP_PLAYERINFO . " where batchid = '" . $batchid . "' order by playername"; 
+		$sql_array = array(
+		    'SELECT'    => 'p.playerid, p.playername, p.guild, p.race, p.sex, p.class, p.level, j.jointime, j.leavetime  ',
+ 
+		    'FROM'      => array(
+		        RT_TEMP_PLAYERINFO => 'p',
+		        RT_TEMP_JOININFO    => 'j'
+		    ),
+		 
+		    'WHERE'     =>  "j.batchid = p.batchid AND j.playername = p.playername
+			        AND p.batchid = '" . $batchid . "'", 
+		    
+			'ORDER_BY' => "p.playername ASC"
+		);
+		$sql = $db->sql_build_query('SELECT', $sql_array);
+
         $result = $db->sql_query($sql);
         while ( $row = $db->sql_fetchrow($result) )
         {
-			$allplayerinfo[] = array(
+
+        	//timebonus calc
+        	$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($row['playername']));	
+
+        	$diff = $this->get_time_difference($row['jointime'], $row['leavetime']); 
+			$decimalhour = $diff['hours'] ;
+			$decimalminutes = $diff['minutes'] ; 
+        	if ($decimalminutes > 30)
+			{
+				$decimalhour = $decimalhour + 1;
+			}
+						
+			$timebonus = (float) $decimalhour *  $config['bbdkp_rt_hourdkp']; 
+				        	        	
+        	$allplayerinfo[] = array(
+			    'jointime' 	=> $row['jointime'],
+				'leavetime' => $row['leavetime'],
+				'raiddurationtime' => sprintf("%02d", $diff['hours']) .':' . sprintf("%02d", $diff['minutes']) ,
+        		'timebasis' => $decimalhour,
+				'timebonus' => $timebonus,
 			    'playerid'  => $row['playerid'],
+        	 	'memberid'  => $this_memberid, // can be 0 or not
 			    'name' 		=> $row['playername'],
 			    'race' 	    => $row['race'],
 			    'class'     => $row['class'],
@@ -344,19 +387,6 @@ class Raidtracker_Review extends acp_dkp_rt_import
         
 
 
-       // get jointimes  
-		$sql = 'SELECT playername, jointime, leavetime FROM ' . RT_TEMP_JOININFO . " where batchid = '" . $batchid . "'"; 
-        $result = $db->sql_query($sql);
-        while ( $row = $db->sql_fetchrow($result) )
-        {
-			$this->joininfo[] = array(
-			    'playername'    => $row['playername'],
-			    'jointime' 	    => date("r", $row['jointime']),
-				'leavetime' 	=> date("r", $row['leavetime']),
-			);
-        }
-        $db->sql_freeresult ($result);
-        
         $this->display_form();
 
     }
@@ -408,24 +438,9 @@ class Raidtracker_Review extends acp_dkp_rt_import
 
          
         /*
-         * fill allplayerinfo row
-         */
-		foreach( $this->Raid['allplayerinfo'] as $player)
-		{
-			$template->assign_block_vars('allplayers_row', array(
-			'ID' 		=> $player['playerid'],
-			'NAME' 		=> $player['name'], 
-        	'GUILD'		=> $player['guild'],			
-        	'RACE'		=> $player['race'],
-			'SEX' 		=> $player['sex'], 
-        	'CLASS'		=> $player['class'],
-        	'LEVEL'		=> $player['level'],
-			));
-		}
-         
-        /*
 		 * fill generic raid info 
 		 */
+
         $template->assign_block_vars('raid_row', array(
 			'REALM' 		=> $this->Raid['realm'], 
         	'RAIDID'		=> $this->Raid['raidid'],
@@ -450,10 +465,31 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		  	'NORM_CHECKED' 	=> ($this->Raid['difficulty'] == '1') ? ' checked="checked"' : ''  , 
 	  	    'HEROIC_CHECKED' => ($this->Raid['difficulty'] == '2') ? ' checked="checked"' : '' , 
     		'TOTALATTENDEESCOUNT' => sizeof($this->Raid['playersattending']), 
-    		'ALLATTENDEES'	=> implode(', ', $this->Raid['playersattending'] ), 
-			
-        	
+    		'ALLATTENDEES'	=> implode(', ', $this->Raid['playersattending'] ),        	
 	  	 ));    
+			
+        /*
+         * fill allplayerinfo row
+         */
+		foreach( $this->Raid['allplayerinfo'] as $player)
+		{
+			$template->assign_block_vars('raid_row.allplayers_row', array(
+			'ID' 		=> $player['playerid'],
+			'NAME' 		=> $player['name'], 
+        	'GUILD'		=> $player['guild'],			
+        	'RACE'		=> $player['race'],
+			'SEX' 		=> $player['sex'], 
+        	'CLASS'		=> $player['class'],
+        	'LEVEL'		=> $player['level'],
+			'JOIN' 		=> date ( "H:i", $player['jointime']) ,
+			'LEAVE' 	=> date ( "H:i", $player['leavetime']) ,
+			'DURATION' 	=> $player['raiddurationtime'],
+			'TIMEBASIS' => $player['timebasis'] ,
+			'TIMEBONUS' => $player['timebonus'],
+			));
+		}
+         
+	
         	
         /*
 		 * fill boss info to template
@@ -491,6 +527,51 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	  	}
 
     }
+    
+    
+    /**
+	 * Function to calculate date or time difference.
+	 * used for dkp earned per hour calculation
+	 * 
+	 * @param        timestamp   $start
+	 * @param        timestamp   $end
+	 * @return       array or false
+	 */
+	function get_time_difference( $start, $end )
+	{
+	    if( $start!==-1 && $end!==-1 )
+	    {
+	        if( $end >= $start )
+	        {
+	            $diff  =  $end - $start;
+	            if( $days=intval((floor($diff/86400))) )
+	                $diff = $diff % 86400;
+	            if( $hours=intval((floor($diff/3600))) )
+	                $diff = $diff % 3600;
+	            if( $minutes=intval((floor($diff/60))) )
+	                $diff = $diff % 60;
+	            $diff    =    intval( $diff );     
+	                   
+	            return( array(
+	            	'days'    =>$days, 
+	            	'hours'	  =>$hours, 
+	            	'minutes' =>$minutes, 
+	            	'seconds' =>$diff) 
+	            );
+	        }
+	        else
+	        {
+	        	// ending time earlier than join time
+	           return(false);
+	        }
+	    }
+	    else
+	    {
+	    	// invalid time cant be negative
+	        return(false);
+	    }
+	    return( false );
+	}
     
    
 }

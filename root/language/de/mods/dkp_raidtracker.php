@@ -94,12 +94,14 @@ $lang = array_merge($lang, array(
 'RT_DIFFICULTYHEROIC' => 'Heroisch', 
 'DIFFICULTY' => 'Schwierigkeitsgrad', 
 'RT_STEP2_DKPVALUE' => 'DKP Wert:',
+'RT_STEP2_DKPVALUE_EXPLAIN' => 'Dieser Wert wird als Gewinn verbucht für jedem Teilnehmer.',
 'RT_STEP2_ERR_RAIDID'	=> 'Fehler. Ungültiger Raidid.', 
 
 //js alerts
 'ALERT_AJAX' => 'Es hat sich ein Problem vorgetan beim laden von XMLHTTP', 
 'ALERT_OLDBROWSER' => 'Dein Browser ist veraltet.', 
 
+// Import Screen
 'RT_STEP2_RAIDSDROPSDETAILS' => 'Raid/Loot Details',
 'RT_STEP2_COMMENT' => 'Kommentare',
 'RT_STEP2_BOSS' => 'Boss Name: ',
@@ -112,6 +114,15 @@ $lang = array_merge($lang, array(
 'RT_STEP2_ITEMDKPVALUE' => 'DKP Wert:',
 'RT_STEP2_DKPVALUETIP' => 'Nullsummen DKP, addiere für alle Teilnehmer der Gegenstandswert/Teilnehmeranzahl',
 'RT_STEP2_INSERTRAIDS' => 'Raid hinzufügen',
+'RT_STEP2_TIMEBONUSCALCULATION' => 'Zeitbonusberechnung',
+'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'Diese Boni werden als Punkteanpassung verbucht im Teilnehmerkonto.', 
+'RT_STEP2_ID' => 'ID',
+'RT_STEP2_NAME' => 'Spieler',
+'RT_STEP2_JOINTIME' => 'Start',
+'RT_STEP2_LEAVETIME' => 'Ende',
+'RT_STEP2_DURATION' => 'Dauer',
+'RT_STEP2_BASIS' => 'Basis',
+'RT_STEP2_TIMEBONUS' => 'Zeitbonus',
 
 
 // TRIGGER-ERROR RESULTS

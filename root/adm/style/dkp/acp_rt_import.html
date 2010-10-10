@@ -216,8 +216,11 @@ function stateChanged2()
 		        <input type="hidden" name="allplayers[{allplayers_row.ID}][sex]" value="{allplayers_row.SEX}"/>
 		        <input type="hidden" name="allplayers[{allplayers_row.ID}][class]" value="{allplayers_row.CLASS}"/>
 		        <input type="hidden" name="allplayers[{allplayers_row.ID}][level]" value="{allplayers_row.LEVEL}"/>
+		        <input type="hidden" name="allplayers[{allplayers_row.ID}][join]" value="{allplayers_row.JOIN}"/>
+		        <input type="hidden" name="allplayers[{allplayers_row.ID}][leave]" value="{allplayers_row.LEAVE}"/>
     		<!-- END allplayers_row -->
-    
+
+ 
 			<!-- BEGIN raid_row -->
 				<dl>
 				<dd><input type="hidden" name="batchid" value="{raid_row.BATCHID}" class="input" /></dd>
@@ -225,18 +228,11 @@ function stateChanged2()
 				<dd><input type="hidden" name="event_id[{raid_row.BATCHID}]" value="{raid_row.EVENT}" class="input" /></dd>
 				<dd><input type="hidden" name="event_name[{raid_row.BATCHID}]" value="{raid_row.ZONE}" class="input" /></dd>
 				</dl>
-				
-				<dl>
+ 			
+ 				<dl>
 			    	<dt><label>{L_RT_STEP2_COMMENT}</label></dt>
 	                <dd>
 		                <textarea name="globalcomments[{raid_row.BATCHID}]" style="float: left" rows="3" cols="15" class="input">{raid_row.NOTE}</textarea>
-	                </dd>
-		        </dl>
-		        <dl>
-			    	<dt><label>{L_RT_STEP2_DKPVALUE}</label></dt>
-	                <dd>
-	                <input type="text" id="dkpvalue" name="dkpvalue[{raid_row.BATCHID}]" size="10" value="{raid_row.EVENT_VALUE}" class="input" />
-	                
 	                </dd>
 		        </dl>
 		        
@@ -249,7 +245,7 @@ function stateChanged2()
 					<input type="radio" name="difficulty[{raid_row.BATCHID}]"  value="1"{raid_row.HEROIC_CHECKED} /> {L_RT_DIFFICULTYHEROIC}
 					</dd>
 				</dl>
-						         
+				
 				<dl>
 					<dt><label>{L_RT_STEP2_RAIDSTART}</label></dt>
 					<dd>
@@ -275,6 +271,50 @@ function stateChanged2()
 					<dt><label>{L_RT_STEP2_ATTENDEES} ({raid_row.TOTALATTENDEESCOUNT}):</label></dt>
 					<dd><textarea name="allattendees[{raid_row.BATCHID}]" style="float: left" rows="3" cols="15" class="input">{raid_row.ALLATTENDEES}</textarea></dd>
 				</dl>
+		        
+		        <dl>
+			    	<dt><label>{L_RT_STEP2_DKPVALUE}</label><br />{L_RT_STEP2_DKPVALUE_EXPLAIN}</dt>
+	                <dd>
+	                <input type="text" id="dkpvalue" name="dkpvalue[{raid_row.BATCHID}]" size="10" value="{raid_row.EVENT_VALUE}" class="input" />
+	                
+	                </dd>
+		        </dl>
+		        
+ 				<dl>
+    				<dt><label>{L_RT_STEP2_TIMEBONUSCALCULATION}</label><br />{L_RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN}</dt>
+    				<dd>
+						<table width="100%" border="0" cellspacing="1" cellpadding="2">
+						  <tr>
+						    <th align="left" width="5%" nowrap="nowrap">{L_RT_STEP2_ID}</th>
+						    <th align="left" width="25%">{L_RT_STEP2_NAME}</th>
+						    <th align="left" width="10%" nowrap="nowrap">{L_RT_STEP2_JOINTIME}</th>
+						    <th align="left" width="10%" nowrap="nowrap">{L_RT_STEP2_LEAVETIME}</th>
+						    <th align="left" width="10%" nowrap="nowrap">{L_RT_STEP2_DURATION}</th>
+						    <th align="left" width="10%" nowrap="nowrap">{L_RT_STEP2_BASIS}</th>
+						    <th align="left" width="10%" nowrap="nowrap">{L_RT_STEP2_TIMEBONUS}</th>
+						  </tr>
+						  <!-- BEGIN allplayers_row -->
+						  <!-- IF allplayers_row.S_ROW_COUNT is even -->
+						  <tr class="row1">
+						  <!-- ELSE -->
+						  <tr class="row2">
+						  <!-- ENDIF -->
+						    <td width="5%" nowrap="nowrap" align="right">{raid_row.allplayers_row.ID}</td>
+						    <td width="25%" nowrap="nowrap">{raid_row.allplayers_row.NAME}</td>
+						    <td width="10%" nowrap="nowrap">{raid_row.allplayers_row.JOIN}</td>
+						    <td width="10%" nowrap="nowrap">{raid_row.allplayers_row.LEAVE}</td>
+						    <td width="10%" nowrap="nowrap">{raid_row.allplayers_row.DURATION}</td>
+						    <td width="10%" nowrap="nowrap">{raid_row.allplayers_row.TIMEBASIS}</td>
+						    <td width="10%" nowrap="nowrap"><input type = "text" id="timebonus[{raid_row.BATCHID}][{raid_row.allplayers_row.ID}]" value = "{raid_row.allplayers_row.TIMEBONUS}" /></td>
+						  </tr>
+						  <!-- END allplayers_row -->
+						</table>
+    				</dd>
+    		   </dl>
+    						
+
+				
+				
 				
 				<!-- BEGIN boss_row -->
 				<fieldset>
