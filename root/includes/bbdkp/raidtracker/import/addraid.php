@@ -113,14 +113,14 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	    	$this->bosskilltime = $bkt; 
     	}
     	
-    	$this->bossattendees = utf8_normalize_nfc(request_var('attendees', array( '' => array( '' => '' )) , true)); 
-        
-        include ($phpbb_root_path . "includes/bbdkp/raidtracker/import/krequest.$phpEx");
+    	include ($phpbb_root_path . "includes/bbdkp/raidtracker/import/krequest.$phpEx");
         $req = new phpbb_request; 
         $this->bossloots = $req->variable('loots', array( ''=> array( ''=> array( ''=>  array( ''=> '')))), true, phpbb_request::POST ); 
-        $this->timebonuses = $req->variable('timebonus', array( ''=> array( ''=> 0.00)), true, phpbb_request::POST );         
+        $this->timebonuses = $req->variable('timebonus', array( ''=> array( ''=> 0.00)), true, phpbb_request::POST );      
+        $this->bossattendees = $req->variable('attendees', array( ''=> array( ''=> '')), true, phpbb_request::POST );    
         $req->enable_super_globals();
         unset($req);
+        
       
         /* add new members */
         $this->handle_new_members($this->batchid);
@@ -207,8 +207,6 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		            	1);
 		            
 		            // ranks are just defaults, you will have to run armoryupdater to update correct ranks
-					//insertnewrank($nrankid,$nrank_name, $nrank_hide, $nprefix, $nsuffix ,  $guild_id)
-	
 		            $acp_dkp_mm->insertnewrank(0, 'Guildleader', 0, '', '',  $guild_id);
 		            $acp_dkp_mm->insertnewrank(1, 'Member', 0, '', '',  $guild_id);
 	            }
@@ -231,30 +229,19 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
             $membersadded = 0; 
             if ($mcount == 0)
             {
-	           /* build n by 7 matrix (array) : 
-				*	guild(0), 
-				*	rank (1), 
-				*	name (2), 
-				*	level (3), 
-				*	genderid (4), 
-				*	raceid (5), 
-				*	classid (6), 
-				*	achpoints(7) 
-				*/
-                
-            	// new member arrived
-                //insertnewmember($member_name, $member_status, $member_lvl, $race_id ,  $class_id, 
-                //$rank_id, $member_comment, $joindate, $leavedate, $guild_id, $gender, $achievpoints, $url )
-    			$rank = 1;
+            	$rank = 1;
             	if ($guild_id == 0 )
             	{
+            		// out rank
             		$rank = 99;
             	}
             	else 
             	{
+            		// we dont care abot the actual rank, thats armoryupdater's job. 
             		$rank = 1;
             	}
             	
+            	// insert the member
                 if ($acp_dkp_mm->insertnewmember(
                 	$player['playername'], 
                 	1, 
@@ -288,19 +275,39 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
             $memberdkpadded = 0; 
             if ($pcount == 0)
             {
-            	  //make dkp record, set adjustment to starting dkp
+            	    //make dkp record, set adjustment to starting dkp
 					$sql_ary = array(
 				    'member_dkpid'      => (int) $this->dkp,
 				    'member_id'     	=> $this_memberid,
 				    'member_adjustment' => floatval($config['bbdkp_rt_startdkp']),
 					'member_status'     => 1,
 				    'member_firstraid'  => $this->raidbegin,
-				);
+					);
 				$sql = 'INSERT INTO ' . MEMBER_DKP_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary);
 				$db->sql_query($sql);
+
+               if ( !class_exists('acp_dkp_adj')) 
+        	   {
+	       			 include ($phpbb_root_path . 'includes/acp/acp_dkp_adj.' . $phpEx);
+        	   }
+        	   $acp_dkp_adj = new acp_dkp_adj;
+        	   
+        	   $group_key = $acp_dkp_adj->gen_group_key(
+        	   		$this->time, 
+        	   		$user->lang['RT_STARTING_DKP'],  
+        	   		floatval($config['bbdkp_rt_startdkp']) );
+        	   $acp_dkp_adj->add_new_adjustment( 
+        	   		(int) $this->dkp, 
+        	   		$this_memberid, 
+        	   		$group_key, 
+        	   		floatval($config['bbdkp_rt_startdkp']), 
+        	   		$user->lang['RT_STARTING_DKP'] );
+            	unset($acp_dkp_adj);
+            	 
             }
               	        
 		}
+		unset ($acp_dkp_mm); 
 		
     }
 
@@ -774,15 +781,6 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
     	
     }
     
-    
-
-
-
-    
-    
-    
-
-
 }
 
 ?>

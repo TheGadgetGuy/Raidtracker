@@ -7,8 +7,6 @@
 * retain the copyright notice below.  While not required for free use,
 * it will help build interest in the bbDkp project.
 * 
-* Integrated by: ippeh
-* 
 * @package bbDkp
 * @copyright (c) 2009 bbdkp http://code.google.com/p/bbdkp/
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
@@ -102,7 +100,7 @@ $lang = array_merge($lang, array(
 'ALERT_AJAX' => 'There was a problem while using XMLHTTP', 
 'ALERT_OLDBROWSER' => 'Browser does not support HTTP Request', 
 
-'RT_STEP2_RAIDSDROPSDETAILS' => 'Raid/Drop Details',
+// Import Screen'RT_STEP2_RAIDSDROPSDETAILS' => 'Raid/Drop Details',
 'RT_STEP2_COMMENT' => 'Comments',
 'RT_STEP2_BOSS' => 'Boss Name: ',
 'RT_STEP2_KILLTIME' => 'Bosskill Time:',
@@ -151,17 +149,14 @@ $lang = array_merge($lang, array(
 'RT_SETTINGS_UPDATE_SUCCESS' => 'Raidtracker Settings updated by %s.',
 
 'RT_MIN_QUALITY_EXPLAIN' => 'Minimum Item Quality of Items to be parsed.',
-'RT_ADD_LOOT_DKP_EXPLAIN' => 'The Item cost will be distributed as Earned points to all attendees at the bosskill',
+'RT_ADD_LOOT_DKP_EXPLAIN' => 'Zero Sum DKP : (Item cost/#attendees) will be distributed as Earned points to all attendees at the bosskill. (ex. 120 itemprice / 10 attendees = 12 DKP/attendee)',
 'RT_IGNORED_LOOTER_EXPLAIN' => 'The name of the Looter to be ignored.',
-'RT_EVENT_TRIGGER_EXPLAIN' => "Check for Event Triggers in the Loot Notes (e.g. if your events are organised per boss " . "'KZ (Wizard of Oz), KZ (The Curator), ...'" . " but only want to log one raid.)",
+'RT_EVENT_TRIGGER_EXPLAIN' => 'Event Triggers link DKP zonenames to bbDKP Eventnames.",
 
-'RT_DEFAULT_RANK_EXPLAIN' => 'Default Rank for new Members that are added when importing a raid.',
-'RT_ATTENDANCE_FILTER_EXPLAIN' => 'Sets the type of attendance filtering.',
-'RT_DEFAULT_DKP_EXPLAIN' => 'The cost of items with no dkp value.',
+'RT_ATTENDANCE_FILTER_EXPLAIN' => 'Sets the type of attendance filtering. either all the attendees in the XML or only those present at the bosskill.',
+'RT_DEFAULT_DKP_EXPLAIN' => 'The standard cost of items with no dkp value from XML.',
 'RT_STARTING_DKP_EXPLAIN' => 'When creating a new member, if this is &gt; 0, it will add an adjustment to the member as starting dkp.',
-'RT_CREATE_START_RAID_EXPLAIN' => 'Check to create a Starting Raid when the Attendance Filter is set to Boss Kill.',
 'RT_START_RAID_DKP_EXPLAIN' => 'Default starting Raid dkp.',
-'RT_SIMULATE_EXPLAIN' => 'Check to not insert/alter any information in the database.',
 'RT_ALTREPLACE_EXPLAIN' => 'Will use the Alt listing to replace alts with Main character', 
 
 'RT_MIN_QUALITY' => 'Minimum Quality',
@@ -174,8 +169,6 @@ $lang = array_merge($lang, array(
 'RT_STARTING_DKP' => 'Starting DKP',
 'RT_CREATE_START_RAID' => 'Create Start Raid',
 'RT_START_RAID_DKP' => 'Start Raid DKP',
-'RT_SIMULATE' => 'Simulate',
-'RT_SIMULATE_WARNING' => 'Simulation ON - This is what would be done:<br/><br/>',
 'RT_ALTREPLACE' => 'Replace Alt names',
 'RT_ALTREPLACE_WARNING' => 'Replace player names with Main character names',
 'RT_DKPHOUR' => 'DKP per hour passed', 
@@ -230,12 +223,12 @@ $lang = array_merge($lang, array(
 'RT_ADMINMENU_ADD_ITEMS_EXPORT' => 'Export Add Items',
 'RT_ADMINMENU_ADD_ITEMS_IMPORT' => 'Import Add Items',
 
-'RT_HELP_IMPORT_ITEM' => 'Paste the text below to import your Items.',
+'RT_HELP_IMPORT_ITEM' => 'Paste the XML below to import your Items.',
 'RT_HELP_IMPORT_FORMAT' => 'The import is case insensitive and should be in the form',
 
 'RT_INVALID_XMLIMPORT' => 'Invalid or no XML provided',  
 
-'RT_HELP_ITEM_EXPORT' => 'Copy the text below and paste into your favorite text editor to save.',
+'RT_HELP_ITEM_EXPORT' => 'Copy the XML below and paste into your favorite text editor to save.',
 
 /**
  * Always Ignore Items
@@ -271,7 +264,7 @@ $lang = array_merge($lang, array(
 'RT_ADMINMENU_ALIASES_EXPORT' => 'Export Alts',
 'RT_ADMINMENU_ALIASES_IMPORT' => 'Import Alts',
 'RT_ALIAS' => 'Alt',
-'RT_MEMBER' => 'Member',
+'RT_MEMBER' => 'Main character',
 'RT_ALIASES' => 'Alts',
 
 
@@ -366,9 +359,9 @@ $lang = array_merge($lang, array(
 'RT_TRIGGER_SUCCESS_DELETE' => 'Trigger %s deleted for %s.',
 'RT_TRIGGER_MISSING_EVENT'	=> 'This event does not exist : "%s". can\'t add trigger "%s" ', 
 
-'RT_HELP_EVENT_TRIGGER' => "Check for Event Triggers in the Loot Notes (e.g. if you have events called ''MC (Lucifron), MC (Magmadar), ...'' only want to log one raid.)",
-'RT_HELP_EVENT_TRIGGER_NAME' => 'Enter the name of the event that will be replaced with the result.',
-'RT_HELP_EVENT_TRIGGER_RESULT' => 'Choose the Event to link to the trigger',
+'RT_HELP_EVENT_TRIGGER' => "Event Triggers link the zone to a bbDKP Event",
+'RT_HELP_EVENT_TRIGGER_NAME' => 'Enter the zonename (trigger) to replace with the Eventname.',
+'RT_HELP_EVENT_TRIGGER_RESULT' => 'Choose the corresponding Event',
 
 /*
  * Own Raids
@@ -383,7 +376,7 @@ $lang = array_merge($lang, array(
 'RT_ADMINMENU_OWN_RAIDS_LIST' => 'List Own Raids',
 'RT_ADMINMENU_OWN_RAIDS_EXPORT' => 'Export Own Raids',
 'RT_ADMINMENU_OWN_RAIDS_IMPORT' => 'Import Own Raids',
-'RT_HELP_OWN_RAID' => 'Raid notes which should be handled as its \'own raid\' everytime, (example "Random Drops")',
+'RT_HELP_OWN_RAID' => 'Raid notes which should be handled as its ’own raid’ everytime, (example "Random Drops")',
 'RT_HELP_OWN_RAID_NAME' => 'Enter the name of the raid that will be used.',
 
 'RT_OWN_RAID_CONFIRM_DELETE' => 'Are you sure you want to delete the following custom raids?',

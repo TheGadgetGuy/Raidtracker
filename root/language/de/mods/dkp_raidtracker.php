@@ -154,7 +154,7 @@ $lang = array_merge($lang, array(
 'RT_MIN_QUALITY_EXPLAIN' => 'Minimum Gegenstandsqualität.',
 'RT_ADD_LOOT_DKP_EXPLAIN' => 'Nullsummen DKP : Gegenstandswert/Teilnehmeranzahl wird verteilt als Gewinn an alle Bosskill-Teilnehmer. (ex. 120 dkp / 10 teilnehmer = 12 DKP pro Kopf)',
 'RT_IGNORED_LOOTER_EXPLAIN' => 'Dieser Looter werd nicht aufgenommen (zb. disenchant).',
-'RT_EVENT_TRIGGER_EXPLAIN' => "Check for Event Triggers in the Loot Notes (e.g. if your events are organised per boss " . "'KZ (Wizard of Oz), KZ (The Curator), ...'" . " but only want to log one raid.)",
+'RT_EVENT_TRIGGER_EXPLAIN' => "Ereignis triggers verlinken die Zone im DKP XML mit bbDKP Ereignisse. ",
 
 'RT_ATTENDANCE_FILTER_EXPLAIN' => 'Es gibt 2 Bosskill-Teilnehmungskriterien. entweder alle Schlachtgruppe Teilnehmer im DKP XML oder nur diejenige die tatsächlich mitgespielt haben am Bosskill.',
 'RT_DEFAULT_DKP_EXPLAIN' => 'Standartwert für Gegenstände ohne aufgegebenen Preis.',
