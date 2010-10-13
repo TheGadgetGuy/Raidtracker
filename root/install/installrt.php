@@ -371,6 +371,11 @@ $versions = array(
 		'custom' => array('raidtrackerupdater'),
 	),
 	
+	'0.2.7' => array(
+	// no db change, only a bugfix
+		'custom' => array('raidtrackerupdater'),
+	),
+	
 );
 
 // We include the UMIF Auto file and everything else will be handled automatically.
@@ -496,7 +501,7 @@ function raidtrackerupdater021($action, $version)
                 array(
         				'name'  => 'RaidTracker', 
         				'value'  => '1', 
-        				'version'  => '0.2.6', 								
+        				'version'  => '0.2.7', 								
         				'orginal_copyright'  => 'sz3', 				
         				'bbdkp_copyright'  => 'bbDKP Team', 
                     ),

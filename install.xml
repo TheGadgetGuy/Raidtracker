@@ -6,7 +6,7 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.6]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.7]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
 		<description lang="fr"><![CDATA[Installateur pour bbDKP Raidtracker]]></description>
 		<description lang="de"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
@@ -34,7 +34,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.2.6</mod-version>
+		<mod-version>0.2.7</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -179,6 +179,13 @@
 					<change><![CDATA[[FIX] #71 Error finding race by name on string import (is now compatible with bbDKP 1.1.2.x)]]></change>
 					<change><![CDATA[[FIX] #57 Hourly awarded dkp not being removed when raid is : it's now booked as an adjustment so you can now.]]></change>
 					<change><![CDATA[[new] Time adjustments are now editable before committing raid]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-10-27</date>
+				<rev-version>0.2.7</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[FIX] #75 removed quote at eol from english langfile]]></change>
 					<change><![CDATA[[NEW] Version Française]]></change>
 				</changelog>
 			</entry>
