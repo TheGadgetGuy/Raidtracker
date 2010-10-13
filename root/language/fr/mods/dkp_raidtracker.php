@@ -1,13 +1,11 @@
 <?php
 /**
-* Raidtracker language file
+* Raidtracker language file - FR
 *  
 * Powered by bbdkp © 2009 The bbDkp Project Team
 * If you use this software and find it to be useful, we ask that you
 * retain the copyright notice below.  While not required for free use,
 * it will help build interest in the bbDkp project.
-* 
-* Integrated by: ippeh
 * 
 * @package bbDkp
 * @copyright (c) 2009 bbdkp http://code.google.com/p/bbdkp/
@@ -52,156 +50,151 @@ $lang = array_merge($lang, array(
 /*
  * Raidtracker Import 
  */
-'RT' => 'RaidTracker Import',
-'IMPORT_RT_DATA' => 'Import DKP String',
-'RT_DISABLED' => 'Raidtracker is disabled', 
-'RT_PHP5'	=> 'PHP 5 is Required for RaidTracker.',
-'RT_ERR_DUPLICATE' => 'Error. Duplicate raid insert attempted. Your can\'t insert raid within 30 minutes of previous raid ', 
-'RT_ERR_NOATTENDEES' => 'Error. no attendees. ', 
-'RT_ERR_NORAIDNOTE' => 'Error. no Raidnote set. ',
-'RT_ERR_NOBOSSKILL' => 'Error. no Bosskill tag. cannot import',
-'RT_ERR_NOEVENT' => 'Error. no event trigger found for "%s". <br />Please make an Event trigger to link "%s" to an existing Event and then import your Raid. ',
-'RT_ERR_NOEVENTSETUP' => 'Error. no events have been set up in bbDKP. Raidtracker will stop here. Check your Events and Event trigger setup. ',
-'RT_ERR_NODKPSYSSETUP' => 'Error. no DKP systems have been set up in bbDKP. Raidtracker will stop here.',
+'RT' => 'Importation RaidTracker ',
+'IMPORT_RT_DATA' => 'Importation DKP XML',
+'RT_DISABLED' => 'Raidtracker est désactivé', 
+'RT_PHP5'	=> 'PHP 5 est requis pour RaidTracker.',
+'RT_ERR_DUPLICATE' => 'Erreur. Insertion d\'un Raid doublon. Vous ne pouvez inserer des Raids qui diffèrent de moins de 30 minutes du raid précédent. ', 
+'RT_ERR_NOATTENDEES' => 'Erreur. pas de participants. ', 
+'RT_ERR_NORAIDNOTE' => 'Erreur. pas de Note raid trouvée. ',
+'RT_ERR_NOBOSSKILL' => 'Erreur. pas de balise boss trouvée. ',
+'RT_ERR_NOEVENT' => 'erreur. pas de Trgger Evènement trouvé pour "%s". <br />Veuillez créer un déclincheur d\'évènement pour lier "%s" à un Evènement existant et ensuite importez votre Raid. ',
+'RT_ERR_NOEVENTSETUP' => 'Erreur. pas d\évènements trouvés en bbDKP. Raidtracker s\'arrètera ici. Controlez vos évènements et leurs déclincheurs. ',
+'RT_ERR_NODKPSYSSETUP' => 'Erreur. pas de systeme DKP trouvés. Raidtracker s\'arrètera ici',
 
 // parse screen
-'RT_STEP1_PAGETITLE' => 'RaidTracker log Parse',
-'RT_STEP1_DESCRIPTION' => 'Set ML_Raidtracker (http://www.mlmods.net) export format to "MLDdkp 1.1 /EQdkp"(do /rt o in WoW to set settings).<br /> To export Raid, do /rt, then rightclick your Raid, choose "show Dkp string", and copy that into the area below. 
-<br /> click "Parse Log" to import. Imported Raids can then be managed from the bbDKP Import tab. ',
-'RT_STEP1_INVALIDSTRING_TITLE' => 'Invalid DKP String',
-'RT_STEP1_INVALIDSTRING_MSG' => 'The DKP String is not valid.',
-'RT_STEP1_NODATA' => 'No DKP string to parse', 
-'RT_STEP1_BUTTON_PARSELOG' => 'Parse Log',
-'RT_STEP1_EDIT' => 'Edit',
-'RT_STEP1_DELETE' => 'Delete' , 
+'RT_STEP1_PAGETITLE' => 'Parseur de Log RaidTracker ',
+'RT_STEP1_DESCRIPTION' => 'Mettez le format d\exportation ML_Raidtracker (http://www.mlmods.net) à "MLDdkp 1.1 /EQdkp"(/rt o dans WoW).<br /> Pour exporter, faire /rt, puis clique droite, choisir "show Dkp string", et copiez cet XML ci-dessous. 
+<br /> cliquez "Parser le Log" pour importer. Les raids importés peuvent-être consultés du tab "importation". ',
+'RT_STEP1_INVALIDSTRING_TITLE' => 'XML DKP invalide',
+'RT_STEP1_INVALIDSTRING_MSG' => 'le XML DKP est invalide.',
+'RT_STEP1_NODATA' => 'Pas de XML DKP trouvé', 
+'RT_STEP1_BUTTON_PARSELOG' => 'Parser le Log',
+'RT_STEP1_EDIT' => 'Edition',
+'RT_STEP1_DELETE' => 'Supprimer' , 
 'RT_STEP1_ZONE' => 'Zone', 
-'RT_STEP1_START' => 'Start', 
-'RT_STEP1_END'	=> 'End', 
-'RT_STEP1_DONE' => 'Log imported to temporary tables. ',
-'RT_STEP1_FOUNDRAIDS'	=> 'Found %d Raid logs ready to transfer', 
-'RT_STEP1_DELETEPARSE'	=> 'Raid %s deleted from temporary tables', 
-'RT_STEP1_DELETCONFIRM'	=> 'Are you sure you want to delete Raid %s from the temporary tables ?', 
+'RT_STEP1_START' => 'Départ', 
+'RT_STEP1_END'	=> 'Fin', 
+'RT_STEP1_DONE' => 'Log importé vers les tables temporaires ',
+'RT_STEP1_FOUNDRAIDS'	=> 'Trouvé %d Logs de Raid prêtes à transferer', 
+'RT_STEP1_DELETEPARSE'	=> 'Supprimé Raid %s des tables temporaires', 
+'RT_STEP1_DELETCONFIRM'	=> 'Êtes-vous sûr de vouloir supprimer le Raid %s des tables temporaires ?', 
 
 // bbDKP import screen
 'RT_STEP2_PAGETITLE' => 'bbDKP Import',
-'RT_STEP2_DKPPOOL' => 'DKP Pool',
-'RT_STEP2_EVENT' => 'Event',
-'RT_STEP2_RAIDINFO' => 'Raid info',
-'RT_STEP2_RAIDSTART' => 'Raid Start:',
-'RT_STEP2_RAIDEND' => 'Raid End:',
-'RT_STEP2_REALM' => 'Realm:',
+'RT_STEP2_DKPPOOL' => 'Groupe DKP',
+'RT_STEP2_EVENT' => 'Evènement',
+'RT_STEP2_RAIDINFO' => 'Information du Raid',
+'RT_STEP2_RAIDSTART' => 'Départ Raid:',
+'RT_STEP2_RAIDEND' => 'Fin Raid:',
+'RT_STEP2_REALM' => 'Royaume:',
 'RT_STEP2_ZONE' => 'Zone:',
 'RT_DIFFICULTYNORMAL' => 'Normal', 
-'RT_DIFFICULTYHEROIC' => 'Heroic', 
-'DIFFICULTY' => 'Difficulty', 
-'RT_STEP2_DKPVALUE' => 'DKP Value:',
-'RT_STEP2_DKPVALUE_EXPLAIN' => 'This value is booked as Earned for each player.',
-'RT_STEP2_ERR_RAIDID'	=> 'Error. Invalid Raidid. cannot load', 
+'RT_DIFFICULTYHEROIC' => 'Heroique', 
+'DIFFICULTY' => 'Difficulté', 
+'RT_STEP2_DKPVALUE' => 'Valeur DKP:',
+'RT_STEP2_DKPVALUE_EXPLAIN' => 'Cette valeur sera comptabilisée comme un Gain pour chaque joueur.',
+'RT_STEP2_ERR_RAIDID'	=> 'Erreur. Raid ID invalide. chargement interrompu.', 
 
 //js alerts
-'ALERT_AJAX' => 'There was a problem while using XMLHTTP', 
-'ALERT_OLDBROWSER' => 'Browser does not support HTTP Request', 
+'ALERT_AJAX' => 'Il y a eu un problême lors de la tentative d\'utiliser XMLHTTP', 
+'ALERT_OLDBROWSER' => 'Votre Browser ne supporte pas le protocole HTTP Request, veuillez le mettre à jour.', 
 
-'RT_STEP2_RAIDSDROPSDETAILS' => 'Raid/Drop Details',
-'RT_STEP2_COMMENT' => 'Comments',
-'RT_STEP2_BOSS' => 'Boss Name: ',
-'RT_STEP2_KILLTIME' => 'Bosskill Time:',
-'RT_STEP2_DKPCOST' => 'DKP Cost:',
-'RT_STEP2_ATTENDEES' => 'Attendees',
-'RT_STEP2_ITEMNAME' => 'Item Name:',
-'RT_STEP2_ITEMID' => 'Item ID:',
-'RT_STEP2_LOOTER' => 'Looter:',
-'RT_STEP2_ITEMDKPVALUE' => 'DKP Value:',
-'RT_STEP2_DKPVALUETIP' => 'Add Item value/attendees (Zero DKP)',
-'RT_STEP2_INSERTRAIDS' => 'Insert Raid(s)',
-'RT_STEP2_TIMEBONUSCALCULATION' => 'Time Bonus calculation',
-'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'These bonuses are booked as adjustments.', 
+// Import Screen'RT_STEP2_RAIDSDROPSDETAILS' => 'Raid/Drop Details',
+'RT_STEP2_COMMENT' => 'Commentaires',
+'RT_STEP2_BOSS' => 'Nom du Boss: ',
+'RT_STEP2_KILLTIME' => 'Moment du Bosskill:',
+'RT_STEP2_DKPCOST' => 'Côut DKP:',
+'RT_STEP2_ATTENDEES' => 'Participants',
+'RT_STEP2_ITEMNAME' => 'Nom de l\'objet:',
+'RT_STEP2_ITEMID' => 'ID objet:',
+'RT_STEP2_LOOTER' => 'Récepteur:',
+'RT_STEP2_ITEMDKPVALUE' => 'Veleur DKP:',
+'RT_STEP2_DKPVALUETIP' => 'DKP Zerobase : ajouter la fraction Valeur/nombre de participants à chaque participant. ',
+'RT_STEP2_INSERTRAIDS' => 'Insertion de Raid',
+'RT_STEP2_TIMEBONUSCALCULATION' => 'Calcul de Bonus par Temps passé',
+'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'Ces Bonus seront comptabilisés comme un ajustement.', 
 'RT_STEP2_ID' => 'ID',
-'RT_STEP2_NAME' => 'Player',
-'RT_STEP2_JOINTIME' => 'Start',
-'RT_STEP2_LEAVETIME' => 'End',
-'RT_STEP2_DURATION' => 'Duration',
+'RT_STEP2_NAME' => 'Joueur',
+'RT_STEP2_JOINTIME' => 'Départ',
+'RT_STEP2_LEAVETIME' => 'Fin',
+'RT_STEP2_DURATION' => 'Durée',
 'RT_STEP2_BASIS' => 'Base',
-'RT_STEP2_TIMEBONUS' => 'Timebonus',
+'RT_STEP2_TIMEBONUS' => 'Bonus Temps',
 
 // TRIGGER-ERROR RESULTS
 'RT_STEP3_PAGETITLE' => 'RaidTracker Import',
-'RT_STEP3_TITLE' => 'Action log<br/>',
-'RT_STEP3_ALREADYEXIST' => '%s (%s, %s DKP) was already added, skipping<br/>',
-'RT_STEP3_EMPTYRAIDNOTE' => '%s (%s, %s DKP) has no raid note, skipping<br/>',
-'RT_STEP3_RAIDADDED' => '%s (%s, %s DKP) was added<br/>',
-'RT_STEP3_ADJADDED' => 'An adjustment of %s DKP was added to %s<br/>',
-'RT_STEP3_MEMBERADDED' => '%s (race: %s, class: %s, level: %s, rank: %s) was added to the Member list<br/>',
-'RT_STEP3_MEMBERDKPADDED' => '%s was added to the Member Dkp table<br/>',
-'RT_STEP3_MEMBERUPDATED' => '%s (race: %s, class: %s, level: %s, rank: %s) was updated to (race: %s, class: %s, level: %s, rank: %s)<br/>',
-'RT_STEP3_MEMBERDKPUPDATED' => '%s dkp was updated<br/>',
-'RT_STEP3_MEMBERLEVELUPDATED' => 'Looks like %s gained some levels. Updated from %s to %s<br/>',
-'RT_STEP3_ATTENDEESADDED' => '%s attendees were added<br/>',
-'RT_STEP3_LOOTADDED' => '%s (%s DKP) was added to %s<br/>',
+'RT_STEP3_TITLE' => 'log des Actions<br/>',
+'RT_STEP3_ALREADYEXIST' => '%s (%s, %s DKP) était déjà ajouté, passer outre<br/>',
+'RT_STEP3_EMPTYRAIDNOTE' => '%s (%s, %s DKP) n\'a pas de note Raid, passer outre<br/>',
+'RT_STEP3_RAIDADDED' => '%s (%s, %s DKP) a été ajouté<br/>',
+'RT_STEP3_ADJADDED' => 'Un ajustement de %s DKP est ajouté au joueur %s<br/>',
+'RT_STEP3_MEMBERADDED' => '%s (race: %s, classe: %s, niveau: %s, grade: %s) a été ajouté aux membres<br/>',
+'RT_STEP3_MEMBERDKPADDED' => '%s a été ajouté aux comptes DKP<br/>',
+'RT_STEP3_MEMBERUPDATED' => '%s (race: %s, classe: %s, Niveau: %s, Grade: %s) a été mis à jour à : (race: %s, classe: %s, niveau: %s, grade: %s)<br/>',
+'RT_STEP3_MEMBERDKPUPDATED' => '%s dkp a été actualisé<br/>',
+'RT_STEP3_MEMBERLEVELUPDATED' => 'Ce membre a gagné de niveaux, de %s à %s<br/>',
+'RT_STEP3_ATTENDEESADDED' => '%s participants ajoutés<br/>',
+'RT_STEP3_LOOTADDED' => '%s (%s DKP) ajouté à %s<br/>',
 
 
 /**
  * Log Actions
  */
-'ACTION_RT_CONFIG_UPDATED' => '%s changed Raidtracker settings',
+'ACTION_RT_CONFIG_UPDATED' => '%s a changé les réglages Raidtracker',
 
 /**
  * configuration 
  */
-'RT_SETTINGS_UPDATE_SUCCESS' => 'Raidtracker Settings updated by %s.',
+'RT_SETTINGS_UPDATE_SUCCESS' => 'réglages Raidtracker mis à jour par %s.',
 
-'RT_MIN_QUALITY_EXPLAIN' => 'Minimum Item Quality of Items to be parsed.',
-'RT_ADD_LOOT_DKP_EXPLAIN' => 'The Item cost will be distributed as Earned points to all attendees at the bosskill',
-'RT_IGNORED_LOOTER_EXPLAIN' => 'The name of the Looter to be ignored.',
-'RT_EVENT_TRIGGER_EXPLAIN' => "Check for Event Triggers in the Loot Notes (e.g. if your events are organised per boss " . "'KZ (Wizard of Oz), KZ (The Curator), ...'" . " but only want to log one raid.)",
+'RT_MIN_QUALITY_EXPLAIN' => 'Niveau minimum de qualité des objets.',
+'RT_ADD_LOOT_DKP_EXPLAIN' => 'DKP Base Zero : la fraction (Coût objet/#participants) est distribué comme montant de gagne aux joueurs participants. (ex. 120 dkp / 10 participants = 12 DKP/participant)',
+'RT_IGNORED_LOOTER_EXPLAIN' => 'Le nom du joueur à ignorer dans le XML.',
+'RT_EVENT_TRIGGER_EXPLAIN' => 'Les Déclencheurs de Zone lient les Zones du XML aux événements bbDKP.',
 
-'RT_DEFAULT_RANK_EXPLAIN' => 'Default Rank for new Members that are added when importing a raid.',
-'RT_ATTENDANCE_FILTER_EXPLAIN' => 'Sets the type of attendance filtering.',
-'RT_DEFAULT_DKP_EXPLAIN' => 'The cost of items with no dkp value.',
-'RT_STARTING_DKP_EXPLAIN' => 'When creating a new member, if this is &gt; 0, it will add an adjustment to the member as starting dkp.',
-'RT_CREATE_START_RAID_EXPLAIN' => 'Check to create a Starting Raid when the Attendance Filter is set to Boss Kill.',
-'RT_START_RAID_DKP_EXPLAIN' => 'Default starting Raid dkp.',
-'RT_SIMULATE_EXPLAIN' => 'Check to not insert/alter any information in the database.',
-'RT_ALTREPLACE_EXPLAIN' => 'Will use the Alt listing to replace alts with Main character', 
+'RT_ATTENDANCE_FILTER_EXPLAIN' => 'Règle le niveau de participation. soit tous les joueurs rencontrés dans l\'XML soit seulement ceux qui ont été présents aux bosskill.',
+'RT_DEFAULT_DKP_EXPLAIN' => 'Le côut standart des objets pour lesquels aucune valeur n\'a été renseignée dans l\'XML.',
+'RT_STARTING_DKP_EXPLAIN' => 'à la création d\'un nouveau membre, si cette valeur est &gt; 0, ceci ira ajouter un ajustement aux membre comme DKP de départ.',
+'RT_START_RAID_DKP_EXPLAIN' => 'Points de départ standard.',
+'RT_ALTREPLACE_EXPLAIN' => 'Activer le listing de remplacement noms de Alts par Noms de Main. ', 
 
-'RT_MIN_QUALITY' => 'Minimum Quality',
-'RT_ADD_LOOT_DKP' => 'Calculate Zero sum DKP',
-'RT_IGNORED_LOOTER' => 'Ignored Looter',
-'RT_EVENT_TRIGGER' => 'Check for Event Triggers',
-'RT_DEFAULT_RANK' => 'Default Rank',
-'RT_ATTENDANCE_FILTER' => 'Attendance Filter',
-'RT_DEFAULT_DKP' => 'Default DKP Cost',
-'RT_STARTING_DKP' => 'Starting DKP',
+'RT_MIN_QUALITY' => 'Qualité minimum',
+'RT_ADD_LOOT_DKP' => 'Calculer Base zéro DKP',
+'RT_IGNORED_LOOTER' => 'Joueur ignoré',
+'RT_EVENT_TRIGGER' => 'Cocher pour Déclencheurs d\'évenements',
+'RT_DEFAULT_RANK' => 'Grade Défaut',
+'RT_ATTENDANCE_FILTER' => 'Filtre d\'e présence',
+'RT_DEFAULT_DKP' => 'Coût DKP par défaut ',
+'RT_STARTING_DKP' => 'DKP de démarrage',
 'RT_CREATE_START_RAID' => 'Create Start Raid',
 'RT_START_RAID_DKP' => 'Start Raid DKP',
-'RT_SIMULATE' => 'Simulate',
-'RT_SIMULATE_WARNING' => 'Simulation ON - This is what would be done:<br/><br/>',
-'RT_ALTREPLACE' => 'Replace Alt names',
-'RT_ALTREPLACE_WARNING' => 'Replace player names with Main character names',
-'RT_DKPHOUR' => 'DKP per hour passed', 
-'RT_DKPHOUR_EXPLAIN' => 'will assign x DKP as earned for each hour passed that member present in raid (we look at global attendance)',
+'RT_ALTREPLACE' => 'Replacer noms de Alt',
+'RT_ALTREPLACE_WARNING' => 'Replacer nes noms Alts du XML par les noms de Main',
+'RT_DKPHOUR' => 'DKP par heure passée', 
+'RT_DKPHOUR_EXPLAIN' => 'assignera x DKP comme ajustement pour chaque heure présente dans Raid (arrondie, soit 1h45m devient 2h, 2h13m devient 2h)',
 
-'RT_BOSSRAID' => 'Raid logging level',
-'RT_BOSSRAID_EXPLAIN' => 'One raid for each Bosskill or 1 Global raid', 
-'RT_BOSSRAID_YES' => 'Per Bosskill',
-'RT_BOSSRAID_NO' => 'One global raid',
+'RT_BOSSRAID' => 'niveau de logging Raid ',
+'RT_BOSSRAID_EXPLAIN' => 'Enregistrer 1 Raid par Bosskill ou bien Raid Global par fichier XML', 
+'RT_BOSSRAID_YES' => 'Par Bosskill',
+'RT_BOSSRAID_NO' => '1 Raid global',
 
-'VLOG_RT_CONFIG_UPDATED' => '%s updated RaidTracker config.',
-'RT_ADMINMENU_CONFIG' => 'Configure',
-'RT_ADMINMENU_SETTINGS' => 'Settings',
+'VLOG_RT_CONFIG_UPDATED' => '%s a mis à jour le config RaidTracker.',
+'RT_ADMINMENU_CONFIG' => 'Configurer',
+'RT_ADMINMENU_SETTINGS' => 'Réglages',
 
-'RT_IQ_POOR' => 'Poor',
-'RT_IQ_COMMON' => 'Common',
-'RT_IQ_UNCOMMON' => 'Uncommon',
+'RT_IQ_POOR' => 'Médiocre',
+'RT_IQ_COMMON' => 'Classique',
+'RT_IQ_UNCOMMON' => 'Bonne',
 'RT_IQ_RARE' => 'Rare',
-'RT_IQ_EPIC' => 'Epic',
-'RT_IQ_LEGENDARY' => 'Legendary',
+'RT_IQ_EPIC' => 'Epique',
+'RT_IQ_LEGENDARY' => 'Légendaire',
 
 /**
  * Attendance Filter
  */
-'RT_AF_NONE' => 'Members present in Raid',
-'RT_AF_BOSS_KILL' => 'Members present at Boss Kill',
+'RT_AF_NONE' => 'Membres présent dans Raid',
+'RT_AF_BOSS_KILL' => 'Members present au Bosskill',
 
 /**
  * Always Add these Items
@@ -212,16 +205,16 @@ $lang = array_merge($lang, array(
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;AddItem&gt;25641&lt;/AddItem&gt;<br />
 &lt;/AddItems&gt;', 
 
-'RT_ITEM_CONFIRM_DELETE' => 'Are you sure you want to delete the following items?',
-'RT_ITEM_NOT_SELECTED' => 'No items selected.',
-'RT_ITEM_DUPLICATE' => 'Item %s already exists.',
-'RT_ITEM_SUCCESS_ADD' => 'Item %s added.',
-'RT_ITEM_FAIL_ADD' => 'Item %s not added.',
-'RT_ITEM_SUCCESS_UPDATE' => 'Item updated.',
-'RT_ITEM_SUCCESS_DELETE' => 'Item %s deleted.',
+'RT_ITEM_CONFIRM_DELETE' => 'Êtes-vous sûr de vouloir supprimer les objets suivants?',
+'RT_ITEM_NOT_SELECTED' => 'Pas d\'objets selectionnés.',
+'RT_ITEM_DUPLICATE' => 'Objet %s existe déjà.',
+'RT_ITEM_SUCCESS_ADD' => 'Objet %s ajouté.',
+'RT_ITEM_FAIL_ADD' => 'Objet %s pas ajouté.',
+'RT_ITEM_SUCCESS_UPDATE' => 'Objet mis à jour.',
+'RT_ITEM_SUCCESS_DELETE' => 'Objet %s supprimé.',
 
-'RT_HELP_ADD_ITEMS' => 'These items will always be added regardless of ignored items, Looters, or loot threshold set in Raidtracker Import',
-'RT_HELP_ADD_ITEMS_WOW_ID' => 'Enter the item ID to be always added. The item ID is the internal WoW indentifier.',
+'RT_HELP_ADD_ITEMS' => 'Ces Objets seront toujours ajoutés quelque soit leur présence dans la liste des objets ignorés, leur achat par un joueur ignoré, ou si leur niveau de qualité serait au dessous du niveau minimum',
+'RT_HELP_ADD_ITEMS_WOW_ID' => 'Entrez le ID de l\'objet à ajouter toujours. l\'ID est celui de Wowhead.',
 'RT_ITEM_WOW_ID' => 'WoW Item ID',
 
 'RT_ADMINMENU_ADD_ITEMS' => 'Add Items',
@@ -230,12 +223,12 @@ $lang = array_merge($lang, array(
 'RT_ADMINMENU_ADD_ITEMS_EXPORT' => 'Export Add Items',
 'RT_ADMINMENU_ADD_ITEMS_IMPORT' => 'Import Add Items',
 
-'RT_HELP_IMPORT_ITEM' => 'Paste the text below to import your Items.',
+'RT_HELP_IMPORT_ITEM' => 'Paste the XML below to import your Items.',
 'RT_HELP_IMPORT_FORMAT' => 'The import is case insensitive and should be in the form',
 
 'RT_INVALID_XMLIMPORT' => 'Invalid or no XML provided',  
 
-'RT_HELP_ITEM_EXPORT' => 'Copy the text below and paste into your favorite text editor to save.',
+'RT_HELP_ITEM_EXPORT' => 'Copy the XML below and paste into your favorite text editor to save.',
 
 /**
  * Always Ignore Items
@@ -271,7 +264,7 @@ $lang = array_merge($lang, array(
 'RT_ADMINMENU_ALIASES_EXPORT' => 'Export Alts',
 'RT_ADMINMENU_ALIASES_IMPORT' => 'Import Alts',
 'RT_ALIAS' => 'Alt',
-'RT_MEMBER' => 'Member',
+'RT_MEMBER' => 'Main character',
 'RT_ALIASES' => 'Alts',
 
 
@@ -366,9 +359,9 @@ $lang = array_merge($lang, array(
 'RT_TRIGGER_SUCCESS_DELETE' => 'Trigger %s deleted for %s.',
 'RT_TRIGGER_MISSING_EVENT'	=> 'This event does not exist : "%s". can\'t add trigger "%s" ', 
 
-'RT_HELP_EVENT_TRIGGER' => "Check for Event Triggers in the Loot Notes (e.g. if you have events called ''MC (Lucifron), MC (Magmadar), ...'' only want to log one raid.)",
-'RT_HELP_EVENT_TRIGGER_NAME' => 'Enter the name of the event that will be replaced with the result.',
-'RT_HELP_EVENT_TRIGGER_RESULT' => 'Choose the Event to link to the trigger',
+'RT_HELP_EVENT_TRIGGER' => "Event Triggers link the zone to a bbDKP Event",
+'RT_HELP_EVENT_TRIGGER_NAME' => 'Enter the zonename (trigger) to replace with the Eventname.',
+'RT_HELP_EVENT_TRIGGER_RESULT' => 'Choose the corresponding Event',
 
 /*
  * Own Raids
@@ -383,7 +376,7 @@ $lang = array_merge($lang, array(
 'RT_ADMINMENU_OWN_RAIDS_LIST' => 'List Own Raids',
 'RT_ADMINMENU_OWN_RAIDS_EXPORT' => 'Export Own Raids',
 'RT_ADMINMENU_OWN_RAIDS_IMPORT' => 'Import Own Raids',
-'RT_HELP_OWN_RAID' => 'Raid notes which should be handled as its \'own raid\' everytime, (example "Random Drops")',
+'RT_HELP_OWN_RAID' => 'Raid notes which should be handled as its ’own raid’ everytime, (example "Random Drops")',
 'RT_HELP_OWN_RAID_NAME' => 'Enter the name of the raid that will be used.',
 
 'RT_OWN_RAID_CONFIRM_DELETE' => 'Are you sure you want to delete the following custom raids?',

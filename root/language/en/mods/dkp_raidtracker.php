@@ -151,7 +151,7 @@ $lang = array_merge($lang, array(
 'RT_MIN_QUALITY_EXPLAIN' => 'Minimum Item Quality of Items to be parsed.',
 'RT_ADD_LOOT_DKP_EXPLAIN' => 'Zero Sum DKP : (Item cost/#attendees) will be distributed as Earned points to all attendees at the bosskill. (ex. 120 itemprice / 10 attendees = 12 DKP/attendee)',
 'RT_IGNORED_LOOTER_EXPLAIN' => 'The name of the Looter to be ignored.',
-'RT_EVENT_TRIGGER_EXPLAIN' => 'Event Triggers link DKP zonenames to bbDKP Eventnames.",
+'RT_EVENT_TRIGGER_EXPLAIN' => 'Event Triggers link DKP zonenames to bbDKP Eventnames.',
 
 'RT_ATTENDANCE_FILTER_EXPLAIN' => 'Sets the type of attendance filtering. either all the attendees in the XML or only those present at the bosskill.',
 'RT_DEFAULT_DKP_EXPLAIN' => 'The standard cost of items with no dkp value from XML.',
