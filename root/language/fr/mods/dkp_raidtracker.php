@@ -215,32 +215,32 @@ $lang = array_merge($lang, array(
 
 'RT_HELP_ADD_ITEMS' => 'Ces Objets seront toujours ajoutés quelque soit leur présence dans la liste des objets ignorés, leur achat par un joueur ignoré, ou si leur niveau de qualité serait au dessous du niveau minimum',
 'RT_HELP_ADD_ITEMS_WOW_ID' => 'Entrez le ID de l\'objet à ajouter toujours. l\'ID est celui de Wowhead.',
-'RT_ITEM_WOW_ID' => 'WoW Item ID',
+'RT_ITEM_WOW_ID' => 'ID objet WoW ',
 
-'RT_ADMINMENU_ADD_ITEMS' => 'Add Items',
-'RT_ADMINMENU_ADD_ITEMS_ADD' => 'Add Items',
-'RT_ADMINMENU_ADD_ITEMS_LIST' => 'List Add Items',
-'RT_ADMINMENU_ADD_ITEMS_EXPORT' => 'Export Add Items',
-'RT_ADMINMENU_ADD_ITEMS_IMPORT' => 'Import Add Items',
+'RT_ADMINMENU_ADD_ITEMS' => 'Objets permanents',
+'RT_ADMINMENU_ADD_ITEMS_ADD' => 'Ajouter objets',
+'RT_ADMINMENU_ADD_ITEMS_LIST' => 'Liste Objets',
+'RT_ADMINMENU_ADD_ITEMS_EXPORT' => 'Exporter Objets',
+'RT_ADMINMENU_ADD_ITEMS_IMPORT' => 'Importer Objets',
 
-'RT_HELP_IMPORT_ITEM' => 'Paste the XML below to import your Items.',
-'RT_HELP_IMPORT_FORMAT' => 'The import is case insensitive and should be in the form',
+'RT_HELP_IMPORT_ITEM' => 'coller l\' XML ci-dessous our importer les objets.',
+'RT_HELP_IMPORT_FORMAT' => 'l\'importation est indépendante de l\'usage de majuscules/minuscules et doit être dans la forme XML.',
 
-'RT_INVALID_XMLIMPORT' => 'Invalid or no XML provided',  
+'RT_INVALID_XMLIMPORT' => 'XML invalide ou pas donné',  
 
-'RT_HELP_ITEM_EXPORT' => 'Copy the XML below and paste into your favorite text editor to save.',
+'RT_HELP_ITEM_EXPORT' => 'Copie l\'XML ci-dessous et colle le dans un programme de traitement de texte.',
 
 /**
  * Always Ignore Items
  */
-'RT_HELP_IGNORE_ITEMS' => 'Set a list of item IDs which will be ignored for every raid.',
-'RT_HELP_IGNORE_ITEMS_WOW_ID' => 'Enter the item ID to be always ignored. The item ID is the internal WoW indentifier.',
+'RT_HELP_IGNORE_ITEMS' => 'Indique une liste d\'objets qui seront toujours ignorés.',
+'RT_HELP_IGNORE_ITEMS_WOW_ID' => 'Entre le ID à ignorer en parmanence. Cet ID est l\'identifiant interne en WoW.',
 
-'RT_ADMINMENU_IGNORE_ITEMS' => 'Ignored Items',
-'RT_ADMINMENU_IGNORE_ITEMS_ADD' => 'Add Ignored Items',
-'RT_ADMINMENU_IGNORE_ITEMS_LIST' => 'List Ignored Items',
-'RT_ADMINMENU_IGNORE_ITEMS_EXPORT' => 'Export Ignored Items',
-'RT_ADMINMENU_IGNORE_ITEMS_IMPORT' => 'Import Ignored Items',
+'RT_ADMINMENU_IGNORE_ITEMS' => 'Objets ignorés',
+'RT_ADMINMENU_IGNORE_ITEMS_ADD' => 'Ajouter',
+'RT_ADMINMENU_IGNORE_ITEMS_LIST' => 'Liste',
+'RT_ADMINMENU_IGNORE_ITEMS_EXPORT' => 'Exporter',
+'RT_ADMINMENU_IGNORE_ITEMS_IMPORT' => 'Importer',
 
 'RT_IGNORE_ITEMS_IMPORTSAMPLE' => '&lt;IgnoreItems&gt;<br />
 &nbsp;&nbsp;&lt;IgnoreItem&gt;<br />
@@ -251,7 +251,7 @@ $lang = array_merge($lang, array(
 &nbsp;&nbsp;&lt;/IgnoreItem&gt;<br />
 &lt;/IgnoreItems&gt;', 
 
-'RT_HELP_EXPORT' => 'Copy the text below and paste into your favorite text editor to save.',
+'RT_HELP_EXPORT' => 'Copie l\'XML ci-dessous et colle le dans un programme de traitement de texte.',
 
 
 /**
@@ -259,12 +259,12 @@ $lang = array_merge($lang, array(
  */
 
 'RT_ADMINMENU_ALIASES' => 'Alts',
-'RT_ADMINMENU_ALIASES_ADD' => 'Add Alt',
-'RT_ADMINMENU_ALIASES_LIST' => 'List Alts',
-'RT_ADMINMENU_ALIASES_EXPORT' => 'Export Alts',
-'RT_ADMINMENU_ALIASES_IMPORT' => 'Import Alts',
+'RT_ADMINMENU_ALIASES_ADD' => 'Ajouter Alt',
+'RT_ADMINMENU_ALIASES_LIST' => 'Liste Alts',
+'RT_ADMINMENU_ALIASES_EXPORT' => 'Exporter Alts',
+'RT_ADMINMENU_ALIASES_IMPORT' => 'Importer Alts',
 'RT_ALIAS' => 'Alt',
-'RT_MEMBER' => 'Main character',
+'RT_MEMBER' => 'Caractère Main ',
 'RT_ALIASES' => 'Alts',
 
 
@@ -280,50 +280,49 @@ $lang = array_merge($lang, array(
 &lt;/PlayerAlts&gt;', 
 
 'RT_IMPORT' => 'Import',
-'RT_HELP_IMPORT' => 'Paste the text below to import your Alts.',
+'RT_HELP_IMPORT' => 'Colle l\'XML ci-dessous pour importer vos Alts.',
 
+'RT_HELP_ALIAS' => 'Utilisez le systeme de remplacement des Alts si un joueur amène un charctère Alt mais vous voulez tenir des comptes DKP seulement pour les Caractères principales.',
+'RT_HELP_ALIAS_NAME' => 'Si ce nom est rencontré, il sera remplacé',
+'RT_HELP_ALIAS_MEMBER' => 'Selectionne le membre récepteur de points venant du Alt.',
+'RT_HELP_ALIAS_EXPORT' => 'Copie l\'XML ci-dessous et colle le dans un programme de traitement de texte.',
+'RT_HELP_ALIAS_IMPORT' => 'Colle l\'XML ci-dessous pour importer vos Alts.',
+'RT_HELP_ALIAS_IMPORT_FORMAT' => 'l\'importation est indépendante de l\'usage de majuscules/minuscules et doit être dans la forme XML.',
 
-'RT_HELP_ALIAS' => 'Use an Alt when a player brings a different character to a raid and you want to track DKP for only one character (e.g. if a Twink of the Mainchar helps out, but the Mainchar should get the DKP Points)',
-'RT_HELP_ALIAS_NAME' => 'Whenever this name is encountered, it will be replaced by the Member name below.',
-'RT_HELP_ALIAS_MEMBER' => 'Select the member who will receive the DKP from the Alt.',
-'RT_HELP_ALIAS_EXPORT' => 'Copy the text below and paste into your favorite text editor to save.',
-'RT_HELP_ALIAS_IMPORT' => 'Paste the text below to import your Alts.',
-'RT_HELP_ALIAS_IMPORT_FORMAT' => 'The import is case insensitive and should be in the form',
+'RT_ALIAS_DUPLICATE' => 'Doublon trouvé : nom de Alt  %s pas appliqué au membre %s',
+'RT_ADD_ALIAS_SUCCESS' => 'Alt %s ajouté au membre %s.',
+'RT_ALIAS_UPDATE_SUCCESS' => 'Alt %s mis à jour pour membre %s. ',
+'RT_NO_ALIAS_SELECTED' => 'Pas de Alt selectionné.',
+'RT_CONFIRM_DELETE_ALIAS' => 'Êtes-vous sûr de voiloir supprimer les Alts suivants ?',
+'RT_ALIAS_DELETED' => 'Alt %s supprimé de %s.',
+'RT_ALIAS_IMPORT_MISSING_MEMBER' => 'pas créé Alt %s pour %s, car membre n\'existe pas.',
 
-'RT_ALIAS_DUPLICATE' => 'Duplicate found : Twinkname %s not applied to member %s',
-'RT_ADD_ALIAS_SUCCESS' => 'Alt %s added for member %s.',
-'RT_ALIAS_UPDATE_SUCCESS' => 'Alt %s updated for member %s. ',
-'RT_NO_ALIAS_SELECTED' => 'No Alt selected.',
-'RT_CONFIRM_DELETE_ALIAS' => 'Are you sure you want to delete the following Alts?',
-'RT_ALIAS_DELETED' => 'Alt %s deleted from member%s.',
-'RT_ALIAS_IMPORT_MISSING_MEMBER' => 'Did not create Alt %s for %s, member does not exist',
+'ACTION_RT_ALIAS_ADDED' => ' Alt ajouté',
+'ACTION_RT_ALIAS_UPDATED' => ' Alt mis à jour',
+'ACTION_RT_ALIAS_DELETED' => ' Alt supprimé',
+'RT_ALIAS_NAME_BEFORE' => 'Alt avant',
+'RT_ALIAS_NAME_AFTER' => 'Alt après',
 
-'ACTION_RT_ALIAS_ADDED' => ' Alt Added',
-'ACTION_RT_ALIAS_UPDATED' => ' Alt Updated',
-'ACTION_RT_ALIAS_DELETED' => ' Alt Deleted',
-'RT_ALIAS_NAME_BEFORE' => 'Alt Before',
-'RT_ALIAS_NAME_AFTER' => 'Alt After',
+'VLOG_RT_ALIAS_ADDED' => '%s ajouté Alt %s en Raidtracker pour membre %s.',
+'VLOG_RT_ALIAS_UPDATED' => '%s a mis à jour un Alt %s en Raidtracker pour membre %s.',
+'VLOG_RT_ALIAS_DELETED' => '%s a supprimé un Alt %s en RaidTracker du membre %s.',
 
-'VLOG_RT_ALIAS_ADDED' => '%s added RaidTracker Alt %s for member %s.',
-'VLOG_RT_ALIAS_UPDATED' => '%s updated RaidTracker Alt %s for member %s.',
-'VLOG_RT_ALIAS_DELETED' => '%s deleted RaidTracker Alt %s from member %s.',
-
-'RT_LABEL_ALIAS_NAME' => 'Alt Name',
+'RT_LABEL_ALIAS_NAME' => 'Nom de Alt',
 
 
 /*
  * Events
  * 
  */
-'EVENT'	=> 'Event Name', 
-'RT_TRIGGER' => 'Trigger Name',
-'RT_ADMINMENU_EVENT_TRIGGERS' => 'Events',
-'RT_ADMINMENU_EVENT_TRIGGERS_ADD' => 'Add Trigger',
-'RT_ADMINMENU_EVENT_TRIGGERS_LIST' => 'List Triggers',
-'RT_ADMINMENU_EVENT_TRIGGERS_EXPORT' => 'Export Triggers',
-'RT_ADMINMENU_EVENT_TRIGGERS_IMPORT' => 'Import Triggers',
+'EVENT'	=> 'Nom d\'évènement', 
+'RT_TRIGGER' => 'Nom de déclencheur',
+'RT_ADMINMENU_EVENT_TRIGGERS' => 'Evénements',
+'RT_ADMINMENU_EVENT_TRIGGERS_ADD' => 'Ajouter',
+'RT_ADMINMENU_EVENT_TRIGGERS_LIST' => 'Liste',
+'RT_ADMINMENU_EVENT_TRIGGERS_EXPORT' => 'Exporter',
+'RT_ADMINMENU_EVENT_TRIGGERS_IMPORT' => 'Importer',
 
-'RT_HELP_EVENT_TRIGGERS_IMPORT_FORMAT' => 'The import is case insensitive and should be in the form',
+'RT_HELP_EVENT_TRIGGERS_IMPORT_FORMAT' => 'l\'importation est indépendante de l\'usage de majuscules/minuscules et doit être dans la forme XML.',
 'RT_EVENT_TRIGGERS_IMPORTSAMPLE'	=> '&lt;EventTriggers&gt;<br />
 	&nbsp;&nbsp;&lt;EventTrigger&gt;<br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&lt;trigger&gt;Kazzak&lt;/trigger&gt;<br />
@@ -342,54 +341,53 @@ $lang = array_merge($lang, array(
 	&nbsp;&nbsp;&lt;/EventTrigger&gt;<br />
 	&lt;/EventTriggers&gt;', 
 	
-'RT_TRIGGERXML_NODATA' => 'No XML to parse', 
-'RT_TRIGGERXML_INVALID' => 'Invalid XML', 
-'RT_HELP_IMPORT_EVENT_TRIGGERS' => 'Paste the text below to import the DKPPool-Event triggers. If they don\'t exist yet they will be created', 
-'RT_TRIGGER_CONFIRM_DELETE' => 'Are you sure you want to delete the following triggers?',
-'RT_TRIGGER_NOT_SELECTED' => 'No triggers selected.',
-'RT_TRIGGER_DUPLICATE' => 'Trigger %s for %s already exists.',
-'RT_TRIGGER_SUCCESS_ADD' => 'Trigger %s added for %s.',
-'RT_TRIGGER_FAIL_ADD' => 'Trigger %s added for %s.',
-'RT_DKPPOOL_SUCCESS_ADD' => 'DKP Pool %s added. ',
-'RT_DKPPOOL_FAIL_ADD' => 'DKP Pool %s NOT added. Already exists ',
-'RT_EVENT_SUCCESS_ADD' => 'Event %s added. ',
-'RT_EVENT_FAIL_ADD' => 'Event %s NOT added. Already exists ',
+'RT_TRIGGERXML_NODATA' => 'pas de XML à parser', 
+'RT_TRIGGERXML_INVALID' => 'XML invalide', 
+'RT_HELP_IMPORT_EVENT_TRIGGERS' => 'Collez le texte ci-dessous pour importer les déclencheurs d\'évènements de de groupes DKP. Si\'ils n\'existent pas, ils seront créés.', 
+'RT_TRIGGER_CONFIRM_DELETE' => 'Ëtes-vous sûr de vouloir supprimer les déclencheurs suivants ?',
+'RT_TRIGGER_NOT_SELECTED' => 'Pas de déclencheurs séléctionnés.',
+'RT_TRIGGER_DUPLICATE' => 'Déclencheur %s pour %s existe déjà.',
+'RT_TRIGGER_SUCCESS_ADD' => 'Déclencheur %s ajouté pour %s.',
+'RT_TRIGGER_FAIL_ADD' => 'Déclencheur %s ajouté pour %s.',
+'RT_DKPPOOL_SUCCESS_ADD' => 'Groupe DKP %s ajouté. ',
+'RT_DKPPOOL_FAIL_ADD' => 'Groupe DKP  %s pas ajouté. existe déjà ',
+'RT_EVENT_SUCCESS_ADD' => 'Evénement %s ajouté. ',
+'RT_EVENT_FAIL_ADD' => 'Evénement %s pas ajouté. Existe déjà. ',
 
-'RT_TRIGGER_SUCCESS_UPDATE' => 'Trigger updated.',
-'RT_TRIGGER_SUCCESS_DELETE' => 'Trigger %s deleted for %s.',
-'RT_TRIGGER_MISSING_EVENT'	=> 'This event does not exist : "%s". can\'t add trigger "%s" ', 
+'RT_TRIGGER_SUCCESS_UPDATE' => 'Déclencheur mis à jour.',
+'RT_TRIGGER_SUCCESS_DELETE' => 'Déclencheur %s supprimé pour %s.',
+'RT_TRIGGER_MISSING_EVENT'	=> 'Cet evénement n\'existe pas : "%s". ne peut pas ajouter déclencheur "%s" ', 
 
-'RT_HELP_EVENT_TRIGGER' => "Event Triggers link the zone to a bbDKP Event",
-'RT_HELP_EVENT_TRIGGER_NAME' => 'Enter the zonename (trigger) to replace with the Eventname.',
-'RT_HELP_EVENT_TRIGGER_RESULT' => 'Choose the corresponding Event',
+'RT_HELP_EVENT_TRIGGER' => "Les déclencheurs de zones lient une zone du XML à un événement en bbDKP",
+'RT_HELP_EVENT_TRIGGER_NAME' => 'Entrez le nom de Zone à remplacer par le nom de l\'événement.',
+'RT_HELP_EVENT_TRIGGER_RESULT' => 'Choisir l\'événement correspondant',
 
 /*
  * Own Raids
  * Random Drops are normaly added to an own Raid called "Random Drop"
  * 
  */
+'RT_OWN_RAID' => 'Raid Particulier',
 
-'RT_OWN_RAID' => 'Own Raid',
+'RT_ADMINMENU_OWN_RAIDS' => 'Raids Particuliers',
+'RT_ADMINMENU_OWN_RAIDS_ADD' => 'Ajouter',
+'RT_ADMINMENU_OWN_RAIDS_LIST' => 'Liste',
+'RT_ADMINMENU_OWN_RAIDS_EXPORT' => 'Exporter',
+'RT_ADMINMENU_OWN_RAIDS_IMPORT' => 'Importer',
+'RT_HELP_OWN_RAID' => 'Note de Raid qui déclenchera comme un Raid "Particulier", (par exemple "Random Drops")',
+'RT_HELP_OWN_RAID_NAME' => 'Entre le nom du Raid à utiliser.',
 
-'RT_ADMINMENU_OWN_RAIDS' => 'Own Raids',
-'RT_ADMINMENU_OWN_RAIDS_ADD' => 'Add Own Raids',
-'RT_ADMINMENU_OWN_RAIDS_LIST' => 'List Own Raids',
-'RT_ADMINMENU_OWN_RAIDS_EXPORT' => 'Export Own Raids',
-'RT_ADMINMENU_OWN_RAIDS_IMPORT' => 'Import Own Raids',
-'RT_HELP_OWN_RAID' => 'Raid notes which should be handled as its ’own raid’ everytime, (example "Random Drops")',
-'RT_HELP_OWN_RAID_NAME' => 'Enter the name of the raid that will be used.',
+'RT_OWN_RAID_CONFIRM_DELETE' => 'Êtes-vous sûr de voilour supprimer les Raids particuliers suivants ?',
+'RT_OWN_RAID_NOT_SELECTED' => 'Pas de Raid particulier séléctionné.',
+'RT_OWN_RAID_DUPLICATE' => 'Le Raid Parciculier %s existe déjà.',
+'RT_OWN_RAID_SUCCESS_ADD' => 'Raid Parciculier  %s ajouté.',
+'RT_OWN_RAID_SUCCESS_UPDATE' => 'Raid Parciculier mis à jour.',
+'RT_OWN_RAID_SUCCESS_DELETE' => 'Raid Parciculier %s supprimé.',
 
-'RT_OWN_RAID_CONFIRM_DELETE' => 'Are you sure you want to delete the following custom raids?',
-'RT_OWN_RAID_NOT_SELECTED' => 'No custom raids selected.',
-'RT_OWN_RAID_DUPLICATE' => 'Custom raid %s already exists.',
-'RT_OWN_RAID_SUCCESS_ADD' => 'Custom raid %s added.',
-'RT_OWN_RAID_SUCCESS_UPDATE' => 'Custom raid updated.',
-'RT_OWN_RAID_SUCCESS_DELETE' => 'Custom raid %s deleted.',
+'RT_HELP_OWN_RAID_EXPORT' => 'Copie l\'XML ci-dessous et colle le dans un programme de traitement de texte.',
 
-'RT_HELP_OWN_RAID_EXPORT' => 'Copy the text below and paste into your favorite text editor to save.',
-
-'RT_HELP_IMPORT_RAID_TRIGGERS' => 'Paste the text below to import the Raid triggers',
-'RT_HELP_OWN_RAID_IMPORT_FORMAT' => 'The import is case insensitive and should be in the form',
+'RT_HELP_IMPORT_RAID_TRIGGERS' => 'Colle l\'XML ci-dessous pour importer vos déclencheurs.',
+'RT_HELP_OWN_RAID_IMPORT_FORMAT' => 'l\'importation est indépendante de l\'usage de majuscules/minuscules et doit être dans la forme XML.',
 'RT_OWN_RAID_IMPORTSAMPLE'	=> '&lt;OwnRaids&gt;<br />
 &nbsp;&nbsp;&lt;OwnRaid&gt;Random Drop&lt;/OwnRaid&gt;<br />
 &lt;/OwnRaids&gt;', 
@@ -399,31 +397,30 @@ $lang = array_merge($lang, array(
  * Raid Triggers
  * 
  */
-'RT_ADMINMENU_RAID_NOTE_TRIGGERS' => 'Raids',
-'RT_ADMINMENU_RAID_NOTE_TRIGGERS_ADD' => 'Add Trigger',
-'RT_ADMINMENU_RAID_NOTE_TRIGGERS_LIST' => 'List Triggers',
-'RT_ADMINMENU_RAID_NOTE_TRIGGERS_EXPORT' => 'Export Triggers',
-'RT_ADMINMENU_RAID_NOTE_TRIGGERS_IMPORT' => 'Import Triggers',
+'RT_ADMINMENU_RAID_NOTE_TRIGGERS' => 'Note de Raids',
+'RT_ADMINMENU_RAID_NOTE_TRIGGERS_ADD' => 'Ajouter',
+'RT_ADMINMENU_RAID_NOTE_TRIGGERS_LIST' => 'Liste',
+'RT_ADMINMENU_RAID_NOTE_TRIGGERS_EXPORT' => 'Exporter',
+'RT_ADMINMENU_RAID_NOTE_TRIGGERS_IMPORT' => 'Import',
 
-'RT_HELP_RAID_NOTE_TRIGGER' => 'Here you can set the triggers for the bbDKP Raid Note (CT_RaidRracker Raid note and the Loots Notes will 
-be parsed (Loot Notes will override the Raid Note))',
-'RT_HELP_RAID_NOTE_TRIGGER_NAME' => 'Enter the name of the raid note that will be replaced with the result.',
-'RT_HELP_RAID_NOTE_TRIGGER_RESULT' => 'Enter the text you want to see in place of the trigger',
+'RT_HELP_RAID_NOTE_TRIGGER' => 'Ici vous pouvez indiquer les déclencheurs pour la note de Raid bbDKP (la note de Raid CT_RaidRracker et les notes de Loot seront parsés, tandis que les notes de loot sont prioritaires)',
+'RT_HELP_RAID_NOTE_TRIGGER_NAME' => 'Entre le nom de la Note de Raid qui sera remplacé par le résultat.',
+'RT_HELP_RAID_NOTE_TRIGGER_RESULT' => 'Entre le texte qui remplacera le texte déclencheur',
 
-'RT_OWN_RAID_NOTETRIGGER_EXPORT' => 'Copy the text below and paste into your favorite text editor to save.',
+'RT_OWN_RAID_NOTETRIGGER_EXPORT' => 'Copie l\'XML ci-dessous et colle le dans un programme de traitement de texte.',
 
-'RT_RAID_NOTETRIGGER_CONFIRM_DELETE' => 'Are you sure you want to delete the following Raid Note triggers? %s ',
-'RT_RAID_NOTETRIGGER_NOT_SELECTED' => 'No Raid Note triggers selected.',
-'RT_RAID_NOTETRIGGER_DUPLICATE' => 'Raid Note Trigger %s for %s already exists.',
-'RT_RAID_NOTETRIGGER_SUCCESS_ADD' => 'Raid Note Trigger %s added for %s.',
-'RT_RAID_NOTETRIGGER_SUCCESS_UPDATE' => 'Raid Note Trigger updated.',
-'RT_RAID_NOTETRIGGER_SUCCESS_DELETE' => 'Raid Note Trigger %s deleted for %s.',
+'RT_RAID_NOTETRIGGER_CONFIRM_DELETE' => 'Êtes-vous sûr de vouloir remplacer les déclencheurs de Note de Raids suivants ? %s ',
+'RT_RAID_NOTETRIGGER_NOT_SELECTED' => 'Pas de déclencheurs séléctionnés.',
+'RT_RAID_NOTETRIGGER_DUPLICATE' => 'Ce déclencheur de Notes %s pour %s existe déjà.',
+'RT_RAID_NOTETRIGGER_SUCCESS_ADD' => 'déclencheur de Notes %s ajouté pour %s.',
+'RT_RAID_NOTETRIGGER_SUCCESS_UPDATE' => 'déclencheur de Notes mis à jour.',
+'RT_RAID_NOTETRIGGER_SUCCESS_DELETE' => 'déclencheur de Notes %s supprimé pour %s.',
 
-'RT_RAID_NOTE' => 'Raid Note',
-'RT_RAID_NOTE_TRIGGER' => 'Raid name that will be inserted',
+'RT_RAID_NOTE' => 'Note de Raid',
+'RT_RAID_NOTE_TRIGGER' => 'Note de Raid qui sera inserée',
 
 
-'RT_HELP_RAID_NOTE_IMPORT_FORMAT' => 'The import is case insensitive and should be in the form',
+'RT_HELP_RAID_NOTE_IMPORT_FORMAT' => 'l\'importation est indépendante de l\'usage de majuscules/minuscules et doit être dans la forme XML.',
 'RT_RAID_NOTE_IMPORTSAMPLE'	=> '&lt;RaidNoteTriggers&gt;<br />
 &nbsp;&nbsp;&lt;RaidNoteTrigger&gt;<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;trigger&gt;Bloodlord&lt;/trigger&gt;<br />
@@ -442,17 +439,17 @@ be parsed (Loot Notes will override the Raid Note))',
 /**
  * Buttons
  */
-'RT_CANCEL' => 'Cancel',
-'RT_RESULT' => 'Result',
+'RT_CANCEL' => 'Annulation',
+'RT_RESULT' => 'Résultat',
 
 /**
  * Form validation messages
  */
-'RT_FV_INVALID_XML' => 'Can\'t import XML, invalid string. Compare with sample provided.',
+'RT_FV_INVALID_XML' => 'Importation XML impossible, XML invalide. Comparez avec exemple fourni.',
 
-'RT_MEMBER_NAME_BEFORE' => 'Member Before',
-'RT_MEMBER_NAME_AFTER' => 'Member After',
-'RT_LABEL_MEMBER_NAME' => 'Member Name',
+'RT_MEMBER_NAME_BEFORE' => 'Membre avant',
+'RT_MEMBER_NAME_AFTER' => 'Membre après',
+'RT_LABEL_MEMBER_NAME' => 'Nom de membre',
 
 /*
  * Race Names
