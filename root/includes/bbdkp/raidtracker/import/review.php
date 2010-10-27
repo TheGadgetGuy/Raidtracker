@@ -2,8 +2,8 @@
 /**
  * Import Base class
  *
-*  @author Sajaki@bbdkp.com
-*  @package bbDkp.acp
+ * @author Sajaki@bbdkp.com
+ * @package bbDkp.acp
  * @copyright 2010 bbdkp <http://code.google.com/p/bbdkp/>
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * $Id$
@@ -183,6 +183,9 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		 * loop bossarray
 		 */
 	  	
+		$Bosskills = array();
+		$lootid=0;
+		 
         $sql_array = array(
 	    'SELECT'    => 'b.bossid, b.bossname , b.time, b.difficulty ',
 	    'FROM'      => array(
@@ -192,11 +195,15 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	    'ORDER_BY'	=> ' b.time ', 
 		);
 		
-		$lootid=0;
 		$sql = $db->sql_build_query('SELECT', $sql_array);   
 		$result = $db->sql_query($sql);
 		while ( $row = $db->sql_fetchrow($result) )
         {
+        	// initialise loop variables
+        	$bossattendees = array(); 
+			$loot = array();
+			$nr_boss_attendees = 0;
+		
         	/* adding attendees */
         	$sql_array2 = array(
 	    	'SELECT'    => 'n.playername ',
@@ -204,13 +211,11 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	        	RT_TEMP_ATTENDEES   => 'n'
 	    	),
 	    	'WHERE'     =>  " n.bossname = '" . $db->sql_escape($row['bossname']) . "'   
-						 	AND  n.batchid = '" . $db->sql_escape($batchid) . "'",   
-	    	'ORDER_BY'	=> 'n.playername', 
+					AND  n.batchid = '" . $db->sql_escape($batchid) . "'",   
+			'ORDER_BY'	=> 'n.playername', 
 			);
 			$sql2 = $db->sql_build_query('SELECT', $sql_array2);   
 			$result2 = $db->sql_query($sql2);
-			$nr_boss_attendees = 0;
-			$bossattendees = array(); 
 			while ( $row2 = $db->sql_fetchrow($result2) )
 	        {
 	        	$nr_boss_attendees++;  
@@ -238,7 +243,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	        $result3 = $db->sql_query($sql3);
 
 	        // loop loot of this boss
-	        $loot = array();
+	       
 			while ( $row3 = $db->sql_fetchrow($result3) )
 	        {
 				$loot[] = array(
@@ -343,9 +348,8 @@ class Raidtracker_Review extends acp_dkp_rt_import
         unset($loot);
         unset($bossattendees);
         
-
         /*
-    	 * populate dkplist (entire) 
+    	 * populate dkp pool list 
     	 */
  		$sql = 'SELECT dkpsys_name, dkpsys_id, dkpsys_default FROM ' . DKPSYS_TABLE; 
         $result = $db->sql_query($sql);
@@ -359,7 +363,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
         $db->sql_freeresult ($result);
         
         /*
-		 * Populate Eventlist of this dkp 
+		 * Populate Eventlist of this dkp pool
 		 */
 		$sql_array = array(
 	    'SELECT'    => 'b.event_name, b.event_id , b.event_value ',
@@ -386,7 +390,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
         $db->sql_freeresult ($result);
         
 
-
+        // display the form
         $this->display_form();
 
     }
@@ -494,8 +498,11 @@ class Raidtracker_Review extends acp_dkp_rt_import
         /*
 		 * fill boss info to template
 		 */
-	  	 foreach($this->Raid['bosskills'] as $key => $boss)
-	  	{
+		
+		if (sizeof($this->Raid['bosskills']) > 0)
+		{
+			foreach($this->Raid['bosskills'] as $key => $boss)
+	  		{
 	  	  	$template->assign_block_vars('raid_row.boss_row', array(
 	            'BOSSNAME'    => $boss['bossname'],
 				'BOSSKILL_MO' => date ( "m", $boss['time'] ),
@@ -525,6 +532,8 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	        }
 
 	  	}
+			
+		}
 
     }
     

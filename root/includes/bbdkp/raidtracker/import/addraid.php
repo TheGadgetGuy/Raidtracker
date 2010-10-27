@@ -37,7 +37,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
     function Raidtracker_Addraid($action)
     {
     	global $config, $user, $phpEx, $phpbb_root_path;
- 		$user->add_lang ( array ('mods/dkp_admin' ) );
+ 		$user->add_lang ( array ('mods/dkp_admin'));
     	
     	$this->Raidtrackerlink = '<br /><a href="'. 
     		append_sid ( "index.$phpEx", "i=dkp_rt_import" ) . '"><h3>Return to Index</h3></a>';
@@ -165,15 +165,46 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         $acp_dkp_mm = new acp_dkp_mm;
         
         $allplayerinfo = array();
-        
-		$sql = 'select * from ' . RT_TEMP_PLAYERINFO . " where batchid = '" . $db->sql_escape($this->batchid) . "'" ;
+
+        // check if there is a guildname in playerinfo..
+        // this is not true for some addins (mizus !) 
+        $sql = 'select guild from ' . RT_TEMP_PLAYERINFO . " where batchid = '" . $db->sql_escape($this->batchid) . "'" ;
+        $result = $db->sql_query_limit($sql,1);
+        $guildname = (string) $db->sql_fetchfield ('guild', false, $result);
+        $db->sql_freeresult ( $result);
+        if ($guildname == '')
+        {
+	        // get guild with most members
+	        $sql = 'select a.member_guild_id from (select member_guild_id, count(*) as mcount from '. MEMBER_LIST_TABLE .' 
+	        group by member_guild_id ) a order by a.mcount desc '; 
+	        $result = $db->sql_query_limit($sql,1); 
+	        $guildidmax = (int) $db->sql_fetchfield ('member_guild_id', false, $result );
+	        $db->sql_freeresult ( $result);
+	        if ($guildidmax > 0)
+	        {
+		        $sql = 'select name from ' . GUILD_TABLE . ' where id = ' . $guildidmax;   
+		        $result = $db->sql_query($sql);
+		        $guildname = $db->sql_fetchfield('name', false, $result); 
+		        $db->sql_freeresult ( $result); 
+	        }
+	        else 
+	        {
+	        	// no guildmembers and no guild!!
+	   			// get guildtag or else get default
+	        	$guildname = ($config['bbdkp_guildtag'] == '') ? 'default' : $config['bbdkp_guildtag']; 
+	        }
+        }
+                
+        $sql = 'select * from ' . RT_TEMP_PLAYERINFO . " where batchid = '" . $db->sql_escape($this->batchid) . "'" ;
 	    $result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
 		{
+			
+			
 			$allplayerinfo[] = array(
 				'playername' => (string) $row['playername'], 
 				'race' 		 => (int) $row['race'],
-				'guild' 	 => (string)  $row['guild'],
+				'guild' 	 => (string) $guildname,
 				'sex' 		 => (int) $row['sex'],
 				'class' 	 => (int) $row['class'],
 				'level' 	 => (int) $row['level'],
@@ -185,39 +216,29 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		foreach($allplayerinfo as $player)
 		{
 			
-			// is there a guild ?
-			if( strlen($player['guild']) > 2 )
-			{
-		        // check guild
-				$sql = "SELECT id 
-		        	FROM " . GUILD_TABLE . " 
-		        	where name ='" . $db->sql_escape($player['guild']) . "'";
-				$result = $db->sql_query($sql);
-	            $guild_id = $db->sql_fetchfield('id');  
-	            $db->sql_freeresult($result);
+	        // check guild
+			$sql = "SELECT id 
+	        	FROM " . GUILD_TABLE . " 
+	        	where name ='" . $db->sql_escape($player['guild']) . "'";
+			$result = $db->sql_query($sql);
+            $guild_id = $db->sql_fetchfield('id');  
+            $db->sql_freeresult($result);
+            
+            //guild not found -> make it
+            if (! $guild_id)
+            {
+            	// insertnewguild($guild_name,$realm_name,$region, $showroster, $aionlegionid = 0, $aionserverid = 0) 
+	            $guild_id = $acp_dkp_mm->insertnewguild(
+	            	$player['guild'],
+	            	$config['bbdkp_default_realm'],
+	            	$config['bbdkp_default_region'], 
+	            	1);
 	            
-	            //guild not found -> make it
-	            if (! $guild_id)
-	            {
-	            	// insertnewguild($guild_name,$realm_name,$region, $showroster, $aionlegionid = 0, $aionserverid = 0) 
-		            $guild_id = $acp_dkp_mm->insertnewguild(
-		            	$player['guild'],
-		            	$config['bbdkp_default_realm'],
-		            	$config['bbdkp_default_region'], 
-		            	1);
-		            
-		            // ranks are just defaults, you will have to run armoryupdater to update correct ranks
-		            $acp_dkp_mm->insertnewrank(0, 'Guildleader', 0, '', '',  $guild_id);
-		            $acp_dkp_mm->insertnewrank(1, 'Member', 0, '', '',  $guild_id);
-	            }
-				
-			}
-			else 
-			{
-				//guildless
-				$guild_id = 0;
-				
-			}
+	            // ranks are just defaults, you will have to run armoryupdater to update correct ranks
+	            $acp_dkp_mm->insertnewrank(0, 'Guildleader', 0, '', '',  $guild_id);
+	            $acp_dkp_mm->insertnewrank(1, 'Member', 0, '', '',  $guild_id);
+            }
+
             
             //check membername
             $sql = "SELECT count(*) as mcount 
