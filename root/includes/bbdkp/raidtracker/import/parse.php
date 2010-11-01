@@ -1083,16 +1083,16 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		}
 		
 		// getting the raceid given english racename
-		$sql = 'SELECT race_id FROM ' . BB_LANGUAGE . ' l WHERE l.name ' . 
+		$sql = 'SELECT attribute_id FROM ' . BB_LANGUAGE . ' WHERE name ' . 
 			$db->sql_like_expression($db->any_char . $db->sql_escape($racename) . $db->any_char) . "  
-			AND l.language= 'en' AND l.attribute = 'race'"; 
+			AND language= 'en' AND attribute = 'race'"; 
 		
 		$result = $db->sql_query($sql);
 		$max_value = 0;
 		// normally 1 loop will suffice
 		while ( $row = $db->sql_fetchrow ( $result ) ) 
 		{
-			$value = $row ['race_id'];
+			$value = $row ['attribute_id'];
 			$max_value ++;
 		}
 		
