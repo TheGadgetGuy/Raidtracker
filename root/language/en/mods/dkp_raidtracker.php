@@ -100,7 +100,8 @@ $lang = array_merge($lang, array(
 'ALERT_AJAX' => 'There was a problem while using XMLHTTP', 
 'ALERT_OLDBROWSER' => 'Browser does not support HTTP Request', 
 
-// Import Screen'RT_STEP2_RAIDSDROPSDETAILS' => 'Raid/Drop Details',
+// Import Screen
+'RT_STEP2_RAIDSDROPSDETAILS' => 'Raid/Drop Details',
 'RT_STEP2_COMMENT' => 'Comments',
 'RT_STEP2_BOSS' => 'Boss Name: ',
 'RT_STEP2_KILLTIME' => 'Bosskill Time:',

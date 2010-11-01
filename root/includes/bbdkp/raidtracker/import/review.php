@@ -41,13 +41,13 @@ class Raidtracker_Review extends acp_dkp_rt_import
     {
     	//global phpbb vars
     	global $config, $db, $user, $phpbb_root_path, $phpbb_admin_path, $phpEx;
+    	$user->add_lang ( array ('mods/dkp_raidtracker' ));
     	
     	$raidid = request_var('r', 0); 
     	if($raidid == 0)
     	{
     		trigger_error($user->lang['RT_STEP2_ERR_RAIDID'], E_USER_WARNING); 
     	}
-    	
     	
     	$this->Raidtrackerlink = '<br /><a href="'. 
     		append_sid ( "index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import" ) . '"><h3>Return to Index</h3></a>';

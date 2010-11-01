@@ -100,7 +100,8 @@ $lang = array_merge($lang, array(
 'ALERT_AJAX' => 'Il y a eu un problême lors de la tentative d\'utiliser XMLHTTP', 
 'ALERT_OLDBROWSER' => 'Votre Browser ne supporte pas le protocole HTTP Request, veuillez le mettre à jour.', 
 
-// Import Screen'RT_STEP2_RAIDSDROPSDETAILS' => 'Raid/Drop Details',
+// Import Screen
+'RT_STEP2_RAIDSDROPSDETAILS' => 'Details des drops',
 'RT_STEP2_COMMENT' => 'Commentaires',
 'RT_STEP2_BOSS' => 'Nom du Boss: ',
 'RT_STEP2_KILLTIME' => 'Moment du Bosskill:',

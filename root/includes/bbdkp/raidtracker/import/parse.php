@@ -1082,9 +1082,10 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			$racename = "Blood Elf";
 		}
 		
-		$sql = 'SELECT race_id FROM ' . BB_LANGUAGE . ' l, ' . RACE_TABLE . ' r 
-			WHERE l.name ' . $db->sql_like_expression($db->any_char . $db->sql_escape($racename) . $db->any_char) . "  
-			AND l.attribute_id = r.race_id AND l.language= 'en' AND l.attribute = 'race'"; 
+		// getting the raceid given english racename
+		$sql = 'SELECT race_id FROM ' . BB_LANGUAGE . ' l WHERE l.name ' . 
+			$db->sql_like_expression($db->any_char . $db->sql_escape($racename) . $db->any_char) . "  
+			AND l.language= 'en' AND l.attribute = 'race'"; 
 		
 		$result = $db->sql_query($sql);
 		$max_value = 0;

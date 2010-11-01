@@ -37,6 +37,12 @@ if (!file_exists($phpbb_root_path . 'umil/umil_auto.' . $phpEx))
 	trigger_error('Please download the latest UMIL (Unified MOD Install Library) from: <a href="http://www.phpbb.com/mods/umil/">phpBB.com/mods/umil</a>', E_USER_ERROR);
 }
 
+// only allow install when wow is installed as game
+if ($config['bbdkp_default_game'] != 'wow')
+{
+    trigger_error('NOT_AUTHORISED');
+}
+
 // The name of the mod to be displayed during installation.
 $mod_name = 'Raidtracker';
 
@@ -376,6 +382,12 @@ $versions = array(
 		'custom' => array('raidtrackerupdater'),
 	),
 	
+	'0.2.8' => array(
+	// no db change, only a bugfix
+		'custom' => array('raidtrackerupdater'),
+	),
+	
+	
 );
 
 // We include the UMIF Auto file and everything else will be handled automatically.
@@ -408,6 +420,7 @@ function raidtrackerupdater($action, $version)
                     ),
             ));		
 
+    
 		    // If there are tables from the old roster module then delete them
 		    if ($umil->table_exists($bbdkp_table_prefix . 'ctrt_config'))
 		    {
@@ -451,6 +464,10 @@ function raidtrackerupdater($action, $version)
 		        $umil->table_remove($bbdkp_table_prefix . 'ctrt_ignore_items');
 		    }	
 		    
+		    // correcting race id for blood elves it's 10 not 9 		    
+		    $sql = "UPDATE  " . $bbdkp_table_prefix . "bb_language SET attribute_id = '10' where attribute='race' and attribute_id='9' ";
+		    $db->sql_query($sql);
+		    
        		return array('command' => 'RAIDTRACKER_INSTALL_MOD', 'result' => 'SUCCESS');
 			break; 
 			
@@ -474,7 +491,7 @@ function raidtrackerupdater021($action, $version)
 
             // correcting memberlist , guild, ranks table
             $sql = 'select id from ' . $bbdkp_table_prefix . "memberguild where id > 1 and (name = '' or name is null)  "; 
-            $result =  $result = $db->sql_query($sql);
+            $result = $db->sql_query($sql);
             if($result)
             {
             	while ( $row = $db->sql_fetchrow($result) )
@@ -506,7 +523,7 @@ function raidtrackerupdater021($action, $version)
         				'bbdkp_copyright'  => 'bbDKP Team', 
                     ),
             ));            
-		    
+
        		return array('command' => 'RAIDTRACKER_INSTALL_MOD', 'result' => 'SUCCESS');
 			break; 
 			
@@ -520,5 +537,8 @@ function raidtrackerupdater021($action, $version)
 
 	
 }
+
+
+    		
 
 ?>
