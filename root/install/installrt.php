@@ -337,21 +337,21 @@ include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
 
 function raidtrackerupdater($action, $version)
 {
-	global $db, $table_prefix, $umil, $bbdkp_table_prefix, $phpbb_root_path, $phpEx;
+	global $db, $table_prefix, $umil, $phpbb_root_path, $phpEx;
 	switch ($action)
 	{
 		case 'install' :
 		case 'update' :
             
-            $umil->table_row_remove($bbdkp_table_prefix . 'plugins',
+            $umil->table_row_remove($table_prefix . 'bbdkp_plugins',
                 array('name'  => 'ctrt')
             );
 
-            $umil->table_row_remove($bbdkp_table_prefix . 'plugins',
+            $umil->table_row_remove($table_prefix . 'bbdkp_plugins',
                 array('name'  => 'RaidTracker')
             );
                         
-			$umil->table_row_insert($bbdkp_table_prefix . 'plugins', 	
+			$umil->table_row_insert($table_prefix . 'bbdkp_plugins', 	
 		    array(
                 array(
         				'name'  => 'RaidTracker', 
