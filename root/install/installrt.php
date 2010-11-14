@@ -44,7 +44,7 @@ if ($config['bbdkp_default_game'] != 'wow')
 }
 
 // The name of the mod to be displayed during installation.
-$mod_name = 'Raidtracker';
+$mod_name = 'Raidtracker (uninstall version 0.2.8 prior to launching 0.3.0)';
 
 /*
 * The name of the config variable which will hold the currently installed version
@@ -90,26 +90,24 @@ $options = array(
 * The version numbering must otherwise be compatible with the version_compare function - http://php.net/manual/en/function.version-compare.php
 */
 
-$bbdkp_table_prefix = "bbeqdkp_"; 
-
 $versions = array(
 
-	'0.2.0' => array(
+	'0.3.0' => array(
 
      // Lets add global config settings
-     // we scrap the ctrt_config table
 	'config_add' => array(
 		array('bbdkp_rt_minitemquality', 'RT_IQ_RARE', true),
 		array('bbdkp_rt_ignoredlooter', '', true),
 		array('bbdkp_rt_aldkpchkbox', 1),
 		array('bbdkp_rt_lootnoteeventtrigger', 0),
 		array('bbdkp_rt_attendancefilter', 1, true),
-		array('bbdkp_rt_skipempty', 1, true),
 		array('bbdkp_rt_defaultcost', 5.0, true),
 		array('bbdkp_rt_startdkp', 10.0, true),
 		array('bbdkp_rt_createstartraid', 0, true),
 		array('bbdkp_rt_startraiddkp', 0.0, true),
 		array('bbdkp_rt_replacealtnames', 1, true),
+		array('bbdkp_rt_bossraid', 0, true), 
+		array('bbdkp_rt_hourdkp', 0.00, true),
 		),
             		
 	// raidtracker is now in the raids tree
@@ -157,7 +155,7 @@ $versions = array(
 
 			// temporary tables for raid import
 			// general raidinfo
-			array($bbdkp_table_prefix . 'rt_temp_raidinfo', array(
+			array($table_prefix . 'rt_temp_raidinfo', array(
                     'COLUMNS'		=> array(
 					   'batchid' 	=> array('VCHAR', ''),
                        'raidid'		=> array('INT:8', NULL, 'auto_increment' ),
@@ -179,7 +177,7 @@ $versions = array(
             ),  
 			
 			//playerinfo
-            array($bbdkp_table_prefix . 'rt_temp_playerinfo', array(
+            array($table_prefix . 'rt_temp_playerinfo', array(
                     'COLUMNS'		=> array(
             		   'batchid' 	=> array('VCHAR', ''),
                        'raidid'		=> array('INT:8', 0),
@@ -200,7 +198,7 @@ $versions = array(
 			)),  	
 
 			//join leaves log
-            array($bbdkp_table_prefix . 'rt_temp_joininfo', array(
+            array($table_prefix . 'rt_temp_joininfo', array(
                     'COLUMNS'		=> array(
             		   'batchid' 	=> array('VCHAR', ''),
                        'raidid'		=> array('INT:8', 0),            
@@ -219,7 +217,7 @@ $versions = array(
               )),  	
             
 			//bosskills
-            array($bbdkp_table_prefix . 'rt_temp_bosskills', array(
+            array($table_prefix . 'rt_temp_bosskills', array(
                     'COLUMNS'		=> array(
             		   'batchid' 	=> array('VCHAR', ''),            
 					   'bossid'		=> array('INT:8', NULL, 'auto_increment' ),
@@ -235,7 +233,7 @@ $versions = array(
               ),
             ), 
             
-            array($bbdkp_table_prefix . 'rt_temp_attendees', array(
+            array($table_prefix . 'rt_temp_attendees', array(
                     'COLUMNS'		=> array(
             		   'batchid' 	=> array('VCHAR', ''),           
 					   'bossname'	=> array('VCHAR_UNI', ''),
@@ -247,7 +245,7 @@ $versions = array(
 					)
               )),             
             
-            array($bbdkp_table_prefix . 'rt_temp_loot', array(
+            array($table_prefix . 'rt_temp_loot', array(
                     'COLUMNS'		=> array(
             		   'batchid' 	=> array('VCHAR', ''), 
 					   'lootid' 	=> array('INT:8', NULL, 'auto_increment' ),     			        
@@ -268,7 +266,7 @@ $versions = array(
               ),
             ),      
 			            
-			array($bbdkp_table_prefix . 'rt_aliases', array(
+			array($table_prefix . 'rt_aliases', array(
                     'COLUMNS'		=> array(
                        'alias_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'alias_member_id' => array('INT:8', 0 ),
@@ -278,7 +276,7 @@ $versions = array(
               ),
             ),                
                 
-			array($bbdkp_table_prefix . 'rt_eventtriggers', array(
+			array($table_prefix . 'rt_eventtriggers', array(
                     'COLUMNS'		=> array(
                        'event_trigger_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'event_trigger' => array('VCHAR_UNI:255', ''),
@@ -291,7 +289,7 @@ $versions = array(
               ),
             ),   
 
-			array($bbdkp_table_prefix . 'rt_raidnote_triggers', array(
+			array($table_prefix . 'rt_raidnote_triggers', array(
                     'COLUMNS'		=> array(
                        'raid_note_trigger_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'raid_trigger' => array('VCHAR_UNI:255', ''),
@@ -301,7 +299,7 @@ $versions = array(
               ),
             ),   
 
-			array($bbdkp_table_prefix . 'rt_ownraids', array(
+			array($table_prefix . 'rt_ownraids', array(
                     'COLUMNS'		=> array(
                        'own_raid_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'own_raid_name' => array('VCHAR_UNI:255', ''),
@@ -310,7 +308,7 @@ $versions = array(
               ),
             ),   
             
-			array($bbdkp_table_prefix . 'rt_additems', array(
+			array($table_prefix . 'rt_additems', array(
                     'COLUMNS'		=> array(
                        'add_items_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'add_items_wow_id' => array('INT:8', 0 ),
@@ -319,7 +317,7 @@ $versions = array(
               ),
             ),   
             
-			array($bbdkp_table_prefix . 'rt_ignoreitems', array(
+			array($table_prefix . 'rt_ignoreitems', array(
                     'COLUMNS'		=> array(
                        'ignore_items_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'ignore_items_wow_id' =>  array('INT:8', 0 ),
@@ -327,66 +325,10 @@ $versions = array(
                     'PRIMARY_KEY'	=> array('ignore_items_id'),
               ),
             ),   
-
 		),
 		
 		'custom' => array('raidtrackerupdater'),   
-		
 	),
-	
-	'0.2.1' => array(
-
-	 // add a parameter to set logging one global raid - set default to false
-	'config_add' => array(
-		array('bbdkp_rt_bossraid', 0, true),)
-		,
-		'custom' => array('raidtrackerupdater021'),
-		
-	
-	),
-
-	'0.2.2' => array(
-	
-	// add a parameter to set hourly dkp to be assigned
-	'config_add' => array(
-		array('bbdkp_rt_hourdkp', 0.00, true),)	
-	
-	),
-
-	'0.2.3' => array(
-
-	// remove the skip empty raidnote setting
-	'config_remove' => array(
-		array('bbdkp_rt_skipempty'),
-		),	
-	
-	),
-
-	'0.2.4' => array(
-	// no db change, only a bugfix
-		'custom' => array('raidtrackerupdater'),
-	),
-
-	'0.2.5' => array(
-	// no db change, only a bugfix
-		'custom' => array('raidtrackerupdater'),
-	),
-	
-	'0.2.6' => array(
-	// no db change, only a bugfix
-		'custom' => array('raidtrackerupdater'),
-	),
-	
-	'0.2.7' => array(
-	// no db change, only a bugfix
-		'custom' => array('raidtrackerupdater'),
-	),
-	
-	'0.2.8' => array(
-	// no db change, only a bugfix
-		'custom' => array('raidtrackerupdater'),
-	),
-	
 	
 );
 
@@ -415,59 +357,11 @@ function raidtrackerupdater($action, $version)
         				'name'  => 'RaidTracker', 
         				'value'  => '1', 
         				'version'  => $version, 								
-        				'orginal_copyright'  => 'sz3', 				
+        				'orginal_copyright'  => 'ippeh', 				
         				'bbdkp_copyright'  => 'bbDKP Team', 
                     ),
             ));		
 
-    
-		    // If there are tables from the old roster module then delete them
-		    if ($umil->table_exists($bbdkp_table_prefix . 'ctrt_config'))
-		    {
-		        // drop it
-		        $umil->table_remove($bbdkp_table_prefix . 'ctrt_config');
-		    }
-			
-			if ($umil->table_exists($bbdkp_table_prefix . 'ctrt_aliases'))
-		    {
-		        // drop it
-		        $umil->table_remove($bbdkp_table_prefix . 'ctrt_aliases');
-		    }
-		    
-			if ($umil->table_exists($bbdkp_table_prefix . 'ctrt_event_triggers'))
-		    {
-		        // drop it
-		        $umil->table_remove($bbdkp_table_prefix . 'ctrt_event_triggers');
-		    }
-			
-		    if ($umil->table_exists($bbdkp_table_prefix . 'ctrt_raid_note_triggers'))
-		    {
-		        // drop it
-		        $umil->table_remove($bbdkp_table_prefix . 'ctrt_raid_note_triggers');
-		    }		
-
-		    if ($umil->table_exists($bbdkp_table_prefix . 'ctrt_own_raids'))
-		    {
-		        // drop it
-		        $umil->table_remove($bbdkp_table_prefix . 'ctrt_own_raids');
-		    }		
-		    
-		    if ($umil->table_exists($bbdkp_table_prefix . 'ctrt_add_items'))
-		    {
-		        // drop it
-		        $umil->table_remove($bbdkp_table_prefix . 'ctrt_add_items');
-		    }	
-
-		    if ($umil->table_exists($bbdkp_table_prefix . 'ctrt_ignore_items'))
-		    {
-		        // drop it
-		        $umil->table_remove($bbdkp_table_prefix . 'ctrt_ignore_items');
-		    }	
-		    
-		    // correcting race id for blood elves it's 10 not 9 		    
-		    $sql = "UPDATE  " . $bbdkp_table_prefix . "bb_language SET attribute_id = '10' where attribute='race' and attribute_id='9' ";
-		    $db->sql_query($sql);
-		    
        		return array('command' => 'RAIDTRACKER_INSTALL_MOD', 'result' => 'SUCCESS');
 			break; 
 			
@@ -479,65 +373,6 @@ function raidtrackerupdater($action, $version)
 	
 	}
 }
-	
-
-function raidtrackerupdater021($action, $version)
-{
-	global $db, $table_prefix, $umil, $bbdkp_table_prefix, $phpbb_root_path, $phpEx;
-	switch ($action)
-	{
-		case 'install' :
-		case 'update' :
-
-            // correcting memberlist , guild, ranks table
-            $sql = 'select id from ' . $bbdkp_table_prefix . "memberguild where id > 1 and (name = '' or name is null)  "; 
-            $result = $db->sql_query($sql);
-            if($result)
-            {
-            	while ( $row = $db->sql_fetchrow($result) )
-            	{
-	            	$id = (int) $row['id']; 
-					$sql = ' update ' . $bbdkp_table_prefix . 'memberlist set member_guild_id = 0, member_rank_id=99 where member_guild_id = ' . $id; 
-					$db->sql_query($sql);
-					$sql = ' delete from ' . $bbdkp_table_prefix . 'member_ranks where guild_id = ' . $id; 
-					$db->sql_query($sql);
-					$sql = ' delete from ' . $bbdkp_table_prefix . 'memberguild where id = ' . $id; 
-					$db->sql_query($sql);
-            		
-            	}
-				
-            }
-			$db->sql_freeresult ( $result);
-			
-            $umil->table_row_remove($bbdkp_table_prefix . 'plugins',
-                array('name'  => 'RaidTracker')
-            );
-                        
-            $umil->table_row_insert($bbdkp_table_prefix . 'plugins', 	
-		    array(
-                array(
-        				'name'  => 'RaidTracker', 
-        				'value'  => '1', 
-        				'version'  => '0.2.7', 								
-        				'orginal_copyright'  => 'sz3', 				
-        				'bbdkp_copyright'  => 'bbDKP Team', 
-                    ),
-            ));            
-
-       		return array('command' => 'RAIDTRACKER_INSTALL_MOD', 'result' => 'SUCCESS');
-			break; 
-			
-		case 'uninstall' :
-			// Run this when uninstalling
-
-			return array('command' => 'RAIDTRACKER_UNINSTALL_MOD', 'result' => 'SUCCESS');
-			break;
-	
-	}
-
-	
-}
-
 
     		
 

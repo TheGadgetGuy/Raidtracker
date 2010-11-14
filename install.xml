@@ -6,13 +6,14 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.8]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.3.0]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
 		<description lang="fr"><![CDATA[Installateur pour bbDKP Raidtracker]]></description>
 		<description lang="de"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
-		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.1.2. we hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
-		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.1.2.]]></author-notes>
-		<author-notes lang="fr"><![CDATA[Ce mod a comme prérequis bbDKP 1.1.2]]></author-notes>
+		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.x 
+		We hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
+		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.2.x]]></author-notes>
+		<author-notes lang="fr"><![CDATA[Ce mod a comme prérequis bbDKP 1.2.x]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Sajaki]]></realname>
@@ -34,7 +35,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.2.8</mod-version>
+		<mod-version>0.3.0</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -198,11 +199,19 @@
 					<change><![CDATA[[UPD] now supports the new addon MRT ]]></change>
 				</changelog>
 			</entry>
+			<entry>
+				<date>2010-12-07</date>
+				<rev-version>0.3.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[CHANGE] Table prefix is now default phpbb_]]></change>
+					<change><![CDATA[[CHANGE] Minimum bbDKP requirement is 1.2.0 ]]></change>
+				</changelog>
+			</entry>
 		</history>
 		<link-group>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.1.2</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.1.2</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.1.2</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.0</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.0</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.0</link>
 			<link type="language" href="contrib/fr.xml" lang="en">French</link>
 			<link type="language" href="contrib/fr.xml" lang="fr">Français</link>
 			<link type="language" href="contrib/fr.xml" lang="de">Franzözisch</link>
@@ -236,18 +245,18 @@
 				<comment lang="de"><![CDATA[adding required constants to bbdkp constants]]></comment>
 				<find><![CDATA[// RAIDTRACKER]]></find>
 				<action type="after-add"><![CDATA[ 
-define('RT_TEMP_RAIDINFO', $bbdkp_table_prefixx . 'rt_temp_raidinfo');
-define('RT_TEMP_PLAYERINFO', $bbdkp_table_prefixx . 'rt_temp_playerinfo');
-define('RT_TEMP_JOININFO', $bbdkp_table_prefixx . 'rt_temp_joininfo');
-define('RT_TEMP_BOSSKILLS', $bbdkp_table_prefixx . 'rt_temp_bosskills');
-define('RT_TEMP_ATTENDEES', $bbdkp_table_prefixx . 'rt_temp_attendees');
-define('RT_TEMP_LOOT', $bbdkp_table_prefixx . 'rt_temp_loot');
-define('RT_ALIASES_TABLE', $bbdkp_table_prefixx . 'rt_aliases'); 	 
-define('RT_EVENT_TRIGGERS_TABLE', $bbdkp_table_prefixx . 'rt_eventtriggers'); 	 
-define('RT_RAID_NOTE_TRIGGERS_TABLE', $bbdkp_table_prefixx . 'rt_raidnote_triggers'); 	 
-define('RT_OWN_RAIDS_TABLE', $bbdkp_table_prefixx . 'rt_ownraids'); 	 
-define('RT_ADD_ITEMS_TABLE', $bbdkp_table_prefixx . 'rt_additems'); 	 
-define('RT_IGNORE_ITEMS_TABLE', $bbdkp_table_prefixx . 'rt_ignoreitems'); 
+define('RT_TEMP_RAIDINFO', $table_prefix . 'rt_temp_raidinfo');
+define('RT_TEMP_PLAYERINFO', $table_prefix . 'rt_temp_playerinfo');
+define('RT_TEMP_JOININFO', $table_prefix . 'rt_temp_joininfo');
+define('RT_TEMP_BOSSKILLS', $table_prefix . 'rt_temp_bosskills');
+define('RT_TEMP_ATTENDEES', $table_prefix . 'rt_temp_attendees');
+define('RT_TEMP_LOOT', $table_prefix . 'rt_temp_loot');
+define('RT_ALIASES_TABLE', $table_prefix . 'rt_aliases'); 	 
+define('RT_EVENT_TRIGGERS_TABLE', $table_prefix . 'rt_eventtriggers'); 	 
+define('RT_RAID_NOTE_TRIGGERS_TABLE', $table_prefix . 'rt_raidnote_triggers'); 	 
+define('RT_OWN_RAIDS_TABLE', $table_prefix . 'rt_ownraids'); 	 
+define('RT_ADD_ITEMS_TABLE', $table_prefix . 'rt_additems'); 	 
+define('RT_IGNORE_ITEMS_TABLE', $table_prefix . 'rt_ignoreitems'); 
 define('RT_IQ_POOR',          0); 	 
 define('RT_IQ_COMMON',        1); 	 
 define('RT_IQ_UNCOMMON',      2); 	 
