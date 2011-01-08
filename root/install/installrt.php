@@ -98,7 +98,7 @@ $versions = array(
 	'config_add' => array(
 		array('bbdkp_rt_minitemquality', 'RT_IQ_RARE', true),
 		array('bbdkp_rt_ignoredlooter', '', true),
-		array('bbdkp_rt_aldkpchkbox', 1),
+		array('bbdkp_rt_aldkpchkbox', 1, true),
 		array('bbdkp_rt_lootnoteeventtrigger', 0),
 		array('bbdkp_rt_attendancefilter', 1, true),
 		array('bbdkp_rt_defaultcost', 5.0, true),
