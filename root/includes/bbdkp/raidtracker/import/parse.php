@@ -1191,7 +1191,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		global $db, $config;
 		
 		$sql = 'SELECT MIN(item_value) as minval 
-            		FROM ' . ITEMS_TABLE . " 
+            		FROM ' . RAID_ITEMS_TABLE . " 
             		WHERE item_name = '" . $db->sql_escape ( $itemname ) . "'    ";
 		
 		$result = $db->sql_query ( $sql );

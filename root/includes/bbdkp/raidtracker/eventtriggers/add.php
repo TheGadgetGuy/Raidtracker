@@ -182,7 +182,6 @@ class Raidtracker_AddEventTrigger  extends acp_dkp_rt_settings
     function event_update()
     {
 		global $db, $user;
-        	
 				
         $data = array(
     		'event_trigger'   	=> utf8_normalize_nfc(request_var('event_trigger', ' ', true)), 

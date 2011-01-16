@@ -362,7 +362,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 							);
 					}
 				}
-				$db->sql_multi_insert(RAID_ATTENDEES_TABLE, $sql_attendee);
+				$db->sql_multi_insert(RAID_DETAIL_TABLE, $sql_attendee);
 				unset  ($sql_attendee);
 				
 				$log_action = array (
@@ -433,7 +433,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 				'member_name'    => trim($attendee));
 			}
 		}
-		$db->sql_multi_insert(RAID_ATTENDEES_TABLE, $sql_attendee);
+		$db->sql_multi_insert(RAID_DETAIL_TABLE, $sql_attendee);
 		unset  ($sql_attendee);
 		
 		// add loot and assign it to the global raid
@@ -530,7 +530,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 				$log_actions[$key]['L_ADDED_BY'] = $user->data['username'];
 
         	}
-        	$db->sql_multi_insert(ITEMS_TABLE, $items);
+        	$db->sql_multi_insert(RAID_ITEMS_TABLE, $items);
         	
         	// loop items and increase dkp spent value for buyer
         	$query = array();
