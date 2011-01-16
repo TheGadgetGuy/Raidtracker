@@ -97,17 +97,12 @@ $versions = array(
      // Lets add global config settings
 	'config_add' => array(
 		array('bbdkp_rt_minitemquality', 'RT_IQ_RARE', true),
-		array('bbdkp_rt_ignoredlooter', '', true),
-		array('bbdkp_rt_aldkpchkbox', 1, true),
-		array('bbdkp_rt_lootnoteeventtrigger', 0),
-		array('bbdkp_rt_attendancefilter', 1, true),
-		array('bbdkp_rt_defaultcost', 5.0, true),
-		array('bbdkp_rt_startdkp', 10.0, true),
-		array('bbdkp_rt_createstartraid', 0, true),
-		array('bbdkp_rt_startraiddkp', 0.0, true),
 		array('bbdkp_rt_replacealtnames', 1, true),
+		array('bbdkp_rt_defaultcost', 5.0, true),
+		array('bbdkp_rt_attendancefilter', 1, true),
+		array('bbdkp_rt_ignoredlooter', '', true),
 		array('bbdkp_rt_bossraid', 0, true), 
-		array('bbdkp_rt_hourdkp', 0.00, true),
+		array('bbdkp_rt_lootnoteeventtrigger', 0),
 		),
             		
 	// raidtracker is now in the raids tree

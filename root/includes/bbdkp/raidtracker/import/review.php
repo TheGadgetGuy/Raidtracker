@@ -115,7 +115,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 				$decimalhour = $decimalhour + 1;
 			}
 						
-			$timebonus = (float) $decimalhour *  $config['bbdkp_rt_hourdkp']; 
+			$timebonus = (float) $decimalhour *  $config['bbdkp_dkphour']; 
 				        	        	
         	$allplayerinfo[] = array(
 			    'jointime' 	=> $row['jointime'],
@@ -410,7 +410,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
     	// global vars   	
         $template->assign_vars(array(
 	  	 	'U_LINK' 				=> append_sid("index.$phpEx", "i=dkp_rt_import&amp;"), 
-			'S_ADDLOOTDKPVALUES' 	=> (( $config['bbdkp_rt_aldkpchkbox']) ? true : false) , 
+			'S_ADDLOOTDKPVALUES' 	=> (( $config['bbdkp_zerosum']) ? true : false) , 
             'U_IMPORT' 				=> append_sid ( "index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import&amp;r=" . $this->Raid['raidid']  ),
         	 // javascript
         	 'UA_FINDEVENT'		    => append_sid("findevent.$phpEx"),

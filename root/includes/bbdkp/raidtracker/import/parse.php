@@ -99,7 +99,6 @@ class Raidtracker_parse extends acp_dkp_rt_import
         }
         $db->sql_freeresult ( $result);
         
-        
         // get always added items 
         $sql = "SELECT * FROM " . RT_ADD_ITEMS_TABLE ; 
         $result = $db->sql_query($sql);

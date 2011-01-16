@@ -141,7 +141,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         }
         
         /* add dkp earned per hour */ 
-        if ( (float) $config['bbdkp_rt_hourdkp'] > 0 )
+        if ( (float) $config['bbdkp_dkphour'] > 0 )
         {
         	$this->add_time_dkp(); 
         }
@@ -274,7 +274,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 					$sql_ary = array(
 				    'member_dkpid'      => (int) $this->dkp,
 				    'member_id'     	=> $this_memberid,
-				    'member_adjustment' => floatval($config['bbdkp_rt_startdkp']),
+				    'member_adjustment' => floatval($config['bbdkp_starting_dkp']),
 					'member_status'     => 1,
 				    'member_firstraid'  => $this->raidbegin,
 					);
@@ -290,12 +290,12 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         	   $group_key = $acp_dkp_adj->gen_group_key(
         	   		$this->time, 
         	   		$user->lang['RT_STARTING_DKP'],  
-        	   		floatval($config['bbdkp_rt_startdkp']) );
+        	   		floatval($config['bbdkp_starting_dkp']) );
         	   $acp_dkp_adj->add_new_adjustment( 
         	   		(int) $this->dkp, 
         	   		$this_memberid, 
         	   		$group_key, 
-        	   		floatval($config['bbdkp_rt_startdkp']), 
+        	   		floatval($config['bbdkp_starting_dkp']), 
         	   		$user->lang['RT_STARTING_DKP'] );
             	unset($acp_dkp_adj);
             	 
@@ -543,7 +543,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 				  	 AND m.member_name  = '" . $db->sql_escape( $item['item_buyer'] ) . "' ";
 				
 				// if zero balance flag is set then return sql to update dkp
-				if ($config['bbdkp_rt_aldkpchkbox'] == 1 )
+				if ($config['bbdkp_zerosum'] == 1 )
 				{
 					$query[] = $this->_zero_balance($boss, $item['item_value'] );
 				}
