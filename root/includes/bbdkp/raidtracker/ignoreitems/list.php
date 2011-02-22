@@ -29,7 +29,7 @@ class Raidtracker_ListIgnoreItems extends acp_dkp_rt_settings
 	
     function Raidtracker_ListIgnoreItems()
     {
-		global $db, $user, $template, $phpEx;
+		global $phpbb_admin_path, $db, $user, $template, $phpEx;
 
         $sql =   "SELECT ignore_items_id, ignore_items_wow_id FROM " . RT_IGNORE_ITEMS_TABLE . ' ORDER BY ignore_items_wow_id ';
         $result = $db->sql_query($sql);
@@ -38,13 +38,13 @@ class Raidtracker_ListIgnoreItems extends acp_dkp_rt_settings
 			$template->assign_block_vars('row', array(
                 'ID'    	=> $row['ignore_items_id'],
                 'COL1' 		=> $row['ignore_items_wow_id'],
-				'U_ADD'		=> append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_ignore_items&amp;id=" . $row['ignore_items_id']),
+				'U_ADD'		=> append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_ignore_items&amp;id=" . $row['ignore_items_id']),
             ));
         }
         $db->sql_freeresult($result);
 
         $template->assign_vars(array(
-        	'F_CONFIG'			=> append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_ignore_items"), 
+        	'F_CONFIG'			=> append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_ignore_items"), 
         ));
     }
 

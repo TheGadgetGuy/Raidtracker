@@ -26,7 +26,7 @@ class Raidtracker_ExportIgnoreItem extends acp_dkp_rt_settings
 {
     function Raidtracker_ExportIgnoreItem()
     {
-        global $db, $user, $template, $phpEx;
+        global $phpbb_admin_path, $db, $user, $template, $phpEx;
         $parser = new CTRT_XML();
 	
 		$sql =   "SELECT ignore_items_id, ignore_items_wow_id FROM " . RT_IGNORE_ITEMS_TABLE . ' ORDER BY ignore_items_wow_id ';
@@ -43,7 +43,7 @@ class Raidtracker_ExportIgnoreItem extends acp_dkp_rt_settings
 				'IgnoreItems'	=>	array( 'IgnoreItem'	=>	$temp)));
 		
         $template->assign_vars(array(
-			'U_LINK' 		=> append_sid("index.$phpEx", "i=dkp_rt_settings&amp;"),
+			'U_LINK' 		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;"),
             'EXPORT'        => htmlentities($exportXML),
         ));
 

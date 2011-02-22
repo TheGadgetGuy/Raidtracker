@@ -36,11 +36,11 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	
     function Raidtracker_Addraid($action)
     {
-    	global $config, $user, $phpEx, $phpbb_root_path;
+    	global $phpbb_admin_path, $config, $user, $phpEx, $phpbb_root_path;
  		$user->add_lang ( array ('mods/dkp_admin' ) );
     	
     	$this->Raidtrackerlink = '<br /><a href="'. 
-    		append_sid ( "index.$phpEx", "i=dkp_rt_import" ) . '"><h3>Return to Index</h3></a>';
+    		append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import" ) . '"><h3>Return to Index</h3></a>';
     		
 		$boardtime = getdate(time() + $user->timezone + $user->dst - date('Z'));
     	$this->time = $boardtime[0]; 

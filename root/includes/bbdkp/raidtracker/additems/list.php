@@ -29,7 +29,7 @@ class Raidtracker_ListAddItems extends acp_dkp_rt_settings
 	
     function Raidtracker_ListAddItems()
     {
-		global $db, $user, $template, $phpEx;
+		global $db, $phpbb_admin_path, $user, $template, $phpEx;
 
         $sql =   "SELECT add_items_id, add_items_wow_id FROM " . RT_ADD_ITEMS_TABLE . ' ORDER BY add_items_wow_id ';
         $result = $db->sql_query($sql);
@@ -38,13 +38,13 @@ class Raidtracker_ListAddItems extends acp_dkp_rt_settings
 			$template->assign_block_vars('row', array(
                 'ID'    	=> $row['add_items_id'],
                 'COL1' 		=> $row['add_items_wow_id'],
-				'U_ADD'		=> append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_items&amp;id=" . $row['add_items_id']),
+				'U_ADD'		=> append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_items&amp;id=" . $row['add_items_id']),
             ));
         }
         $db->sql_freeresult($result);
 
         $template->assign_vars(array(
-        	'F_CONFIG'			=> append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_items"), 
+        	'F_CONFIG'			=> append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_items"), 
         ));
     }
 

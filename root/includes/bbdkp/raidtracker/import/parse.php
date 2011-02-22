@@ -37,7 +37,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
     
     function Raidtracker_parse($action)
     {
-    	global $db, $user, $template, $phpEx;
+    	global $db, $user, $template, $phpbb_admin_path, $phpEx;
     	$this->Raidtrackerlink = '<br /><a href="'. $action . '"><h3>Return to Index</h3></a>';
 
 		/*
@@ -151,8 +151,8 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				'DESCRIPTION'  	=> $row['zone'],
 				'START'       	=> date("r", $row['starttime']),
 				'END'  		  	=> date("r", $row['endtime']),
-				'U_VIEW_IMPORT' => append_sid("index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import&amp;r={$row['raidid']}")  ,
-				'U_DELETE' 		=> append_sid("index.$phpEx", "i=dkp_rt_import&amp;mode=rt_delete&amp;r={$row['raidid']}")  ,  
+				'U_VIEW_IMPORT' => append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import&amp;r={$row['raidid']}")  ,
+				'U_DELETE' 		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_delete&amp;r={$row['raidid']}")  ,  
 				)
 			); 
 
@@ -1091,7 +1091,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		// normally 1 loop will suffice
 		while ( $row = $db->sql_fetchrow ( $result ) ) 
 		{
-			$value = $row ['attribute_id'];
+			$value = $row['attribute_id'];
 			$max_value ++;
 		}
 		
@@ -1197,13 +1197,13 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		$result = $db->sql_query ( $sql );
 		$row = $db->sql_fetchrow ( $result );
 		
-		if (! is_numeric ( $row ['minval'] )) 
+		if (! is_numeric ( $row['minval'] )) 
 		{
 			$dkpval= (float) $config['bbdkp_rt_defaultcost'];
 		} 
 		else 
 		{
-			$dkpval= (float) $row ['minval'];
+			$dkpval= (float) $row['minval'];
 		}
 		
 		$db->sql_freeresult ( $result);

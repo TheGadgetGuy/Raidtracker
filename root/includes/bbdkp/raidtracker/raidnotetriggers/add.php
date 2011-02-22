@@ -30,8 +30,8 @@ class Raidtracker_AddRaidNoteTrigger extends acp_dkp_rt_settings
 
     function Raidtracker_AddRaidNoteTrigger()
     {
-    	global $db, $user, $template, $phpEx;
-		$this->Raidtrackerlink = '<br /><a href="'. append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;" ) . '"><h3>Return to Index</h3></a>';
+    	global $db, $phpbb_admin_path, $user, $template, $phpEx;
+		$this->Raidtrackerlink = '<br /><a href="'. append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;" ) . '"><h3>Return to Index</h3></a>';
 		
         if(isset ($_GET['id']))
         {
@@ -87,8 +87,8 @@ class Raidtracker_AddRaidNoteTrigger extends acp_dkp_rt_settings
         
         
         $template->assign_vars(array(
-        	'F_CONFIG' 		=> append_sid("index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_raid_note_triggers&amp;"),
-			'U_LINK' 		=> append_sid("index.$phpEx", "i=dkp_rt_settings&amp;"),
+        	'F_CONFIG' 		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_raid_note_triggers&amp;"),
+			'U_LINK' 		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;"),
             'S_ADD'     => ( !empty($this->id) ) ? false : true,
         ));
         

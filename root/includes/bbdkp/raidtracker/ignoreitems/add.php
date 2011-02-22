@@ -27,9 +27,9 @@ class Raidtracker_AddIgnoreItem extends acp_dkp_rt_settings
     var $Raidtrackerlink; 
     function Raidtracker_AddIgnoreItem()
     {
-        global $db, $user, $template, $phpEx;
+        global $phpbb_admin_path, $db, $user, $template, $phpEx;
 
-        $this->Raidtrackerlink = '<br /><a href="'. append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;" ) . '"><h3>Return to Index</h3></a>';
+        $this->Raidtrackerlink = '<br /><a href="'. append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;" ) . '"><h3>Return to Index</h3></a>';
         if(isset ($_GET['id']))
         {
         	$this->id = request_var('id', 0);	
@@ -50,7 +50,7 @@ class Raidtracker_AddIgnoreItem extends acp_dkp_rt_settings
 
         
         $template->assign_vars(array(
-			'U_LINK' => append_sid("index.$phpEx", "i=dkp_rt_settings&amp;"),
+			'U_LINK' => append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;"),
             'IGNORE_ITEMS_WOW_ID'  => $ignore_items_wow_id, 
             'S_ADD'     => isset($this->id) ? false : true,
         ));

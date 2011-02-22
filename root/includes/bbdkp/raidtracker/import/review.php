@@ -50,7 +50,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
     	}
     	
     	$this->Raidtrackerlink = '<br /><a href="'. 
-    		append_sid ( "index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import" ) . '"><h3>Return to Index</h3></a>';
+    		append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import" ) . '"><h3>Return to Index</h3></a>';
 
  		$batchid = ''; 
         // get raidinfo 
@@ -409,9 +409,9 @@ class Raidtracker_Review extends acp_dkp_rt_import
     	
     	// global vars   	
         $template->assign_vars(array(
-	  	 	'U_LINK' 				=> append_sid("index.$phpEx", "i=dkp_rt_import&amp;"), 
+	  	 	'U_LINK' 				=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;"), 
 			'S_ADDLOOTDKPVALUES' 	=> (( $config['bbdkp_zerosum']) ? true : false) , 
-            'U_IMPORT' 				=> append_sid ( "index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import&amp;r=" . $this->Raid['raidid']  ),
+            'U_IMPORT' 				=> append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import&amp;r=" . $this->Raid['raidid']  ),
         	 // javascript
         	 'UA_FINDEVENT'		    => append_sid("findevent.$phpEx"),
 	  	 ));   

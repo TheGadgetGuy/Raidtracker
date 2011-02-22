@@ -29,8 +29,8 @@ class Raidtracker_ImportAddItem extends acp_dkp_rt_settings
 
     function Raidtracker_ImportAddItem()
     {
-    	global $phpEx; 
-        $this->Raidtrackerlink = '<br /><a href="'. append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_list_items" ) . '"><h3>Return to Index</h3></a>';
+    	global $phpbb_admin_path, $phpEx; 
+        $this->Raidtrackerlink = '<br /><a href="'. append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_list_items" ) . '"><h3>Return to Index</h3></a>';
     }
 
     /**

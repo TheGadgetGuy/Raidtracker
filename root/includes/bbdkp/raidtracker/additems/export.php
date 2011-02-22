@@ -26,7 +26,7 @@ class Raidtracker_ExportAddItem extends acp_dkp_rt_settings
 {
     function Raidtracker_ExportAddItem()
     {
-        global $db, $user, $template, $phpEx;
+        global $db, $user, $template, $phpbb_admin_path, $phpEx;
         $parser = new CTRT_XML();
 	
 		$sql =   "SELECT add_items_id, add_items_wow_id FROM " . RT_ADD_ITEMS_TABLE . ' ORDER BY add_items_wow_id ';
@@ -43,7 +43,7 @@ class Raidtracker_ExportAddItem extends acp_dkp_rt_settings
         $template->assign_vars(array(
         	// Form values
             'EXPORT'        => htmlentities($exportXML),
-			'U_LINK' 		=> append_sid("index.$phpEx", "i=dkp_rt_settings&amp;"),
+			'U_LINK' 		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;"),
         ));
 
     }

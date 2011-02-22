@@ -29,7 +29,7 @@ class Raidtracker_ListAliases extends acp_dkp_rt_settings
 
     function Raidtracker_ListAliases()
     {
-        global $db, $user, $template, $phpEx;
+        global $db, $phpbb_admin_path, $user, $template, $phpEx;
 
         $sql =   "SELECT a.alias_id, a.alias_name, b.member_name FROM " . RT_ALIASES_TABLE . ' a , '
          . MEMBER_LIST_TABLE . ' b  where b.member_id = a.alias_member_id  ORDER BY a.alias_id ';
@@ -41,13 +41,13 @@ class Raidtracker_ListAliases extends acp_dkp_rt_settings
                 'ID'    => $row['alias_id'],
         	    'NAME'  => $row['member_name'],
                 'ALIAS' => $row['alias_name'],
-                'U_ADD_ALIAS'  => append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_alias&amp;id=" . $row['alias_id']),
+                'U_ADD_ALIAS'  => append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_alias&amp;id=" . $row['alias_id']),
             ));
         }
 
         $template->assign_vars(array(
-            'F_CONFIG' => append_sid( "index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_alias"), 
-			'U_LINK'   => append_sid("index.$phpEx", "i=dkp_rt_settings&amp;"),
+            'F_CONFIG' => append_sid( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_alias"), 
+			'U_LINK'   => append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;"),
 
 
         ));
