@@ -6,11 +6,11 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.3.0]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.9]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
 		<description lang="fr"><![CDATA[Installateur pour bbDKP Raidtracker]]></description>
 		<description lang="de"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
-		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.x 
+		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.x
 		We hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
 		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.2.x]]></author-notes>
 		<author-notes lang="fr"><![CDATA[Ce mod a comme prérequis bbDKP 1.2.x]]></author-notes>
@@ -18,28 +18,27 @@
 			<author>
 				<realname><![CDATA[Sajaki]]></realname>
 				<username><![CDATA[Sajaki]]></username>
-				<homepage><![CDATA[http://www.bbdkp.com]]></homepage>
+				<homepage><![CDATA[http://www.betenoire-guild.co.uk/betenoire]]></homepage>
 				<email><![CDATA[sajaki9@gmail.com]]></email>
 				<contributions-group>
-					<contributions status="current" from="2009-01-01" position="Project leader"/>
-					<contributions status="past" from="2008-04-04" to="2009-01-01" position="Developer"/>
+					<contributions status="current" from="2009-01-01" position="Developer"/>
 				</contributions-group>
 			</author>
 			<author>
-				<realname><![CDATA[Malfate]]></realname>
-				<username><![CDATA[Medraut]]></username>
-				<homepage><![CDATA[http://www.bbdkp.com]]></homepage>
+				<realname><![CDATA[ippeh]]></realname>
+				<username><![CDATA[ippeh]]></username>
+				<homepage><![CDATA[http://www.explodinglabrats.com]]></homepage>
 				<email><![CDATA[cs.krushin@gmail.com]]></email>
 				<contributions-group>
-					<contributions status="past" from="2007-12-27" to="2009-01-01" position="Former Leader, bbDKP Supporter"/>
+					<contributions status="past" from="2007-01-01" to="2008-01-01" position="project founder"/>
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.3.0</mod-version>
+		<mod-version>0.2.9</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
-			<target-version>3.0.7-PL1</target-version>
+			<target-version>3.0.8</target-version>
 		</installation>
 		<history>
 			<entry>
@@ -200,8 +199,8 @@
 				</changelog>
 			</entry>
 			<entry>
-				<date>2010-12-07</date>
-				<rev-version>0.3.0</rev-version>
+				<date>2011-03-20</date>
+				<rev-version>0.2.9</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[CHANGE] Table prefix is now default phpbb_]]></change>
 					<change><![CDATA[[CHANGE] Minimum bbDKP requirement is 1.2.0 ]]></change>
