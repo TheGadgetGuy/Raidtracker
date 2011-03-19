@@ -26,18 +26,18 @@ if (!defined('IN_PHPBB'))
 class Raidtracker_Review extends acp_dkp_rt_import
 {
 	// raid
-    var $Raid; 
+    private $Raid; 
    
     // lists
-    var $dkplist;
-    var $eventlist; 
-    var $Raidtrackerlink; 
+    private $dkplist;
+    private $eventlist; 
+    private $Raidtrackerlink; 
     
 	/**
      * new instance of Importer 
      * 
      */
-    function Raidtracker_Review()
+    public function Raidtracker_Review()
     {
     	//global phpbb vars
     	global $config, $db, $user, $phpbb_root_path, $phpbb_admin_path, $phpEx;
@@ -55,8 +55,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
  		$batchid = ''; 
         // get raidinfo 
         
-		$sql = 'SELECT event_id, dkpsys_id, batchid, realm, 
-				starttime, endtime , zone, note, difficulty
+		$sql = 'SELECT event_id, dkpsys_id, batchid, realm, starttime, endtime , zone, note, difficulty
 			FROM ' . RT_TEMP_RAIDINFO . ' where raidid = ' . (int) $raidid; 
         $result = $db->sql_query($sql);
         while ( $row = $db->sql_fetchrow($result) )
@@ -86,9 +85,9 @@ class Raidtracker_Review extends acp_dkp_rt_import
         $acp_dkp_mm = new acp_dkp_mm;
         
 		$sql_array = array(
-		    'SELECT'    => 'p.playerid, p.playername, p.guild, p.race, p.sex, p.class, p.level, j.jointime, j.leavetime  ',
- 
-		    'FROM'      => array(
+		    'SELECT'    => 'p.playerid, p.playername, p.guild, p.race, p.sex, 
+		    				p.class, p.level, j.jointime, j.leavetime  ',
+ 		    'FROM'      => array(
 		        RT_TEMP_PLAYERINFO => 'p',
 		        RT_TEMP_JOININFO    => 'j'
 		    ),
@@ -103,26 +102,33 @@ class Raidtracker_Review extends acp_dkp_rt_import
         $result = $db->sql_query($sql);
         while ( $row = $db->sql_fetchrow($result) )
         {
-
         	//timebonus calc
         	$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($row['playername']));	
-
-        	$diff = $this->get_time_difference($row['jointime'], $row['leavetime']); 
-			$decimalhour = $diff['hours'] ;
-			$decimalminutes = $diff['minutes'] ; 
-        	if ($decimalminutes > 30)
+			$diff = $this->get_time_difference($row['jointime'], $row['leavetime']); 
+			
+			// express in minutes
+			$timediff= $diff['hours']*60 + $diff['minutes'];
+			
+			// convert to number of earned timeunits 
+			$timeunits =  intval ( $timediff / $config['bbdkp_timeunit']);
+			
+			//if we have a $config interval bigger than 0 minutes then calculate time bonus
+			$time_bonus = 0;
+			if(	(int) $config['bbdkp_timeunit'] > 0)
 			{
-				$decimalhour = $decimalhour + 1;
+				$time_bonus = round($config['bbdkp_dkptimeunit'] * $timeunits, 2) ;	
 			}
-						
-			$timebonus = (float) $decimalhour *  $config['bbdkp_dkphour']; 
+			
+			//get back counted time
+			$chours= intval(($timeunits* $config['bbdkp_timeunit'])/60);
+			$cmins= ($timeunits * $config['bbdkp_timeunit'])/60- floor (($timeunits * $config['bbdkp_timeunit'])/60);
 				        	        	
         	$allplayerinfo[] = array(
 			    'jointime' 	=> $row['jointime'],
 				'leavetime' => $row['leavetime'],
-				'raiddurationtime' => sprintf("%02d", $diff['hours']) .':' . sprintf("%02d", $diff['minutes']) ,
-        		'timebasis' => $decimalhour,
-				'timebonus' => $timebonus,
+				'raiddurationtime' => sprintf("%02d", $chours) .':' . sprintf("%02d", $cmins) ,
+        		'timebasis' => (round($config['bbdkp_dkptimeunit']/$config['bbdkp_timeunit'],2)),
+				'timebonus' => $time_bonus,
 			    'playerid'  => $row['playerid'],
         	 	'memberid'  => $this_memberid, // can be 0 or not
 			    'name' 		=> $row['playername'],
@@ -178,7 +184,6 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	  	 }
 	  	 
 	  	 $this->Raid['playersattending'] = $attendingplayers; 
-	  	
 		/*
 		 * loop bossarray
 		 */
@@ -400,12 +405,12 @@ class Raidtracker_Review extends acp_dkp_rt_import
      * displays a batch id
      * 
      */
-    function display_form()
+    private function display_form()
     {
 		// displays a batchid
 
     	
-    	global $template, $phpEx, $config; 
+    	global $template, $phpEx, $phpbb_admin_path, $config; 
     	
     	// global vars   	
         $template->assign_vars(array(
@@ -537,7 +542,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 
     }
     
-    
+
     /**
 	 * Function to calculate date or time difference.
 	 * used for dkp earned per hour calculation
@@ -546,7 +551,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	 * @param        timestamp   $end
 	 * @return       array or false
 	 */
-	function get_time_difference( $start, $end )
+	private function get_time_difference( $start, $end )
 	{
 	    if( $start!==-1 && $end!==-1 )
 	    {
@@ -559,7 +564,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	                $diff = $diff % 3600;
 	            if( $minutes=intval((floor($diff/60))) )
 	                $diff = $diff % 60;
-	            $diff    =    intval( $diff );     
+	            $diff = intval( $diff );     
 	                   
 	            return( array(
 	            	'days'    =>$days, 
@@ -581,6 +586,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	    }
 	    return( false );
 	}
+    
     
    
 }

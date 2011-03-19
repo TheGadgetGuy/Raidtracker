@@ -244,18 +244,18 @@
 				<comment lang="de"><![CDATA[adding required constants to bbdkp constants]]></comment>
 				<find><![CDATA[// RAIDTRACKER]]></find>
 				<action type="after-add"><![CDATA[ 
-define('RT_TEMP_RAIDINFO', $table_prefix . 'rt_temp_raidinfo');
-define('RT_TEMP_PLAYERINFO', $table_prefix . 'rt_temp_playerinfo');
-define('RT_TEMP_JOININFO', $table_prefix . 'rt_temp_joininfo');
-define('RT_TEMP_BOSSKILLS', $table_prefix . 'rt_temp_bosskills');
-define('RT_TEMP_ATTENDEES', $table_prefix . 'rt_temp_attendees');
-define('RT_TEMP_LOOT', $table_prefix . 'rt_temp_loot');
-define('RT_ALIASES_TABLE', $table_prefix . 'rt_aliases'); 	 
-define('RT_EVENT_TRIGGERS_TABLE', $table_prefix . 'rt_eventtriggers'); 	 
-define('RT_RAID_NOTE_TRIGGERS_TABLE', $table_prefix . 'rt_raidnote_triggers'); 	 
-define('RT_OWN_RAIDS_TABLE', $table_prefix . 'rt_ownraids'); 	 
-define('RT_ADD_ITEMS_TABLE', $table_prefix . 'rt_additems'); 	 
-define('RT_IGNORE_ITEMS_TABLE', $table_prefix . 'rt_ignoreitems'); 
+define('RT_TEMP_RAIDINFO', $table_prefix . 'bbdkp_rt_temp_raidinfo');
+define('RT_TEMP_PLAYERINFO', $table_prefix . 'bbdkp_rt_temp_playerinfo');
+define('RT_TEMP_JOININFO', $table_prefix . 'bbdkp_rt_temp_joininfo');
+define('RT_TEMP_BOSSKILLS', $table_prefix . 'bbdkp_rt_temp_bosskills');
+define('RT_TEMP_ATTENDEES', $table_prefix . 'bbdkp_rt_temp_attendees');
+define('RT_TEMP_LOOT', $table_prefix . 'bbdkp_rt_temp_loot');
+define('RT_ALIASES_TABLE', $table_prefix . 'bbdkp_rt_aliases'); 	 
+define('RT_EVENT_TRIGGERS_TABLE', $table_prefix . 'bbdkp_rt_eventtriggers'); 	 
+define('RT_RAID_NOTE_TRIGGERS_TABLE', $table_prefix . 'bbdkp_rt_raidnote_triggers'); 	 
+define('RT_OWN_RAIDS_TABLE', $table_prefix . 'bbdkp_rt_ownraids'); 	 
+define('RT_ADD_ITEMS_TABLE', $table_prefix . 'bbdkp_rt_additems'); 	 
+define('RT_IGNORE_ITEMS_TABLE', $table_prefix . 'bbdkp_rt_ignoreitems'); 
 define('RT_IQ_POOR',          0); 	 
 define('RT_IQ_COMMON',        1); 	 
 define('RT_IQ_UNCOMMON',      2); 	 

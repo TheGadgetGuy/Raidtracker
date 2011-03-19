@@ -64,7 +64,7 @@ $lang = array_merge($lang, array(
 
 // parse screen
 'RT_STEP1_PAGETITLE' => 'RaidTracker log Parse',
-'RT_STEP1_DESCRIPTION' => 'Set ML_Raidtracker (http://www.mlmods.net) export format to "MLDdkp 1.1 /EQdkp"(do /rt o in WoW to set settings).<br /> To export Raid, do /rt, then rightclick your Raid, choose "show Dkp string", and copy that into the area below. 
+'RT_STEP1_DESCRIPTION' => 'Set Raidtracker export format to "MLDdkp 1.1 /EQdkp"(do /rt o in WoW to set settings).<br /> To export Raid, do /rt, then rightclick your Raid, choose "show Dkp string", and copy that into the area below. 
 <br /> click "Parse Log" to import. Imported Raids can then be managed from the bbDKP Import tab. ',
 'RT_STEP1_INVALIDSTRING_TITLE' => 'Invalid DKP String',
 'RT_STEP1_INVALIDSTRING_MSG' => 'The DKP String is not valid.',
@@ -114,7 +114,7 @@ $lang = array_merge($lang, array(
 'RT_STEP2_DKPVALUETIP' => 'Add Item value/attendees (Zero DKP)',
 'RT_STEP2_INSERTRAIDS' => 'Insert Raid(s)',
 'RT_STEP2_TIMEBONUSCALCULATION' => 'Time Bonus calculation',
-'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'These bonuses are booked as adjustments.', 
+'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'Time bonuses are booked as Earned.', 
 'RT_STEP2_ID' => 'ID',
 'RT_STEP2_NAME' => 'Player',
 'RT_STEP2_JOINTIME' => 'Start',

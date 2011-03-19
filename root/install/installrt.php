@@ -51,7 +51,7 @@ $mod_name = 'Raidtracker 0.2.9';
 * You do not need to set this yourself, UMIL will handle setting and updating the version itself.
 */
 $version_config_name = 'bbdkp_raidtracker';
-
+$bbdkp_table_prefix= 'bbeqdkp_';
 /*
 * The language file which will be included when installing
 * Language entries that should exist in the language file for UMIL (replace $mod_name with the mod's name you set to $mod_name above)
@@ -65,7 +65,6 @@ $version_config_name = 'bbdkp_raidtracker';
 */
 $language_file = 'mods/dkp_raidtracker';
 
-$bbdkp_table_prefix = "bbeqdkp_"; 
 /*
 * Options to display to the user (this is purely optional, if you do not need the options you do not have to set up this variable at all)
 * Uses the acp_board style of outputting information, with some extras (such as the 'default' and 'select_user' options)
@@ -387,7 +386,7 @@ $versions = array(
 	),
 	
 	'0.2.9' => array(
-		'custom' => array('raidtrackerupdater'),   
+		'custom' => array('raidtrackerupdater', 'tablerename'),   
 	
 	     // remove config settings that were moved to core
 		'config_remove' => array(
