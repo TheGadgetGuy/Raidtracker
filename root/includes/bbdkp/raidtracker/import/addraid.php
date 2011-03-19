@@ -25,16 +25,15 @@ if (!defined('IN_PHPBB'))
 class Raidtracker_Addraid extends acp_dkp_rt_import
 {
 	//holds boardtime
-	var $time;
-	
-    var $id, $Raidtrackerlink; 
-	var $dkp, $batchid, $event, $eventname, $globalcomments, 
+	public  $time;
+    private $id, $Raidtrackerlink; 
+	private $dkp, $batchid, $event, $eventname, $globalcomments, 
 	    $allattendees, $raid_value, $raidbegin, $difficulty, $raidend, $timebonuses; 
-	var $bosses, $bossesdifficulty, $bosskilltime, $bossattendees, $bossloots; 
+	private $bosses, $bossesdifficulty, $bosskilltime, $bossattendees, $bossloots; 
 	/* holds status message */
-	var $message; 
+	private $message; 
 	
-    function Raidtracker_Addraid($action)
+    public function Raidtracker_Addraid($action)
     {
     	global $phpbb_admin_path, $config, $user, $phpEx, $phpbb_root_path;
  		$user->add_lang ( array ('mods/dkp_admin' ) );
@@ -53,7 +52,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		
 		$this->allattendees = utf8_normalize_nfc(request_var('allattendees', array( '' => '') , true)); 
 
-		$this->raid_value = request_var( 'dkpvalue',array( '' => 0.00));
+		$this->raid_value = request_var('dkpvalue',array( '' => 0.00));
 		$this->difficulty = request_var('difficulty', array( '' => 0));
 		$this->globalcomments = utf8_normalize_nfc(request_var('globalcomments', array( '' => '') , true)); 
 		
@@ -132,7 +131,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         {
         	case 0:
         		$this->raid_add_one();
-        		$this->dkppoints_add_one();
+        
         		break;
         	case 1:
 		        $this->raid_add();
@@ -154,7 +153,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         
     }
     
-    function handle_new_members() 
+    private function handle_new_members() 
     {
     	global $db, $user, $config, $phpbb_root_path, $phpEx;
         if ( !class_exists('acp_dkp_mm')) 
@@ -163,10 +162,10 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
             include ($phpbb_root_path . 'includes/acp/acp_dkp_mm.' . $phpEx); 
         }
         $acp_dkp_mm = new acp_dkp_mm;
-        
         $allplayerinfo = array();
         
-		$sql = 'select * from ' . RT_TEMP_PLAYERINFO . " where batchid = '" . $db->sql_escape($this->batchid) . "'" ;
+		$sql = 'select distinct playername, race, guild, sex, class, level, value 
+		from ' . RT_TEMP_PLAYERINFO . " where batchid = '" . $db->sql_escape($this->batchid) . "'" ;
 	    $result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
 		{
@@ -210,9 +209,9 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		            {
 		            	// insertnewguild($guild_name,$realm_name,$region, $showroster, $aionlegionid = 0, $aionserverid = 0) 
 			            $guild_id = (int) $acp_dkp_mm->insertnewguild(
-				            	$player['guild'],
-				            	$config['bbdkp_default_realm'],
-				            	$config['bbdkp_default_region'], 
+				            $player['guild'],
+				            $config['bbdkp_default_realm'],
+				            $config['bbdkp_default_region'], 
 				            	1);
 			            
 			            // ranks are just defaults, you will have to run armoryupdater to update correct ranks
@@ -312,7 +311,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
      * this creates one raid for each Boss kill
      * 
      */
-	function raid_add()
+	private function raid_add()
 	{
 		global $db, $user, $config, $phpEx, $phpbb_root_path ;
 		
@@ -322,8 +321,12 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
             include ($phpbb_root_path . 'includes/acp/acp_dkp_mm.' . $phpEx); 
         }
         $acp_dkp_mm = new acp_dkp_mm;
+		/*
+		 * start transaction
+		 */
+		$db->sql_transaction('begin');
 
-        // insert raid record
+		// insert raid record
         // 1 raid per boss
 		// put bossname in raid note with the comments
 		// add raid bonus
@@ -331,14 +334,17 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		{
 			foreach($this->bosses[$this->batchid] as $boss)
 			{
-				// add raid
+				
+				// Insert the raid
+				// raid id is auto-increment so it is increased automatically
+				//
 				$sql_raid = array(
-				'raid_dkpid'     => $this->dkp, 
-				'raid_name'      => $this->eventname[$this->batchid], 
-				'raid_date'      => $this->bosskilltime[$boss],     
-				'raid_note'      => $boss . ' : ' . $this->raid_value[$this->batchid]. ' ' . $this->globalcomments[$this->batchid]  ,
-				'raid_value'     => $this->raid_value[$this->batchid],
-				'raid_added_by'  => 'RaidTracker (by ' . $user->data ['username'] . ')' , );
+					'event_id'     	 => (int) $this->event,
+					'raid_start'     => $this->bosskilltime[$boss] - (3600/20),
+					'raid_end'       => $this->bosskilltime[$boss],     
+					'raid_note'      => $boss . ' : ' . $this->raid_value[$this->batchid]. ' ' . $this->globalcomments[$this->batchid]  ,
+					'raid_added_by'  => 'RaidTracker (by ' . $user->data ['username'] . ')' , 
+				);
 				
 				$sql = 'INSERT INTO ' . RAIDS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_raid);
 				$db->sql_query($sql);	
@@ -346,24 +352,54 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 				unset ($sql_raid);
 	
 				// add attendees
-				$attendees = explode(',' , $this->bossattendees[$this->batchid][$boss]);
+				$sql_attendees=array();
+				$attendees = array_unique(explode(',' , $this->bossattendees[$this->batchid][$boss]));
 				foreach($attendees as $attendee)
 				{
 					$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($attendee));	
-					
 					//only add the attendee if he is present !
 					// if the bossattendee array is bigger than playerinfo then we ignore the rest
 					if ($this_memberid != 0)
 					{
-						$sql_attendee[] = array(
-						'raid_id'     	 => (int) $raid_id, 
-						'member_id'      => (int) $this_memberid, 
-						'member_name'    => trim($attendee)
+						$sql_attendees[] = array(
+							'raid_id'     	 => (int) $raid_id, 
+							'member_id'      => (int) $this_memberid, 
+							'raid_value'   => (float) $this->raid_value[$this->batchid],
+				            'time_bonus'   => (float) $this->timebonuses[$this->batchid][trim($attendee)],
 							);
 					}
 				}
-				$db->sql_multi_insert(RAID_DETAIL_TABLE, $sql_attendee);
-				unset  ($sql_attendee);
+				$db->sql_multi_insert(RAID_DETAIL_TABLE, $sql_attendees);
+				unset  ($sql_attendees);
+			
+				foreach ($sql_attendees as $attendee)
+				{
+					// only update lastraid date if it is earlier than this raid's date
+					$sql = 'select member_lastraid from  ' . MEMBER_DKP_TABLE . ' where member_dkpid = ' . (int) $this->dkp . '
+						AND member_id = ' . (int) $this_memberid;
+					$result = $db->sql_query($sql);
+		           	$member_lastraid = (int) $db->sql_fetchfield('member_lastraid', false, $result);  
+		           	$db->sql_freeresult($result);
+		            
+		           	// add raid and time bonus 
+			        $sql  = 'UPDATE ' . MEMBER_DKP_TABLE . ' m
+		               SET m.member_raid_value = m.member_raid_value + ' .  $this->raid_value[$this->batchid] . ', 
+		               	   m.member_time_bonus = m.member_time_bonus + ' .  $attendee['time_bonus'] ;
+			           	        
+		               if ( $member_lastraid < $this->raidbegin )
+		               {
+		                  $sql .= 'm.member_lastraid = ' . $this->raidbegin . ', ';
+		               }
+		               
+		               $sql .= ' m.member_raidcount = m.member_raidcount + 1
+		               WHERE m.member_dkpid = ' . (int) $this->dkp . '
+		               AND m.member_id = ' . (int) $this_memberid;
+		               $db->sql_query($sql);
+				}
+
+				// add loot 
+				$this->_loot_add($raid_id, $boss);
+		
 				
 				$log_action = array (
 				'header' 		=> 'L_ACTION_RAID_ADDED', 
@@ -374,17 +410,16 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 				'L_VALUE' 		=> $this->raid_value[$this->batchid], 
 				'L_ADDED_BY' 	=> $user->data ['username'] );
 			
-				$this->log_insert ( array (
+				$this->log_insert (array (
 					'log_type' 		=> $log_action ['header'], 
-					'log_action' 	=> $log_action ) );
-				
-				
-				// add loot 
-				$this->_loot_add($raid_id, $boss);
+					'log_action' 	=> $log_action ));
 				
 			}
 			
 		}
+
+		// commit
+		$db->sql_transaction('commit');
 	}
     
     /**
@@ -393,7 +428,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
      * (as per user request)
      * 
      */
-	function raid_add_one()
+	private function raid_add_one()
 	{
 		global $db, $user, $config, $phpEx, $phpbb_root_path ;
 		
@@ -404,22 +439,22 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
         }
         $acp_dkp_mm = new acp_dkp_mm;
 
-		// add raid
+		// add global raid record
 		$sql_raid = array(
-		'raid_dkpid'     => $this->dkp, 
-		'raid_name'      => $this->eventname[$this->batchid], 
-		'raid_date'      => $this->raidend, 
-		'raid_note'      => $this->globalcomments[$this->batchid],
-		'raid_value'     => $this->raid_value[$this->batchid],
-		'raid_added_by'  => 'RaidTracker (by ' . $user->data ['username'] . ')' , );
+			'event_id'     	 => (int) $this->event, 
+			'raid_start'     => $this->raidbegin,
+			'raid_end'       => $this->raidend, 
+			'raid_note'      => $this->globalcomments[$this->batchid],
+			'raid_added_by'  => 'RaidTracker (by ' . $user->data ['username'] . ')' 
+		);
 		
 		$sql = 'INSERT INTO ' . RAIDS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_raid);
 		$db->sql_query($sql);	
 		$raid_id = $db->sql_nextid();
 		unset ($sql_raid);
 
-		// add all attendees
-		$attendees = explode(',' , $this->allattendees[$this->batchid]);
+		// add raid detail pro raider
+		$attendees = array_unique(explode(',' , $this->allattendees[$this->batchid]));
 		foreach($attendees as $attendee)
 		{
 			$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($attendee));				
@@ -427,17 +462,43 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			// if the bossattendee array is bigger than playerinfo then we ignore the rest
 			if ($this_memberid != 0)
 			{
-				$sql_attendee[] = array(
+				$sql_attendees[] = array(
 				'raid_id'     	 => (int) $raid_id, 
 				'member_id'      => (int) $this_memberid, 
-				'member_name'    => trim($attendee));
+				'raid_value'   => (float) $this->raid_value[$this->batchid],
+	            'time_bonus'   => (float) $this->timebonuses[$this->batchid][trim($attendee)],
+				);
 			}
+			
 		}
 		$db->sql_multi_insert(RAID_DETAIL_TABLE, $sql_attendee);
-		unset  ($sql_attendee);
+		
+		foreach ($sql_attendees as $attendee)
+		{
+			// only update lastraid date if it is earlier than this raid's date
+			$sql = 'select member_lastraid from  ' . MEMBER_DKP_TABLE . ' where member_dkpid = ' . (int) $this->dkp . '
+				AND member_id = ' . (int) $this_memberid;
+			$result = $db->sql_query($sql);
+           	$member_lastraid = (int) $db->sql_fetchfield('member_lastraid', false, $result);  
+           	$db->sql_freeresult($result);
+            
+           	// add raid and time bonus 
+	        $sql  = 'UPDATE ' . MEMBER_DKP_TABLE . ' m
+               SET m.member_raid_value = m.member_raid_value + ' .  $this->raid_value[$this->batchid] . ', 
+               	   m.member_time_bonus = m.member_time_bonus + ' .  $attendee['time_bonus'] ;
+	           	        
+               if ( $member_lastraid < $this->raidbegin )
+               {
+                  $sql .= 'm.member_lastraid = ' . $this->raidbegin . ', ';
+               }
+               
+               $sql .= ' m.member_raidcount = m.member_raidcount + 1
+               WHERE m.member_dkpid = ' . (int) $this->dkp . '
+               AND m.member_id = ' . (int) $this_memberid;
+               $db->sql_query($sql);
+		}
 		
 		// add loot and assign it to the global raid
-		
 		if(sizeof ($this->bosses) > 0)
 		{
 			foreach($this->bosses[$this->batchid] as $boss)
@@ -462,6 +523,9 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	}
 	
 	
+
+	
+	
     /*
      * inserts new loot in item table
      * increases spent amount per player
@@ -473,7 +537,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
      * @param $boss = boss name to treat
      * 
      */
-    function _loot_add($raidid, $boss)
+    private function _loot_add($raidid, $boss)
     {
     	global $db, $user, $config, $phpEx, $phpbb_root_path ;
     	
@@ -568,62 +632,13 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
     	
     }
 	
-	/**
-     * updates bonus earned points & raidcount & last raiddate
-     * for global raid 
-     */
-    function dkppoints_add_one()
-    {
-   		global $db, $user, $config, $phpEx, $phpbb_root_path ;
-   				
-		if ( !class_exists('acp_dkp_mm')) 
-        {
-            // we need this class for accessing member functions
-            include ($phpbb_root_path . 'includes/acp/acp_dkp_mm.' . $phpEx); 
-        }
-        $acp_dkp_mm = new acp_dkp_mm;
-        
-		// add raid bonus to all attendees that are also present in playerinfo tag 
-		$attendees = explode(',' , $this->allattendees[$this->batchid]);
-		foreach($attendees as $attendee)
-		{
-			$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($attendee));				
-			if ($this_memberid != 0)
-			{
-				// only update lastraid date if it is earlier than this raid's date
-				$sql = 'select member_lastraid from  ' . MEMBER_DKP_TABLE . ' where member_dkpid = ' . (int) $this->dkp . '
-					AND member_id = ' . (int) $this_memberid;
-				
-				$result = $db->sql_query($sql);
-	           	$member_lastraid = (int) $db->sql_fetchfield('member_lastraid', false, $result);  
-	           	$db->sql_freeresult($result);
-	            
-	           	// add raid bonus
-	           	
-		        $sql  = 'UPDATE ' . MEMBER_DKP_TABLE . ' m
-	               SET m.member_earned = m.member_earned + ' .  $this->raid_value[$this->batchid] . ', ';	        
-	               if ( $member_lastraid < $this->raidbegin )
-	               {
-	                  $sql .= 'm.member_lastraid = ' . $this->raidbegin . ', ';
-	               }
-	               
-	               $sql .= ' m.member_raidcount = m.member_raidcount + 1
-	               WHERE m.member_dkpid = ' . (int) $this->dkp . '
-	               AND m.member_id = ' . (int) $this_memberid;
-	               $db->sql_query($sql);
-	               
-			}
-		}
-		unset  ($attendees);
-    }
-
     
  	/**
      * updates bonus earned points raidcount & last raiddate
      * per bosskill & member !!
      * 
      */
-    function dkppoints_add_bosskill()
+    private function dkppoints_add_bosskill()
     {
    		global $db, $user, $config, $phpEx, $phpbb_root_path ;
    		
@@ -705,7 +720,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
      * returns the sql to update
      * 
      */
-    function _zero_balance($boss, $itemvalue )
+    private function _zero_balance($boss, $itemvalue )
     {
     	global $db;
     	
@@ -720,24 +735,11 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
     	return $sql; 
     }
     
-        
-    /*
-     * inserts new bosskills (to be added 1.2 with bosprogress 2)
-     *  so we will have 1 event -> 1 raid -> n bosses
-     *  
-     */
-    function raidkill_add()
-    {
-					    	
-    }
-    
-    
-    
     /**
      * function to add time raid points
      * 
      */
-    function add_time_dkp()
+    private function add_time_dkp()
     {
 		global $db, $user, $config, $phpEx, $phpbb_root_path ;
    				
