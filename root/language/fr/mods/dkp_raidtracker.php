@@ -175,10 +175,10 @@ $lang = array_merge($lang, array(
 'RT_DKPHOUR' => 'DKP par heure passée', 
 'RT_DKPHOUR_EXPLAIN' => 'assignera x DKP comme ajustement pour chaque heure présente dans Raid (arrondie, soit 1h45m devient 2h, 2h13m devient 2h)',
 
-'RT_BOSSRAID' => 'niveau de logging Raid ',
-'RT_BOSSRAID_EXPLAIN' => 'Enregistrer 1 Raid par Bosskill ou bien Raid Global par fichier XML', 
-'RT_BOSSRAID_YES' => 'Par Bosskill',
-'RT_BOSSRAID_NO' => '1 Raid global',
+'RT_NOGUILD' => 'Pas de Gilde ?',
+'RT_NOGUILD_EXPLAIN' => 'en absence d‘un tag XML-tag ou si le Raider est reellement sans guilde (pug)',
+'RT_NOGUILD_ADDCURRENT' => 'Ajouter à ta Guilde',
+'RT_NOGUILD_ADDNONE' => 'Ajouter comme sans Guilde',
 
 'VLOG_RT_CONFIG_UPDATED' => '%s a mis à jour le config RaidTracker.',
 'RT_ADMINMENU_CONFIG' => 'Configurer',

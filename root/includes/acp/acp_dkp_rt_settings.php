@@ -152,6 +152,7 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 					set_config  ( 'bbdkp_rt_ignoredlooter',  utf8_normalize_nfc(request_var('ignored_looter', ' ', true)), 0);  
 					set_config  ( 'bbdkp_rt_lootnoteeventtrigger',  (isset ( $_POST ['event_trigger'] )) ? 1 : 0 , 0);  
 					set_config  ( 'bbdkp_rt_attendancefilter',  request_var('attendance_filter', ''), 0);  
+					set_config  ( 'bbdkp_rt_noguild',  request_var('noguild', 0), 0);  
 					set_config  ( 'bbdkp_rt_defaultcost',  request_var('default_dkp', 0.00), 0);  
 					set_config  ( 'bbdkp_rt_replacealtnames', (isset ( $_POST ['replacealtnames'] )) ? 1 : 0 , 0);  
 					set_config  ( 'bbdkp_rt_bossraid',  request_var('bossraid', 0));
@@ -176,8 +177,8 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				'EVENT_TRIGGER'          => ((int) $config ['bbdkp_rt_lootnoteeventtrigger'] == 1) ? 'checked="checked"' : "", 
 				'DEFAULT_DKP'            => $config  ['bbdkp_rt_defaultcost'], 
 				'REPLACEALTS'            => ((int) $config ['bbdkp_rt_replacealtnames'] == 1) ? 'checked="checked"' : "", 
-				'BOSSRAID_YES_CHECKED' 	=> ( $config['bbdkp_rt_bossraid'] == '1' ) ? ' checked="checked"' : '',
-    			'BOSSRAID_NO_CHECKED'  	=> ( $config['bbdkp_rt_bossraid'] == '0' ) ? ' checked="checked"' : '', 
+				'NOGUILD_CURR_CHECKED' 	 => ( $config['bbdkp_rt_noguild'] == '1' ) ? ' checked="checked"' : '',
+    			'NOGUILD_NONE_CHECKED'   => ( $config['bbdkp_rt_noguild'] == '0' ) ? ' checked="checked"' : '', 
 				
 				// Form validation
 				'FV_DEFAULT_DKP' => $this->fv->generate_error ( 'default_dkp' ), 

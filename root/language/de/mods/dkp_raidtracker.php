@@ -177,10 +177,10 @@ $lang = array_merge($lang, array(
 'RT_DKPHOUR' => 'DKP pro Stunde', 
 'RT_DKPHOUR_EXPLAIN' => 'Für jede begonnene stunde wird x DKP vergeben.',
 
-'RT_BOSSRAID' => 'Logniveau der Schlachtgruppe',
-'RT_BOSSRAID_EXPLAIN' => '1 Raid pro Bosskill oder 1 Einzelner Raid', 
-'RT_BOSSRAID_YES' => 'Pro Bosskill',
-'RT_BOSSRAID_NO' => 'Einzelner Raid',
+'RT_NOGUILD' => 'Keine Gilde ?',
+'RT_NOGUILD_EXPLAIN' => 'wenn kein XML-tag besteht im XML oder wenn der Raider gildenlos ist',
+'RT_NOGUILD_ADDCURRENT' => 'Addiere zur StandardGilde',
+'RT_NOGUILD_ADDNONE' => 'Addier als gildenlos',
 
 'VLOG_RT_CONFIG_UPDATED' => '%s hat RaidTrackereinstellungen überarbeitet.',
 'RT_ADMINMENU_CONFIG' => 'Einstellung',

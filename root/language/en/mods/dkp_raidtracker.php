@@ -175,10 +175,10 @@ $lang = array_merge($lang, array(
 'RT_DKPHOUR' => 'DKP per hour passed', 
 'RT_DKPHOUR_EXPLAIN' => 'will assign x DKP as earned for each hour passed that member present in raid (we look at global attendance)',
 
-'RT_BOSSRAID' => 'Raid logging level',
-'RT_BOSSRAID_EXPLAIN' => 'One raid for each Bosskill or 1 Global raid', 
-'RT_BOSSRAID_YES' => 'Per Bosskill',
-'RT_BOSSRAID_NO' => 'One global raid',
+'RT_NOGUILD' => 'No-Guild handling',
+'RT_NOGUILD_EXPLAIN' => 'Handles the case if the Guildtag is not included in the XML or if the member is really guildless',
+'RT_NOGUILD_ADDCURRENT' => 'Add to current guild',
+'RT_NOGUILD_ADDNONE' => 'Add to Guildless',
 
 'VLOG_RT_CONFIG_UPDATED' => '%s updated RaidTracker config.',
 'RT_ADMINMENU_CONFIG' => 'Configure',

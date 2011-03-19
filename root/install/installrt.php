@@ -387,7 +387,12 @@ $versions = array(
 	
 	'0.2.9' => array(
 		'custom' => array('raidtrackerupdater', 'tablerename'),   
-	
+
+		'config_add' => array(
+			array('bbdkp_rt_noguild', '1', true),
+		),
+
+		
 	     // remove config settings that were moved to core
 		'config_remove' => array(
 			array('bbdkp_rt_aldkpchkbox'),

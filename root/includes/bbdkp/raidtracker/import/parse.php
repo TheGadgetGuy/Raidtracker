@@ -24,18 +24,18 @@ if (!defined('IN_PHPBB'))
  */
 class Raidtracker_parse extends acp_dkp_rt_import
 {
-    var $id;
-    var $Raidtrackerlink; 
-    var $dkpid; 
+    private $id;
+    private $Raidtrackerlink; 
+    private $dkpid; 
     
     // prefs - needed during parsing
-    var $alwaysaddeditems;
-    var $alwaysignoreitem;  
-    var $eventtrigger; 
-	var $raidnotetrigger; 
-	var $mainchar; 
+    private $alwaysaddeditems;
+    private $alwaysignoreitem;  
+    private $eventtrigger; 
+	private $raidnotetrigger; 
+	private $mainchar; 
     
-    function Raidtracker_parse($action)
+    public function Raidtracker_parse($action)
     {
     	global $db, $user, $template, $phpbb_admin_path, $phpEx;
     	$this->Raidtrackerlink = '<br /><a href="'. $action . '"><h3>Return to Index</h3></a>';
@@ -127,9 +127,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
      * displays the form
      * 
      */
-    function display_form()
+    private function display_form()
     {
-    	global $db, $user, $template, $phpEx, $config;
+    	global $db, $user, $template, $phpEx, $phpbb_admin_path, $config;
     	
 		/*
 		 * show the raids yet to import below
@@ -174,7 +174,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	 * 
 	 * @access public
 	 ************************/
-    function raid_parse()
+    public function raid_parse()
     {
         global $db, $user, $config;  
         global $phpbb_root_path, $phpbb_admin_path, $phpEx; 
@@ -921,7 +921,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	 * 
 	 * @access private 
 	 */
-	function _GetRaidNoteFromString($string) 
+	private function _GetRaidNoteFromString($string) 
 	{
 		global $config; 
 		
@@ -943,7 +943,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	 * @params (array) $raidzonearray 
 	 * @returns (array) $event
 	 */
-	function _GetRaidEventFromString($raidzonearray) 
+	private function _GetRaidEventFromString($raidzonearray) 
 	{
 		global $user; 
 		
@@ -973,7 +973,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	 * 
 	 * @access private
 	 */
-	function _GetMainCharName($playername)
+	private function _GetMainCharName($playername)
 	{
 		if (! empty ( $this->mainchar[$playername] )) 
 		{
@@ -992,7 +992,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	 * 
 	 * @access private
 	 */
-	function _in_string($needle, $haystack, $insensitive = false) 
+	private function _in_string($needle, $haystack, $insensitive = false) 
 	{
 		if ($insensitive) 
 		{
@@ -1008,7 +1008,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	 * form for HeadCount : <ItemID>50787</ItemID>
 	 * @access private
 	 */
-	function _GetMainItemId($itemid) 
+	private function _GetMainItemId($itemid) 
 	{
 		
 		if (strstr($itemid, ':') != false)
@@ -1030,7 +1030,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	/*
 	 * finds item quality string
 	 */
-	function _GetItemQualityByColor($color) 
+	private function _GetItemQualityByColor($color) 
 	{
 		$quality = - 1;
 		$color = strtolower ( $color );
@@ -1064,7 +1064,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	 * headcount and Ct_raidtracker pass racename, we need to find out raceid from DKP string
 	 * racename is always passed in english so we hardcode language to 'en' in sql
 	 */
-	function _GetRaceIdByRaceName($racename) 
+	private function _GetRaceIdByRaceName($racename) 
 	{
 		global $db;
 		
@@ -1114,7 +1114,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	 * (we only need the class id)
 	 * 
 	 */
-	function _Getclass($CT_RaidTrackerclassName) 
+	private function _Getclass($CT_RaidTrackerclassName) 
 	{
 		switch ($CT_RaidTrackerclassName) 
 		{
@@ -1159,7 +1159,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	/*
 	 * serializes an associative array and runs array_unique
 	 */
-	function serial_arrayUnique($myArray)
+	private function serial_arrayUnique($myArray)
 	{
 	    if(!is_array($myArray))
 	           return $myArray;
@@ -1186,7 +1186,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
      * 
      * 
      */
-	function _GetDkpValue($itemname, $itemid = 0) 
+	private function _GetDkpValue($itemname, $itemid = 0) 
 	{
 		global $db, $config;
 		
@@ -1216,7 +1216,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	/*
 	 * retrieves heroic level from tag
 	 */
-	function _GetDifficulty($tag)
+	private function _GetDifficulty($tag)
 	{
 		$tag = (string) $tag; 
 		
