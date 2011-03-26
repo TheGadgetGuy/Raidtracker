@@ -117,7 +117,6 @@ class Raidtracker_parse extends acp_dkp_rt_import
         }
         $db->sql_freeresult ( $result); 
         
-        
         $this->display_form(); 
 		
     }
@@ -136,7 +135,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		 */
 		$import_count = 0;
 		$listimport = false; 
-		$sql = 'SELECT raidid, zone, note, starttime, endtime FROM ' . RT_TEMP_RAIDINFO . ' ORDER BY raidid';
+		$sql = 'SELECT raidid, zone, note, starttime, endtime, imported FROM ' . RT_TEMP_RAIDINFO . ' ORDER BY raidid';
   		if ( ($import_result = $db->sql_query($sql)) )
 		{
 			$listimport = true; 
@@ -147,6 +146,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			$import_count++;
 			
 			$template->assign_block_vars('import_row', array(
+				'IMPORTED'		=> $row['imported'],
 				'ID'          	=> $row['raidid'],
 				'DESCRIPTION'  	=> $row['zone'],
 				'START'       	=> date("r", $row['starttime']),
@@ -261,15 +261,30 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		/**********************************************************
          * validate tags before processing
          **********************************************************/
-        // raid begin 
-        $start = (int) strtotime((string) $doc->start[0]); 
+    		//check realm      
+        if(isset($doc->realm))
+        {
+        	$realm = (string) $doc->realm[0]; 
+        }
+        else 
+        {
+        	$realm = 'n/a';  
+        }
+
+        // check start tag
+        if(isset($doc->start))
+        {
+        	$start = (int) is_numeric( (string) $doc->start[0]) ? (string) $doc->start[0] : strtotime((string) $doc->start[0]);
+        }
+        else 
+        {
+        	trigger_error($user->lang['RT_ERR_NOSTARTTAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+        }
         
-		/* check for duplicate raid import */
-        /* logs can't start 30 minutes before or after */
+		/*you can't parse a raid twice : check for an already parsed raid 30 minutes before or after this one */
         $sql = ' select count(*) as checktime from ' . RT_TEMP_RAIDINFO . ' ';
         $sql .= ' where (starttime < ' . strval($start + 1800) . ' ) and ( starttime  > ' . strval($start - 1800) . ' ) '; 
-        
-		$result =  $result = $db->sql_query($sql);
+        $result =  $result = $db->sql_query($sql);
 		$checkexists = (int) $db->sql_fetchfield('checktime');
 		$db->sql_freeresult ( $result);
 		if ($checkexists != 0)
@@ -277,72 +292,107 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			trigger_error($user->lang['RT_ERR_DUPLICATE'] . $this->Raidtrackerlink , E_USER_WARNING); 
 		}
 		
-
         //raid end
-        $end = (int) strtotime((string) $doc->end[0]); 
+        if(isset($doc->end))
+        {
+        	$end = (int) is_numeric( (string) $doc->end[0]) ? (string) $doc->end[0] : strtotime((string) $doc->end[0]);
+        }
+        else 
+        {
+        	trigger_error($user->lang['RT_ERR_NOENDTAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+        }
+        
         //check if there is a bosskill tag
-		$Bosskills =  (array) $doc->BossKills[0]; 
-        if (sizeof($Bosskills) > 0)
-       	{
-       		foreach ($Bosskills as $key => $Bosskill)
-       		{
-       			$Bosskill = (array) $Bosskill;
-       			$bosskilltime[] =  strtotime((string) $Bosskill['time']);
-       		}
-      	    
-       		if ($end == 0)
-        	{
-	        	// assume end at last bosskill time
-        		$end = max($bosskilltime) + 10;
-        	}
-       	}
-
-
-		
-		/***
-		 * find Event
-		 */
+        $Bosskills=array();
+        if(isset($doc->BossKills))
+        {
+			$Bosskills =  (array) $doc->BossKills[0]; 
+	        if (sizeof($Bosskills) > 0)
+	       	{
+	       		foreach ($Bosskills as $key => $Bosskill)
+	       		{
+	       			$Bosskill = (array) $Bosskill;
+	       			$bosskilltime[] = (int) is_numeric( (string) $Bosskill['time']) ? (string) $Bosskill['time'] : strtotime((string) $Bosskill['time']); 
+	       		}
+	      	    
+	       		if ($end == 0)
+	        	{
+		        	// assume end at last bosskill time
+	        		$end = max($bosskilltime) + 10;
+	        	}
+	       	}
+        }
        	
-       	// look in loot notes and zones if there is loot
-    	
-       	// ct_raidtracker only. checking in raidnote
+        if(!isset($doc->zone))
+        {
+        	trigger_error($user->lang['RT_ERR_NOZONETAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+        }
+        
+        if(!isset($doc->PlayerInfos))
+        {
+        	trigger_error($user->lang['RT_ERR_NOPLAYERINFOSTAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+        }
+
+        if(!isset($doc->Join))
+        {
+        	trigger_error($user->lang['RT_ERR_NOJOINTAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+        }
+        
+        if(!isset($doc->Leave))
+        {
+        	trigger_error($user->lang['RT_ERR_NOLEAVETAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+        }
+        
+        /*** end base element validation ***/
+        
+        /*** Start processing ***/
+        $db->sql_transaction('begin');
+        
+       	// ct_raidtracker only. check in lootnotes for multiple zones
         $Raidzone = array(); 
-
-    	$Loots =  (array) $doc->Loot[0]; 
-       	if (sizeof($Loots) > 0)
-       	{
-       	   	foreach ($Loots as $key => $Loot)
-			{
-				// explicitly cast Simplexml object to array
-				$Loot = (array) $Loot; 
-				//get note
-				$Note =  $Loot ['Note'];
-				$Note = preg_split ( "/-/", (string) $Loot['Note'] );
-	        	$Note = preg_split ( "/Zone: /", (string) $Note[1] );
-				$Note = trim((string) $Note[1]);
-				
-	        	if (strlen(trim($Note)) > 0)
-	        	{
-	        		$Raidzone[] = $Note;	
-	        	}
-	        	else 
-	        	{
-	        		// look in loot zone tag 
-	        		$Note = trim((string) $Loot ['zone']);
-	        		
-	        		// add it to the zone array
-	        		$Raidzone[] = $Note; 
-	        	}
-			}
-       	}
-
+		
+        //if there is a loot tag
+        if(isset ($doc->Loot))
+        {
+            $Loots =  (array) $doc->Loot[0]; 
+	       	if (sizeof($Loots) > 0)
+	       	{
+	       	   	foreach ($Loots as $key => $Loot)
+				{
+					// explicitly cast Simplexml object to array
+					$Loot = (array) $Loot; 
+					// is there a note ?
+					if (isset($Loot ['Note']))
+					{
+						$Note =  $Loot ['Note'];
+						$Note = preg_split ( "/-/", (string) $Loot['Note'] );
+			        	$Note = preg_split ( "/Zone: /", (string) $Note[1] );
+						$Note = trim((string) $Note[1]);
+			        	if (strlen(trim($Note)) > 0)
+			        	{
+			        		$Raidzone[] = $Note;	
+			        	}
+					}
+		        	elseif (isset($Loot ['Zone']))
+		        	{
+		        		// look in loot zone tag 
+		        		$Note = trim((string) $Loot ['Zone']);
+		        		
+		        		// add it to the zone array
+		        		$Raidzone[] = $Note; 
+		        	}
+				}
+	       	}
+        }
+       	
+		// if no loot just look in the zone tag. 
         if (count($Raidzone) == 0)
         {
 	        $Note = (string) $doc->zone[0]; 
 	   		$Raidzone[] = $Note;
         }
     	
-		// make the array unique
+		// make the zone array unique
 		$Raidzone = array_unique($Raidzone); 
 		
 		// with this element, get the event using the triggers. 
@@ -350,7 +400,6 @@ class Raidtracker_parse extends acp_dkp_rt_import
 
 		// if the trigger is unsuccessful in getting an event then trigger error.
 		// 'unknown event' is not allowed anymore !
-		
         $globalevent = $this->_GetRaidEventFromString ($Raidzone );
         $globalraidnote = $Raidzone[0]; 
 		
@@ -364,16 +413,8 @@ class Raidtracker_parse extends acp_dkp_rt_import
         	//normal
         	$Raidlevel = 1; 
         }
-        
-        if(isset($doc->realm))
-        {
-        	$realm = (string) $doc->realm[0]; 
-        }
-        else 
-        {
-        	$realm = 'n/a';  
-        }
 
+        //generate a guid
         $batchid = unique_id();
         
         $data = array(
@@ -385,7 +426,8 @@ class Raidtracker_parse extends acp_dkp_rt_import
         	'event_id'		=> $globalevent['event_id'],
         	'dkpsys_id'		=> $globalevent['dkpsys_id'],
 		    'note'     		=> $globalraidnote,
-		    'difficulty'    => $Raidlevel,                                                      
+		    'difficulty'    => $Raidlevel,
+        	'imported'    	=> 0,                                                      
 		);
 		
 		$sql = 'INSERT INTO ' . RT_TEMP_RAIDINFO . ' ' . $db->sql_build_array('INSERT', $data);
@@ -395,7 +437,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 
 
 		/*
-		 * Playerinfo
+		 * process Playerinfo
 		 *
 		 */
 		$players =  (array) $doc->PlayerInfos;
@@ -407,8 +449,6 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			$Leaves = $Joins; 
 		}
 		
-       	$Wipes =  (array) $doc->Wipes[0]; 
-        
 		foreach ($players as $key => $player)
 		{
 			$player = (array) $player; 
@@ -433,7 +473,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			'race'		 => $this->_GetRaceIdByRaceName($player['race']), 
 		    'playername' => $dkpplayername ,
 		    'guild'   	 => (string) isset($player['guild']) ? $player['guild'] : '', 
-		    'sex'    	 => (int) ($player['sex'] == 2 ? 0 : 1) ,  // 2 is male, 3 is female
+		    'sex'    	 => (int) isset($player['sex']) ? ($player['sex'] == 2 ? 0 : 1) : 0,    // 2 is male, 3 is female
 		    'class'      => (int) $class[1],  
 			'level'      => (int) $player['level'],  
 			); 
@@ -461,11 +501,11 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			}			
 			
 			$rt_joinleave[] = array(
-			'batchid'   => $batchid ,
-			'raidid'    => $raid_id ,
-			'playerid'  => (int) $key ,
+			'batchid'   	=> $batchid ,
+			'raidid'    	=> $raid_id ,
+			'playerid'  	=> (int) $key ,
 			'playername'    => $dkpplayername ,
-		    'jointime'      => (int) strtotime((string) $join['time']) ,
+		    'jointime'      => (int) is_numeric($join['time']) ? $join['time'] : strtotime((string) $join['time']), 
 			'leavetime'     => '',
 			); 
 		}	
@@ -489,13 +529,12 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			
 			$rt_leave[] = array(
 			'playername'    => (string) $dkpplayername ,
-		    'leavetime'     => (int) strtotime((string) $leave['time']) ,
+			'leavetime'      => (int) is_numeric($leave['time']) ? $leave['time'] : strtotime((string) $leave['time']),
 			); 
 		}	
 		
 		// make leave array unique. no duplicate leave records are allowed.
 		$rt_leave = $this->serial_arrayUnique($rt_leave); 
-		
 		
 		// merge join-leave records, make one sequence
 		// note if there is one join record and two leave records then only the first pair will be recorded.
@@ -529,10 +568,121 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		
 		/*
 		 *
-		 *  Bosskills and wipes
+		 *  Bosskills 
 		 *
 		 */
+		$rt_attendees = array();
 		$rt_bosskill = array();
+		if (sizeof($Bosskills) > 0)
+		{
+			// there are bosskills
+			// go through the bosskills tags
+			foreach ($Bosskills as $key => $Bosskill)
+			{
+				$Bosskill = (array) $Bosskill; 
+				
+				// is there a boss difficulty tag ?
+		        if(isset($Bosskill['difficulty']))
+		        {
+		        	$Bosslevel = $this->_GetDifficulty( $Bosskill['difficulty'] ); 
+		        }
+		        else 
+		        {
+		        	//no
+		        	$Bosslevel = 1; 
+		        }
+		        
+				$rt_bosskill[] = array(
+				'batchid'    => $batchid ,
+				'bossname'   => (string) $Bosskill['name'] ,
+			    'time'       => (int) is_numeric($Bosskill['time']) ? $Bosskill['time'] : strtotime((string) $$Bosskill['time']),
+				'zone'		 => $globalevent['event_name'], 
+				'difficulty' => $Bosslevel ,
+				); 
+				
+				if (isset($Bosskill['attendees']))
+				{
+					if (count((array) $Bosskill['attendees']) > 0)
+					{
+						// we have attendee records 
+						$attendees = (array) $Bosskill['attendees']; 
+		
+						//loop the attendees, make a record
+						foreach ($attendees as $key => $Player )
+						{
+							$Player = (array) $Player; 
+							
+							// substitute altname with playername if pref is set
+							if ($config['bbdkp_rt_replacealtnames'] == 1)
+							{
+								$dkpplayername = $this->_GetMainCharName((string) $Player['name']);
+							}
+							else 
+							{
+								$dkpplayername = (string) $Player['name'];
+							}				
+							
+							$rt_attendees[] = array(
+								'batchid'     => $batchid ,
+								'bossname'    => (string) $Bosskill['name'] ,
+							  	'playername'  => $dkpplayername ,
+							); 
+					
+						}
+					}
+				}
+				else 
+				{
+					// if there is no attendees tag for this bosskill then add everyone 
+					// that was in raid at time of bosskill
+					// ->> some old Wow tracking mods (1.12) don't add the boss attendee tag
+					// loop playerjointable to check 
+					foreach($rt_joinleave as $key => $player)
+					{
+						$bosskilltime = (int) is_numeric($Bosskill['time']) ? $Bosskill['time'] : strtotime((string) $$Bosskill['time']);
+						$leavetime =  (int) $player['leavetime']; 
+						$jointime =  (int) $player['jointime'];
+						$leftafterkill = ($bosskilltime < $leavetime) ? true : false; 
+						$presentbeforekill = ($jointime < $bosskilltime) ? true : false;
+						
+						if ($presentbeforekill && $leftafterkill)
+						{
+							
+							$rt_attendees[] = array(
+								'batchid'     => $batchid ,
+								'bossname'    => (string) $Bosskill['name'] ,
+							  	'playername'  => $player['playername'] ,
+							); 
+						}
+					}
+					
+					// if nobody was present at the bosskill then just exit here. 
+					
+			       	//  there is still a possibility that we may find a bosskill time based on the loot time though ...
+			        if (sizeof($rt_attendees) == 0)
+			       	{
+			       		// delete raid 
+			       		$sql = 'DELETE FROM ' . RT_TEMP_RAIDINFO . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
+						$db->sql_query($sql);
+						$sql = 'DELETE FROM ' . RT_TEMP_PLAYERINFO . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
+						$db->sql_query($sql);
+						$sql = 'DELETE FROM ' . RT_TEMP_JOININFO . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
+						$db->sql_query($sql);
+						$sql = 'DELETE FROM ' . RT_TEMP_BOSSKILLS . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
+						$db->sql_query($sql);
+						$sql = 'DELETE FROM ' . RT_TEMP_ATTENDEES . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
+						$db->sql_query($sql);
+						$sql = 'DELETE FROM ' . RT_TEMP_LOOT . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
+						$db->sql_query($sql);
+						
+						// throw a critical error		       		
+			       		trigger_error( sprintf($user->lang['RT_ERR_NOONEPRESENTATKILL'], date("Y-m-d H:i:s", $bosskilltime ) ) . $this->Raidtrackerlink, E_USER_WARNING);	
+			       	}
+			    }
+			}
+			
+		}
+		
 		if (sizeof($Bosskills) == 0)
 		{
 			// no bosskills
@@ -576,17 +726,17 @@ class Raidtracker_parse extends acp_dkp_rt_import
 					//if the loot dropped from this boss 
 					if( $Loot['Boss'] == $Bosskill['bossname'])
 					{
-						//get droptime, add to bosskill array
-						$rt_bosskill[$key1]['time'] = (int) strtotime((string) $Loot['Time']); 
+						//get droptime, add to bosskill array 
+						// Time is spelled wit a capital oO !
+						$rt_bosskill[$key1]['time'] = (int) is_numeric($Loot['Time']) ? $Loot['Time'] : strtotime((string) $Loot['Time']);
 						// don't walk the loot any further, break the foreach
 						break 1; 
 					}
 					
 				}
-				
 			}
 			
-			// loop our bosskills from loot, add as attendee
+			// loop our bosskills again from loot, add as attendee
 			foreach ($rt_bosskill as $key1 => $Bosskill)
 			{
 				// loop playerjointable to check 
@@ -600,159 +750,50 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				}
 					
 			}
-			
-			
-			
-		
 		}
-		else 
+		
+		// log wipes if it is present in xml
+		// set difficultylevel to one
+		if (isset($doc->Wipes))
 		{
-			// there are bosskills
-			// go through the bosskills tags
-			foreach ($Bosskills as $key => $Bosskill)
+			$Wipes =  (array) $doc->Wipes[0]; 
+			$wipecount=0;
+			foreach ($Wipes as $Wipe)
 			{
-				$Bosskill = (array) $Bosskill; 
-				
-				// is there a boss difficulty tag ?
-		        if(isset($Bosskill['difficulty']))
-		        {
-		        	$Bosslevel = $this->_GetDifficulty( $Bosskill['difficulty'] ); 
-		        }
-		        else 
-		        {
-		        	//no
-		        	$Bosslevel = 1; 
-		        }
-		        
-				$rt_bosskill[] = array(
-				'batchid'    => $batchid ,
-				'bossname'   => (string) $Bosskill['name'] ,
-			    'time'       => (int) strtotime((string) $Bosskill['time']) ,
-				'zone'		 => $globalevent['event_name'], 
-				'difficulty' => $Bosslevel ,
-				); 
-				
-				if (isset($Bosskill['attendees']) && count( (array) $Bosskill['attendees']) > 0 )
+				foreach ($Wipe as $wipetime)
 				{
+					$wipecount++;
 					
-					// we have attendee records 
-					$attendees = (array) $Bosskill['attendees']; 
-	
-					//loop the attendees, make a record
-					foreach ($attendees as $key => $Player )
-					{
-						$Player = (array) $Player; 
-						
-						// substitute altname with playername if pref is set
-						if ($config['bbdkp_rt_replacealtnames'] == 1)
-						{
-							$dkpplayername = $this->_GetMainCharName((string) $Player['name']);
-						}
-						else 
-						{
-							$dkpplayername = (string) $Player['name'];
-						}				
-						
-						$rt_attendees[] = array(
-							'batchid'     => $batchid ,
-							'bossname'    => (string) $Bosskill['name'] ,
-						  	'playername'  => $dkpplayername ,
-						); 
-				
-					}
-				}
-				else 
-				{
-					// if there is no attendees tag for this bosskill then add everyone 
-					// that was still in raid at time of bosskill
-					// ->> some old Wow tracking mods don't add this tag
+					$rt_bosskill[] = array(
+					'batchid'   => $batchid ,
+					'bossname'  => 'Wipe'. $wipecount ,
+				    'time'      => (int) $wipetime ,
+					'zone'		=> $globalevent['event_name'], 
+					'difficulty' => 1,
+					); 
 					
-					// loop playerjointable to check 
+					// loop playerjointable to check who was present at the wipe
 					foreach($rt_joinleave as $key => $player)
 					{
-						$bosskilltime = (int) strtotime((string) $Bosskill['time']); 
 						$leavetime =  (int) $player['leavetime']; 
 						$jointime =  (int) $player['jointime'];
-						$leftafterkill = ($bosskilltime < $leavetime) ? true : false; 
-						$presentbeforekill = ($jointime < $bosskilltime) ? true : false;
+						$leftafterkill = ($wipetime < $leavetime) ? true : false; 
+						$presentbeforekill = ($jointime < $wipetime) ? true : false;
 						
 						if ($presentbeforekill && $leftafterkill)
 						{
-							
 							$rt_attendees[] = array(
 								'batchid'     => $batchid ,
-								'bossname'    => (string) $Bosskill['name'] ,
+								'bossname'    => 'Wipe' . $wipecount ,
 							  	'playername'  => $player['playername'] ,
 							); 
 						}
 					}
 					
-					// if nobody was present at the bosskill then just exit here. 
 					
-			       	//  there is still a possibility that we may find a bosskill time based on the loot time though ...
-			        if (sizeof($rt_attendees) == 0)
-			       	{
-			       		// delete raid 
-			       		$sql = 'DELETE FROM ' . RT_TEMP_RAIDINFO . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
-						$db->sql_query($sql);
-						$sql = 'DELETE FROM ' . RT_TEMP_PLAYERINFO . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
-						$db->sql_query($sql);
-						$sql = 'DELETE FROM ' . RT_TEMP_JOININFO . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
-						$db->sql_query($sql);
-						$sql = 'DELETE FROM ' . RT_TEMP_BOSSKILLS . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
-						$db->sql_query($sql);
-						$sql = 'DELETE FROM ' . RT_TEMP_ATTENDEES . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
-						$db->sql_query($sql);
-						$sql = 'DELETE FROM ' . RT_TEMP_LOOT . " WHERE batchid='" . $db->sql_escape($batchid) . "'";
-						$db->sql_query($sql);
-						
-						// throw a critical error		       		
-			       		trigger_error( sprintf($user->lang['RT_ERR_NOONEPRESENTATKILL'], date("Y-m-d H:i:s", $bosskilltime ) ) . $this->Raidtrackerlink, E_USER_WARNING);	
-			       	}
-			    }
-			}
-		}
-		 
-			
-		
-		// log wipes if it is present in xml
-		// set difficultylevel to one
-		$wipecount=0;
-		foreach ($Wipes as $Wipe)
-		{
-			foreach ($Wipe as $wipetime)
-			{
-				$wipecount++;
-				
-				$rt_bosskill[] = array(
-				'batchid'   => $batchid ,
-				'bossname'  => 'Wipe'. $wipecount ,
-			    'time'      => (int) $wipetime ,
-				'zone'		=> $globalevent['event_name'], 
-				'difficulty' => 1,
-				); 
-				
-				// loop playerjointable to check who was present at the wipe
-				foreach($rt_joinleave as $key => $player)
-				{
-					$leavetime =  (int) $player['leavetime']; 
-					$jointime =  (int) $player['jointime'];
-					$leftafterkill = ($wipetime < $leavetime) ? true : false; 
-					$presentbeforekill = ($jointime < $wipetime) ? true : false;
-					
-					if ($presentbeforekill && $leftafterkill)
-					{
-						$rt_attendees[] = array(
-							'batchid'     => $batchid ,
-							'bossname'    => 'Wipe' . $wipecount ,
-						  	'playername'  => $player['playername'] ,
-						); 
-					}
 				}
-				
-				
-			}
-		}	
+			}				
+		}
 		
 		// sort by time, interpolate the wipes with the bosskills
 		// only if there was a bosskill 
@@ -850,15 +891,17 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				}
 			}
 			
-			
-			// loot note
-			$lootraidnote =  (string)  $Loot ['Note'];
-        	if (strlen(trim($lootraidnote)) == 0)
-        	{
-        		// look in loot zone tag 
-        		$lootraidnote = trim((string) $Loot ['zone']);
-        	}
-			
+			$lootraidnote = '';
+			// is there a loot note ?
+			if(isset($Loot ['Note'] ))
+			{
+				$lootraidnote =  (string)  $Loot ['Note'];
+	        	if (strlen(trim($lootraidnote)) == 0)
+	        	{
+	        		// look in loot zone tag
+	        		$lootraidnote = trim((string) $Loot ['Zone']);
+	        	}
+			}
 			
 			//compare loot itemquality with minimum level if itemquality is too low then don't add the loot
 			$itemquality = (int) $this->_GetItemQualityByColor ( $Loot ['Color'] ); 
@@ -899,7 +942,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			$db->sql_multi_insert(RT_TEMP_LOOT, $rt_loot);
 		}
 
-		
+		$db->sql_transaction('commit');
 
         $message =  $user->lang['RT_STEP1_DONE']; 
         trigger_error($message . $this->Raidtrackerlink, E_USER_NOTICE);

@@ -95,7 +95,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		    'WHERE'     =>  "j.batchid = p.batchid AND j.playername = p.playername
 			        AND p.batchid = '" . $batchid . "'", 
 		    
-			'ORDER_BY' => "p.playername ASC"
+			'ORDER_BY' => "p.playername ASC, j.jointime ASC"
 		);
 		$sql = $db->sql_build_query('SELECT', $sql_array);
 
