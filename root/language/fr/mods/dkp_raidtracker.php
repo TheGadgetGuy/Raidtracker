@@ -61,6 +61,12 @@ $lang = array_merge($lang, array(
 'RT_ERR_NOEVENT' => 'erreur. pas de Trgger Evènement trouvé pour "%s". <br />Veuillez créer un déclincheur d\'évènement pour lier "%s" à un Evènement existant et ensuite importez votre Raid. ',
 'RT_ERR_NOEVENTSETUP' => 'Erreur. pas d\évènements trouvés en bbDKP. Raidtracker s\'arrètera ici. Controlez vos évènements et leurs déclincheurs. ',
 'RT_ERR_NODKPSYSSETUP' => 'Erreur. pas de systeme DKP trouvés. Raidtracker s\'arrètera ici',
+'RT_ERR_NOSTARTTAG'	=> 'Erreur. pas de starttime trouvé.', 
+'RT_ERR_NOENDTAG'	=> 'Erreur. pas de endtime trouvé. ',
+'RT_ERR_NOZONEFOUND'	=> 'Erreur. pas de zone trouvé', 
+'RT_ERR_NOPLAYERINFOSTAG'	=> 'Erreur. pas de Playerinfo trouvé', 
+'RT_ERR_NOJOINTAG' => 'Erreur. pas de join trouvé', 
+'RT_ERR_NOLEAVETAG' => 'Erreur. pas de leave trouvé', 
 
 // parse screen
 'RT_STEP1_PAGETITLE' => 'Parseur de Log RaidTracker ',

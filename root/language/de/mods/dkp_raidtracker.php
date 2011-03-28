@@ -62,6 +62,12 @@ $lang = array_merge($lang, array(
 'RT_ERR_NOEVENT' => 'Fehler. keine Beziehung gefunden zur Ergebnisse für diese Raidzones <br /> "%s". <br />Erst muss eine Beziehung zwischen <br /> "%s" <br /> und einen bestehenden Ereignis eingestellt werden bevor der Raid importiert werden kann. ',
 'RT_ERR_NOEVENTSETUP' => 'Fehler. keine Ereignisse aufgefunden in bbDKP. Raidtracker kann nicht funktionieren. ',
 'RT_ERR_NODKPSYSSETUP' => 'Fehler. kein DKP Pool ist aufgefunden in bbDKP. Raidtracker kann nicht funktionieren.',
+'RT_ERR_NOSTARTTAG'	=> 'Fehler. kein starttime Element gefunden.', 
+'RT_ERR_NOENDTAG'	=> 'Fehler. kein endtime Element gefunden. ',
+'RT_ERR_NOZONEFOUND'	=> 'Fehler. keine zone gefunden', 
+'RT_ERR_NOPLAYERINFOSTAG'	=> 'Fehler. kein Playerinfo Element gefunden', 
+'RT_ERR_NOJOINTAG' => 'Fehler. kein join Element gefunden', 
+'RT_ERR_NOLEAVETAG' => 'Fehler. kein leave Element gefunden', 
 
 // parse screen
 'RT_STEP1_PAGETITLE' => 'RaidTracker XML Parser',
