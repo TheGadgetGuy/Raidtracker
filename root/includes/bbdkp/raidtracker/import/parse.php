@@ -261,7 +261,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		/**********************************************************
          * validate tags before processing
          **********************************************************/
-    		//check realm      
+    	//check realm      
        	$realm = 'n/a';  
         if(isset($doc->realm))
         {
@@ -320,11 +320,6 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	       	}
         }
        	
-        if(!isset($doc->zone))
-        {
-        	trigger_error($user->lang['RT_ERR_NOZONETAG'] . $this->Raidtrackerlink , E_USER_WARNING);
-        }
-        
         if(!isset($doc->PlayerInfos))
         {
         	trigger_error($user->lang['RT_ERR_NOPLAYERINFOSTAG'] . $this->Raidtrackerlink , E_USER_WARNING);
@@ -344,53 +339,57 @@ class Raidtracker_parse extends acp_dkp_rt_import
         
         /*** Start processing ***/
         $db->sql_transaction('begin');
+
+        // find the zone
         
        	// ct_raidtracker only. check in lootnotes for multiple zones
         $Raidzone = array(); 
-
-        //if there is a loot tag
+        //if there is a zone tag
+        if(isset($doc->zone))
+        {
+        	$Raidzone[] = (string) $doc->zone[0]; 
+        }
+        
         if(isset ($doc->Loot))
         {
-    	$Loots =  (array) $doc->Loot[0]; 
-       	if (sizeof($Loots) > 0)
-       	{
-       	   	foreach ($Loots as $key => $Loot)
-			{
-				// explicitly cast Simplexml object to array
-				$Loot = (array) $Loot; 
+	    	$Loots =  (array) $doc->Loot[0]; 
+	       	if (sizeof($Loots) > 0)
+	       	{
+	       	   	foreach ($Loots as $key => $Loot)
+				{
+					// explicitly cast Simplexml object to array
+					$Loot = (array) $Loot; 
 					// is there a note ?
 					if (isset($Loot ['Note']))
 					{
-				$Note =  $Loot ['Note'];
-				$Note = preg_split ( "/-/", (string) $Loot['Note'] );
-	        	$Note = preg_split ( "/Zone: /", (string) $Note[1] );
-				$Note = trim((string) $Note[1]);
-	        	if (strlen(trim($Note)) > 0)
-	        	{
-	        		$Raidzone[] = $Note;	
-	        	}
+						$Note =  $Loot ['Note'];
+						$Note = preg_split ( "/-/", (string) $Loot['Note'] );
+			        	$Note = preg_split ( "/Zone: /", (string) $Note[1] );
+						$Note = trim((string) $Note[1]);
+			        	if (strlen(trim($Note)) > 0)
+			        	{
+			        		$Raidzone[] = $Note;	
+			        	}
 					}
 		        	elseif (isset($Loot ['Zone']))
-	        	{
-	        		// look in loot zone tag 
-		        		$Note = trim((string) $Loot ['Zone']);
-	        		
-	        		// add it to the zone array
-	        		$Raidzone[] = $Note; 
-	        	}
-			}
-       	}
+		        	{
+		        		// look in loot zone tag 
+			        		$Note = trim((string) $Loot ['Zone']);
+		        		
+		        		// add it to the zone array
+		        		$Raidzone[] = $Note; 
+		        	}
+				}
+	       	}
         }
-
-		// if no loot just look in the zone tag. 
-        if (count($Raidzone) == 0)
-        {
-	        $Note = (string) $doc->zone[0]; 
-	   		$Raidzone[] = $Note;
-        }
-    	
 		// make the zone array unique
 		$Raidzone = array_unique($Raidzone); 
+
+		if (count($Raidzone) == 0)
+		{
+			// no zone found
+			trigger_error($user->lang['RT_ERR_NOZONEFOUND'] . $this->Raidtrackerlink , E_USER_WARNING);
+		}
 		
 		// with this element, get the event using the triggers. 
 		// pass the unique array of raidzones, and return the first match that comes

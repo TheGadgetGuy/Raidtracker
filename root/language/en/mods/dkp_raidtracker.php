@@ -61,6 +61,12 @@ $lang = array_merge($lang, array(
 'RT_ERR_NOEVENT' => 'Error. no event trigger found for "%s". <br />Please make an Event trigger to link "%s" to an existing Event and then import your Raid. ',
 'RT_ERR_NOEVENTSETUP' => 'Error. no events have been set up in bbDKP. Raidtracker will stop here. Check your Events and Event trigger setup. ',
 'RT_ERR_NODKPSYSSETUP' => 'Error. no DKP systems have been set up in bbDKP. Raidtracker will stop here.',
+'RT_ERR_NOSTARTTAG'	=> 'Error. no starttime element found. cannot import.', 
+'RT_ERR_NOENDTAG'	=> 'Error. no endtime element found. ',
+'RT_ERR_NOZONEFOUND'	=> 'Error. no zone found', 
+'RT_ERR_NOPLAYERINFOSTAG'	=> 'Error. no Playerinfo element found', 
+'RT_ERR_NOJOINTAG' => 'Error. No join tag found', 
+'RT_ERR_NOLEAVETAG' => 'Error. No leave tag found', 
 
 // parse screen
 'RT_STEP1_PAGETITLE' => 'RaidTracker log Parse',
