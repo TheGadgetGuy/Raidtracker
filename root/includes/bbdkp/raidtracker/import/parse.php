@@ -262,13 +262,10 @@ class Raidtracker_parse extends acp_dkp_rt_import
          * validate tags before processing
          **********************************************************/
     		//check realm      
+       	$realm = 'n/a';  
         if(isset($doc->realm))
         {
         	$realm = (string) $doc->realm[0]; 
-        }
-        else 
-        {
-        	$realm = 'n/a';  
         }
 
         // check start tag
@@ -284,7 +281,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		/*you can't parse a raid twice : check for an already parsed raid 30 minutes before or after this one */
         $sql = ' select count(*) as checktime from ' . RT_TEMP_RAIDINFO . ' ';
         $sql .= ' where (starttime < ' . strval($start + 1800) . ' ) and ( starttime  > ' . strval($start - 1800) . ' ) '; 
-        $result =  $result = $db->sql_query($sql);
+		$result =  $result = $db->sql_query($sql);
 		$checkexists = (int) $db->sql_fetchfield('checktime');
 		$db->sql_freeresult ( $result);
 		if ($checkexists != 0)
@@ -312,7 +309,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	       		foreach ($Bosskills as $key => $Bosskill)
 	       		{
 	       			$Bosskill = (array) $Bosskill;
-	       			$bosskilltime[] = (int) is_numeric( (string) $Bosskill['time']) ? (string) $Bosskill['time'] : strtotime((string) $Bosskill['time']); 
+		       			$bosskilltime[] = (int) is_numeric( (string) $Bosskill['time']) ? (string) $Bosskill['time'] : strtotime((string) $Bosskill['time']); 
 	       		}
 	      	    
 	       		if ($end == 0)
@@ -350,41 +347,41 @@ class Raidtracker_parse extends acp_dkp_rt_import
         
        	// ct_raidtracker only. check in lootnotes for multiple zones
         $Raidzone = array(); 
-		
+
         //if there is a loot tag
         if(isset ($doc->Loot))
         {
-            $Loots =  (array) $doc->Loot[0]; 
-	       	if (sizeof($Loots) > 0)
-	       	{
-	       	   	foreach ($Loots as $key => $Loot)
-				{
-					// explicitly cast Simplexml object to array
-					$Loot = (array) $Loot; 
+    	$Loots =  (array) $doc->Loot[0]; 
+       	if (sizeof($Loots) > 0)
+       	{
+       	   	foreach ($Loots as $key => $Loot)
+			{
+				// explicitly cast Simplexml object to array
+				$Loot = (array) $Loot; 
 					// is there a note ?
 					if (isset($Loot ['Note']))
 					{
-						$Note =  $Loot ['Note'];
-						$Note = preg_split ( "/-/", (string) $Loot['Note'] );
-			        	$Note = preg_split ( "/Zone: /", (string) $Note[1] );
-						$Note = trim((string) $Note[1]);
-			        	if (strlen(trim($Note)) > 0)
-			        	{
-			        		$Raidzone[] = $Note;	
-			        	}
+				$Note =  $Loot ['Note'];
+				$Note = preg_split ( "/-/", (string) $Loot['Note'] );
+	        	$Note = preg_split ( "/Zone: /", (string) $Note[1] );
+				$Note = trim((string) $Note[1]);
+	        	if (strlen(trim($Note)) > 0)
+	        	{
+	        		$Raidzone[] = $Note;	
+	        	}
 					}
 		        	elseif (isset($Loot ['Zone']))
-		        	{
-		        		// look in loot zone tag 
+	        	{
+	        		// look in loot zone tag 
 		        		$Note = trim((string) $Loot ['Zone']);
-		        		
-		        		// add it to the zone array
-		        		$Raidzone[] = $Note; 
-		        	}
-				}
-	       	}
+	        		
+	        		// add it to the zone array
+	        		$Raidzone[] = $Note; 
+	        	}
+			}
+       	}
         }
-       	
+
 		// if no loot just look in the zone tag. 
         if (count($Raidzone) == 0)
         {
@@ -404,14 +401,11 @@ class Raidtracker_parse extends acp_dkp_rt_import
         $globalraidnote = $Raidzone[0]; 
 		
 		// is there a difficulty tag ?
+		// normal level
+        $Raidlevel = 1; 
         if(isset($doc->difficulty))
         {
         	$Raidlevel = $this->_GetDifficulty( (string) $doc->difficulty[0] ); 
-        }
-        else 
-        {
-        	//normal
-        	$Raidlevel = 1; 
         }
 
         //generate a guid
@@ -426,7 +420,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
         	'event_id'		=> $globalevent['event_id'],
         	'dkpsys_id'		=> $globalevent['dkpsys_id'],
 		    'note'     		=> $globalraidnote,
-		    'difficulty'    => $Raidlevel,
+		    'difficulty'    => $Raidlevel,                                                      
         	'imported'    	=> 0,                                                      
 		);
 		
@@ -582,14 +576,10 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				$Bosskill = (array) $Bosskill; 
 				
 				// is there a boss difficulty tag ?
+	        	$Bosslevel = 1; 
 		        if(isset($Bosskill['difficulty']))
 		        {
 		        	$Bosslevel = $this->_GetDifficulty( $Bosskill['difficulty'] ); 
-		        }
-		        else 
-		        {
-		        	//no
-		        	$Bosslevel = 1; 
 		        }
 		        
 				$rt_bosskill[] = array(
@@ -604,32 +594,32 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				{
 					if (count((array) $Bosskill['attendees']) > 0)
 					{
-						// we have attendee records 
-						$attendees = (array) $Bosskill['attendees']; 
-		
-						//loop the attendees, make a record
-						foreach ($attendees as $key => $Player )
+					// we have attendee records 
+					$attendees = (array) $Bosskill['attendees']; 
+	
+					//loop the attendees, make a record
+					foreach ($attendees as $key => $Player )
+					{
+						$Player = (array) $Player; 
+						
+						// substitute altname with playername if pref is set
+						if ($config['bbdkp_rt_replacealtnames'] == 1)
 						{
-							$Player = (array) $Player; 
-							
-							// substitute altname with playername if pref is set
-							if ($config['bbdkp_rt_replacealtnames'] == 1)
-							{
-								$dkpplayername = $this->_GetMainCharName((string) $Player['name']);
-							}
-							else 
-							{
-								$dkpplayername = (string) $Player['name'];
-							}				
-							
-							$rt_attendees[] = array(
-								'batchid'     => $batchid ,
-								'bossname'    => (string) $Bosskill['name'] ,
-							  	'playername'  => $dkpplayername ,
-							); 
-					
+							$dkpplayername = $this->_GetMainCharName((string) $Player['name']);
 						}
+						else 
+						{
+							$dkpplayername = (string) $Player['name'];
+						}				
+						
+						$rt_attendees[] = array(
+							'batchid'     => $batchid ,
+							'bossname'    => (string) $Bosskill['name'] ,
+						  	'playername'  => $dkpplayername ,
+						); 
+				
 					}
+				}
 				}
 				else 
 				{
@@ -694,6 +684,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				// explicitly cast Simplexml object to array
 				$Loot = (array) $Loot; 
 				// is there a boss difficulty tag ?
+				$Bosslevel = 1;
 		        if(isset($Loot['Difficulty']))
 		        {
 		        	$Bosslevel = $this->_GetDifficulty( $Loot['Difficulty'] ); 
@@ -792,7 +783,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 					
 					
 				}
-			}				
+			}	
 		}
 		
 		// sort by time, interpolate the wipes with the bosskills
@@ -895,10 +886,10 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			// is there a loot note ?
 			if(isset($Loot ['Note'] ))
 			{
-				$lootraidnote =  (string)  $Loot ['Note'];
-	        	if (strlen(trim($lootraidnote)) == 0)
-	        	{
-	        		// look in loot zone tag
+			$lootraidnote =  (string)  $Loot ['Note'];
+        	if (strlen(trim($lootraidnote)) == 0)
+        	{
+        		// look in loot zone tag 
 	        		$lootraidnote = trim((string) $Loot ['Zone']);
 	        	}
 			}
