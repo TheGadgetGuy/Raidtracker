@@ -67,6 +67,7 @@ $lang = array_merge($lang, array(
 'RT_ERR_NOPLAYERINFOSTAG'	=> 'Erreur. pas de Playerinfo trouvé', 
 'RT_ERR_NOJOINTAG' => 'Erreur. pas de join trouvé', 
 'RT_ERR_NOLEAVETAG' => 'Erreur. pas de leave trouvé', 
+'RT_ERR_RAID_ALREADYPROCESSED' => 'Error. Raid déjà importée',
 
 // parse screen
 'RT_STEP1_PAGETITLE' => 'Parseur de Log RaidTracker ',

@@ -68,6 +68,7 @@ $lang = array_merge($lang, array(
 'RT_ERR_NOPLAYERINFOSTAG'	=> 'Fehler. kein Playerinfo Element gefunden', 
 'RT_ERR_NOJOINTAG' => 'Fehler. kein join Element gefunden', 
 'RT_ERR_NOLEAVETAG' => 'Fehler. kein leave Element gefunden', 
+'RT_ERR_RAID_ALREADYPROCESSED' => 'Fehler. Raid bereits eingefügt',
 
 // parse screen
 'RT_STEP1_PAGETITLE' => 'RaidTracker XML Parser',
