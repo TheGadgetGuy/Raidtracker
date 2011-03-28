@@ -44,7 +44,7 @@ if ($config['bbdkp_default_game'] != 'wow')
 }
 
 // The name of the mod to be displayed during installation.
-$mod_name = 'Raidtracker 0.2.9';
+$mod_name = 'Raidtracker 0.3.0';
 
 /*
 * The name of the config variable which will hold the currently installed version
@@ -385,13 +385,13 @@ $versions = array(
 		'custom' => array('raidtrackerupdater'),
 	),
 	
-	'0.2.9' => array(
+	'0.3.0' => array(
 		'custom' => array('raidtrackerupdater', 'tablerename'),   
-
+		
+		
 		'config_add' => array(
 			array('bbdkp_rt_noguild', '1', true),
 		),
-
 		
 	     // remove config settings that were moved to core
 		'config_remove' => array(
@@ -400,7 +400,11 @@ $versions = array(
 			array('bbdkp_rt_createstartraid'),
 			array('bbdkp_rt_startraiddkp'),
 			),
-		
+			
+		// new column to check if raid was imported		
+		'table_column_add' => array(
+			array($table_prefix . 'bbdkp_rt_temp_raidinfo', 'imported' , array('BOOL', 0)),
+			),
 	),
 	
 );
@@ -460,7 +464,7 @@ function tablerename($action, $version)
 		
 			switch ($version)
 			{
-				case '0.2.9':
+				case '0.3.0':
 					// renaming tables
 					if ($umil->table_exists($bbdkp_table_prefix . 'rt_temp_raidinfo'))
 					{

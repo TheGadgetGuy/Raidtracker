@@ -6,7 +6,7 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.2.9]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.3.0]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
 		<description lang="fr"><![CDATA[Installateur pour bbDKP Raidtracker]]></description>
 		<description lang="de"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
@@ -34,7 +34,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.2.9</mod-version>
+		<mod-version>0.3.0</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -199,18 +199,25 @@
 				</changelog>
 			</entry>
 			<entry>
-				<date>2011-03-20</date>
-				<rev-version>0.2.9</rev-version>
+				<date>2011-03-28</date>
+				<rev-version>0.3.0</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[[CHANGE] Table prefix is now default phpbb_]]></change>
 					<change><![CDATA[[CHANGE] Minimum bbDKP requirement is 1.2.0 ]]></change>
+					<change><![CDATA[[CHANGE] Table prefix is now default phpbb_]]></change>
+					<change><![CDATA[[CHANGE] accepts xml from Wow 1.12 ct_raidtracker ]]></change>
+					<change><![CDATA[[CHANGE] time based settings moved to bbdkp ]]></change>
+					<change><![CDATA[[CHANGE] zerosum settings moved to bbdkp ]]></change>
+					<change><![CDATA[[CHANGE] now checks if a raidxml was imported ]]></change>
+					<change><![CDATA[[CHANGE] many attendee in & outs should not lead to unique constraint violation]]></change>
+					<change><![CDATA[[CHANGE] krequest.php moved to Raidtracker]]></change>
+					<change><![CDATA[[NEW] new parameter to decide what to do with pug members. add to guildroster or leave unguilded ?]]></change>
 				</changelog>
 			</entry>
 		</history>
 		<link-group>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.0</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.0</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.0</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.1</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.1</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.1</link>
 			<link type="language" href="contrib/fr.xml" lang="en">French</link>
 			<link type="language" href="contrib/fr.xml" lang="fr">Français</link>
 			<link type="language" href="contrib/fr.xml" lang="de">Franzözisch</link>
@@ -224,6 +231,7 @@
 			<file from="root/adm/findevent.php" to="adm/findevent.php"/>
 			<file from="root/adm/style/dkp/*.*" to="adm/style/dkp/*.*"/>
 			<file from="root/includes/acp/*.*" to="includes/acp/*.*"/>
+			<file from="root/includes/bbdkp/krequest.php" to="includes/bbdkp/krequest.php"/>
 			<file from="root/includes/acp/info/*.*" to="includes/acp/info/*.*"/>
 			<file from="root/includes/bbdkp/raidtracker/*.*" to="includes/bbdkp/raidtracker/*.*"/>
 			<file from="root/includes/bbdkp/raidtracker/additems/*.*" to="includes/bbdkp/raidtracker/additems/*.*"/>
