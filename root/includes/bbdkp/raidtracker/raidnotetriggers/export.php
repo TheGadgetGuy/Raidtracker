@@ -27,7 +27,7 @@ class Raidtracker_ExportRaidnoteTriggers extends acp_dkp_rt_settings
 {
     function Raidtracker_ExportRaidnoteTriggers()
     {
-        global $db, $user, $template, $phpEx;
+        global $db, $user, $phpbb_admin_path, $template, $phpEx;
 		$parser = new CTRT_XML();
 		$sql = "SELECT * FROM " . RT_RAID_NOTE_TRIGGERS_TABLE; 
         
@@ -48,7 +48,7 @@ class Raidtracker_ExportRaidnoteTriggers extends acp_dkp_rt_settings
 		
 		$template->assign_vars(array(
             'EXPORT'        	=> htmlentities($exportXML),
-			'U_LINK' 			=> append_sid("index.$phpEx", "i=dkp_rt_settings&amp;"),
+			'U_LINK' 			=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;"),
         ));
     }
 }

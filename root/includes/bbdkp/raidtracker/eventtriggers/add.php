@@ -30,8 +30,8 @@ class Raidtracker_AddEventTrigger  extends acp_dkp_rt_settings
 
     function Raidtracker_AddEventTrigger()
     {
-        global $db, $user, $template, $phpEx;
-		$this->Raidtrackerlink = '<br /><a href="'. append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;" ) .
+        global $phpbb_admin_path, $db, $user, $template, $phpEx;
+		$this->Raidtrackerlink = '<br /><a href="'. append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;" ) .
 			 '"><h3>Return to Index</h3></a>';
         
 		if(isset ($_GET['id']))
@@ -105,8 +105,8 @@ class Raidtracker_AddEventTrigger  extends acp_dkp_rt_settings
         $db->sql_freeresult ($result);
 
 		 $template->assign_vars(array(
-            'F_CONFIG' 		=> append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_event_triggers&amp;"),
-            'U_LINK' 		=> append_sid("index.$phpEx", 	"i=dkp_rt_settings&amp;"),
+            'F_CONFIG' 		=> append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_event_triggers&amp;"),
+            'U_LINK' 		=> append_sid("{$phpbb_admin_path}index.$phpEx", 	"i=dkp_rt_settings&amp;"),
             'S_ADD'     	=> (isset($this->id)) ? false : true,
 
         ));
@@ -182,7 +182,6 @@ class Raidtracker_AddEventTrigger  extends acp_dkp_rt_settings
     function event_update()
     {
 		global $db, $user;
-        	
 				
         $data = array(
     		'event_trigger'   	=> utf8_normalize_nfc(request_var('event_trigger', ' ', true)), 

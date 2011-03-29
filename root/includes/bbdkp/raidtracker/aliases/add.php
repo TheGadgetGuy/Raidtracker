@@ -31,8 +31,8 @@ class Raidtracker_AddAlias extends acp_dkp_rt_settings
     
     function Raidtracker_AddAlias()
     {
-        global $db, $user, $template, $phpEx;
-		$this->Raidtrackerlink = '<br /><a href="'. append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;" ) . '"><h3>Return to Index</h3></a>';
+        global $db, $user, $template, $phpbb_admin_path, $phpEx;
+		$this->Raidtrackerlink = '<br /><a href="'. append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;" ) . '"><h3>Return to Index</h3></a>';
         if(isset ($_GET['id']))
         {
         	// get from $get if clicked in list
@@ -91,7 +91,7 @@ class Raidtracker_AddAlias extends acp_dkp_rt_settings
         
         $template->assign_vars(array(
             // Form vars
-			'U_LINK' => append_sid("index.$phpEx", "i=dkp_rt_settings&amp;"),
+			'U_LINK' => append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;"),
             // Form values
     		'ALIAS_NAME' 		  => $this->alias['alias_name'], 
         
