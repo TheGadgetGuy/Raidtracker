@@ -231,7 +231,6 @@
 			<file from="root/adm/findevent.php" to="adm/findevent.php"/>
 			<file from="root/adm/style/dkp/*.*" to="adm/style/dkp/*.*"/>
 			<file from="root/includes/acp/*.*" to="includes/acp/*.*"/>
-			<file from="root/includes/bbdkp/krequest.php" to="includes/bbdkp/krequest.php"/>
 			<file from="root/includes/acp/info/*.*" to="includes/acp/info/*.*"/>
 			<file from="root/includes/bbdkp/raidtracker/*.*" to="includes/bbdkp/raidtracker/*.*"/>
 			<file from="root/includes/bbdkp/raidtracker/additems/*.*" to="includes/bbdkp/raidtracker/additems/*.*"/>
