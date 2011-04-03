@@ -61,6 +61,13 @@ $lang = array_merge($lang, array(
 'RT_ERR_NOEVENT' => 'erreur. pas de Trgger Evènement trouvé pour "%s". <br />Veuillez créer un déclincheur d\'évènement pour lier "%s" à un Evènement existant et ensuite importez votre Raid. ',
 'RT_ERR_NOEVENTSETUP' => 'Erreur. pas d\évènements trouvés en bbDKP. Raidtracker s\'arrètera ici. Controlez vos évènements et leurs déclincheurs. ',
 'RT_ERR_NODKPSYSSETUP' => 'Erreur. pas de systeme DKP trouvés. Raidtracker s\'arrètera ici',
+'RT_ERR_NOSTARTTAG'	=> 'Erreur. pas de starttime trouvé.', 
+'RT_ERR_NOENDTAG'	=> 'Erreur. pas de endtime trouvé. ',
+'RT_ERR_NOZONEFOUND'	=> 'Erreur. pas de zone trouvé', 
+'RT_ERR_NOPLAYERINFOSTAG'	=> 'Erreur. pas de Playerinfo trouvé', 
+'RT_ERR_NOJOINTAG' => 'Erreur. pas de join trouvé', 
+'RT_ERR_NOLEAVETAG' => 'Erreur. pas de leave trouvé', 
+'RT_ERR_RAID_ALREADYPROCESSED' => 'Error. Raid déjà importée',
 
 // parse screen
 'RT_STEP1_PAGETITLE' => 'Parseur de Log RaidTracker ',
@@ -114,7 +121,7 @@ $lang = array_merge($lang, array(
 'RT_STEP2_DKPVALUETIP' => 'DKP Zerobase : ajouter la fraction Valeur/nombre de participants à chaque participant. ',
 'RT_STEP2_INSERTRAIDS' => 'Insertion de Raid',
 'RT_STEP2_TIMEBONUSCALCULATION' => 'Calcul de Bonus par Temps passé',
-'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'Ces Bonus seront comptabilisés comme un ajustement.', 
+'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'Ces Bonus seront comptabilisés comme un Gain.', 
 'RT_STEP2_ID' => 'ID',
 'RT_STEP2_NAME' => 'Joueur',
 'RT_STEP2_JOINTIME' => 'Départ',
@@ -175,10 +182,10 @@ $lang = array_merge($lang, array(
 'RT_DKPHOUR' => 'DKP par heure passée', 
 'RT_DKPHOUR_EXPLAIN' => 'assignera x DKP comme ajustement pour chaque heure présente dans Raid (arrondie, soit 1h45m devient 2h, 2h13m devient 2h)',
 
-'RT_BOSSRAID' => 'niveau de logging Raid ',
-'RT_BOSSRAID_EXPLAIN' => 'Enregistrer 1 Raid par Bosskill ou bien Raid Global par fichier XML', 
-'RT_BOSSRAID_YES' => 'Par Bosskill',
-'RT_BOSSRAID_NO' => '1 Raid global',
+'RT_NOGUILD' => 'Pas de Gilde ?',
+'RT_NOGUILD_EXPLAIN' => 'en absence d‘un tag XML-tag ou si le Raider est reellement sans guilde (pug)',
+'RT_NOGUILD_ADDCURRENT' => 'Ajouter à ta Guilde',
+'RT_NOGUILD_ADDNONE' => 'Ajouter comme sans Guilde',
 
 'VLOG_RT_CONFIG_UPDATED' => '%s a mis à jour le config RaidTracker.',
 'RT_ADMINMENU_CONFIG' => 'Configurer',

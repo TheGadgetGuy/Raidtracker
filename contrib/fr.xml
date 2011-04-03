@@ -21,12 +21,11 @@
 				<homepage><![CDATA[http://www.bbdkp.com]]></homepage>
 				<email><![CDATA[sajaki9@gmail.com]]></email>
 				<contributions-group>
-					<contributions status="current" from="2009-01-01" position="Project leader"/>
-					<contributions status="past" from="2008-04-04" to="2009-01-01" position="Developer"/>
+					<contributions status="current" from="2008-04-04" position="Developer"/>
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.2.7</mod-version>
+		<mod-version>0.2.9</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>

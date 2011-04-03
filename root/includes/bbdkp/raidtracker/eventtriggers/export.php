@@ -27,7 +27,7 @@ class Raidtracker_ExportEventTriggers extends acp_dkp_rt_settings
 
     function Raidtracker_ExportEventTriggers()
     {
-        global $db, $user, $template, $phpEx;
+        global $db, $phpbb_admin_path, $user, $template, $phpEx;
 		$parser = new CTRT_XML();
 		$eventTrigger = array(); 
 		
@@ -56,7 +56,7 @@ class Raidtracker_ExportEventTriggers extends acp_dkp_rt_settings
 		
 		$template->assign_vars(array(
             'EXPORT'        	=> htmlentities($exportXML),
-			'U_LINK' 			=> append_sid("index.$phpEx", "i=dkp_rt_settings&amp;"),
+			'U_LINK' 			=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;"),
         ));
     }
 }

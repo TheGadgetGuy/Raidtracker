@@ -29,8 +29,8 @@ class Raidtracker_ImportEventTriggers extends acp_dkp_rt_settings
 
     function Raidtracker_ImportEventTriggers()
     {
-    	global $phpEx; 
-		$this->Raidtrackerlink = '<br /><a href="'. append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;&amp;mode=rt_list_event_triggers" ) . '"><h3>Return to Index</h3></a>';
+    	global $phpbb_admin_path, $phpEx; 
+		$this->Raidtrackerlink = '<br /><a href="'. append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;&amp;mode=rt_list_event_triggers" ) . '"><h3>Return to Index</h3></a>';
     }
 
     /**
@@ -70,7 +70,7 @@ class Raidtracker_ImportEventTriggers extends acp_dkp_rt_settings
         $xml = utf8_normalize_nfc(request_var('xml', ' ', true)); 
         $doc = $this->xmlparse($xml); 
         
-        
+        $errors = 0;
         foreach ($doc->EventTrigger as $EventTrigger) 
         {
        		$EventTrigger = (array) $EventTrigger; 
@@ -146,10 +146,12 @@ class Raidtracker_ImportEventTriggers extends acp_dkp_rt_settings
 	            {
 	            	// create event 
 					$query = $db->sql_build_array('INSERT', array(   
-					        'event_dkpid'    => $dkpsys_id,   
-					        'event_name'     => $resultevent,   
-					        'event_value'    => 0,  
-					        'event_added_by' => $user->data['username'])   
+					        'event_dkpid'     => $dkpsys_id,   
+					        'event_name'      => $resultevent,  
+							'event_color'     => '#0088EE',
+							'event_imagename' => '', 
+					        'event_value'     => 0,  
+					        'event_added_by'  => $user->data['username'])   
 					    );       
 					$db->sql_query('INSERT INTO ' . EVENTS_TABLE . $query);
 					
@@ -189,7 +191,7 @@ class Raidtracker_ImportEventTriggers extends acp_dkp_rt_settings
         
         }
 
-    	if ($errors > 0)
+    	if ($errors < 5)
         {
         	trigger_error($message . $this->Raidtrackerlink, E_USER_WARNING);
         }

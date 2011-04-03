@@ -61,10 +61,17 @@ $lang = array_merge($lang, array(
 'RT_ERR_NOEVENT' => 'Error. no event trigger found for "%s". <br />Please make an Event trigger to link "%s" to an existing Event and then import your Raid. ',
 'RT_ERR_NOEVENTSETUP' => 'Error. no events have been set up in bbDKP. Raidtracker will stop here. Check your Events and Event trigger setup. ',
 'RT_ERR_NODKPSYSSETUP' => 'Error. no DKP systems have been set up in bbDKP. Raidtracker will stop here.',
+'RT_ERR_NOSTARTTAG'	=> 'Error. no starttime element found. cannot import.', 
+'RT_ERR_NOENDTAG'	=> 'Error. no endtime element found. ',
+'RT_ERR_NOZONEFOUND'	=> 'Error. no zone found', 
+'RT_ERR_NOPLAYERINFOSTAG'	=> 'Error. no Playerinfo element found', 
+'RT_ERR_NOJOINTAG' => 'Error. No join tag found', 
+'RT_ERR_NOLEAVETAG' => 'Error. No leave tag found', 
+'RT_ERR_RAID_ALREADYPROCESSED' => 'Error. Raid already imported',
 
 // parse screen
 'RT_STEP1_PAGETITLE' => 'RaidTracker log Parse',
-'RT_STEP1_DESCRIPTION' => 'Set ML_Raidtracker (http://www.mlmods.net) export format to "MLDdkp 1.1 /EQdkp"(do /rt o in WoW to set settings).<br /> To export Raid, do /rt, then rightclick your Raid, choose "show Dkp string", and copy that into the area below. 
+'RT_STEP1_DESCRIPTION' => 'Set Raidtracker export format to "MLDdkp 1.1 /EQdkp"(do /rt o in WoW to set settings).<br /> To export Raid, do /rt, then rightclick your Raid, choose "show Dkp string", and copy that into the area below. 
 <br /> click "Parse Log" to import. Imported Raids can then be managed from the bbDKP Import tab. ',
 'RT_STEP1_INVALIDSTRING_TITLE' => 'Invalid DKP String',
 'RT_STEP1_INVALIDSTRING_MSG' => 'The DKP String is not valid.',
@@ -114,7 +121,7 @@ $lang = array_merge($lang, array(
 'RT_STEP2_DKPVALUETIP' => 'Add Item value/attendees (Zero DKP)',
 'RT_STEP2_INSERTRAIDS' => 'Insert Raid(s)',
 'RT_STEP2_TIMEBONUSCALCULATION' => 'Time Bonus calculation',
-'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'These bonuses are booked as adjustments.', 
+'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'Time bonuses are booked as Earned.', 
 'RT_STEP2_ID' => 'ID',
 'RT_STEP2_NAME' => 'Player',
 'RT_STEP2_JOINTIME' => 'Start',
@@ -175,10 +182,10 @@ $lang = array_merge($lang, array(
 'RT_DKPHOUR' => 'DKP per hour passed', 
 'RT_DKPHOUR_EXPLAIN' => 'will assign x DKP as earned for each hour passed that member present in raid (we look at global attendance)',
 
-'RT_BOSSRAID' => 'Raid logging level',
-'RT_BOSSRAID_EXPLAIN' => 'One raid for each Bosskill or 1 Global raid', 
-'RT_BOSSRAID_YES' => 'Per Bosskill',
-'RT_BOSSRAID_NO' => 'One global raid',
+'RT_NOGUILD' => 'No-Guild handling',
+'RT_NOGUILD_EXPLAIN' => 'Handles the case if the Guildtag is not included in the XML or if the member is really guildless',
+'RT_NOGUILD_ADDCURRENT' => 'Add to current guild',
+'RT_NOGUILD_ADDNONE' => 'Add to Guildless',
 
 'VLOG_RT_CONFIG_UPDATED' => '%s updated RaidTracker config.',
 'RT_ADMINMENU_CONFIG' => 'Configure',

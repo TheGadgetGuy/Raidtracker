@@ -24,7 +24,7 @@ class Raidtracker_ListRaidNoteTriggers extends acp_dkp_rt_settings
 {
     function Raidtracker_ListRaidNoteTriggers()
     {
-        global $db, $user, $template, $phpEx;
+        global $db, $phpbb_admin_path, $user, $template, $phpEx;
        	$sql = "SELECT * FROM " . RT_RAID_NOTE_TRIGGERS_TABLE ; 
         $result = $db->sql_query($sql);
         while ( $row = $db->sql_fetchrow($result) )
@@ -33,14 +33,14 @@ class Raidtracker_ListRaidNoteTriggers extends acp_dkp_rt_settings
                 'ID'    	=> $row['raid_note_trigger_id'],
                 'COL1'  	=> $row['raid_trigger'],
                 'COL2' 		=> $row['raid'],
-                'U_ADD'   	=> append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_raid_note_triggers&amp;id=" . 
+                'U_ADD'   	=> append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_raid_note_triggers&amp;id=" . 
                 $row['raid_note_trigger_id'])
             ));
         }
 
         $template->assign_vars(array(
-            'F_CONFIG' 			=> append_sid("index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_raid_note_triggers&amp;") , 
-			'U_LINK' 			=> append_sid("index.$phpEx", "i=dkp_rt_settings&amp;"),
+            'F_CONFIG' 			=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;mode=rt_add_raid_note_triggers&amp;") , 
+			'U_LINK' 			=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_settings&amp;"),
         ));
     }
 }

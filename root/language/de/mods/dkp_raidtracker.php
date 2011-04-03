@@ -62,6 +62,13 @@ $lang = array_merge($lang, array(
 'RT_ERR_NOEVENT' => 'Fehler. keine Beziehung gefunden zur Ergebnisse für diese Raidzones <br /> "%s". <br />Erst muss eine Beziehung zwischen <br /> "%s" <br /> und einen bestehenden Ereignis eingestellt werden bevor der Raid importiert werden kann. ',
 'RT_ERR_NOEVENTSETUP' => 'Fehler. keine Ereignisse aufgefunden in bbDKP. Raidtracker kann nicht funktionieren. ',
 'RT_ERR_NODKPSYSSETUP' => 'Fehler. kein DKP Pool ist aufgefunden in bbDKP. Raidtracker kann nicht funktionieren.',
+'RT_ERR_NOSTARTTAG'	=> 'Fehler. kein starttime Element gefunden.', 
+'RT_ERR_NOENDTAG'	=> 'Fehler. kein endtime Element gefunden. ',
+'RT_ERR_NOZONEFOUND'	=> 'Fehler. keine zone gefunden', 
+'RT_ERR_NOPLAYERINFOSTAG'	=> 'Fehler. kein Playerinfo Element gefunden', 
+'RT_ERR_NOJOINTAG' => 'Fehler. kein join Element gefunden', 
+'RT_ERR_NOLEAVETAG' => 'Fehler. kein leave Element gefunden', 
+'RT_ERR_RAID_ALREADYPROCESSED' => 'Fehler. Raid bereits eingefügt',
 
 // parse screen
 'RT_STEP1_PAGETITLE' => 'RaidTracker XML Parser',
@@ -115,7 +122,7 @@ $lang = array_merge($lang, array(
 'RT_STEP2_DKPVALUETIP' => 'Nullsummen DKP, addiere für alle Teilnehmer der Gegenstandswert/Teilnehmeranzahl',
 'RT_STEP2_INSERTRAIDS' => 'Raid hinzufügen',
 'RT_STEP2_TIMEBONUSCALCULATION' => 'Zeitbonusberechnung',
-'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'Diese Boni werden als Punkteanpassung verbucht im Teilnehmerkonto.', 
+'RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN' => 'Diese Boni werden als Gewinn verbucht im Teilnehmerkonto.', 
 'RT_STEP2_ID' => 'ID',
 'RT_STEP2_NAME' => 'Spieler',
 'RT_STEP2_JOINTIME' => 'Start',
@@ -177,10 +184,10 @@ $lang = array_merge($lang, array(
 'RT_DKPHOUR' => 'DKP pro Stunde', 
 'RT_DKPHOUR_EXPLAIN' => 'Für jede begonnene stunde wird x DKP vergeben.',
 
-'RT_BOSSRAID' => 'Logniveau der Schlachtgruppe',
-'RT_BOSSRAID_EXPLAIN' => '1 Raid pro Bosskill oder 1 Einzelner Raid', 
-'RT_BOSSRAID_YES' => 'Pro Bosskill',
-'RT_BOSSRAID_NO' => 'Einzelner Raid',
+'RT_NOGUILD' => 'Keine Gilde ?',
+'RT_NOGUILD_EXPLAIN' => 'wenn kein XML-tag besteht im XML oder wenn der Raider gildenlos ist',
+'RT_NOGUILD_ADDCURRENT' => 'Addiere zur StandardGilde',
+'RT_NOGUILD_ADDNONE' => 'Addier als gildenlos',
 
 'VLOG_RT_CONFIG_UPDATED' => '%s hat RaidTrackereinstellungen überarbeitet.',
 'RT_ADMINMENU_CONFIG' => 'Einstellung',

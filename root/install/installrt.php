@@ -44,14 +44,14 @@ if ($config['bbdkp_default_game'] != 'wow')
 }
 
 // The name of the mod to be displayed during installation.
-$mod_name = 'Raidtracker (uninstall version 0.2.8 prior to launching 0.3.0)';
+$mod_name = 'Raidtracker 0.3.0';
 
 /*
 * The name of the config variable which will hold the currently installed version
 * You do not need to set this yourself, UMIL will handle setting and updating the version itself.
 */
 $version_config_name = 'bbdkp_raidtracker';
-
+$bbdkp_table_prefix= 'bbeqdkp_';
 /*
 * The language file which will be included when installing
 * Language entries that should exist in the language file for UMIL (replace $mod_name with the mod's name you set to $mod_name above)
@@ -92,22 +92,22 @@ $options = array(
 
 $versions = array(
 
-	'0.3.0' => array(
+	'0.2.0' => array(
 
      // Lets add global config settings
+     // we scrap the ctrt_config table
 	'config_add' => array(
 		array('bbdkp_rt_minitemquality', 'RT_IQ_RARE', true),
 		array('bbdkp_rt_ignoredlooter', '', true),
 		array('bbdkp_rt_aldkpchkbox', 1),
 		array('bbdkp_rt_lootnoteeventtrigger', 0),
 		array('bbdkp_rt_attendancefilter', 1, true),
+		array('bbdkp_rt_skipempty', 1, true),
 		array('bbdkp_rt_defaultcost', 5.0, true),
 		array('bbdkp_rt_startdkp', 10.0, true),
 		array('bbdkp_rt_createstartraid', 0, true),
 		array('bbdkp_rt_startraiddkp', 0.0, true),
 		array('bbdkp_rt_replacealtnames', 1, true),
-		array('bbdkp_rt_bossraid', 0, true), 
-		array('bbdkp_rt_hourdkp', 0.00, true),
 		),
             		
 	// raidtracker is now in the raids tree
@@ -155,7 +155,7 @@ $versions = array(
 
 			// temporary tables for raid import
 			// general raidinfo
-			array($table_prefix . 'rt_temp_raidinfo', array(
+			array($bbdkp_table_prefix . 'rt_temp_raidinfo', array(
                     'COLUMNS'		=> array(
 					   'batchid' 	=> array('VCHAR', ''),
                        'raidid'		=> array('INT:8', NULL, 'auto_increment' ),
@@ -177,7 +177,7 @@ $versions = array(
             ),  
 			
 			//playerinfo
-            array($table_prefix . 'rt_temp_playerinfo', array(
+            array($bbdkp_table_prefix . 'rt_temp_playerinfo', array(
                     'COLUMNS'		=> array(
             		   'batchid' 	=> array('VCHAR', ''),
                        'raidid'		=> array('INT:8', 0),
@@ -198,7 +198,7 @@ $versions = array(
 			)),  	
 
 			//join leaves log
-            array($table_prefix . 'rt_temp_joininfo', array(
+            array($bbdkp_table_prefix . 'rt_temp_joininfo', array(
                     'COLUMNS'		=> array(
             		   'batchid' 	=> array('VCHAR', ''),
                        'raidid'		=> array('INT:8', 0),            
@@ -217,7 +217,7 @@ $versions = array(
               )),  	
             
 			//bosskills
-            array($table_prefix . 'rt_temp_bosskills', array(
+            array($bbdkp_table_prefix . 'rt_temp_bosskills', array(
                     'COLUMNS'		=> array(
             		   'batchid' 	=> array('VCHAR', ''),            
 					   'bossid'		=> array('INT:8', NULL, 'auto_increment' ),
@@ -233,7 +233,7 @@ $versions = array(
               ),
             ), 
             
-            array($table_prefix . 'rt_temp_attendees', array(
+            array($bbdkp_table_prefix . 'rt_temp_attendees', array(
                     'COLUMNS'		=> array(
             		   'batchid' 	=> array('VCHAR', ''),           
 					   'bossname'	=> array('VCHAR_UNI', ''),
@@ -245,7 +245,7 @@ $versions = array(
 					)
               )),             
             
-            array($table_prefix . 'rt_temp_loot', array(
+            array($bbdkp_table_prefix . 'rt_temp_loot', array(
                     'COLUMNS'		=> array(
             		   'batchid' 	=> array('VCHAR', ''), 
 					   'lootid' 	=> array('INT:8', NULL, 'auto_increment' ),     			        
@@ -266,7 +266,7 @@ $versions = array(
               ),
             ),      
 			            
-			array($table_prefix . 'rt_aliases', array(
+			array($bbdkp_table_prefix . 'rt_aliases', array(
                     'COLUMNS'		=> array(
                        'alias_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'alias_member_id' => array('INT:8', 0 ),
@@ -276,7 +276,7 @@ $versions = array(
               ),
             ),                
                 
-			array($table_prefix . 'rt_eventtriggers', array(
+			array($bbdkp_table_prefix . 'rt_eventtriggers', array(
                     'COLUMNS'		=> array(
                        'event_trigger_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'event_trigger' => array('VCHAR_UNI:255', ''),
@@ -289,7 +289,7 @@ $versions = array(
               ),
             ),   
 
-			array($table_prefix . 'rt_raidnote_triggers', array(
+			array($bbdkp_table_prefix . 'rt_raidnote_triggers', array(
                     'COLUMNS'		=> array(
                        'raid_note_trigger_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'raid_trigger' => array('VCHAR_UNI:255', ''),
@@ -299,7 +299,7 @@ $versions = array(
               ),
             ),   
 
-			array($table_prefix . 'rt_ownraids', array(
+			array($bbdkp_table_prefix . 'rt_ownraids', array(
                     'COLUMNS'		=> array(
                        'own_raid_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'own_raid_name' => array('VCHAR_UNI:255', ''),
@@ -308,7 +308,7 @@ $versions = array(
               ),
             ),   
             
-			array($table_prefix . 'rt_additems', array(
+			array($bbdkp_table_prefix . 'rt_additems', array(
                     'COLUMNS'		=> array(
                        'add_items_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'add_items_wow_id' => array('INT:8', 0 ),
@@ -317,7 +317,7 @@ $versions = array(
               ),
             ),   
             
-			array($table_prefix . 'rt_ignoreitems', array(
+			array($bbdkp_table_prefix . 'rt_ignoreitems', array(
                     'COLUMNS'		=> array(
                        'ignore_items_id'	=> array('INT:8', NULL, 'auto_increment' ),
                        'ignore_items_wow_id' =>  array('INT:8', 0 ),
@@ -325,9 +325,86 @@ $versions = array(
                     'PRIMARY_KEY'	=> array('ignore_items_id'),
               ),
             ),   
+
 		),
 		
 		'custom' => array('raidtrackerupdater'),   
+		
+	),
+	
+	'0.2.1' => array(
+
+	 // add a parameter to set logging one global raid - set default to false
+	'config_add' => array(
+		array('bbdkp_rt_bossraid', 0, true),)
+		,
+		'custom' => array('raidtrackerupdater021'),
+		
+	
+	),
+
+	'0.2.2' => array(
+	
+	// add a parameter to set hourly dkp to be assigned
+	'config_add' => array(
+		array('bbdkp_rt_hourdkp', 0.00, true),)	
+	
+	),
+
+	'0.2.3' => array(
+
+	// remove the skip empty raidnote setting
+	'config_remove' => array(
+		array('bbdkp_rt_skipempty'),
+		),	
+	
+	),
+
+	'0.2.4' => array(
+	// no db change, only a bugfix
+		'custom' => array('raidtrackerupdater'),
+	),
+
+	'0.2.5' => array(
+	// no db change, only a bugfix
+		'custom' => array('raidtrackerupdater'),
+	),
+	
+	'0.2.6' => array(
+	// no db change, only a bugfix
+		'custom' => array('raidtrackerupdater'),
+	),
+	
+	'0.2.7' => array(
+	// no db change, only a bugfix
+		'custom' => array('raidtrackerupdater'),
+	),
+	
+	'0.2.8' => array(
+	// no db change, only a bugfix
+		'custom' => array('raidtrackerupdater'),
+	),
+	
+	'0.3.0' => array(
+		'custom' => array('raidtrackerupdater', 'tablerename'),   
+		
+		
+		'config_add' => array(
+			array('bbdkp_rt_noguild', '1', true),
+		),
+		
+	     // remove config settings that were moved to core
+		'config_remove' => array(
+			array('bbdkp_rt_aldkpchkbox'),
+			array('bbdkp_rt_startdkp'),
+			array('bbdkp_rt_createstartraid'),
+			array('bbdkp_rt_startraiddkp'),
+			),
+			
+		// new column to check if raid was imported		
+		'table_column_add' => array(
+			array($table_prefix . 'bbdkp_rt_temp_raidinfo', 'imported' , array('BOOL', 0)),
+			),
 	),
 	
 );
@@ -374,6 +451,166 @@ function raidtrackerupdater($action, $version)
 	}
 }
 
-    		
+/******************************
+ *  table rename update calls 
+ */
+function tablerename($action, $version)
+{
+	global $user, $config, $db, $table_prefix, $umil, $bbdkp_table_prefix; 
+	switch ($action)
+	{
+		case 'install' :
+		case 'update' :
+		
+			switch ($version)
+			{
+				case '0.3.0':
+					// renaming tables
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_temp_raidinfo'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_temp_raidinfo TO ' . $table_prefix . 'bbdkp_rt_temp_raidinfo ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_temp_playerinfo'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_temp_playerinfo TO ' . $table_prefix . 'bbdkp_rt_temp_playerinfo ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_temp_playerinfo'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_temp_playerinfo TO ' . $table_prefix . 'bbdkp_rt_temp_playerinfo ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_temp_joininfo'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_temp_joininfo TO ' . $table_prefix . 'bbdkp_rt_temp_joininfo ';
+						$db->sql_query($sql);
+					}										
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_temp_bosskills'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_temp_bosskills TO ' . $table_prefix . 'bbdkp_rt_temp_bosskills ';
+						$db->sql_query($sql);
+					}										
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_temp_attendees'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_temp_attendees TO ' . $table_prefix . 'bbdkp_rt_temp_attendees ';
+						$db->sql_query($sql);
+					}										
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_temp_loot'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_temp_loot TO ' . $table_prefix . 'bbdkp_rt_temp_loot ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_aliases'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_aliases TO ' . $table_prefix . 'bbdkp_rt_aliases ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_eventtriggers'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_eventtriggers TO ' . $table_prefix . 'bbdkp_rt_eventtriggers ';
+						$db->sql_query($sql);
+					}					
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_raidnote_triggers'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_raidnote_triggers TO ' . $table_prefix . 'bbdkp_rt_raidnote_triggers ';
+						$db->sql_query($sql);
+					}			
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_ownraids'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_ownraids TO ' . $table_prefix . 'bbdkp_rt_ownraids ';
+						$db->sql_query($sql);
+					}																					
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_additems'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_additems TO ' . $table_prefix . 'bbdkp_rt_additems ';
+						$db->sql_query($sql);
+					}																					
+					if ($umil->table_exists($bbdkp_table_prefix . 'rt_ignoreitems'))
+					{
+						$sql = 'RENAME TABLE ' . $bbdkp_table_prefix . 'rt_ignoreitems TO ' . $table_prefix . 'bbdkp_rt_ignoreitems ';
+						$db->sql_query($sql);
+					}
+					return array('command' => 'UMIL_RENAMETABLESNEW', 'result' => 'SUCCESS');
+					
+					break;
+			}
+			break;
+			
+		case 'uninstall' :
+				// Run this when uninstalling
+				// renaming tables back to old
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_temp_raidinfo'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_temp_raidinfo TO ' . $bbdkp_table_prefix . 'rt_temp_raidinfo ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_temp_playerinfo'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_temp_playerinfo TO ' . $bbdkp_table_prefix . 'rt_temp_playerinfo ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_temp_playerinfo'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_temp_playerinfo TO ' . $bbdkp_table_prefix . 'rt_temp_playerinfo ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_temp_joininfo'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_temp_joininfo TO ' . $bbdkp_table_prefix . 'rt_temp_joininfo ';
+						$db->sql_query($sql);
+					}										
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_temp_bosskills'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_temp_bosskills TO ' . $bbdkp_table_prefix . 'rt_temp_bosskills ';
+						$db->sql_query($sql);
+					}										
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_temp_attendees'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_temp_attendees TO ' . $bbdkp_table_prefix . 'rt_temp_attendees ';
+						$db->sql_query($sql);
+					}										
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_temp_loot'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_temp_loot TO ' . $bbdkp_table_prefix . 'rt_temp_loot ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_aliases'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_aliases TO ' . $bbdkp_table_prefix . 'rt_aliases ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_eventtriggers'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_eventtriggers TO ' . $bbdkp_table_prefix . 'rt_eventtriggers ';
+						$db->sql_query($sql);
+					}					
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_raidnote_triggers'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_raidnote_triggers TO ' . $bbdkp_table_prefix . 'rt_raidnote_triggers ';
+						$db->sql_query($sql);
+					}
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_ownraids'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_ownraids TO ' . $bbdkp_table_prefix . 'rt_ownraids ';
+						$db->sql_query($sql);
+					}																					
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_additems'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_additems TO ' . $bbdkp_table_prefix . 'rt_additems ';
+						$db->sql_query($sql);
+					}																					
+					if ($umil->table_exists($table_prefix . 'bbdkp_rt_ignoreitems'))
+					{
+						$sql = 'RENAME TABLE ' . $table_prefix . 'bbdkp_rt_ignoreitems TO ' . $bbdkp_table_prefix . 'rt_ignoreitems ';
+						$db->sql_query($sql);
+					}							
+					
+					return array('command' => 'UMIL_RENAMETABLESOLD', 'result' => 'SUCCESS');
+			break;
+	}
+	
+	 
+}
 
 ?>
