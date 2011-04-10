@@ -360,7 +360,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 					// explicitly cast Simplexml object to array
 					$Loot = (array) $Loot; 
 					// is there a note ?
-					if (isset($Loot ['Note']))
+					
+					$isnote = isset($Loot['Note']) ? (count((array) $Loot['Note']) > 0  ? true : false) :  false;
+					if ($isnote)
 					{
 						$Note =	 $Loot ['Note'];
 						$Note = preg_split ( "/-/", (string) $Loot['Note'] );
@@ -555,6 +557,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				unset ($rt_joinleave[$key1]); 
 			}
 		}
+		
+		//make joinleave array unique
+		$rt_joinleave = $this->serial_arrayUnique($rt_joinleave);
 		
 		// fill temp table
 		$db->sql_multi_insert(RT_TEMP_JOININFO, $rt_joinleave);

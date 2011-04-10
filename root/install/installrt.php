@@ -44,7 +44,7 @@ if ($config['bbdkp_default_game'] != 'wow')
 }
 
 // The name of the mod to be displayed during installation.
-$mod_name = 'Raidtracker 0.3.0';
+$mod_name = 'Raidtracker 0.3.1';
 
 /*
 * The name of the config variable which will hold the currently installed version
@@ -405,6 +405,12 @@ $versions = array(
 		'table_column_add' => array(
 			array($table_prefix . 'bbdkp_rt_temp_raidinfo', 'imported' , array('BOOL', 0)),
 			),
+	),
+
+	'0.3.1' => array (
+	  // no db change, but many bugfixes 
+	  	'custom' => array('raidtrackerupdater'),
+	
 	),
 	
 );

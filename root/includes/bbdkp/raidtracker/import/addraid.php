@@ -93,7 +93,10 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			$raidend_y[$this->batchid] );
 			
 		// boss array
-		include ($phpbb_root_path . "includes/bbdkp/raidtracker/import/krequest.$phpEx");
+		if ( !class_exists('phpbb_request')) 
+		{
+			include ($phpbb_root_path . "includes/bbdkp/raidtracker/import/krequest.$phpEx");
+		}
 		$req = new phpbb_request; 
 		$this->bosses = $req->variable('bossname', array( ''=> array( ''=> '')), true, phpbb_request::POST );  
 		$this->bossesdifficulty = $req->variable('bossdifficulty', array( ''=> array( ''=> '')), true, phpbb_request::POST );
@@ -308,7 +311,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			$result = $db->sql_query ($sql);
 			$pcount = (int) $db->sql_fetchfield('pcount');	
 			$db->sql_freeresult($result);
-			$memberdkpadded = 0; 
+			
 			if ($pcount == 0)
 			{
 			   //make dkp record, set adjustment to starting dkp
@@ -364,6 +367,11 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		}
 		$acp_dkp_mm = new acp_dkp_mm;
 
+		/*
+		 * start transaction
+		 */
+		$db->sql_transaction('begin');
+			
 		// add global raid record
 		$sql_raid = array(
 			'event_id'		 => (int) $this->event, 
@@ -450,7 +458,9 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		$this->log_insert ( array (
 			'log_type'		=> $log_action ['header'], 
 			'log_action'	=> $log_action ) );
-			
+		
+		// commit
+		$db->sql_transaction('commit');
 	}
 	
 	/**
@@ -532,18 +542,22 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			{
 				//count bosskill attendees 
 				$bossattendees = array_unique(explode(',', $this->bossattendees[$this->batchid][$boss]));			
-				$numraiders = count($bossattendees);
-			
+
 				// make array with boss attendees memberids
 				$raiders = array();
 				foreach($bossattendees as $name)
 				{
-					$raiders[] = (int) $acp_dkp_mm->get_member_id(trim($name));
+					$member_id = (int) $acp_dkp_mm->get_member_id(trim($name));
+					if($member_id !=$config['bbdkp_bankerid'])
+					{
+						$raiders[]	= $member_id;
+					}
 				}
+				$numraiders = count($raiders);
+				
 			}
 			
 			// loop looted items and increase dkp spent value for buyer
-			$query = array();
 			foreach($items as $key => $item)
 			{
 				
@@ -565,31 +579,32 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 					// increase raid detail table
 					$sql = 'UPDATE ' . RAID_DETAIL_TABLE . '				
 							SET zerosum_bonus = zerosum_bonus + ' . (float) $distributed . ' 
-							WHERE raid_id = ' . (int) $raidid;
+							WHERE raid_id = ' . (int) $raidid . ' and ' . $db->sql_in_set('member_id', $raiders) ;
 					$db->sql_query ( $sql );
 					
-					// allocate dkp itemvalue bought to all raiders
+					// allocate dkp itemvalue bought to all raiders (exclude guildbank)
 					$sql = 'UPDATE ' . MEMBER_DKP_TABLE . '	
 							SET member_zerosum_bonus = member_zerosum_bonus + ' . (float) $distributed	.  ', 
 							member_earned = member_earned + ' . (float) $distributed  .	 ' 
 							WHERE member_dkpid = ' . (int) $this->dkp  . ' 
-							AND ' . $db->sql_in_set('member_id', $raiders) ;
-					$db->sql_query ( $sql );
+							AND ' . $db->sql_in_set('member_id', $raiders);
+							 
+					$db->sql_query ($sql);
 					
-					// give rest value to buyer in raiddetail
+					// give rest value to buyer or to guildbank 
 					if($restvalue!=0 )
 					{
 						$sql = 'UPDATE ' . RAID_DETAIL_TABLE . '				
 								SET zerosum_bonus = zerosum_bonus + ' . (float) $restvalue	.  '   
 								WHERE raid_id = ' . (int) $raidid . '  
-								AND member_id = ' . $this_memberid; 
+								AND member_id = ' . ($config['bbdkp_zerosumdistother'] == 1 ? $config['bbdkp_bankerid'] : $this_memberid );
 						$db->sql_query ( $sql );					
 						
 						$sql = 'UPDATE ' . MEMBER_DKP_TABLE . '					
 								SET member_zerosum_bonus = member_zerosum_bonus + ' . (float) $restvalue  .	 ', 
 								member_earned = member_earned + ' . (float) $restvalue	.  ' 
-								WHERE member_dkpid = ' . (int) $this->dkp  . ' 
-								AND member_id = ' . $this_memberid; 
+								WHERE member_dkpid = ' . (int) $this->dkp  . '  
+								AND member_id = ' . ($config['bbdkp_zerosumdistother'] == 1 ? $config['bbdkp_bankerid'] : $this_memberid );
 						$db->sql_query ( $sql );	
 					}
 				}

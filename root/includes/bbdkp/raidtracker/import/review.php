@@ -19,8 +19,7 @@ if (!defined('IN_PHPBB'))
 }
 
 /**
- * This class handles import from temp tables process
- * uses the $config data and rt preference tables to insert data into bbDKP
+ * This class handles reviewing raid from temp tables
  * 
  */
 class Raidtracker_Review extends acp_dkp_rt_import
@@ -34,7 +33,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	private $Raidtrackerlink; 
 	
 	/**
-	 * new instance of Importer 
+	 * new instance of reviewer 
 	 * 
 	 */
 	public function Raidtracker_Review()
