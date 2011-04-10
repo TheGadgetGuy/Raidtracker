@@ -102,26 +102,31 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		$result = $db->sql_query($sql);
 		while ( $row = $db->sql_fetchrow($result) )
 		{
-			//timebonus calc
-			$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($row['playername']));	
-			$diff = $this->get_time_difference($row['jointime'], $row['leavetime']); 
 			
+			$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($row['playername']));	
+
+			$time_bonus = 0;
+			$cmins = 0;
+			$chours = 0;
+
+			$diff = $this->get_time_difference($row['jointime'], $row['leavetime']); 
 			// express in minutes
 			$timediff= $diff['hours']*60 + $diff['minutes'];
-			
-			// convert to number of earned timeunits 
 			$timeunits =  intval ( $timediff / $config['bbdkp_timeunit']);
-			
-			//if we have a $config interval bigger than 0 minutes then calculate time bonus
-			$time_bonus = 0;
-			if( (int) $config['bbdkp_timeunit'] > 0)
-			{
-				$time_bonus = round($config['bbdkp_dkptimeunit'] * $timeunits, 2) ; 
-			}
-			
+			// convert to number of earned timeunits 
+			$cmins= ($timeunits * $config['bbdkp_timeunit'])/60- floor (($timeunits * $config['bbdkp_timeunit'])/60);
 			//get back counted time
 			$chours= intval(($timeunits* $config['bbdkp_timeunit'])/60);
-			$cmins= ($timeunits * $config['bbdkp_timeunit'])/60- floor (($timeunits * $config['bbdkp_timeunit'])/60);
+			
+			if ($config['bbdkp_timebased'] == '1')
+			{
+				//if we have a $config interval bigger than 0 minutes then calculate time bonus
+				if( (int) $config['bbdkp_timeunit'] > 0)
+				{
+					$time_bonus = round($config['bbdkp_dkptimeunit'] * $timeunits, 2) ; 
+				}
+				
+			}
 										
 			$allplayerinfo[] = array(
 				'jointime'	=> $row['jointime'],
@@ -414,6 +419,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		
 		// global vars		
 		$template->assign_vars(array(
+			'S_SHOWTIME' 			=> ($config['bbdkp_timebased'] == '1') ? true : false,
 			'U_LINK'				=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;"), 
 			'S_ADDLOOTDKPVALUES'	=> (( $config['bbdkp_zerosum']) ? true : false) , 
 			'U_IMPORT'				=> append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import&amp;r=" . $this->Raid['raidid']	),

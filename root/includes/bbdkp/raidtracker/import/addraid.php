@@ -202,7 +202,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		foreach($this->allplayerinfo as $playerid => $player)
 		{
 			// check if player exists in memberlist
-			$sql = "SELECT count(*) as mcount FROM " . MEMBER_LIST_TABLE . " where member_name ='" . $db->sql_escape($player['playername']) . "'";
+			$sql = "SELECT count(*) as mcount FROM " . MEMBER_LIST_TABLE . " where ucase(member_name) =  ucase('" . $db->sql_escape($player['playername']) . "') ";
 			$result = $db->sql_query($sql);
 			$mcount = (int) $db->sql_fetchfield('mcount', false, $result);	
 			$db->sql_freeresult($result);

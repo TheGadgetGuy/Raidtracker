@@ -189,7 +189,7 @@ function stateChanged2()
 		<form method="post" action="{F_IMPORT}" id="post">
 
 			<fieldset>
-			  <legend>{L_RT_STEP2_RAIDINFO}</legend>
+			  <legend><h1>{L_RT_STEP2_RAIDINFO}</h1></legend>
 				  <dl>
 				  <dt><label>{L_RT_STEP2_DKPPOOL}:</label></dt>
 				  <dd><select name="dkpsys" class="input" onchange="return GetEvent(this.value)">	
@@ -279,8 +279,9 @@ function stateChanged2()
 	                </dd>
 		        </dl>
 		        
+		        <!-- IF S_SHOWTIME -->
  				<dl>
-    				<dt><label>{L_RT_STEP2_TIMEBONUSCALCULATION}</label><br />{L_RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN}</dt>
+    				<dt><label><h1>{L_RT_STEP2_TIMEBONUSCALCULATION}</h1></label><br />{L_RT_STEP2_TIMEBONUSCALCULATION_EXPLAIN}</dt>
     				<dd>
 						<table width="100%" border="0" cellspacing="1" cellpadding="2">
 						  <tr>
@@ -310,15 +311,19 @@ function stateChanged2()
 						</table>
     				</dd>
     		   </dl>
+				<!-- ENDIF -->
 				
+				<h1>{L_RT_STEP2_RAIDSDROPSDETAILS}</h1>
 				<!-- BEGIN boss_row -->
-				<fieldset>
-						<legend>{L_RT_STEP2_RAIDSDROPSDETAILS}</legend>
+				
+				<div class="panel">
+				<div class="inner">
+				
+				<span class="corners-top"><span></span></span>
+				&nbsp;<strong>{boss_row.BOSSNAME}</strong>
+				<fieldset class="fields2">
 							<dl>
-								<dt><label>{L_RT_STEP2_BOSS}</label></dt>
-								
 								<dd>
-									<label><strong>{boss_row.BOSSNAME}</strong></label>
 									<input type="hidden" name="bossname[{raid_row.BATCHID}][{boss_row.BOSSNAME}]" value="{raid_row.boss_row.BOSSNAME}" class="input" />
 									<input type="radio" name="bossdifficulty[{raid_row.BATCHID}][{boss_row.BOSSNAME}]"  value="0"{raid_row.boss_row.BOSSNORM_CHECKED} /> {L_RT_DIFFICULTYNORMAL}&nbsp;&nbsp;
 									<input type="radio" name="bossdifficulty[{raid_row.BATCHID}][{boss_row.BOSSNAME}]"  value="1"{raid_row.boss_row.BOSSHEROIC_CHECKED} /> {L_RT_DIFFICULTYHEROIC}
@@ -356,7 +361,10 @@ function stateChanged2()
 				                </dd>
 							</dl>
 							<!-- END loot_row -->
-		 			</fieldset>	
+		 			</fieldset>
+		 			<span class="corners-bottom"><span></span></span>
+		 			</div>
+		 			</div>
 					<!-- END boss_row -->
 		        
 		

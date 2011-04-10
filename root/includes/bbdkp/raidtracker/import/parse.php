@@ -584,15 +584,15 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				$rt_bosskill[] = array(
 				'batchid'	 => $batchid ,
 				'bossname'	 => (string) $Bosskill['name'] ,
-				'time'		 => (int) is_numeric($Bosskill['time']) ? $Bosskill['time'] : strtotime((string) $$Bosskill['time']),
+				'time'		 => (int) is_numeric($Bosskill['time']) ? $Bosskill['time'] : strtotime((string) $Bosskill['time']),
 				'zone'		 => $globalevent['event_name'], 
 				'difficulty' => $Bosslevel ,
 				); 
 				
-				if (isset($Bosskill['attendees']))
+				$hasattendees = isset($Bosskill['attendees']) ? (count((array) $Bosskill['attendees']) > 0  ? true : false) :  false;
+				
+				if ($hasattendees)
 				{
-					if (count((array) $Bosskill['attendees']) > 0)
-					{
 					// we have attendee records 
 					$attendees = (array) $Bosskill['attendees']; 
 	
@@ -619,16 +619,15 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				
 					}
 				}
-				}
 				else 
 				{
 					// if there is no attendees tag for this bosskill then add everyone 
 					// that was in raid at time of bosskill
-					// ->> some old Wow tracking mods (1.12) don't add the boss attendee tag
+					// ->> some old Wow tracking mods (1.12) don't add the boss attendee tag or leave it empty
 					// loop playerjointable to check 
 					foreach($rt_joinleave as $key => $player)
 					{
-						$bosskilltime = (int) is_numeric($Bosskill['time']) ? $Bosskill['time'] : strtotime((string) $$Bosskill['time']);
+						$bosskilltime = (int) is_numeric($Bosskill['time']) ? $Bosskill['time'] : strtotime((string) $Bosskill['time']);
 						$leavetime =  (int) $player['leavetime']; 
 						$jointime =	 (int) $player['jointime'];
 						$leftafterkill = ($bosskilltime < $leavetime) ? true : false; 
@@ -672,10 +671,13 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			
 		}
 		
+		//make assoc array unique
+		$rt_attendees = $this->serial_arrayUnique($rt_attendees);
+		
 		if (sizeof($Bosskills) == 0)
 		{
 			// no bosskills
-			// look if there is loot from trash or if the tracker is defective and theres no bosstag and well find bosstags in loot 
+			// look if there is loot from trash or if the tracker is defective and theres no bosstag, find bosstags in loot 
 			// walk the loot to find bosses 
 			
 			foreach ($Loots as $key => $Loot)
@@ -742,6 +744,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			}
 		}
 		
+		//again make assoc array unique
+		$rt_attendees = $this->serial_arrayUnique($rt_attendees);
+		
 		// log wipes if it is present in xml
 		// set difficultylevel to one
 		if (isset($doc->Wipes))
@@ -785,6 +790,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			}	
 		}
 		
+		//again make assoc array unique
+		$rt_attendees = $this->serial_arrayUnique($rt_attendees);
+		
 		// sort by time, interpolate the wipes with the bosskills
 		// only if there was a bosskill 
 		if(sizeof($rt_bosskill) > 0)
@@ -811,7 +819,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		 * loot
 		 *	
 		 */
-		
+		// set the ignored looter (loot for disenchant, ...)
 		$ignoredlooter = isset($config['bbdkp_rt_ignoredlooter']) ? trim($config['bbdkp_rt_ignoredlooter']) : ''; 
 		
 		// walk the loot
