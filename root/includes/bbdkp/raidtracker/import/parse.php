@@ -143,7 +143,10 @@ class Raidtracker_parse extends acp_dkp_rt_import
 
 		while ( $row = $db->sql_fetchrow($import_result) )
 		{
-			$import_count++;
+			if ($row['imported'] == 0)
+			{
+				$import_count++;
+			}
 			
 			$template->assign_block_vars('import_row', array(
 				'IMPORTED'		=> $row['imported'],
