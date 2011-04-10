@@ -200,6 +200,9 @@ $lang = array_merge($lang, array(
 'RT_IQ_EPIC' => 'Episch',
 'RT_IQ_LEGENDARY' => 'Legendär',
 
+'RT_BANKER' => 'Bank Trigger ',
+'RT_BANKER_EXPLAIN' => 'Bankname im XML zur Küpplung mit die bbDKP Bank',
+
 /**
  * Attendance Filter
  */

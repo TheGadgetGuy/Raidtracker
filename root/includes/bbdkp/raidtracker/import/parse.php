@@ -823,13 +823,23 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			}
 		}
 		
-		/*
+		/***
 		 * loot
 		 *	
-		 */
+		 **/
 		// set the ignored looter (loot for disenchant, ...)
+		// this is set to 'disenchant' as of 0.3.1 
 		$ignoredlooter = isset($config['bbdkp_rt_ignoredlooter']) ? trim($config['bbdkp_rt_ignoredlooter']) : ''; 
 		
+		// if guildbank name and trigger are set (new for 0.3.1)
+		$bankname = 'bank';
+		if( isset($config['bbdkp_bankerid']) && isset($config['bbdkp_rt_xmlbanker'] ))
+		{
+			$result = $db->sql_query("select member_name from " . MEMBER_LIST_TABLE . ' where member_id = ' . $config['bbdkp_bankerid']); 
+			$bankname = $db->sql_fetchfield('member_name', 0 , $result);
+			$db->sql_freeresult ( $result);
+		}
+				
 		// walk the loot
 		foreach ($Loots as $key => $Loot)
 		{
@@ -922,6 +932,12 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			
 			// if this item is on always add list ? this will override ignoredlooter and items and itemquality
 			$isalwaysadded	= isset($this->alwaysadditem) ? in_array($itemid, $this->alwaysadditem) : false; 
+			
+			if($dkpplayername == $config['bbdkp_rt_xmlbanker'])
+			{
+				//replace with bankname
+				$dkpplayername = $bankname;
+			}
 			
 			if (  ($isignoreditem == false && $isignoredlooter == false && $isitemquality_low == false) or ($isalwaysadded == true ))
 			{

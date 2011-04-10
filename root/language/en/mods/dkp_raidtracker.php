@@ -198,6 +198,9 @@ $lang = array_merge($lang, array(
 'RT_IQ_EPIC' => 'Epic',
 'RT_IQ_LEGENDARY' => 'Legendary',
 
+'RT_BANKER' => 'Bank name trigger',
+'RT_BANKER_EXPLAIN' => 'Bank name in XML to link to the bbDKP Guildbank character',
+
 /**
  * Attendance Filter
  */

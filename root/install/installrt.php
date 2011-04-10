@@ -410,6 +410,12 @@ $versions = array(
 	'0.3.1' => array (
 	  // no db change, but many bugfixes 
 	  	'custom' => array('raidtrackerupdater'),
+	  	'config_update' => array(
+			array('bbdkp_rt_ignoredlooter', 'disenchanted', true),
+		),
+		// the name of the bank in the XML to be tied to the bbDKP Guildbank
+	   'config_add' => array(
+			array('bbdkp_rt_xmlbanker', 'bank', true)),		
 	
 	),
 	
