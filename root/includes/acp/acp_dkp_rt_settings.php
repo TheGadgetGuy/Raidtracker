@@ -156,6 +156,8 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 					set_config  ( 'bbdkp_rt_defaultcost',  request_var('default_dkp', 0.00), 0);  
 					set_config  ( 'bbdkp_rt_replacealtnames', (isset ( $_POST ['replacealtnames'] )) ? 1 : 0 , 0);  
 					set_config  ( 'bbdkp_rt_bossraid',  request_var('bossraid', 0));
+					set_config  ( 'bbdkp_rt_xmlbanker',  request_var('banker', 'bank'));
+					
 					// purge cache
 					$cache->destroy('config');
 					
@@ -174,6 +176,7 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 				
 				// Form values
 				'IGNORED_LOOTER'         => $config  ['bbdkp_rt_ignoredlooter'], 
+				'BANKER'         		 => $config  ['bbdkp_rt_xmlbanker'], 
 				'EVENT_TRIGGER'          => ((int) $config ['bbdkp_rt_lootnoteeventtrigger'] == 1) ? 'checked="checked"' : "", 
 				'DEFAULT_DKP'            => $config  ['bbdkp_rt_defaultcost'], 
 				'REPLACEALTS'            => ((int) $config ['bbdkp_rt_replacealtnames'] == 1) ? 'checked="checked"' : "", 

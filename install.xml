@@ -6,19 +6,19 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.3.0]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.3.1]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
 		<description lang="fr"><![CDATA[Installateur pour bbDKP Raidtracker]]></description>
 		<description lang="de"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
-		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.x
+		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.2
 		We hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
-		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.2.x]]></author-notes>
-		<author-notes lang="fr"><![CDATA[Ce mod a comme prérequis bbDKP 1.2.x]]></author-notes>
+		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.2.2]]></author-notes>
+		<author-notes lang="fr"><![CDATA[Ce mod a comme prérequis bbDKP 1.2.2]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Sajaki]]></realname>
 				<username><![CDATA[Sajaki]]></username>
-				<homepage><![CDATA[http://www.betenoire-guild.co.uk/betenoire]]></homepage>
+				<homepage><![CDATA[http://www.bbdkp.com]]></homepage>
 				<email><![CDATA[sajaki9@gmail.com]]></email>
 				<contributions-group>
 					<contributions status="current" from="2009-01-01" position="Developer"/>
@@ -28,13 +28,13 @@
 				<realname><![CDATA[ippeh]]></realname>
 				<username><![CDATA[ippeh]]></username>
 				<homepage><![CDATA[http://www.explodinglabrats.com]]></homepage>
-				<email><![CDATA[cs.krushin@gmail.com]]></email>
+				<email><![CDATA[ippe.he@gmail.com]]></email>
 				<contributions-group>
 					<contributions status="past" from="2007-01-01" to="2008-01-01" position="project founder"/>
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.3.0</mod-version>
+		<mod-version>0.3.1</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -213,11 +213,25 @@
 					<change><![CDATA[[NEW] new parameter to decide what to do with pug members. add to guildroster or leave unguilded ?]]></change>
 				</changelog>
 			</entry>
+			<entry>
+				<date>2011-04-10</date>
+				<rev-version>0.3.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[CHANGE] Minimum bbDKP requirement is 1.2.2 ]]></change>
+					<change><![CDATA[[CHANGE] improved review layout. time dkp bonus will not show if time dkp settings are "off" ]]></change>
+					<change><![CDATA[[CHANGE] parser now better detects attendees even if tags are empty.  ]]></change>
+					<change><![CDATA[[FIX] member_id returned from creation was always 1 if member_id did not exist yet !! ]]></change>
+					<change><![CDATA[[FIX] zerorsum points will not be distributed to the guild bank. ]]></change>
+					<change><![CDATA[[FIX] zerosum remainder points can be given to guildbank ]]></change>
+				    <change><![CDATA[[FIX] loot notes are checked for array length before accessing. ]]></change>
+				</changelog>
+			</entry>			
+			
 		</history>
 		<link-group>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.1</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.1</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.1</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.2</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.2</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.2</link>
 			<link type="language" href="contrib/fr.xml" lang="en">French</link>
 			<link type="language" href="contrib/fr.xml" lang="fr">Français</link>
 			<link type="language" href="contrib/fr.xml" lang="de">Franzözisch</link>
@@ -231,7 +245,6 @@
 			<file from="root/adm/findevent.php" to="adm/findevent.php"/>
 			<file from="root/adm/style/dkp/*.*" to="adm/style/dkp/*.*"/>
 			<file from="root/includes/acp/*.*" to="includes/acp/*.*"/>
-			<file from="root/includes/bbdkp/krequest.php" to="includes/bbdkp/krequest.php"/>
 			<file from="root/includes/acp/info/*.*" to="includes/acp/info/*.*"/>
 			<file from="root/includes/bbdkp/raidtracker/*.*" to="includes/bbdkp/raidtracker/*.*"/>
 			<file from="root/includes/bbdkp/raidtracker/additems/*.*" to="includes/bbdkp/raidtracker/additems/*.*"/>

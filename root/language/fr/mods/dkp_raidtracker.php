@@ -198,6 +198,9 @@ $lang = array_merge($lang, array(
 'RT_IQ_EPIC' => 'Epique',
 'RT_IQ_LEGENDARY' => 'Légendaire',
 
+'RT_BANKER' => 'trigger pour banque',
+'RT_BANKER_EXPLAIN' => 'Nom de Banque dans XML à lier à la banque bbDKP',
+
 /**
  * Attendance Filter
  */
