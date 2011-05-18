@@ -143,7 +143,10 @@ class Raidtracker_parse extends acp_dkp_rt_import
 
 		while ( $row = $db->sql_fetchrow($import_result) )
 		{
-			$import_count++;
+			if ($row['imported'] == 0)
+			{
+				$import_count++;
+			}
 			
 			$template->assign_block_vars('import_row', array(
 				'IMPORTED'		=> $row['imported'],
@@ -360,7 +363,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 					// explicitly cast Simplexml object to array
 					$Loot = (array) $Loot; 
 					// is there a note ?
-					if (isset($Loot ['Note']))
+					
+					$isnote = isset($Loot['Note']) ? (count((array) $Loot['Note']) > 0  ? true : false) :  false;
+					if ($isnote)
 					{
 						$Note =	 $Loot ['Note'];
 						$Note = preg_split ( "/-/", (string) $Loot['Note'] );
@@ -556,6 +561,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			}
 		}
 		
+		//make joinleave array unique
+		$rt_joinleave = $this->serial_arrayUnique($rt_joinleave);
+		
 		// fill temp table
 		$db->sql_multi_insert(RT_TEMP_JOININFO, $rt_joinleave);
 		
@@ -584,15 +592,15 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				$rt_bosskill[] = array(
 				'batchid'	 => $batchid ,
 				'bossname'	 => (string) $Bosskill['name'] ,
-				'time'		 => (int) is_numeric($Bosskill['time']) ? $Bosskill['time'] : strtotime((string) $$Bosskill['time']),
+				'time'		 => (int) is_numeric($Bosskill['time']) ? $Bosskill['time'] : strtotime((string) $Bosskill['time']),
 				'zone'		 => $globalevent['event_name'], 
 				'difficulty' => $Bosslevel ,
 				); 
 				
-				if (isset($Bosskill['attendees']))
+				$hasattendees = isset($Bosskill['attendees']) ? (count((array) $Bosskill['attendees']) > 0  ? true : false) :  false;
+				
+				if ($hasattendees)
 				{
-					if (count((array) $Bosskill['attendees']) > 0)
-					{
 					// we have attendee records 
 					$attendees = (array) $Bosskill['attendees']; 
 	
@@ -619,16 +627,15 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				
 					}
 				}
-				}
 				else 
 				{
 					// if there is no attendees tag for this bosskill then add everyone 
 					// that was in raid at time of bosskill
-					// ->> some old Wow tracking mods (1.12) don't add the boss attendee tag
+					// ->> some old Wow tracking mods (1.12) don't add the boss attendee tag or leave it empty
 					// loop playerjointable to check 
 					foreach($rt_joinleave as $key => $player)
 					{
-						$bosskilltime = (int) is_numeric($Bosskill['time']) ? $Bosskill['time'] : strtotime((string) $$Bosskill['time']);
+						$bosskilltime = (int) is_numeric($Bosskill['time']) ? $Bosskill['time'] : strtotime((string) $Bosskill['time']);
 						$leavetime =  (int) $player['leavetime']; 
 						$jointime =	 (int) $player['jointime'];
 						$leftafterkill = ($bosskilltime < $leavetime) ? true : false; 
@@ -672,10 +679,13 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			
 		}
 		
+		//make assoc array unique
+		$rt_attendees = $this->serial_arrayUnique($rt_attendees);
+		
 		if (sizeof($Bosskills) == 0)
 		{
 			// no bosskills
-			// look if there is loot from trash or if the tracker is defective and theres no bosstag and well find bosstags in loot 
+			// look if there is loot from trash or if the tracker is defective and theres no bosstag, find bosstags in loot 
 			// walk the loot to find bosses 
 			
 			foreach ($Loots as $key => $Loot)
@@ -699,6 +709,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 					'batchid'	 => $batchid ,
 					'bossname'	 => (string) $Bossname ,
 					'zone'		 => $globalevent['event_name'], 
+					
 					'difficulty' => $Bosslevel ,
 					); 
 			}
@@ -707,6 +718,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			//find first loot time for each boss, use it as bosskilltime
 			foreach ($rt_bosskill as $key1 => $Bosskill)
 			{
+				// set a default bosskill time
+				//$rt_bosskill[$key1]['time'] = (int) is_numeric($Loot['Time']) ? $Loot['Time'] : strtotime((string) $Loot['Time']);
+				
 				//walk the loot
 				foreach ($Loots as $key2 => $Loot)
 				{
@@ -725,7 +739,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 					
 				}
 			}
-			
+
+			ksort($rt_bosskill);
+		
 			// loop our bosskills again from loot, add as attendee
 			foreach ($rt_bosskill as $key1 => $Bosskill)
 			{
@@ -741,6 +757,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 					
 			}
 		}
+		
+		//again make assoc array unique
+		$rt_attendees = $this->serial_arrayUnique($rt_attendees);
 		
 		// log wipes if it is present in xml
 		// set difficultylevel to one
@@ -785,10 +804,14 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			}	
 		}
 		
+		//again make assoc array unique
+		$rt_attendees = $this->serial_arrayUnique($rt_attendees);
+		
 		// sort by time, interpolate the wipes with the bosskills
 		// only if there was a bosskill 
 		if(sizeof($rt_bosskill) > 0)
 		{
+			$this->mulsort($rt_bosskill);
 			
 			//sort bosskills by time
 			foreach ( $rt_bosskill as $key => $raid )
@@ -807,13 +830,23 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			}
 		}
 		
-		/*
+		/***
 		 * loot
 		 *	
-		 */
-		
+		 **/
+		// set the ignored looter (loot for disenchant, ...)
+		// this is set to 'disenchant' as of 0.3.1 
 		$ignoredlooter = isset($config['bbdkp_rt_ignoredlooter']) ? trim($config['bbdkp_rt_ignoredlooter']) : ''; 
 		
+		// if guildbank name and trigger are set (new for 0.3.1)
+		$bankname = 'bank';
+		if( isset($config['bbdkp_bankerid']) && isset($config['bbdkp_rt_xmlbanker'] ))
+		{
+			$result = $db->sql_query("select member_name from " . MEMBER_LIST_TABLE . ' where member_id = ' . $config['bbdkp_bankerid']); 
+			$bankname = $db->sql_fetchfield('member_name', 0 , $result);
+			$db->sql_freeresult ( $result);
+		}
+				
 		// walk the loot
 		foreach ($Loots as $key => $Loot)
 		{
@@ -907,6 +940,12 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			// if this item is on always add list ? this will override ignoredlooter and items and itemquality
 			$isalwaysadded	= isset($this->alwaysadditem) ? in_array($itemid, $this->alwaysadditem) : false; 
 			
+			if($dkpplayername == $config['bbdkp_rt_xmlbanker'])
+			{
+				//replace with bankname
+				$dkpplayername = $bankname;
+			}
+			
 			if (  ($isignoreditem == false && $isignoredlooter == false && $isitemquality_low == false) or ($isalwaysadded == true ))
 			{
 				$rt_loot[] = array(
@@ -938,6 +977,22 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		trigger_error($message . $this->Raidtrackerlink, E_USER_NOTICE);
 
 		return;
+	}
+	
+
+	/*
+	 * recursive sort for multi-dim arrays
+	 */
+	private function mulsort(&$a)
+	{
+ 		ksort($a);
+ 		foreach($a as &$value)
+ 		{
+	   		if (is_array($value))
+	   		{
+		       	$this->mulsort($value);
+	   		}
+ 		}
 	}
 	
 	
