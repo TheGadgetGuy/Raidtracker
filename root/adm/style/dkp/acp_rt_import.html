@@ -237,7 +237,10 @@ function stateChanged2()
 		        
 		        <dl>
 					<dt><label>{L_RT_STEP2_REALM}</label></dt>
-					<dd><p>{raid_row.REALM}</p></dd>		
+					<dd><p>{raid_row.REALM}</p>
+					<input type="hidden" name="realm" value="{raid_row.REALM}"/>
+					</dd>		
+					
 					<dt><label>{L_RT_STEP2_ZONE}</label></dt>
 					<dd><label><strong>{raid_row.ZONE}</strong></label>
 					<input type="radio" name="difficulty[{raid_row.BATCHID}]"  value="0"{raid_row.NORM_CHECKED} /> {L_RT_DIFFICULTYNORMAL}&nbsp;&nbsp;

@@ -328,6 +328,30 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			trigger_error($user->lang['RT_ERR_NOPLAYERINFOSTAG'] . $this->Raidtrackerlink , E_USER_WARNING);
 		}
 
+		if(!isset($doc->PlayerInfos->key1->name))
+		{
+			// no name tag
+			trigger_error($user->lang['RT_ERR_NOPLAYER_NAME_STAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+		}
+		
+		if(!isset($doc->PlayerInfos->key1->race))
+		{
+			// no race tag
+			trigger_error($user->lang['RT_ERR_NOPLAYER_RACE_TAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+		}
+		
+		if(!isset($doc->PlayerInfos->key1->class))
+		{
+			// no class tag
+			trigger_error($user->lang['RT_ERR_NOPLAYER_CLASS_TAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+		}
+
+		if(!isset($doc->PlayerInfos->key1->level))
+		{
+			// no level tag
+			trigger_error($user->lang['RT_ERR_NOPLAYER_LEVEL_TAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+		}
+		
 		if(!isset($doc->Join))
 		{
 			trigger_error($user->lang['RT_ERR_NOJOINTAG'] . $this->Raidtrackerlink , E_USER_WARNING);
@@ -347,7 +371,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		
 		// ct_raidtracker only. check in lootnotes for multiple zones
 		$Raidzone = array(); 
-		//if there is a zone tag
+		//if there is a zone tag use it.
 		if(isset($doc->zone))
 		{
 			$Raidzone[] = (string) $doc->zone[0]; 

@@ -27,7 +27,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	//holds boardtime
 	public	$time;
 	private $id, $Raidtrackerlink; 
-	private $dkp, $batchid, $event, $eventname, $globalcomments, $allplayerinfo,
+	private $dkp, $batchid, $realm, $event, $eventname, $globalcomments, $allplayerinfo,
 		$allattendees, $raid_value, $raidbegin, $difficulty, $raidend, $timebonuses; 
 	private $bosses, $bossesdifficulty, $bosskilltime, $bossattendees, $bossloots;
 	/* holds status message */
@@ -57,7 +57,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		$this->eventname   = request_var('event_name' , array(''=>'') );
 		
 		$this->allattendees = utf8_normalize_nfc(request_var('allattendees', array( '' => '') , true)); 
-
+		$this->realm = utf8_normalize_nfc(request_var('realm' , '', true));
 		$this->raid_value = request_var('dkpvalue',array( '' => 0.00));
 		$this->difficulty = request_var('difficulty', array( '' => 0));
 		$this->globalcomments = utf8_normalize_nfc(request_var('globalcomments', array( '' => '') , true)); 
@@ -280,11 +280,13 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 					$rank_id,
 					"Member inserted " . $user->format_date($this->time) . ' by RaidTracker',
 					$this->time, // joindate
-					mktime(0, 0, 0, 12, 31, 2030),	// should be null
+					0, 
 					$guild_id,
 					$player['sex'], 
 					0,	//achiev
-					' ' //url
+					' ', //url
+					$this->realm, 
+					'wow'
 					);
 					
 					if ($this_memberid > 0)
