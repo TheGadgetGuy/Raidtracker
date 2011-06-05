@@ -437,4 +437,40 @@
 		<resultpool>WLK25</resultpool>
 	</EventTrigger>
 	
+	<EventTrigger>
+		<trigger>Blackwing Descent (10)</trigger>
+		<resultevent>Blackwing Descent (10)</resultevent>
+		<resultpool>CATA10</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Throne of The Four Winds</trigger>
+		<resultevent>Throne of The Four Winds ToTFW (10)</resultevent>
+		<resultpool>CATA10</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Bastion of Twilight (10)</trigger>
+		<resultevent>BoT Bastion of Twilight (10)</resultevent>
+		<resultpool>CATA10</resultpool>
+	</EventTrigger>
+	
+		<EventTrigger>
+		<trigger>Blackwing Descent (25)</trigger>
+		<resultevent>Blackwing Descent (25)</resultevent>
+		<resultpool>CATA25</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Throne of The Four Winds</trigger>
+		<resultevent>Throne of The Four Winds ToTFW (25)</resultevent>
+		<resultpool>CATA25</resultpool>
+	</EventTrigger>
+	
+	<EventTrigger>
+		<trigger>Bastion of Twilight (25)</trigger>
+		<resultevent>BoT Bastion of Twilight (25)</resultevent>
+		<resultpool>CATA25</resultpool>
+	</EventTrigger>
+	
 </EventTriggers>
