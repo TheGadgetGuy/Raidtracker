@@ -279,7 +279,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 					$player['class'], 
 					$rank_id,
 					"Member inserted " . $user->format_date($this->time) . ' by RaidTracker',
-					$this->time, // joindate
+					max($this->time, $this->raidbegin - 172800), // take today or two days ago from raid start (-3600*24*2)
 					0, 
 					$guild_id,
 					$player['sex'], 
