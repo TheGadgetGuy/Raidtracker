@@ -316,18 +316,18 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			
 			if ($pcount == 0)
 			{
-			   //make dkp record, set adjustment to starting dkp
+			   //make dkp record
 			   $sql_ary = array(
 				'member_dkpid'		=> (int) $this->dkp,
 				'member_id'			=> $this_memberid,
-				'member_adjustment' => floatval($config['bbdkp_starting_dkp']),
 				'member_status'		=> 1,
 				'member_firstraid'	=> $this->raidbegin,
 				);
 					
 			   $sql = 'INSERT INTO ' . MEMBER_DKP_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary);
 			   $db->sql_query($sql);
-
+			  
+			   //set adjustment to starting dkp
 			   if ( !class_exists('acp_dkp_adj')) 
 			   {
 				  include ($phpbb_root_path . 'includes/acp/acp_dkp_adj.' . $phpEx);
