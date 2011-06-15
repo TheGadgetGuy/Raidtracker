@@ -435,6 +435,12 @@ $versions = array(
 	
 	),
 	
+	'0.3.3' => array (
+	  // code bugfix, no db change.
+	  	'custom' => array('raidtrackerupdater'),
+	
+	),
+		
 );
 
 // We include the UMIF Auto file and everything else will be handled automatically.
