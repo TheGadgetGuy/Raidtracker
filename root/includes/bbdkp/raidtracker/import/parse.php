@@ -328,6 +328,30 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			trigger_error($user->lang['RT_ERR_NOPLAYERINFOSTAG'] . $this->Raidtrackerlink , E_USER_WARNING);
 		}
 
+		if(!isset($doc->PlayerInfos->key1->name))
+		{
+			// no name tag
+			trigger_error($user->lang['RT_ERR_NOPLAYER_NAME_STAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+		}
+		
+		if(!isset($doc->PlayerInfos->key1->race))
+		{
+			// no race tag
+			trigger_error($user->lang['RT_ERR_NOPLAYER_RACE_TAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+		}
+		
+		if(!isset($doc->PlayerInfos->key1->class))
+		{
+			// no class tag
+			trigger_error($user->lang['RT_ERR_NOPLAYER_CLASS_TAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+		}
+
+		if(!isset($doc->PlayerInfos->key1->level))
+		{
+			// no level tag
+			trigger_error($user->lang['RT_ERR_NOPLAYER_LEVEL_TAG'] . $this->Raidtrackerlink , E_USER_WARNING);
+		}
+		
 		if(!isset($doc->Join))
 		{
 			trigger_error($user->lang['RT_ERR_NOJOINTAG'] . $this->Raidtrackerlink , E_USER_WARNING);
@@ -347,7 +371,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		
 		// ct_raidtracker only. check in lootnotes for multiple zones
 		$Raidzone = array(); 
-		//if there is a zone tag
+		//if there is a zone tag use it.
 		if(isset($doc->zone))
 		{
 			$Raidzone[] = (string) $doc->zone[0]; 
@@ -709,6 +733,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 					'batchid'	 => $batchid ,
 					'bossname'	 => (string) $Bossname ,
 					'zone'		 => $globalevent['event_name'], 
+					
 					'difficulty' => $Bosslevel ,
 					); 
 			}
@@ -717,6 +742,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			//find first loot time for each boss, use it as bosskilltime
 			foreach ($rt_bosskill as $key1 => $Bosskill)
 			{
+				// set a default bosskill time
+				//$rt_bosskill[$key1]['time'] = (int) is_numeric($Loot['Time']) ? $Loot['Time'] : strtotime((string) $Loot['Time']);
+				
 				//walk the loot
 				foreach ($Loots as $key2 => $Loot)
 				{
@@ -735,7 +763,9 @@ class Raidtracker_parse extends acp_dkp_rt_import
 					
 				}
 			}
-			
+
+			ksort($rt_bosskill);
+		
 			// loop our bosskills again from loot, add as attendee
 			foreach ($rt_bosskill as $key1 => $Bosskill)
 			{
@@ -805,6 +835,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		// only if there was a bosskill 
 		if(sizeof($rt_bosskill) > 0)
 		{
+			$this->mulsort($rt_bosskill);
 			
 			//sort bosskills by time
 			foreach ( $rt_bosskill as $key => $raid )
@@ -970,6 +1001,22 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		trigger_error($message . $this->Raidtrackerlink, E_USER_NOTICE);
 
 		return;
+	}
+	
+
+	/*
+	 * recursive sort for multi-dim arrays
+	 */
+	private function mulsort(&$a)
+	{
+ 		ksort($a);
+ 		foreach($a as &$value)
+ 		{
+	   		if (is_array($value))
+	   		{
+		       	$this->mulsort($value);
+	   		}
+ 		}
 	}
 	
 	

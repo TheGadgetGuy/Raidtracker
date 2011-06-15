@@ -27,7 +27,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	//holds boardtime
 	public	$time;
 	private $id, $Raidtrackerlink; 
-	private $dkp, $batchid, $event, $eventname, $globalcomments, $allplayerinfo,
+	private $dkp, $batchid, $realm, $event, $eventname, $globalcomments, $allplayerinfo,
 		$allattendees, $raid_value, $raidbegin, $difficulty, $raidend, $timebonuses; 
 	private $bosses, $bossesdifficulty, $bosskilltime, $bossattendees, $bossloots;
 	/* holds status message */
@@ -57,7 +57,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		$this->eventname   = request_var('event_name' , array(''=>'') );
 		
 		$this->allattendees = utf8_normalize_nfc(request_var('allattendees', array( '' => '') , true)); 
-
+		$this->realm = utf8_normalize_nfc(request_var('realm' , '', true));
 		$this->raid_value = request_var('dkpvalue',array( '' => 0.00));
 		$this->difficulty = request_var('difficulty', array( '' => 0));
 		$this->globalcomments = utf8_normalize_nfc(request_var('globalcomments', array( '' => '') , true)); 
@@ -279,12 +279,14 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 					$player['class'], 
 					$rank_id,
 					"Member inserted " . $user->format_date($this->time) . ' by RaidTracker',
-					$this->time, // joindate
-					mktime(0, 0, 0, 12, 31, 2030),	// should be null
+					$this->raidbegin - 172800, // take today or two days ago from raid start (-3600*24*2)
+					0, 
 					$guild_id,
 					$player['sex'], 
 					0,	//achiev
-					' ' //url
+					' ', //url
+					$this->realm, 
+					'wow'
 					);
 					
 					if ($this_memberid > 0)
@@ -314,18 +316,18 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			
 			if ($pcount == 0)
 			{
-			   //make dkp record, set adjustment to starting dkp
+			   //make dkp record
 			   $sql_ary = array(
 				'member_dkpid'		=> (int) $this->dkp,
 				'member_id'			=> $this_memberid,
-				'member_adjustment' => floatval($config['bbdkp_starting_dkp']),
 				'member_status'		=> 1,
 				'member_firstraid'	=> $this->raidbegin,
 				);
 					
 			   $sql = 'INSERT INTO ' . MEMBER_DKP_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary);
 			   $db->sql_query($sql);
-
+			  
+			   //set adjustment to starting dkp
 			   if ( !class_exists('acp_dkp_adj')) 
 			   {
 				  include ($phpbb_root_path . 'includes/acp/acp_dkp_adj.' . $phpEx);

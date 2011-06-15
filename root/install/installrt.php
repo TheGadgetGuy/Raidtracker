@@ -37,20 +37,30 @@ if (!file_exists($phpbb_root_path . 'umil/umil_auto.' . $phpEx))
 	trigger_error('Please download the latest UMIL (Unified MOD Install Library) from: <a href="http://www.phpbb.com/mods/umil/">phpBB.com/mods/umil</a>', E_USER_ERROR);
 }
 
-// only allow install when wow is installed as game
-if ($config['bbdkp_default_game'] != 'wow')
+// only allow install when wow is installed as game 
+// and we have bbDKP 1.23
+if  (!isset ($config['bbdkp_games_wow']) )
 {
     trigger_error('NOT_AUTHORISED');
 }
+else
+{
+	if  ($config['bbdkp_games_wow'] != 1 )
+	{
+	    trigger_error('NOT_AUTHORISED');
+	}
+}
 
 // The name of the mod to be displayed during installation.
-$mod_name = 'Raidtracker 0.3.1';
+$mod_name = 'Raidtracker 0.3.2';
 
 /*
 * The name of the config variable which will hold the currently installed version
 * You do not need to set this yourself, UMIL will handle setting and updating the version itself.
 */
 $version_config_name = 'bbdkp_raidtracker';
+
+// old prefix
 $bbdkp_table_prefix= 'bbeqdkp_';
 /*
 * The language file which will be included when installing
@@ -416,6 +426,12 @@ $versions = array(
 		// the name of the bank in the XML to be tied to the bbDKP Guildbank
 	   'config_add' => array(
 			array('bbdkp_rt_xmlbanker', 'bank', true)),		
+	
+	),
+	
+	'0.3.2' => array (
+	  // change in raid creation code..
+	  	'custom' => array('raidtrackerupdater'),
 	
 	),
 	
