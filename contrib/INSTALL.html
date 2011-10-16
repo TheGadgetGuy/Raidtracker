@@ -90,7 +90,7 @@ DKP systems supported :  <br />
 			<ol>
 			<li>Unzip the zip file into /store/mods/</li>
 			<li>Launch automod, choose the install link. this will copy all the files, perform the necessary edits. </li>
-			<li>Then surf to /install/installrt.php, and you will see the database installer. Launch the database installer.  This will install the acp module, and clear the caches (template, theme, imagesets)</li>
+			<li>Then surf to /install/index.php, and you will see the database installer. Launch the database installer.  This will install the acp module, and clear the caches (template, theme, imagesets)</li>
 			<li>Once installed, you will find the ACP module added under the Item section in bbdkp ACP.</li>
 			</ol>
 			
@@ -138,6 +138,180 @@ DKP systems supported :  <br />
 		<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
 		<div class="inner"><span class="corners-bottom"><span></span></span></div>
 	</div>	
+
+
+<h1>Raidtracker Plugin Changelog</h1>
+	<hr />
+
+	<div class="paragraph">
+		<div class="inner"><span class="corners-top"><span></span></span></div>
+		
+		<div class="content">
+
+<ul>
+
+2011-10-16 : 0.3.4
+
+<li>[FIX] installer name is now index.php to cope with umil redirect problem</li>
+<li>[UPD] Event triggers updated for Firelands</li>
+<li>[UPD] included CT_Raidtracker updated 1.8.7</li>
+<li>[UPD] included MizusRaidTracker 0.28.2</li>
+
+<br />
+<br />
+
+2011-06-15 : 0.3.3
+
+<li>[FIX] bugfix, starting dkp was assigned twice.</li>
+<br />
+<br />
+
+2011-06-01 : 0.3.2
+
+<li>[CHANGE] Minimum bbDKP requirement is 1.2.3 with wow installed</li>
+<li>[CHANGE] now checks if playerinfo has class,race, gender</li>
+<li>[CHANGE] passes wow as gameid when creating character </li>
+<li>[NEW] sample event triggers now include cataclysm events </li>
+<li>[CHANGE] includes updated CT_raidtracker and MizusRaidtracker addons</li>
+<br />
+<br />
+
+2011-04-10 : 0.3.1
+
+<li>[CHANGE] Minimum bbDKP requirement is 1.2.2 </li>
+<li>[CHANGE] improved review layout. time dkp bonus will not show if time dkp settings are "off" </li>
+<li>[CHANGE] parser now better detects attendees even if tags are empty.  ]]></li>
+<li>[FIX] member_id returned from creation was always 1 if member_id did not exist yet !! </li>
+<li>[FIX] items given to to the guild bank or disenchanted will no longer be redistributed over the raid in zerosum.   </li>
+<li>[FIX] zerosum remainder points can be given to guildbank </li>
+<li>[FIX] loot notes are checked for array length before accessing. </li>
+<br />
+<br />
+
+2011-03-28 : 0.3.0
+<br />
+
+<li>[CHANGE] Minimum bbDKP requirement is 1.2.0 </li>
+<li>[CHG] Table name prefix changed to phpbb_</li>
+<li>[CHANGE] accepts xml from Wow 1.12 ct_raidtracker</li>
+<li>[CHG] removed 4 config settings that are now in bbdkp core</li>
+<li>[CHG] minimum version is now 1.2</li>
+<li>[CHG] stricter control on double records</li>
+<br />
+<br />
+
+
+2010-11-01 : 0.2.8
+<br />
+<li>[FIX] #85 german umlaut now accepted in Bossnames, used new request class</li>
+<li>[FIX] #84 bloodelves having wrong raceid in bbdkp led to them not being imported. sql to fix is launched on upgrade</li>
+<li>[UPD] now supports the new addon MRT (mizus raidtracker)]]></li>
+<br />
+<br />
+
+2010-10-13 : 0.2.7
+<li>[NEW] Version Française</li>
+<li>[FIX] #75 removed quote from en; lang file</li>
+<br />
+<br />
+
+2010-10-12 : 0.2.6
+<li>[NEW] Deutsche Version</li>
+<li>[FIX] #71 Error finding race by name on string import (is now compatible with bbDKP 1.1.2.x)</li>
+<li>[FIX] #57 Hourly awarded dkp not being removed when raid is : it's now booked as an adjustment so you can now.</li>
+<li>[new] Time adjustments are now editable before committing raid</li>
+<br />
+<br />
+
+2010-07-16 : 0.2.5
+	<li>[FIX] issue #52 review.php wrongly reinitialised bosskills , parse.php rt_Bosskill i.o rt_bosskill, adapted admin permission file</li>
+<br />
+<br />
+
+2010-07-13 : 0.2.4
+	<li>[NEW] issue #51 RT parsing now accepts dkp strings without loot tag, nor bosskill tag</li>
+<br />
+<br />
+2010-07-10 : 0.2.3
+	<li>[FIX] issue #49 RT parsing now accepts dkp strings without end time nor leave array. in that case, end time will be taken from the last bosskill. also, if the global attendees list is bigger than the playerinfo tag, importing the raid will no longer crash when random raiders in global attendance aren't present in the DKP table. it will ignore them then.</li>
+	<li>[NEW] issue #50 new feature : RT parsing now accepts dkp strings without bosskill tag.</li>
+	<li>[CHG] removed the "skip raids with empty notes" setting as parser will now look in loot notes first</li>
+<br />
+<br />
+2010-06-13 : 0.2.2
+	<li>[FIX] issue #41 when global raid is selected, raid bonus is only assigned to global raid attendees array and not boss attendees array</li>
+	<li>[FIX] issue #42 ACP preferences did not save to session unless cache was purged</li>
+	<li>[NEW] Now accepts multiple alts</li>
+	<li>[NEW] setting to assign hourly dkp</li>
+
+<br />
+<br />
+2010-05-29 : 0.2.1
+	<li>[NEW] added an option to the ACP to log one global raid instead of one raid per boss. This is independent of the setting in CT_Raidtracker to log bosses.</li>	
+	<li>[FIX] issue #36 unguilded raiders are incorrectly created with an unnamed guild</li>
+	<li>[FIX] issue #35 parser crashed while trying to insert a join without a leave. </li>	
+	<li>[NEW] headcount Wow add-in joined in the contrib folder </li>	
+
+<br />
+<br />
+
+2010-05-26 : 0.2.0<br />
+	<li>[NEW] compatible with Headcount and CT/ML_Raidtracker. </li>
+	<li>[NEW] wowhead item id recorded in temp item table. In a future Core bbdkp release this will be integrated in the items table. </li>
+	<li>[NEW] Now records Wipes and attendees</li>
+	<li>[CHANGE] Language file updated to uppercase, template uses L_ adressing</il>
+	<li>[CHANGE] recognises heroic raids from normal raids, finds event</li>
+	<li>[NEW] Contains all event triggers up to ICC. Events have to match the Event triggers or the XML will be rejected.  Boss triggers are now no longer needed.</li>
+	<li>[CHANGE] removed dao class from CTRT, uses phpbb dbal</li>
+	<li>[CHANGE] new dkp parser, using SimpleXML class, adds CDATA integration, new import screen</li>
+	<li>[CHANGE] new preference to allow replacing alt names</li>
+	<li>[CHANGE] refactored all sub acp modules</li>
+	<li>[NEW] Uses the new Request_var class from phpbb 3.1, backported to phpbb 3.0, which enables multi dimension arrays. </li>
+	<li>[NEW] revised import screen, new temporary tables to store imported dkp data before processing. As opposed to the old CTRT, the import process is split into 3 files : parse.php, review.php and addraid.php. this enables us to really fine-tune the process. 
+	<li>[NEW] multiple XML files from CT_Raid Tracker can be imported in one go in a temp table, and be treated in batch</li>
+	<li>[NEW] The new XML parser now reads the CDATA sections and so retrieve the user notes, and points per loot item.</li>
+	<li>[NEW] New advanced XML validation, extensive error reporting. </li>	
+	<li>[CHANGE] now uses phpbb Umil db installer</li>
+	<li>[CHANGE] Automod ready</li>
+	<li>[CHANGE] ready for bbdkp 1.1</li>
+	<li>[CHANGE] Name changes to RaidTracker</li>
+<br />
+
+2009-05-17 : 0.1.3<br />
+	<li>[RELEASED] released with bbdkp 1.0.9 RC1</li>
+	<li>[FIX] changed Stripslashes, addslashes, xml validations</li>
+	<li>[FIX] ctrt importer fixed</li>
+	<li>[NEW] ctrt new event Wotlk triggers</li>
+<br />
+2008-12-28 : 0.1.2<br />
+	<li>[RELEASED] released with bbdkp 1.0.9 Beta 3</li>
+	<li>[ADDED] MODX installation instructions</li>
+<br />
+2008-12-28 0.1.1<br />
+	<li>[RELEASED] released with bbdkp 1.0.9 Beta 1</li>
+	<li>[FIXED] - Ctrt : import defaults to UTF-8, "dkp invalid string" when too long, Ctrt prefs options changed - details see svn r229,r237,r238</li>
+	<li>[FIXED] - Ctrt : Death Knights were created as 'unknown' with class id 0 (svn 231,238)</li>
+<br />
+2008-12-14 : 0.1.0 <br />
+	<li>[RELEASED] released with bbdkp 1.0.9 Beta 1</li>
+	<li>[CHANGED] - CTRT : updated for multiple dkp</li> 
+<br />
+2008-09-15 : 0.0.3<br />
+	<li>[RELEASED] released with bbdkp 1.0.8 Beta 5 revision 60>70 - </li>
+	<li>[FIXED] - ctrt importing raids with ' sign in eventname</li>
+<br />
+2008-04-25 : 0.0.2<br />
+
+	<li>[RELEASED] released with bbdkp 1.0.8 Beta 4 by Medraut, Teksonic</li>
+	<li>[ADDED] - Event  &amp; Raid Triggers for CTRA.</li>
+	<li>[UPDATED] - CTRT plugin updated to eqdkp ctrt 1.16.8.</li>
+	<li>[FIXED] - Raid Note Parsing error for CTRT when using an apostrophe.</li>
+	<li>[FIXED] - Fixed CTRT import error. (returning 0 no matter what).</li>
+	<li>[FIXED] - CTRT now works with special characters so that name like "Aniër", and works as intended.</li>
+<br />
+2007-07-16 : 0.0.1<br />
+	<li>[RELEASED] released with 1.0.7 by Ippeh, conversion plugin ctrt-1.16.3 (first test version)</li>
+</ul>
 
 <h1>Copyright and disclaimer</h1>
 	<hr />
