@@ -430,6 +430,12 @@ $versions = array(
 	  	'custom' => array('raidtrackerupdater'),
 	
 	),
+	
+	'0.3.4' => array (
+	  // small update, no db change
+	  	'custom' => array('raidtrackerupdater'),
+	
+	),
 		
 );
 
