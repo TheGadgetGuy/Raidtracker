@@ -434,6 +434,8 @@ $versions = array(
 	'0.3.4' => array (
 	  // small update, no db change
 	  	'custom' => array('raidtrackerupdater'),
+		'config_update' => array(
+			array('bbdkp_rt_xmlbanker', 'Guildbank', true)),	
 	
 	),
 		
