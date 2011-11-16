@@ -69,7 +69,6 @@ class acp_dkp_rt_import extends bbDkp_Admin
 					$listed = (isset ($_GET ['r']) && request_var('r', 0) != 0 ) ? true : false; 
 					$submit = (isset ($_POST ['doimport'])) ? true : false;
 					
-					
 					if($listed)
 					{
 						// display the raid for review

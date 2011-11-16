@@ -423,7 +423,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 			'S_ADDLOOTDKPVALUES'	=> (( $config['bbdkp_zerosum']) ? true : false) , 
 			'U_IMPORT'				=> append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import&amp;r=" . $this->Raid['raidid']	),
 			 // javascript
-			 'UA_FINDEVENT'			=> append_sid("findevent.$phpEx"),
+			'UA_FINDEVENT'			=> append_sid("style/dkp/findevent.$phpEx"),
 		 ));   
 		
 		/*

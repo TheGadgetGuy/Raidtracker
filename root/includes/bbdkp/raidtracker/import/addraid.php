@@ -270,6 +270,19 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 					$db->sql_freeresult($result);
 				}
 				
+				/*
+				 *  public function insertnewmember($member_name, $member_status, $member_lvl, 
+				    $race_id ,  $class_id, $rank_id, $member_comment, $joindate, $leavedate, 
+				    $guild_id, $gender, $achievpoints, $memberarmoryurl = ' ', $memberportraiturl=' ',  
+					$realm ='', $game_id = 'wow', $phpbb_user_id = 0 )
+ 				 */
+				if ($this->realm == '')
+				{
+					$this->realm = $config['bbdkp_default_region'];
+				}
+				
+				$memberarmoryurl = $acp_dkp_mm->generate_armorylink('wow', $config['bbdkp_default_region'] , $this->realm , $player['playername'] );
+				
 				// insert the new member
 				$this_memberid = $acp_dkp_mm->insertnewmember(
 					$player['playername'], 
@@ -284,7 +297,8 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 					$guild_id,
 					$player['sex'], 
 					0,	//achiev
-					' ', //url
+					$memberarmoryurl, 
+					' ', //	$memberportraiturl
 					$this->realm, 
 					'wow'
 					);

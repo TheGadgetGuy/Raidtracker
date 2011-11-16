@@ -6,14 +6,14 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.3.3]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.3.4]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
 		<description lang="fr"><![CDATA[Installateur pour bbDKP Raidtracker]]></description>
 		<description lang="de"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
-		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.3+ with wow installed
+		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.5 with wow installed
 		We hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
-		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.2.3+ mit WoW]]></author-notes>
-		<author-notes lang="fr"><![CDATA[Ce mod a comme prérequis bbDKP 1.2.3+ avec WoW installé]]></author-notes>
+		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.2.5 mit WoW]]></author-notes>
+		<author-notes lang="fr"><![CDATA[Ce mod a comme prérequis bbDKP 1.2.5 avec WoW installé]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Sajaki]]></realname>
@@ -245,7 +245,7 @@
 				</changelog>
 			</entry>				
 			<entry>
-				<date>2011-10-16</date>
+				<date>2011-11-16</date>
 				<rev-version>0.3.4</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[FIX] installer name is now index.php to cope with umil redirect problem]]></change>
@@ -256,9 +256,9 @@
 			</entry>				
 		</history>
 		<link-group>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.4</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.4</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.4</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.5</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.5</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.5</link>
 			<link type="language" href="contrib/fr.xml" lang="en">French</link>
 			<link type="language" href="contrib/fr.xml" lang="fr">Français</link>
 			<link type="language" href="contrib/fr.xml" lang="de">Franzözisch</link>
@@ -269,7 +269,6 @@
 	</header>
 	<action-group>
 		<copy>
-			<file from="root/adm/findevent.php" to="adm/findevent.php"/>
 			<file from="root/adm/style/dkp/*.*" to="adm/style/dkp/*.*"/>
 			<file from="root/includes/acp/*.*" to="includes/acp/*.*"/>
 			<file from="root/includes/acp/info/*.*" to="includes/acp/info/*.*"/>
@@ -316,9 +315,9 @@ define('RT_AF_BOSS_KILL', 1);         // 1 = Boss Kill Time
 ]]></action>
 			</edit>
 		</open>
-		<php-installer><![CDATA[install/installrt.php]]></php-installer>
-		<diy-instructions lang="en"><![CDATA[Database : Browse to install/installrt.php and run and the Raidtracker plugin installer/updater]]></diy-instructions>
-		<diy-instructions lang="fr"><![CDATA[Base de données : pointe le browser vers install/installrt.php pour lancer l'installation des tables DB]]></diy-instructions>
-		<diy-instructions lang="de"><![CDATA[Datenbank : rufe sie Seite install/installrt.php auf und starte den Datenbankinstaller]]></diy-instructions>
+		<php-installer><![CDATA[install/index.php]]></php-installer>
+		<diy-instructions lang="en"><![CDATA[Database : Browse to install/index.php and run and the Raidtracker plugin installer/updater]]></diy-instructions>
+		<diy-instructions lang="fr"><![CDATA[Base de données : pointe le browser vers install/index.php pour lancer l'installation des tables DB]]></diy-instructions>
+		<diy-instructions lang="de"><![CDATA[Datenbank : rufe sie Seite install/index.php auf und starte den Datenbankinstaller]]></diy-instructions>
 	</action-group>
 </mod>
