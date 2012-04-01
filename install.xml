@@ -255,10 +255,12 @@
 				</changelog>
 			</entry>		
 			<entry>
-				<date>2012-03-31</date>
+				<date>2012-04-01</date>
 				<rev-version>0.3.5</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[[UPD] Supports bbDKP 1.2.6]]></change>
+					<change><![CDATA[[NEW] XML lock/unlock toggle button]]></change>
+					<change><![CDATA[[NEW] guild pulldown for choosing default guild to import new members in]]></change>
+					<change><![CDATA[[FIX] supports bbDKP 1.2.6 with multi guild]]></change>
 					<change><![CDATA[[UPD] included CT_Raidtracker updated 1.8.71]]></change>										
 					<change><![CDATA[[UPD] included MizusRaidTracker 0.30]]></change>															
 				</changelog>
