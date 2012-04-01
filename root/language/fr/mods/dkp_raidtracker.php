@@ -84,6 +84,7 @@ $lang = array_merge($lang, array(
 'RT_STEP1_EDIT' => 'Edition',
 'RT_STEP1_DELETE' => 'Supprimer' , 
 'RT_STEP1_ZONE' => 'Zone', 
+'RT_STEP1_LOCK' => 'Fermer', 
 'RT_STEP1_START' => 'Départ', 
 'RT_STEP1_END'	=> 'Fin', 
 'RT_STEP1_DONE' => 'Log importé vers les tables temporaires ',

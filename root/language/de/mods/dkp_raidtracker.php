@@ -86,6 +86,7 @@ $lang = array_merge($lang, array(
 'RT_STEP1_DELETE' => 'Delete' , 
 'RT_STEP1_ZONE' => 'Zone', 
 'RT_STEP1_START' => 'Start', 
+'RT_STEP1_ZONE' => 'Verriegeld', 
 'RT_STEP1_END'	=> 'Ende', 
 'RT_STEP1_DONE' => 'Log importiert im Zwischenlager. ',
 'RT_STEP1_FOUNDRAIDS'	=> '%d Raids gefunden im Zwischenlager', 

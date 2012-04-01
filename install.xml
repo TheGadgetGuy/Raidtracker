@@ -6,14 +6,14 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.3.4]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.3.5]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
 		<description lang="fr"><![CDATA[Installateur pour bbDKP Raidtracker]]></description>
 		<description lang="de"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
-		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.5 with wow installed
+		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.6 with wow installed
 		We hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
-		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.2.5 mit WoW]]></author-notes>
-		<author-notes lang="fr"><![CDATA[Ce mod a comme prérequis bbDKP 1.2.5 avec WoW installé]]></author-notes>
+		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.2.6 mit WoW]]></author-notes>
+		<author-notes lang="fr"><![CDATA[Ce mod a comme prérequis bbDKP 1.2.6 avec WoW installé]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Sajaki]]></realname>
@@ -34,11 +34,11 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.3.4</mod-version>
+		<mod-version>0.3.5</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
-			<target-version>3.0.9</target-version>
+			<target-version>3.0.10</target-version>
 		</installation>
 		<history>
 			<entry>
@@ -253,12 +253,23 @@
 					<change><![CDATA[[UPD] included CT_Raidtracker updated 1.8.7]]></change>										
 					<change><![CDATA[[UPD] included MizusRaidTracker 0.28.2]]></change>															
 				</changelog>
-			</entry>				
+			</entry>		
+			<entry>
+				<date>2012-04-01</date>
+				<rev-version>0.3.5</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[NEW] XML lock/unlock toggle button]]></change>
+					<change><![CDATA[[NEW] guild pulldown for choosing default guild to import new members in]]></change>
+					<change><![CDATA[[FIX] supports bbDKP 1.2.6 with multi guild]]></change>
+					<change><![CDATA[[UPD] included CT_Raidtracker updated 1.8.71]]></change>										
+					<change><![CDATA[[UPD] included MizusRaidTracker 0.30]]></change>															
+				</changelog>
+			</entry>							
 		</history>
 		<link-group>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.5</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.5</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.5</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.6</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.6</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.6</link>
 			<link type="language" href="contrib/fr.xml" lang="en">French</link>
 			<link type="language" href="contrib/fr.xml" lang="fr">Français</link>
 			<link type="language" href="contrib/fr.xml" lang="de">Franzözisch</link>

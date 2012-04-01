@@ -117,7 +117,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 		}
 		$db->sql_freeresult ( $result); 
 		
-		$this->display_form(); 
+		
 		
 	}
 	
@@ -126,7 +126,7 @@ class Raidtracker_parse extends acp_dkp_rt_import
 	 * displays the form
 	 * 
 	 */
-	private function display_form()
+	public function display_form()
 	{
 		global $db, $user, $template, $phpEx, $phpbb_admin_path, $config;
 		
@@ -154,8 +154,10 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				'DESCRIPTION'	=> $row['zone'],
 				'START'			=> date("r", $row['starttime']),
 				'END'			=> date("r", $row['endtime']),
-				'U_VIEW_IMPORT' => append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import&amp;r={$row['raidid']}")  ,
-				'U_DELETE'		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_delete&amp;r={$row['raidid']}")  ,  
+				'U_UNLOCK' 		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_parse&amp;step=unlock&amp;r={$row['raidid']}") ,
+				'U_LOCK' 		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_parse&amp;step=lock&amp;r={$row['raidid']}") , 
+				'U_VIEW_IMPORT' => append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import&amp;r={$row['raidid']}") ,
+				'U_DELETE'		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_delete&amp;r={$row['raidid']}") ,  
 				)
 			); 
 
@@ -167,7 +169,6 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			'LISTIMPORT_FOOTCOUNT' => sprintf($user->lang['RT_STEP1_FOUNDRAIDS'], $import_count),
 			)
 		);		
-		
 		
 	}
 	

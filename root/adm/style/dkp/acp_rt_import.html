@@ -190,6 +190,17 @@ function stateChanged2()
 
 			<fieldset>
 			  <legend><h1>{L_RT_STEP2_RAIDINFO}</h1></legend>
+				 
+				 <dl>
+					<dt><label>{L_GUILD_NAME}:</label></dt>
+					<dd><select id="guild" name="guild" class="input">		
+					    <!-- BEGIN guild_row -->
+					    	<option value="{guild_row.ID}"{guild_row.SELECTED}>{guild_row.NAME}</option>
+					    <!-- END guild_row -->
+					  	</select>
+					</dd>
+			    </dl>
+				 
 				  <dl>
 				  <dt><label>{L_RT_STEP2_DKPPOOL}:</label></dt>
 				  <dd><select name="dkpsys" class="input" onchange="return GetEvent(this.value)">	

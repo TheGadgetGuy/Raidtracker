@@ -31,6 +31,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	private $dkplist;
 	private $eventlist; 
 	private $Raidtrackerlink; 
+	private $guild;
 	
 	/**
 	 * new instance of reviewer 
@@ -75,7 +76,6 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		}
 		$db->sql_freeresult ( $result);
 				
-		// playerinfo and calculation of Time bonus
 		if ( !class_exists('acp_dkp_mm')) 
 		{
 			// we need this class for accessing member functions
@@ -83,6 +83,33 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		}
 		$acp_dkp_mm = new acp_dkp_mm;
 		
+			
+		/**
+		 * populate guild list
+		 * 
+		 */
+		// guild dropdown query
+		$sql = 'SELECT id, name, realm, region  
+               FROM ' . GUILD_TABLE . ' 
+               ORDER BY id desc';
+		$resultg = $db->sql_query($sql);
+		$this->guild = array();
+		$sql = 'SELECT max(id) as max FROM ' . GUILD_TABLE;
+		$result = $db->sql_query($sql);
+		$guild_id = $db->sql_fetchfield('max', 0, $result);
+		$db->sql_freeresult($result);
+		// fill popup and set selected to default selection
+		while ($row = $db->sql_fetchrow($resultg))
+		{
+			$this->guild[] = array(
+				'id'		=> $row['id'], 
+				'selected'	=> ($row['id'] == $guild_id) ? ' selected="selected"' : '',
+				'name'		=> $row['name'],
+			); 
+		}
+		$db->sql_freeresult($resultg);
+		
+		// playerinfo and calculation of Time bonus
 		$sql_array = array(
 			'SELECT'	=> 'p.playerid, p.playername, p.guild, p.race, p.sex, 
 							p.class, p.level, j.jointime, j.leavetime  ',
@@ -101,9 +128,6 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		$result = $db->sql_query($sql);
 		while ( $row = $db->sql_fetchrow($result) )
 		{
-			
-			$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($row['playername']));	
-
 			$time_bonus = 0;
 			$cmins = 0;
 			$chours = 0;
@@ -127,15 +151,15 @@ class Raidtracker_Review extends acp_dkp_rt_import
 				
 			}
 										
-			$allplayerinfo[] = array(
+			$allplayerinfo[$row['playerid']] = array(
 				'jointime'	=> $row['jointime'],
 				'leavetime' => $row['leavetime'],
 				'raiddurationtime' => sprintf("%02d", $chours) .':' . sprintf("%02d", $cmins) ,
 				'timebasis' => (round($config['bbdkp_dkptimeunit']/$config['bbdkp_timeunit'],2)),
 				'timebonus' => $time_bonus,
-				'playerid'	=> $row['playerid'],
-				'memberid'	=> $this_memberid, // can be 0 or not
+				'memberid'	=> 0, // will be updated later
 				'name'		=> $row['playername'],
+				'playerid'	=> $row['playerid'],
 				'race'		=> $row['race'],
 				'class'		=> $row['class'],
 				'level'		=> $row['level'],
@@ -398,7 +422,7 @@ class Raidtracker_Review extends acp_dkp_rt_import
 		 }
 		$db->sql_freeresult ($result);
 		
-
+	
 		// display the form
 		$this->display_form();
 
@@ -413,8 +437,16 @@ class Raidtracker_Review extends acp_dkp_rt_import
 	{
 		// displays a batchid
 
-		
+		// populate guild dropdown		
 		global $template, $phpEx, $phpbb_admin_path, $config; 
+		foreach($this->guild as $thisguild)
+		{
+			$template->assign_block_vars('guild_row', array(
+				'ID' 		=> $thisguild['id'] , 
+				'SELECTED' 	=> $thisguild['selected'],  
+				'NAME' 		=> $thisguild['name'])
+			);
+		}
 		
 		// global vars		
 		$template->assign_vars(array(

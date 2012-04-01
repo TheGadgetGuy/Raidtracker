@@ -27,16 +27,52 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	//holds boardtime
 	public	$time;
 	private $id, $Raidtrackerlink; 
+
 	private $dkp, $batchid, $realm, $event, $eventname, $globalcomments, $allplayerinfo,
 		$allattendees, $raid_value, $raidbegin, $difficulty, $raidend, $timebonuses; 
-	private $bosses, $bossesdifficulty, $bosskilltime, $bossattendees, $bossloots;
+	
+	private $bosses, $bossesdifficulty, $bosskilltime, $bossattendees, $bossloots; 
+	
+	/**
+	 * holds guildid to which raidmembers will be added if they don't exist
+	 */
+	private $guild_id;
+	
+	/**
+	 * holds guildname to which raidmembers will be added if they don't exist
+	 */
+	private $guild_name;
+
+	/**
+	 * holds realmname of guildid
+	 */
+	private $guild_realm;
+	
+	/**
+	 * holds available guildnames presently in database
+	 */
+	private $recordedguild;
+	
+	/**
+	 * default rank to add new members to
+	 *
+	 * @var unknown_type
+	 */
+	private $defaultrank_id;
+	
+	/**
+	 * holds available wow members presently in database
+	 *
+	 * @var array
+	 */
+	private $recordedmembers = array();
+	
 	/* holds status message */
 	private $message; 
 	
 	public function Raidtracker_Addraid($action)
 	{
-		global $phpbb_admin_path, $config, $user, $phpEx, $phpbb_root_path;
-		$user->add_lang ( array ('mods/dkp_admin' ) );
+		global $db, $phpbb_admin_path, $config, $user, $phpEx, $phpbb_root_path;
 		
 		$this->Raidtrackerlink = '<br /><a href="'. 
 			append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import" ) . '"><h3>Return to Index</h3></a>';
@@ -51,6 +87,85 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		{
 			trigger_error($user->lang['RT_ERR_RAID_ALREADYPROCESSED'] . $this->Raidtrackerlink , E_USER_WARNING); 
 		}
+		
+		// get default guild data
+		$this->guild_id	  = request_var('guild' , 0 );
+		$sql = "SELECT realm, name from " . GUILD_TABLE . " where id = " . (int) $this->guild_id;
+		$result = $db->sql_query($sql); 
+		while ( $row = $db->sql_fetchrow($result) )
+		{
+			$this->guild_realm = $row['realm'];
+			$this->guild_name = $row['name']; 
+			break;
+		}
+		$db->sql_freeresult ($result);
+		
+		// get default rank to add new member to
+		$sql = 'select max(rank_id) AS rank_id from ' . MEMBER_RANKS_TABLE . ' where guild_id = ' . (int) $this->guild_id . ' and rank_id != 90';
+		$result = $db->sql_query_limit($sql,1);
+		$this->defaultrank_id = (int) $db->sql_fetchfield ('rank_id', false, $result );
+		$db->sql_freeresult($result);
+			
+		// get list of all available guilds in realm
+		$this->recordedguild = array();
+		$sql = "SELECT * from " . GUILD_TABLE . " where realm = '" . $db->sql_escape($this->guild_realm) . "'"; 
+		$result = $db->sql_query($sql); 
+		while ( $row = $db->sql_fetchrow($result) )
+		{
+			$this->recordedguild[$row['name']] = array(
+				'id' 	=> $row['id'],
+				'realm' => $row['realm'],
+				'name' 	=> $row['name']
+			); 
+		}
+		$db->sql_freeresult ($result);
+
+		// get selectable members
+		$this->recordedmembers = array();
+		$sql_array = array(
+		    'SELECT'    => ' * ',
+		    'FROM'      => array(
+		        MEMBER_LIST_TABLE 	=> 'b',
+		        GUILD_TABLE    		=> 'g'
+		    ),
+		    'WHERE'     =>  " b.member_guild_id = g.id
+		     AND game_id = 'wow' 
+		     AND (g.realm =  '" . $db->sql_escape($this->guild_realm) . "'  OR b.member_guild_id = 0) ",
+		);
+		$sql = $db->sql_build_query('SELECT', $sql_array);
+		$result = $db->sql_query($sql);
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$this->recordedmembers[$row['member_name']] = array(
+				'member_id' => (int) $row['member_id'], 
+				'rank_id' => (int) $row['member_rank_id'],
+				'guild_id' => (int) $row['member_guild_id'], 
+				);
+		}
+		$db->sql_freeresult ( $result);
+		
+		// get allplayerinfo
+		$this->allplayerinfo = array();
+		$sql = 'select distinct playerid, playername, race, guild, sex, class, level, value 
+		from ' . RT_TEMP_PLAYERINFO . " where batchid = '" . $db->sql_escape($this->batchid) . "'" ;
+		$result = $db->sql_query($sql);
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$this->allplayerinfo[(int) $row['playerid']] = array(
+				'playerid' 	 => (int) $row['playerid'],
+				'playername' => (string) $row['playername'], 
+				'race'		 => (int) $row['race'],
+				'guild'		 => (string)  $row['guild'],
+				'sex'		 => (int) $row['sex'],
+				'class'		 => (int) $row['class'],
+				'level'		 => (int) $row['level'],
+				'value'		 => (float) $row['value'],
+				'member_id'	 => (int) 0,
+				'guild_id'	 => (int) 0,
+				'rank_id'	 => (int) 0,
+				);
+		}
+		$db->sql_freeresult ( $result);
 		
 		$this->dkp	   = request_var('dkpsys' , 0 );
 		$this->event   = request_var('event' , 0 );
@@ -131,9 +246,11 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		
 		/* add new members */
 		$this->handle_new_members($this->batchid);
+		/* add raid */		
 		$this->raid_add();
-		
+		/* lock this batch */
 		$this->close_parse();
+		
 		
 		$success_message = sprintf ( $user->lang ['ADMIN_ADD_RAID_SUCCESS'], $user->format_date($this->raidbegin)	, $this->eventname[$this->batchid] ) . '<br />';
 		trigger_error($success_message . $this->Raidtrackerlink , E_USER_NOTICE); 
@@ -181,129 +298,89 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			include ($phpbb_root_path . 'includes/acp/acp_dkp_mm.' . $phpEx); 
 		}
 		$acp_dkp_mm = new acp_dkp_mm;
- 
-		$this->allplayerinfo = array();
-		
-		$sql = 'select distinct playerid, playername, race, guild, sex, class, level, value 
-		from ' . RT_TEMP_PLAYERINFO . " where batchid = '" . $db->sql_escape($this->batchid) . "'" ;
-		$result = $db->sql_query($sql);
-		while ($row = $db->sql_fetchrow($result))
-		{
-			$this->allplayerinfo[$row['playerid']] = array(
-				'playername' => (string) $row['playername'], 
-				'race'		 => (int) $row['race'],
-				'guild'		 => (string)  $row['guild'],
-				'sex'		 => (int) $row['sex'],
-				'class'		 => (int) $row['class'],
-				'level'		 => (int) $row['level'],
-				'value'		 => (float) $row['value'],
-				'member_id'	 => (int) 0,
-				);
-		}
-		$db->sql_freeresult ( $result);
-		
+ 		
+		$membersadded = 0; 
+			
 		foreach($this->allplayerinfo as $playerid => $player)
 		{
-			// check if player exists in memberlist
-			$sql = "SELECT count(*) as mcount FROM " . MEMBER_LIST_TABLE . " where ucase(member_name) =  ucase('" . $db->sql_escape($player['playername']) . "') ";
-			$result = $db->sql_query($sql);
-			$mcount = (int) $db->sql_fetchfield('mcount', false, $result);	
-			$db->sql_freeresult($result);
-			$membersadded = 0; 
-
-			if ($mcount == 0)
+			if(array_key_exists($player['playername'], $this->recordedmembers) )
 			{
-				// member does not exist
-				// check if there is a guildname
-				if( strlen($player['guild']) > 2 )
+				// EXISTING PLAYER
+				$this->allplayerinfo[$playerid]['member_id'] = $this->recordedmembers[$player['playername']]['member_id'];
+				$this->allplayerinfo[$playerid]['rank_id'] = $this->recordedmembers[$player['playername']]['rank_id'];
+				$this->allplayerinfo[$playerid]['guild_id'] = $this->recordedmembers[$player['playername']]['guild_id'];
+			}
+			else
+			{		
+				// NEW PLAYER
+				if( strlen($player['guild']) > 2)
 				{
-					// check guildname
-					$sql = "SELECT id FROM " . GUILD_TABLE . " where name ='" . $db->sql_escape($player['guild']) . "'";
-					$result = $db->sql_query($sql);
-					$guild_id = $db->sql_fetchfield('id');	
-					$db->sql_freeresult($result);
-					
-					//guild not found -> make it
-					if (!$guild_id)
+					// the dkp string has a guildname 
+					if(!array_key_exists($player['guild'], $this->recordedguild))
 					{
-						// insertnewguild($guild_name,$realm_name,$region, $showroster, $aionlegionid = 0, $aionserverid = 0) 
 						$guild_id = (int) $acp_dkp_mm->insertnewguild(
 							$player['guild'],
-							$config['bbdkp_default_realm'],
+							$this->guild_realm,
 							$config['bbdkp_default_region'], 
 								1);
 						
-						// ranks are just defaults, you will have to run armoryupdater to update correct ranks
+						// update list of guilds
+						$this->recordedguild[$row['name']] = array(
+							'id' 	=> $guild_id,
+							'realm' => $this->guild_realm,
+							'name' 	=> $player['guild']
+						); 
+						
+						// add ranks. (just defaults, you will have to run armoryupdater to update correct ranks)
 						$acp_dkp_mm->insertnewrank(0, 'Guildleader', 0, '', '',	 $guild_id);
 						$acp_dkp_mm->insertnewrank(1, 'Member', 0, '', '',	$guild_id);
+						
+						$this->allplayerinfo[$playerid]['rank_id'] = 1;
+						$this->allplayerinfo[$playerid]['guild_id'] = $guild_id;
+						
 					}
 				}
 				else 
 				{
-					// the array does not have a guildname or the raider is guildless
-					if($config['bbdkp_rt_noguild'] ==1 )
+					// the new player is guildless or no guildname given
+					if($config['bbdkp_rt_noguild'] == 1)
 					{
-						// add to highest guildid 
-						$sql = 'select max(id) AS guild_id from ' . GUILD_TABLE;
-						$result = $db->sql_query_limit($sql,1);
-						$guild_id = (int) $db->sql_fetchfield ('guild_id', false, $result );
-						$db->sql_freeresult($result);
+						//add to selected 
+						$this->allplayerinfo[$playerid]['guild_id'] = $this->guild_id;
+						$this->allplayerinfo[$playerid]['rank_id'] = $this->defaultrank_id;
 					}
 					else
 					{
 						// add to guildid 0
-						$guild_id= 0;
+						$this->allplayerinfo[$playerid]['guild_id'] = 0;
+						$this->allplayerinfo[$playerid]['rank_id'] = 99;
 					}
 				}
-			
-				if ($guild_id == 0)
-				{
-					// set to 'out' rank
-					$rank_id = 99;
-				}
-				else 
-				{
-					// get highest guildrank that is not 90
-					$sql = 'select max(rank_id) AS rank_id from ' . MEMBER_RANKS_TABLE . ' where guild_id = ' . $guild_id . ' and rank_id != 90';
-					$result = $db->sql_query_limit($sql,1);
-					$rank_id = (int) $db->sql_fetchfield ('rank_id', false, $result );
-					$db->sql_freeresult($result);
-				}
 				
-				/*
-				 *  public function insertnewmember($member_name, $member_status, $member_lvl, 
-				    $race_id ,  $class_id, $rank_id, $member_comment, $joindate, $leavedate, 
-				    $guild_id, $gender, $achievpoints, $memberarmoryurl = ' ', $memberportraiturl=' ',  
-					$realm ='', $game_id = 'wow', $phpbb_user_id = 0 )
- 				 */
-				if ($this->realm == '')
-				{
-					$this->realm = $config['bbdkp_default_region'];
-				}
-				
-				$memberarmoryurl = $acp_dkp_mm->generate_armorylink('wow', $config['bbdkp_default_region'] , $this->realm , $player['playername'] );
+				// create an armory link			
+				$memberarmoryurl = $acp_dkp_mm->generate_armorylink('wow', $config['bbdkp_default_region'] , $this->guild_realm , $player['playername'] );
 				
 				// insert the new member
-				$this_memberid = $acp_dkp_mm->insertnewmember(
+				$this->allplayerinfo[$playerid]['member_id']  = $acp_dkp_mm->insertnewmember(
 					$player['playername'], 
 					1, 
 					$player['level'], 
 					$player['race'], 
 					$player['class'], 
-					$rank_id,
-					"Member inserted " . $user->format_date($this->time) . ' by RaidTracker',
+					$this->allplayerinfo[$playerid]['rank_id'],
+					"Member inserted " . $user->format_date($this->time) . ' by RaidTracker', //comments
 					$this->raidbegin - 172800, // take today or two days ago from raid start (-3600*24*2)
 					0, 
-					$guild_id,
+					$this->allplayerinfo[$playerid]['guild_id'],
 					$player['sex'], 
 					0,	//achiev
 					$memberarmoryurl, 
 					' ', //	$memberportraiturl
-					$this->realm, 
+					$this->guild_realm, 
 					'wow'
 					);
 					
-					if ($this_memberid > 0)
+					if ($this->allplayerinfo[$playerid]['member_id'] > 0)
 					{
 						 $membersadded += 1;
 					}
@@ -313,17 +390,12 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 					}
 					
 			 }
-			 else
-			 {
-				//get the id
-				$this_memberid = (int) $acp_dkp_mm->get_member_id($player['playername']); 
-			 }
 			 
-			$this->allplayerinfo[$playerid]['member_id'] = $this_memberid;
 			
 			// check if player has dkp record for pool
 			// otherwise add one
-			$sql = ' SELECT count(*) as pcount FROM ' . MEMBER_DKP_TABLE . ' WHERE member_id = ' . $this_memberid . ' AND member_dkpid	= ' . (int) $this->dkp; 
+			$sql = ' SELECT count(*) as pcount FROM ' . MEMBER_DKP_TABLE . ' WHERE member_id = ' . $this->allplayerinfo[$playerid]['member_id'] 
+				 . ' AND member_dkpid	= ' . (int) $this->dkp; 
 			$result = $db->sql_query ($sql);
 			$pcount = (int) $db->sql_fetchfield('pcount');	
 			$db->sql_freeresult($result);
@@ -333,7 +405,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			   //make dkp record
 			   $sql_ary = array(
 				'member_dkpid'		=> (int) $this->dkp,
-				'member_id'			=> $this_memberid,
+				'member_id'			=> $this->allplayerinfo[$playerid]['member_id'] ,
 				'member_status'		=> 1,
 				'member_firstraid'	=> $this->raidbegin,
 				);
@@ -355,7 +427,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			   
 				$acp_dkp_adj->add_new_adjustment( 
 					(int) $this->dkp, 
-					$this_memberid, 
+					$this->allplayerinfo[$playerid]['member_id'] , 
 					$group_key, 
 					floatval($config['bbdkp_starting_dkp']), 
 					$user->lang['RT_STARTING_DKP'] );
@@ -403,7 +475,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 		unset ($sql_raid);
 
 		// add raid detail per raider
-		foreach($this->allplayerinfo as $player_id => $attendee)
+		foreach($this->allplayerinfo as $playerid => $attendee)
 		{
 			if ($attendee['member_id'] != 0)
 			{
@@ -480,6 +552,27 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 	}
 	
 	/**
+	 * gets memberid from allplayerinfo
+	 *
+	 * @param string $playername
+	 * @return int
+	 */
+	private function getmemberid($playername)
+	{
+		$found = 0;
+		foreach($this->allplayerinfo as $playerid => $player)
+		{
+			if($player['playername'] == $playername && $player['member_id'] !=0 )	
+			{
+				$found =1;
+				return $player['member_id'];
+				break;
+			}
+		}
+		return 0;
+	}
+	
+	/**
 	 * inserts new loot in item table increases spent amount per player
 	 * 
 	 * @param $raidid = primary key of raid table
@@ -496,13 +589,6 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			include ($phpbb_root_path . 'includes/acp/acp_dkp_item.' . $phpEx); 
 		}
 		$acp_dkp_item = new acp_dkp_item;
-		
-		if ( !class_exists('acp_dkp_mm')) 
-		{
-			// we need this class for accessing member functions
-			include ($phpbb_root_path . 'includes/acp/acp_dkp_mm.' . $phpEx); 
-		}
-		$acp_dkp_mm = new acp_dkp_mm;
 		
 		//did boss drop loot ?
 		if(isset($this->bossloots[$this->batchid][$boss]) > 0) 
@@ -534,7 +620,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 				}
 				else 
 				{
-					$this_memberid = (int) $acp_dkp_mm->get_member_id(trim($buyername));
+					$this_memberid = (int) $this->getmemberid(trim($buyername));
 					if ($this_memberid != 0)
 					{
 						$items[] = array(
@@ -571,7 +657,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 				$raiders = array();
 				foreach($bossattendees as $name)
 				{
-					$member_id = (int) $acp_dkp_mm->get_member_id(trim($name));
+					$member_id = (int) $this->getmemberid(trim($name));
 					if($member_id != $config['bbdkp_bankerid'])
 					{
 						$raiders[]	= $member_id;
