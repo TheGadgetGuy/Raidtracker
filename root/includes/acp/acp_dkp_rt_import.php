@@ -36,7 +36,7 @@ class acp_dkp_rt_import extends bbDkp_Admin
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 		
 		$user->add_lang ( array ('mods/dkp_raidtracker' ));
-
+		$user->add_lang ( array ('mods/dkp_admin','mods/dkp_common'  ) );
 		$template->assign_vars(array(
 			'U_PARSE' 			=> append_sid ( "index.$phpEx", "i=dkp_rt_import&amp;mode=rt_parse" ),
 			'U_IMPORT' 			=> append_sid ( "index.$phpEx", "i=dkp_rt_import&amp;mode=rt_import" ), 
