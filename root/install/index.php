@@ -28,7 +28,6 @@ if (!file_exists($phpbb_root_path . 'umil/umil_auto.' . $phpEx))
 }
 
 // only allow install when wow is installed as game 
-// and we have bbDKP 1.23
 if  (!isset ($config['bbdkp_games_wow']) )
 {
     trigger_error('NOT_AUTHORISED');
@@ -362,31 +361,28 @@ $versions = array(
 
 	'0.2.4' => array(
 	// no db change, only a bugfix
-		'custom' => array('raidtrackerupdater'),
 	),
 
 	'0.2.5' => array(
 	// no db change, only a bugfix
-		'custom' => array('raidtrackerupdater'),
 	),
 	
 	'0.2.6' => array(
 	// no db change, only a bugfix
-		'custom' => array('raidtrackerupdater'),
 	),
 	
 	'0.2.7' => array(
 	// no db change, only a bugfix
-		'custom' => array('raidtrackerupdater'),
+		
 	),
 	
 	'0.2.8' => array(
 	// no db change, only a bugfix
-		'custom' => array('raidtrackerupdater'),
+		
 	),
 	
 	'0.3.0' => array(
-		'custom' => array('raidtrackerupdater', 'tablerename'),   
+		'custom' => array( 'tablerename'),   
 		
 		
 		'config_add' => array(
@@ -409,7 +405,6 @@ $versions = array(
 
 	'0.3.1' => array (
 	  // no db change, but many bugfixes 
-	  	'custom' => array('raidtrackerupdater'),
 	  	'config_update' => array(
 			array('bbdkp_rt_ignoredlooter', 'disenchanted', true),
 		),
@@ -421,24 +416,26 @@ $versions = array(
 	
 	'0.3.2' => array (
 	  // change in raid creation code..
-	  	'custom' => array('raidtrackerupdater'),
 	
 	),
 	
 	'0.3.3' => array (
-	  // code bugfix, no db change.
-	  	'custom' => array('raidtrackerupdater'),
 	
 	),
 	
 	'0.3.4' => array (
 	  // small update, no db change
-	  	'custom' => array('raidtrackerupdater'),
 		'config_update' => array(
 			array('bbdkp_rt_xmlbanker', 'Guildbank', true)),	
 	
 	),
 		
+	'0.3.5' => array (
+		// only php changes
+	  	'custom' => array('raidtrackerupdater'),
+	
+	),
+	
 );
 
 // We include the UMIF Auto file and everything else will be handled automatically.
