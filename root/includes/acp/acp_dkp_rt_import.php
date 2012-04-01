@@ -59,8 +59,36 @@ class acp_dkp_rt_import extends bbDkp_Admin
 
     				$this->tpl_name = 'dkp/acp_' . $mode;
 					$this->page_title = $user->lang ['RT_PARSE'];
-						
-				
+
+					 // get raidinfo 
+					$raidid = request_var('r', 0); 
+					$sql = 'SELECT batchid 
+						FROM ' . RT_TEMP_RAIDINFO . ' where raidid = ' . (int) $raidid ; 
+			        $result = $db->sql_query($sql);
+			        while ( $row = $db->sql_fetchrow($result) )
+			        {
+			        	$batchid = $row['batchid']; 
+			        }
+			        $db->sql_freeresult ( $result);
+			        
+					$step = request_var('step', '');
+					switch ($step)
+					{
+						case 'lock' :
+							$sql = 'UPDATE ' . RT_TEMP_RAIDINFO . " SET imported = 1 WHERE batchid='" . $db->sql_escape($batchid) . "'";
+							$db->sql_query($sql);
+							break;
+						case 'unlock' :
+							$sql = 'UPDATE ' . RT_TEMP_RAIDINFO . " SET imported = 0 WHERE batchid='" . $db->sql_escape($batchid) . "'";
+							$db->sql_query($sql);
+							break;
+					}
+					
+					$extension->display_form(); 
+					
+					$this->tpl_name = 'dkp/acp_' . $mode;
+					$this->page_title = $user->lang ['RT_IMPORT'];
+									
 				break;
 				
 			case 'rt_import' :
@@ -88,7 +116,6 @@ class acp_dkp_rt_import extends bbDkp_Admin
 					$this->page_title = $user->lang ['RT_IMPORT'];
 				
 				break;
-				
 			case 'rt_delete' :
 					// deletes a parsed raid
 					$link = '<br /><a href="' . append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_rt_import&amp;mode=rt_parse" ) . '"><h3>Return to Raidtracker</h3></a>';

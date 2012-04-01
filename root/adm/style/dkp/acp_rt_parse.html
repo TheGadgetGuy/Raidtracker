@@ -84,36 +84,49 @@
 	
 		<div>
 
-		<table width="100%" cellspacing="1">
+		<table width="100%" cellspacing="1" border="0">
 		<thead>
 		  <tr>
-		    <th width="5">{L_RT_STEP1_EDIT}</th>
-		    <th width="5">{L_RT_STEP1_DELETE}</th>
-		    <th width="60">{L_RT_STEP1_ZONE}</th>
-		    <th width="60">{L_RT_STEP1_START}</th>
-		    <th width="60">{L_RT_STEP1_END}</th>
+		    <th style="width: 25%">{L_RT_STEP1_ZONE}</th>
+		    <th style="width: 25%">{L_RT_STEP1_START}</th>
+		    <th style="width: 25%">{L_RT_STEP1_END}</th>
+		    <th style="width: 10%">{L_RT_STEP1_LOCK}</th>
+		    <th style="width: 10%">{L_RT_STEP1_EDIT}</th>
+		    <th style="width: 10%">{L_RT_STEP1_DELETE}</th>
 		  </tr>
 		</thead>
-
+		<tfoot>
+		    <th colspan="6" class="footer">{LISTIMPORT_FOOTCOUNT}</th>
+		</tfoot>
 		<tbody>
 		  <!-- BEGIN import_row -->
 		  <!-- IF import_row.IMPORTED == 1 -->
-		  	<tr class="row3">
+		  	<tr class="row2">
 		  <!-- ELSE -->
 		  	<tr class="row1">
 		  <!-- ENDIF -->
-		    <td width="5" align="center">
-		    <a href="{import_row.U_VIEW_IMPORT}"><img src="images/icon_edit.gif" width="16" height="16" alt="Edit" /></a></td>
-		    <td width="5" align="center">
-		    <a href="{import_row.U_DELETE}"><img src="images/icon_delete.gif" width="16" height="16" alt="Edit" /></a></td>
-		    <td width="60"><a href="{import_row.U_VIEW_IMPORT}">{import_row.DESCRIPTION}</a></td>
-		    <td width="60">{import_row.START}</td>
-		    <td width="60">{import_row.END}</td>
+		    <td style="text-align: center"><a href="{import_row.U_VIEW_IMPORT}">{import_row.DESCRIPTION}</a></td>
+		    <td style="text-align: center">{import_row.START}</td>
+		    <td style="text-align: center">{import_row.END}</td>
+		    <td style="text-align: center">
+		    
+		    <!-- IF import_row.IMPORTED == 1 -->
+		  	<a href="{import_row.U_UNLOCK}">
+		    <img src="images/glyphs/lock.png" width="16" height="16" alt="{L_RT_STEP1_LOCK}" /></a>
+		  	<!-- ELSE -->
+		  	<a href="{import_row.U_LOCK}">
+		    <img src="images/glyphs/unlock.png" width="16" height="16" alt="{L_RT_STEP1_LOCK}" /></a>
+		  	<!-- ENDIF -->
+		    </td>
+		    
+		    <td style="text-align: center">
+		    <a href="{import_row.U_VIEW_IMPORT}"><img src="images/icon_edit.gif" width="16" height="16" alt="{L_RT_STEP1_EDIT}" /></a>
+		    </td>
+		    
+		    <td style="text-align: center">
+		    <a href="{import_row.U_DELETE}"><img src="images/icon_delete.gif" width="16" height="16" alt="{L_RT_STEP1_DELETE}" /></a></td>
 		  </tr>
 		  <!-- END import_row -->
-		  <tr>
-		    <th colspan="5" class="footer">{LISTIMPORT_FOOTCOUNT}</th>
-		  </tr>
 		  </tbody>
 		</table>
 
