@@ -26,6 +26,7 @@ if (empty($lang) || !is_array($lang))
 // Merge the following language entries into the lang array
 $lang = array_merge($lang, array(
 	'RTSETTINGS'	=> 'RaidTracker Settings',  
+	'RT_TITLE'	=> 'RaidTracker',
 	'RTSETTINGS_EXPLAIN' => 'General Raidtracker settings, add/ignored items, Alts, Event Triggers, Raid triggers and Own raids', 
 	'RT_ADDITEMS'	=> 'Add Items',
 	'RT_LISITEMS'	=> 'List Items',
