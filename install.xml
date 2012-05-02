@@ -6,7 +6,7 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 0.3.5]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 1.0.0]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
 		<description lang="fr"><![CDATA[Installateur pour bbDKP Raidtracker]]></description>
 		<description lang="de"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
@@ -34,7 +34,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.3.5</mod-version>
+		<mod-version>1.0.0</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -265,6 +265,14 @@
 					<change><![CDATA[[UPD] included MizusRaidTracker 0.30]]></change>															
 				</changelog>
 			</entry>							
+			<entry>
+				<date>2012-05-02</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[UPD] updated umil to 1.0.5-dev]]></change>
+					<change><![CDATA[[UPD] Raidtracker is now 1.0.0]]></change>
+				</changelog>
+			</entry>		
 		</history>
 		<link-group>
 			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.6</link>
