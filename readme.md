@@ -1,4 +1,4 @@
-#bbDKP Raidtracker plugin v0.3.5
+#bbDKP Raidtracker plugin v1.0.0
 
 This bbdkp plugin reads an XML file with Raid information generated from a wow plugin (see supported plugins), imports members, imports raid, imports raid members, imports items, updates member DKP. 
 
