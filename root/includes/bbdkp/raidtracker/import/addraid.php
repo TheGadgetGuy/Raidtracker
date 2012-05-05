@@ -509,19 +509,19 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			$timebonus = $attendee['time_bonus']; 
 			
 			// add raid, time bonuses 
-			$sql = 'UPDATE ' . MEMBER_DKP_TABLE . ' m
-			   SET m.member_raid_value = m.member_raid_value + ' . (string) $raidbonus . ',	 
-			   m.member_time_bonus = m.member_time_bonus + ' . (string) $timebonus . ',	   
-			   m.member_earned =  m.member_earned  + ' . (string) floatval($raidbonus + $timebonus) ;
+			$sql = 'UPDATE ' . MEMBER_DKP_TABLE . ' 
+			   SET member_raid_value = member_raid_value + ' . (string) $raidbonus . ',	 
+			   member_time_bonus = member_time_bonus + ' . (string) $timebonus . ',	   
+			   member_earned =  member_earned  + ' . (string) floatval($raidbonus + $timebonus) ;
 						
 			   if ( $member_lastraid < $this->raidbegin)
 			   {
-				  $sql .= ', m.member_lastraid = ' . $this->raidbegin ;
+				  $sql .= ', member_lastraid = ' . $this->raidbegin ;
 			   }
 			   
-			   $sql .= ' , m.member_raidcount = m.member_raidcount + 1
-			   WHERE m.member_dkpid = ' . (int) $this->dkp . '
-			   AND m.member_id = ' . (int) $attendee['member_id'];
+			   $sql .= ' , member_raidcount = member_raidcount + 1
+			   WHERE member_dkpid = ' . (int) $this->dkp . '
+			   AND member_id = ' . (int) $attendee['member_id'];
 			   $db->sql_query($sql);
 		}
 		
@@ -671,9 +671,9 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 			foreach($items as $key => $item)
 			{
 				// update dkp account with spent value
-				$sql = 'UPDATE ' . MEMBER_DKP_TABLE . ' d				
-						SET d.member_spent = d.member_spent + ' . (float) $item['item_value']  .  ' 
-						WHERE d.member_dkpid = ' . (int) $this->dkp	 . ' 
+				$sql = 'UPDATE ' . MEMBER_DKP_TABLE . ' 				
+						SET member_spent = member_spent + ' . (float) $item['item_value']  .  ' 
+						WHERE member_dkpid = ' . (int) $this->dkp	 . ' 
 						AND member_id = ' . $item['member_id'];
 				$db->sql_query ( $sql );
 				
