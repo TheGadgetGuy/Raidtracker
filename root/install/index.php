@@ -331,6 +331,10 @@ $versions = array(
 	
 	'1.0.0'  => array(
 	
+	'table_column_update' => array(
+		array($table_prefix . 'bbdkp_rt_ignoreitems', 'ignore_items_wow_id' =>  array('VCHAR', '')),
+		), 
+	
 		'custom' => array(
 			'raidtrackerupdater'
 		)
