@@ -486,14 +486,15 @@ class Raidtracker_parse extends acp_dkp_rt_import
 				$dkpplayername = (string) $player['name'];
 			}
 			
+			$race = (int) $this->_GetRaceIdByRaceName($player['race']);
+			
 			// get correct classid
 			$class = (array) $this->_Getclass($player['class']);
 			 
 			$rt_player[] = array(
 			'batchid'	 => $batchid,
 			'raidid'	 => $raid_id,
-			'playerid'	 => 0,
-			'race'		 => $this->_GetRaceIdByRaceName($player['race']), 
+			'race'		 => $race, 
 			'playername' => $dkpplayername ,
 			'guild'		 => (string) isset($player['guild']) ? $player['guild'] : '', 
 			'sex'		 => (int) isset($player['sex']) ? ($player['sex'] == 2 ? 0 : 1) : 0,	// 2 is male, 3 is female
@@ -501,7 +502,6 @@ class Raidtracker_parse extends acp_dkp_rt_import
 			'level'		 => (int) $player['level'],	 
 			); 
 		}
-	
 		$db->sql_multi_insert(RT_TEMP_PLAYERINFO, $rt_player);
 		
 		
