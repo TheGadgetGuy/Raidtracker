@@ -37,6 +37,11 @@ class acp_dkp_rt_settings extends bbDkp_Admin
 		$user->add_lang ( array ('mods/dkp_raidtracker' ) );
 		$this->Raidtrackerlink = '<br /><a href="'. append_sid ( "index.$phpEx", "i=dkp_rt_settings&amp;" ) . '"><h3>Return to Index</h3></a>'; 
 		
+		// raidtracker version
+		$template->assign_vars ( array (
+				'RT_VERS' 		 	=> $config['bbdkp_raidtracker'],
+		));		
+
 		// main tabs
 		$template->assign_vars ( array (
 				//tab links

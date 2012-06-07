@@ -315,17 +315,18 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 				// NEW PLAYER
 				if( strlen($player['guild']) > 2)
 				{
-					// the dkp string has a guildname 
+					// the dkp string has a guildname, does it exist yet?
 					if(!array_key_exists($player['guild'], $this->recordedguild))
 					{
+						//no, go make. this should only run once. 
 						$guild_id = (int) $acp_dkp_mm->insertnewguild(
 							$player['guild'],
 							$this->guild_realm,
 							$config['bbdkp_default_region'], 
 								1);
 						
-						// update list of guilds
-						$this->recordedguild[$row['name']] = array(
+						// update list of recorded guilds
+						$this->recordedguild[$player['guild']] = array(
 							'id' 	=> $guild_id,
 							'realm' => $this->guild_realm,
 							'name' 	=> $player['guild']
@@ -339,6 +340,17 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 						$this->allplayerinfo[$playerid]['guild_id'] = $guild_id;
 						
 					}
+					else 
+					{
+						//given guild now exists in recorded guilds
+						$guild_id = $this->recordedguild[$player['guild']]['id'];
+						// assign it to this new raider
+						$this->allplayerinfo[$playerid]['guild_id'] = $guild_id;
+						// and assign the default rank
+						$this->allplayerinfo[$playerid]['rank_id'] = 1;
+						
+						
+					}
 				}
 				else 
 				{
@@ -347,7 +359,7 @@ class Raidtracker_Addraid extends acp_dkp_rt_import
 					{
 						//add to selected 
 						$this->allplayerinfo[$playerid]['guild_id'] = $this->guild_id;
-						$this->allplayerinfo[$playerid]['rank_id'] = $this->defaultrank_id;
+						$this->allplayerinfo[$playerid]['rank_id']  = $this->defaultrank_id;
 					}
 					else
 					{
