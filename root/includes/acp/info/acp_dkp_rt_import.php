@@ -37,7 +37,7 @@ class acp_dkp_rt_import_info
 		return array(
 			'filename'	=> 'acp_dkp_rt_import',
 			'title'		=> 'ACP_DKP_RT_IMPORT',
-			'version'	=> '1.0.0',
+			'version'	=> '1.0.1',
 			'modes'		=> array(
 				'rt_parse'		=> array('title' => 'RT_PARSE',  'display' => 1, 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP')),
 				'rt_import'		=> array('title' => 'RT_IMPORT', 'display' => 0, 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP')),				

@@ -335,11 +335,17 @@ $versions = array(
 		array($table_prefix . 'bbdkp_rt_ignoreitems', 'ignore_items_wow_id' , array('VCHAR', '')),
 		), 
 	
+	),
+
+	'1.0.1'  => array(
+		// no db update, only bug fix #201	
 		'custom' => array(
 			'raidtrackerupdater'
 		)
 	
 	),
+
+
 	
 );
 

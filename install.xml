@@ -6,13 +6,13 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 1.0.0]]></title>
+		<title lang="en"><![CDATA[bbDKP Raidtracker Plugin 1.0.1]]></title>
 		<description lang="en"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
 		<description lang="fr"><![CDATA[Installateur pour bbDKP Raidtracker]]></description>
 		<description lang="de"><![CDATA[bbDkp Raidtracker Plugin installer]]></description>
-		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.6 with wow installed
+		<author-notes lang="en"><![CDATA[Requirements : bbDKP 1.2.7 with wow installed (you can have other games installed too). 
 		We hope you get everything working. further developement requests, support questions are welcome at www.bbdkp.com]]></author-notes>
-		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.2.6 mit WoW]]></author-notes>
+		<author-notes lang="de"><![CDATA[Voraussetzungen : bbDKP 1.2.7 mit WoW]]></author-notes>
 		<author-notes lang="fr"><![CDATA[Ce mod a comme prérequis bbDKP 1.2.6 avec WoW installé]]></author-notes>
 		<author-group>
 			<author>
@@ -34,7 +34,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>1.0.0</mod-version>
+		<mod-version>1.0.1</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -273,11 +273,19 @@
 					<change><![CDATA[[UPD] Raidtracker is now 1.0.0]]></change>
 				</changelog>
 			</entry>		
+			<entry>
+				<date>2012-06-08</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[FIX] adding members with guild other than default no longer crashes RT]]></change>
+					<change><![CDATA[[NEW] now shows version number in ACP]]></change>					
+				</changelog>
+			</entry>		
 		</history>
 		<link-group>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.6</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.6</link>
-			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.6</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="en">bbDkp 1.2.7</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="de">bbDkp 1.2.7</link>
+			<link type="dependency" href="http://www.bbdkp.com/downloads.php" lang="fr">bbDkp 1.2.7</link>
 			<link type="language" href="contrib/fr.xml" lang="en">French</link>
 			<link type="language" href="contrib/fr.xml" lang="fr">Français</link>
 			<link type="language" href="contrib/fr.xml" lang="de">Franzözisch</link>

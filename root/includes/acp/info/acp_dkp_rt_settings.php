@@ -36,7 +36,7 @@ class acp_dkp_rt_settings_info
 		return array(
 			'filename'	=> 'acp_dkp_rt_settings',
 			'title'		=> 'RTSETTINGS',
-			'version'	=> '1.0.0',
+			'version'	=> '1.0.1',
 			'modes'		=> array(
 				'rt_manage_settings'			=> array('title' => 'RTSETTINGS',  'display' => 1,  'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP')),
 				'rt_add_items'					=> array('title' => 'RT_ADDITEMS',  'display' => 0, 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP')),
