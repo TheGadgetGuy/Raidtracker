@@ -50,6 +50,7 @@ $lang = array_merge($lang, array(
 /*
  * Raidtracker Import 
  */
+'RT_TITLE' => 'RaidTracker', 
 'RT' => 'RaidTracker Import',
 'IMPORT_RT_DATA' => 'Import DKP String',
 'RT_DISABLED' => 'Raidtracker is disabled', 
